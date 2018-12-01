@@ -51,12 +51,12 @@ const About = props => {
         <hr />
         <Typography variant="caption" align="center">
           You can view the source code for this project here:{' '}
-          <a href="/">
+          <a href="https://github.com/jwellwood/teamstats">
             <i className="fab fa-github" />
           </a>
         </Typography>
         <Typography variant="caption" align="center">
-          Version: 0.1.3
+          Version: 1.0.3
         </Typography>
       </Paper>
     </Container>
