@@ -13,7 +13,7 @@ import Avatar from '@material-ui/core/Avatar';
 // Components
 import AppMenu from './AppMenu';
 import TopNav from './TopNav';
-import Logo from '../../assets/logo.jpg';
+import Logo from '../../../assets/images/logo.jpg';
 
 // styling
 const styles = theme => ({
@@ -22,9 +22,9 @@ const styles = theme => ({
   bigAvatar: {
     border: '2px solid',
     borderColor: theme.palette.primary.dark,
-    margin: 10,
-    width: 50,
-    height: 50,
+    margin: '10px 0',
+    width: 48,
+    height: 48,
   },
 });
 
@@ -68,9 +68,9 @@ class NavBar extends Component {
           <TopNav text="Register" icon="lock_open" link="/register" />
         ) : null}
         <Toolbar>
-          <Grid container justify="space-between" alignItems="center">
+          <Grid container justify="space-around" alignItems="center">
             <Avatar alt="Team badge" src={Logo} className={classes.bigAvatar} />
-            <Typography variant="h6" color="inherit">
+            <Typography style={{ fontFamily: 'Righteous' }} variant="h6" color="inherit">
               Madrid Reds
             </Typography>
             <AppMenu isAuthenticated={isAuthenticated} onLogout={this.onLogout} />

@@ -11,7 +11,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import LockIcon from '@material-ui/icons/LockOutlined';
 // Components
-import Alert from '../layout/Alert';
+import Alert from '../layout/Warnings/Alert';
 
 // styling
 const styles = theme => ({

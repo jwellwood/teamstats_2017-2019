@@ -20,8 +20,8 @@ import Grid from '@material-ui/core/Grid';
 import Container from '../hoc/Container';
 // import ConfirmDelete from './PlayersComponents/ConfirmDelete';
 import ConfirmMatchDelete from './ResultsComponents/ConfirmMatchDelete';
-import Spinner from '../layout/Spinner';
-import PageHeader from '../layout/PageHeader';
+import Spinner from '../layout/Warnings/Spinner';
+import PageHeader from '../layout/Navs/PageHeader';
 
 const styles = theme => ({
   container: {
@@ -107,7 +107,7 @@ class EditResult extends Component {
                   inputRef={this.matchTypeInput}
                   defaultValue={result.matchType}
                   required
-                  input={<FilledInput name="matchType" id="matchType" labelWidth={0} />}
+                  input={<FilledInput name="matchType" id="matchType" labelwidth={0} />}
                 >
                   <option value="League">League</option>
                   <option value="Cup">Cup</option>

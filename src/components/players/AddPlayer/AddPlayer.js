@@ -3,14 +3,15 @@ import PropTypes from 'prop-types';
 // Firestore
 import { firestoreConnect } from 'react-redux-firebase';
 // Components
-import Container from '../hoc/Container';
-import AddForm from './FormComponents/AddForm';
-import PageHeader from '../layout/PageHeader';
+import Container from '../../hoc/Container';
+import AddForm from './AddForm';
+import PageHeader from '../../layout/Navs/PageHeader';
 
 class AddPlayer extends Component {
   state = {
     name: '',
     number: '',
+    position: '',
     targetApps: '',
     targetGoals: '',
     targetAssists: '',
@@ -35,7 +36,7 @@ class AddPlayer extends Component {
   };
 
   render() {
-    const { name, number, targetApps, targetGoals, targetAssists } = this.state;
+    const { name, number, position, targetApps, targetGoals, targetAssists } = this.state;
     return (
       <Container>
         <PageHeader title="Add Player" icon="fas fa-user-plus" link="/players" />
@@ -44,6 +45,7 @@ class AddPlayer extends Component {
           onSubmit={this.onSubmit}
           name={name}
           number={number}
+          position={position}
           targetApps={targetApps}
           targetGoals={targetGoals}
           targetAssists={targetAssists}

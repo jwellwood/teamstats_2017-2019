@@ -5,7 +5,7 @@ import { firestoreConnect } from 'react-redux-firebase';
 // Components
 import Container from '../hoc/Container';
 import AddMatchForm from './FormComponents/AddMatchForm';
-import PageHeader from '../layout/PageHeader';
+import PageHeader from '../layout/Navs/PageHeader';
 
 class AddResult extends Component {
   state = {

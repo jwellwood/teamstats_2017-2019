@@ -14,8 +14,8 @@ import IconButton from '@material-ui/core/IconButton';
 import Icon from '@material-ui/core/Icon';
 import Container from '../../hoc/Container';
 
-import Spinner from '../../layout/Spinner';
-import PageHeader from '../../layout/PageHeader';
+import Spinner from '../../layout/Warnings/Spinner';
+import PageHeader from '../../layout/Navs/PageHeader';
 
 const styles = theme => ({
   container: {

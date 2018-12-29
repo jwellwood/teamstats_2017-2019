@@ -12,7 +12,7 @@ import Icon from '@material-ui/core/Icon';
 import Divider from '@material-ui/core/Divider';
 import Container from '../hoc/Container';
 import { setAllowRegistration } from '../../actions/settingsActions';
-import PageHeader from '../layout/PageHeader';
+import PageHeader from '../layout/Navs/PageHeader';
 
 const styles = theme => ({
   root: {
@@ -50,7 +50,7 @@ class Settings extends Component {
                 />
               </form>
             </ListItem>
-            <Divider inset component="li" />
+            <Divider variant="inset" component="li" />
           </List>
         </div>
       </Container>

@@ -77,7 +77,11 @@ class AppMenu extends React.Component {
                   <ListItemIcon className={classes.icon}>
                     <Icon>{item.icon}</Icon>
                   </ListItemIcon>
-                  <ListItemText classes={{ primary: classes.primary }} inset primary={item.text} />
+                  <ListItemText
+                    classes={{ primary: classes.primary }}
+                    variant="inset"
+                    primary={item.text}
+                  />
                 </MenuItem>
               </NavLink>
             </div>
@@ -91,7 +95,11 @@ class AppMenu extends React.Component {
                   <ListItemIcon className={classes.icon}>
                     <Icon>settings</Icon>
                   </ListItemIcon>
-                  <ListItemText classes={{ primary: classes.primary }} inset primary="Settings" />
+                  <ListItemText
+                    classes={{ primary: classes.primary }}
+                    variant="inset"
+                    primary="Settings"
+                  />
                 </MenuItem>
               </NavLink>
             </div>

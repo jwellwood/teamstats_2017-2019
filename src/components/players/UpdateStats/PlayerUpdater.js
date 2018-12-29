@@ -5,13 +5,13 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 // Components
-import Container from '../hoc/Container';
-import DetailsHeader from './DetailsComponents/DetailsHeader';
-import DetailsTabs from './DetailsComponents/Tabs/DetailsTabs';
-import Spinner from '../layout/Spinner';
-import BalanceForm from './DetailsComponents/BalanceForm';
+import Container from '../../hoc/Container';
+import DetailsHeader from './DetailsHeader';
+import Spinner from '../../layout/Warnings/Spinner';
+import BalanceForm from './BalanceForm';
+import StatsUpdater from './StatsUpdater';
 
-class PlayerDetails extends Component {
+class PlayerUpdater extends Component {
   state = {
     showBalanceUpdate: false,
     balanceUpdateAmount: '',
@@ -128,7 +128,7 @@ class PlayerDetails extends Component {
       return (
         <Container>
           <DetailsHeader player={player} />
-          <DetailsTabs
+          <StatsUpdater
             player={player}
             isAuthenticated={isAuthenticated}
             toggleBalanceForm={this.toggleBalanceForm}
@@ -150,13 +150,13 @@ class PlayerDetails extends Component {
   }
 }
 
-PlayerDetails.propTypes = {
+PlayerUpdater.propTypes = {
   firestore: PropTypes.shape({}).isRequired,
   player: PropTypes.shape({}),
   auth: PropTypes.shape({}).isRequired,
 };
 
-PlayerDetails.defaultProps = { player: {} };
+PlayerUpdater.defaultProps = { player: {} };
 
 export default compose(
   firestoreConnect(props => [
@@ -167,4 +167,4 @@ export default compose(
     player: state.firestore.ordered.player && state.firestore.ordered.player[0],
     auth: state.firebase.auth,
   })),
-)(PlayerDetails);
+)(PlayerUpdater);

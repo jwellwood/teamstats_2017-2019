@@ -45,7 +45,7 @@ const TeamDetails = props => {
               <Avatar className={classes.avatar}>{item.icon}</Avatar>
               <ListItemText primary={item.name} secondary={item.text} />
             </ListItem>
-            <Divider inset component="li" />
+            <Divider variant="inset" component="li" />
           </div>
         ))}
         <ListItem>
@@ -54,7 +54,7 @@ const TeamDetails = props => {
           </Avatar>
           <ListItemText primary={<Trophies />} />
         </ListItem>
-        <Divider inset component="li" />
+        <Divider variant="inset" component="li" />
       </List>
     </Grid>
   );

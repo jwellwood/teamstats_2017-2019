@@ -3,11 +3,14 @@ import PropTypes from 'prop-types';
 // MUI
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
+// Form
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import Input from '@material-ui/core/Input';
 
 // styling
 const styles = theme => ({
@@ -22,10 +25,11 @@ const styles = theme => ({
   },
   button: { margin: theme.spacing.unit },
   rightIcon: { marginLeft: theme.spacing.unit },
+  inputStyle: { width: '200px', display: 'block', margin: '5px auto' },
 });
 
-const textInputProps = { minLength: 2, required: 'true' };
-const numberInputProps = { min: 1, required: 'true' };
+const textInputProps = { minLength: 2, required: true };
+const numberInputProps = { min: 1, required: true };
 
 // Component
 const AddForm = props => {
@@ -35,6 +39,7 @@ const AddForm = props => {
     onChange,
     name,
     number,
+    position,
     targetApps,
     targetGoals,
     targetAssists,
@@ -62,6 +67,20 @@ const AddForm = props => {
             value={number}
           />
         </FormControl>
+
+        <Select
+          className={classes.inputStyle}
+          native
+          onChange={onChange}
+          value={position}
+          input={<OutlinedInput name="position" id="position" labelWidth={0} />}
+        >
+          <option value="GK">Goalkeeper</option>
+          <option value="DF">Defender</option>
+          <option value="MF">Midfielder</option>
+          <option value="FW">Forward</option>
+        </Select>
+
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="targetApps">Target Appearances</InputLabel>
           <Input
@@ -114,6 +133,7 @@ AddForm.propTypes = {
   onChange: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
   number: PropTypes.string.isRequired,
+  position: PropTypes.string.isRequired,
   targetApps: PropTypes.string.isRequired,
   targetGoals: PropTypes.string.isRequired,
   targetAssists: PropTypes.string.isRequired,

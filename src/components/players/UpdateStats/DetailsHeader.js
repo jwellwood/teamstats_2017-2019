@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import Icon from '@material-ui/core/Icon';
-import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 
 // styling
@@ -27,19 +26,7 @@ const DetailsHeader = props => {
   return (
     <div>
       <Grid container direction="row" justify="flex-start" alignItems="center">
-        <Avatar
-          alt="Player avatar"
-          src="https://images.vexels.com/media/users/3/129733/isolated/preview/a558682b158debb6d6f49d07d854f99f-casual-male-avatar-silhouette-by-vexels.png"
-          className={classes.bigAvatar}
-        />
-        <h2>
-          {player.name}
-          <span style={{ color: '#9a0007' }}>
-            {' '}
-            (#
-            {player.number})
-          </span>
-        </h2>
+        <h2 style={{ margin: '5px auto' }}>{player.name}</h2>
       </Grid>
       <Grid container direction="row" justify="space-between" alignItems="center">
         <IconButton

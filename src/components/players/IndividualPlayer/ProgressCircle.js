@@ -20,7 +20,7 @@ const ProgressCircle = props => {
       styles={{
         trail: { stroke: 'rgba(255, 160, 0)' },
         path: { stroke: 'rgba(76, 175, 80)' },
-        text: { fill: '#fff', fontSize: '1rem' },
+        text: { fill: '#fff', fontSize: '1rem', fontFamily: 'Righteous' },
         background: { fill: '#222' },
       }}
       initialAnimation

@@ -6,18 +6,21 @@ import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 // MUI
 import { withStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
+import Icon from '@material-ui/core/Icon';
+// Form
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
-import Button from '@material-ui/core/Button';
-import Icon from '@material-ui/core/Icon';
+import Select from '@material-ui/core/Select';
+import FilledInput from '@material-ui/core/FilledInput';
 // Component
-import Grid from '@material-ui/core/Grid';
-import Container from '../hoc/Container';
-import ConfirmDelete from './PlayersComponents/ConfirmDelete';
-import Spinner from '../layout/Spinner';
-import PageHeader from '../layout/PageHeader';
+import Container from '../../hoc/Container';
+import PageHeader from '../../layout/Navs/PageHeader';
+import ConfirmDelete from '../ConfirmDelete';
+import Spinner from '../../layout/Warnings/Spinner';
 
 const styles = theme => ({
   container: {
@@ -31,6 +34,7 @@ const styles = theme => ({
   },
   button: { margin: theme.spacing.unit },
   rightIcon: { marginLeft: theme.spacing.unit },
+  inputStyle: { width: '200px', display: 'block', margin: '5px auto' },
 });
 
 class EditPlayer extends Component {
@@ -38,6 +42,7 @@ class EditPlayer extends Component {
     super(props);
     this.nameInput = React.createRef();
     this.numberInput = React.createRef();
+    this.positionInput = React.createRef();
     this.targetAppsInput = React.createRef();
     this.targetGoalsInput = React.createRef();
     this.targetAssistsInput = React.createRef();
@@ -49,6 +54,7 @@ class EditPlayer extends Component {
     const updatedPlayer = {
       name: this.nameInput.current.value,
       number: this.numberInput.current.value,
+      position: this.positionInput.current.value,
       targetApps: this.targetAppsInput.current.value,
       targetGoals: this.targetGoalsInput.current.value,
       targetAssists: this.targetAssistsInput.current.value,
@@ -65,8 +71,8 @@ class EditPlayer extends Component {
 
   render() {
     const { classes, player } = this.props;
-    const textInputProps = { minLength: 2, required: 'true' };
-    const numberInputProps = { min: 1, required: 'true' };
+    const textInputProps = { minLength: 2 };
+    const numberInputProps = { min: 1 };
     if (player) {
       return (
         <Container>
@@ -80,6 +86,7 @@ class EditPlayer extends Component {
                   name="name"
                   minLength="2"
                   inputProps={textInputProps}
+                  required
                   inputRef={this.nameInput}
                   defaultValue={player.name}
                 />
@@ -90,6 +97,7 @@ class EditPlayer extends Component {
                   type="number"
                   name="number"
                   inputProps={numberInputProps}
+                  required
                   inputRef={this.numberInput}
                   defaultValue={player.number}
                 />
@@ -105,12 +113,28 @@ class EditPlayer extends Component {
                   defaultValue={player.targetApps}
                 />
               </FormControl>
+
+              <Select
+                className={classes.inputStyle}
+                native
+                inputRef={this.positionInput}
+                defaultValue={player.position}
+                required
+                input={<FilledInput name="position" id="position" labelwidth={0} />}
+              >
+                <option value="GK">Goalkeeper</option>
+                <option value="DF">Defender</option>
+                <option value="MF">Midfielder</option>
+                <option value="FW">Forward</option>
+              </Select>
+
               <FormControl className={classes.formControl}>
                 <InputLabel htmlFor="targetGoals">Target Goals</InputLabel>
                 <Input
                   type="number"
                   name="targetGoals"
                   inputProps={numberInputProps}
+                  required
                   inputRef={this.targetGoalsInput}
                   defaultValue={player.targetGoals}
                 />
@@ -121,6 +145,7 @@ class EditPlayer extends Component {
                   type="number"
                   name="targetAssists"
                   inputProps={numberInputProps}
+                  required
                   inputRef={this.targetAssistsInput}
                   defaultValue={player.targetAssists}
                 />

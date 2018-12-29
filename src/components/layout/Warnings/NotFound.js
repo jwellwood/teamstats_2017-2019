@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { Icon } from '@material-ui/core';
-import Container from '../hoc/Container';
+import Container from '../../hoc/Container';
 
 // styling
 const styles = theme => ({

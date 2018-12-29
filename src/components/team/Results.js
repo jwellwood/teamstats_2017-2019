@@ -11,18 +11,46 @@ import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 // Components
 import Container from '../hoc/Container';
-import PageHeader from '../layout/PageHeader';
+import PageHeader from '../layout/Navs/PageHeader';
 import ResultBox from './ResultsComponents/ResultBox';
-import Spinner from '../layout/Spinner';
-import TeamTotals from './ResultsComponents/TeamTotals';
+import Spinner from '../layout/Warnings/Spinner';
+import TotalsTable from './ResultsComponents/ResultsTotals/TotalsTable';
 
 const styles = theme => ({
   button: { margin: theme.spacing.unit },
   rightIcon: { marginLeft: theme.spacing.unit },
+  winColor: { color: '#28B463' },
+  drawColor: { color: '#F39C12' },
+  defeatColor: { color: '#E74C3C' },
 });
 
 const Results = props => {
   const { classes, results, onDelete } = props;
+
+  const getGoals = (a, b) => a + b;
+
+  const getGoalsFor = () => {
+    const getMyTeamHome = results.filter(result => result.homeTeamName === 'Madrid Reds');
+    const getMyTeamAway = results.filter(result => result.awayTeamName === 'Madrid Reds');
+    const myTeamHomeArray = getMyTeamHome.map(goals => +goals.homeTeamScore);
+    const myTeamAwayArray = getMyTeamAway.map(goals => +goals.awayTeamScore);
+    const homeTeamGoals = myTeamHomeArray.reduce(getGoals, 0);
+    const awayTeamGoals = myTeamAwayArray.reduce(getGoals, 0);
+    const goalsFor = homeTeamGoals + awayTeamGoals;
+    return goalsFor;
+  };
+
+  const getGoalsAgainst = () => {
+    const getOtherTeamHome = results.filter(result => result.homeTeamName !== 'Madrid Reds');
+    const getOtherTeamAway = results.filter(result => result.awayTeamName !== 'Madrid Reds');
+    const otherTeamHomeArray = getOtherTeamHome.map(goals => +goals.homeTeamScore);
+    const otherTeamAwayArray = getOtherTeamAway.map(goals => +goals.awayTeamScore);
+    const otherHomeTeamGoals = otherTeamHomeArray.reduce(getGoals, 0);
+    const otherAwayTeamGoals = otherTeamAwayArray.reduce(getGoals, 0);
+    const goalsAgainst = otherHomeTeamGoals + otherAwayTeamGoals;
+    return goalsAgainst;
+  };
+
   const totalMatches = results.length;
   const winCounter = results.filter(result => result.resultIndicator === 'W');
   const drawCounter = results.filter(result => result.resultIndicator === 'D');
@@ -33,17 +61,19 @@ const Results = props => {
   const winPercentage = (totalWins * 100) / totalMatches;
   const drawPercentage = (totalDraws * 100) / totalMatches;
   const lossPercentage = (totalLoss * 100) / totalMatches;
+
   return (
     <Container>
-      <PageHeader title="Results" icon="fas fa-futbol" link="/" />
-      <TeamTotals
-        totalMatches={totalMatches}
-        totalWins={totalWins}
-        totalDraws={totalDraws}
-        totalLoss={totalLoss}
-        winPercentage={+winPercentage.toFixed(1)}
-        drawPercentage={+drawPercentage.toFixed(1)}
-        lossPercentage={+lossPercentage.toFixed(1)}
+      <PageHeader title="Results" icon="" link="/" />
+      <TotalsTable
+        values={{
+          totalMatches,
+          getGoalsFor,
+          getGoalsAgainst,
+          totalWins,
+          totalDraws,
+          totalLoss,
+        }}
       />
       <Button
         component={Link}

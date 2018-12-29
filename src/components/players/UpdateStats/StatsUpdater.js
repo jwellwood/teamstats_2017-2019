@@ -21,7 +21,7 @@ const styles = theme => ({
   },
 });
 
-const PlayerTotals = props => {
+const StatsUpdater = props => {
   const {
     classes,
     player,
@@ -132,7 +132,7 @@ const PlayerTotals = props => {
               <ListItemText primary={item.total} secondary={item.text} />
               {minusButton} {plusButton}
             </ListItem>
-            <Divider inset component="li" />
+            <Divider variant="inset" component="li" />
           </div>
         );
       })}
@@ -142,7 +142,7 @@ const PlayerTotals = props => {
   );
 };
 
-PlayerTotals.propTypes = {
+StatsUpdater.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   player: PropTypes.shape({}).isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
@@ -159,6 +159,6 @@ PlayerTotals.propTypes = {
   balanceForm: PropTypes.element,
 };
 
-PlayerTotals.defaultProps = { balanceForm: null };
+StatsUpdater.defaultProps = { balanceForm: null };
 
-export default withStyles(styles)(PlayerTotals);
+export default withStyles(styles)(StatsUpdater);

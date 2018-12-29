@@ -5,22 +5,22 @@ import { Provider } from 'react-redux';
 import store from './store';
 import { UserIsAuthenticated, UserIsNotAuthenticated } from './helpers/auth';
 // Components
-import NavBar from './components/layout/NavBar';
+import NavBar from './components/layout/Navs/NavBar';
 import Home from './components/Home/Home';
 // Auth
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 // Player
 import Players from './components/players/Players';
-import AddPlayer from './components/players/AddPlayer';
-import PlayerDetails from './components/players/PlayerDetails';
-import EditPlayer from './components/players/EditPlayer';
+import AddPlayer from './components/players/AddPlayer/AddPlayer';
+import PlayerUpdater from './components/players/UpdateStats/PlayerUpdater';
+import EditPlayer from './components/players/EditPlayer/EditPlayer';
 // Team
 import Results from './components/team/Results';
 import AddResult from './components/team/AddResult';
 import Settings from './components/settings/Settings';
 import About from './components/about/About';
-import NotFound from './components/layout/NotFound';
+import NotFound from './components/layout/Warnings/NotFound';
 import './App.css';
 import EditResult from './components/team/EditResult';
 import MatchDetails from './components/team/ResultsComponents/MatchDetails';
@@ -40,7 +40,7 @@ const App = () => (
             <Route exact path="/players/addPlayer" component={UserIsAuthenticated(AddPlayer)} />
             <Route exact path="/players/edit/:id" component={UserIsAuthenticated(EditPlayer)} />
             <Route exact path="/settings" component={UserIsAuthenticated(Settings)} />
-            <Route exact path="/players/:id" component={PlayerDetails} />
+            <Route exact path="/players/:id" component={UserIsAuthenticated(PlayerUpdater)} />
             <Route exact path="/results" component={Results} />
             <Route exact path="/results/addResult" component={UserIsAuthenticated(AddResult)} />
             <Route exact path="/results/:id/edit" component={UserIsAuthenticated(EditResult)} />
