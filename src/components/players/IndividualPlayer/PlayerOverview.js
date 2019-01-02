@@ -11,6 +11,7 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import Typography from '@material-ui/core/Typography';
 // Components
 import StatsHeader from '../../layout/Stats/StatsHeader';
+import { colors } from '../../../assets/styles/colors';
 
 const styles = theme => ({
   bigAvatar: {
@@ -27,16 +28,33 @@ const styles = theme => ({
 const PlayerOverview = props => {
   const { classes, player, totalMatches } = props;
   const playedPercentage = (player.apps * 100) / totalMatches;
+  let color = '#fff';
+  switch (player.position) {
+    case 'GK':
+      color = colors.GK;
+      break;
+    case 'DF':
+      color = colors.DF;
+      break;
+    case 'MF':
+      color = colors.MF;
+      break;
+    case 'FW':
+      color = colors.FW;
+      break;
+    default:
+      return color;
+  }
   let id = 0;
-  const createData = (title, value) => {
+  const createData = (title, value, textColor) => {
     id += 1;
-    return { id, title, value };
+    return { id, title, value, textColor };
   };
 
   const listItems = [
-    createData('Number', player.number),
-    createData('Position', player.position),
-    createData('Played %', `${playedPercentage.toFixed(1)}%`),
+    createData('Number', player.number, ''),
+    createData('Position', player.position, color),
+    createData('Played %', `${playedPercentage.toFixed(1)}%`, ''),
   ];
 
   return (
@@ -59,7 +77,9 @@ const PlayerOverview = props => {
                 />
               </ListItem>
               <ListItemSecondaryAction>
-                <Typography className={classes.number}>{item.value}</Typography>
+                <Typography className={classes.number} style={{ color: item.color }}>
+                  {item.value}
+                </Typography>
               </ListItemSecondaryAction>
             </List>
           ))}

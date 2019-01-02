@@ -16,7 +16,7 @@ const ProgressCircle = props => {
       className={() => (percentageCompleted < 100 ? 'incomplete' : 'complete')}
       backgroundPadding={1}
       background
-      strokeWidth={10}
+      strokeWidth={8}
       styles={{
         trail: { stroke: 'rgba(255, 160, 0)' },
         path: { stroke: 'rgba(76, 175, 80)' },

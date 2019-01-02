@@ -17,13 +17,13 @@ import PlayerUpdater from './components/players/UpdateStats/PlayerUpdater';
 import EditPlayer from './components/players/EditPlayer/EditPlayer';
 // Team
 import Results from './components/team/Results';
-import AddResult from './components/team/AddResult';
+import AddResult from './components/team/AddResult/AddResult';
 import Settings from './components/settings/Settings';
 import About from './components/about/About';
 import NotFound from './components/layout/Warnings/NotFound';
 import './App.css';
-import EditResult from './components/team/EditResult';
-import MatchDetails from './components/team/ResultsComponents/MatchDetails';
+import EditResult from './components/team/EditResult/EditResult';
+import MatchDetails from './components/team/IndividualResult/MatchDetails';
 
 const App = () => (
   <Provider store={store}>

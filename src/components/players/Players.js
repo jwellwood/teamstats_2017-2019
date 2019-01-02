@@ -12,6 +12,8 @@ import Container from '../hoc/Container';
 import PageHeader from '../layout/Navs/PageHeader';
 import SquadList from './Squad/SquadList';
 import TotalsTable from './Squad/TotalsTable';
+import TopStatItem from '../layout/Stats/TopStatItem';
+// import { getTotal } from '../../helpers/calcs';
 
 class Players extends Component {
   state = {
@@ -54,7 +56,9 @@ class Players extends Component {
     const { players } = props;
     if (players) {
       // Apps
+
       const totalTeamApps = players.reduce((totalApps, player) => totalApps + player.apps, 0);
+
       const teamTargetApps = players.reduce(
         (targetApps, player) => targetApps + +player.targetApps,
         0,
@@ -63,9 +67,7 @@ class Players extends Component {
       const topAppValue = Math.max(...allApps);
       const topAppObject = players.filter(player => (player.apps === topAppValue ? player.name : null));
       const topAppPlayer = topAppObject.map(player => (
-        <span style={{ marginRight: '5px' }} key={player.id}>
-          {player.name}
-        </span>
+        <TopStatItem data={player.name} id={player.id} />
       ));
       // Goals
       const totalTeamGoals = players.reduce((totalGoals, player) => totalGoals + player.goals, 0);
@@ -77,9 +79,7 @@ class Players extends Component {
       const topGoalValue = Math.max(...allGoals);
       const topGoalObject = players.filter(player => (player.goals === topGoalValue ? player.name : null));
       const topGoalPlayer = topGoalObject.map(player => (
-        <span style={{ marginRight: '5px' }} key={player.id}>
-          {player.name}
-        </span>
+        <TopStatItem data={player.name} id={player.id} />
       ));
       const getGoalsPerMatch = players.map(player => (player.apps > 1 ? player.goals / player.apps : null));
       const topGoalsPerMatchValue = Math.max(...getGoalsPerMatch);
@@ -87,9 +87,7 @@ class Players extends Component {
         ? player.name
         : null));
       const topGoalsPerMatchPlayer = topGoalsPerMatchObject.map(player => (
-        <span style={{ marginRight: '5px' }} key={player.id}>
-          {player.name}
-        </span>
+        <TopStatItem data={player.name} id={player.id} />
       ));
       // Assists
       const totalTeamAssists = players.reduce(
@@ -104,9 +102,7 @@ class Players extends Component {
       const topAssistValue = Math.max(...allAssists);
       const topAssistObject = players.filter(player => (player.assists === topAssistValue ? player.name : null));
       const topAssistPlayer = topAssistObject.map(player => (
-        <span style={{ marginRight: '5px' }} key={player.id}>
-          {player.name}
-        </span>
+        <TopStatItem data={player.name} id={player.id} />
       ));
       const getAssistsPerMatch = players.map(player => (player.apps > 1 ? player.assists / player.apps : null));
       const topAssistsPerMatchValue = Math.max(...getAssistsPerMatch);
@@ -114,9 +110,7 @@ class Players extends Component {
         ? player.name
         : null));
       const topAssistsPerMatchPlayer = topAssistsPerMatchObject.map(player => (
-        <span style={{ marginRight: '5px' }} key={player.id}>
-          {player.name}
-        </span>
+        <TopStatItem data={player.name} id={player.id} />
       ));
       // MVP
       const totalTeamMVP = players.reduce((totalMVP, player) => totalMVP + player.mvp, 0);
@@ -124,9 +118,7 @@ class Players extends Component {
       const topMVPValue = Math.max(...allMVP);
       const topMVPObject = players.filter(player => (player.mvp === topMVPValue ? player.name : null));
       const topMVPPlayer = topMVPObject.map(player => (
-        <span style={{ marginRight: '5px' }} key={player.id}>
-          {player.name}
-        </span>
+        <TopStatItem data={player.name} id={player.id} />
       ));
 
       // Money

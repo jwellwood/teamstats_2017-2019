@@ -6,6 +6,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 // Assets
 import avatar from '../../../../assets/images/avatar.png';
+import { colors } from '../../../../assets/styles/colors';
 
 const styles = theme => ({
   avatar: { margin: '5px' },
@@ -28,12 +29,30 @@ const styles = theme => ({
 
 const PlayerImage = props => {
   const { classes, name, number, position } = props;
+  let color = '#fff';
+  switch (position) {
+    case 'GK':
+      color = colors.GK;
+      break;
+    case 'DF':
+      color = colors.DF;
+      break;
+    case 'MF':
+      color = colors.MF;
+      break;
+    case 'FW':
+      color = colors.FW;
+      break;
+    default:
+      return color;
+  }
+
   return (
     <Grid container direction="row" justify="center" alignItems="center">
       <Grid container direction="row" justify="center" alignItems="center">
         <div className={classes.numAvatar}>{number}</div>
         <Avatar alt="player image" src={avatar} className={classes.avatar} />
-        <div className={classes.numAvatar} style={{ color: '#42A5F5' }}>
+        <div className={classes.numAvatar} style={{ color }}>
           {position}
         </div>
       </Grid>

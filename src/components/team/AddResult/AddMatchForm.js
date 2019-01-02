@@ -47,8 +47,8 @@ const AddMatchForm = props => {
     resultIndicator,
     forfeitedMatch,
   } = props;
-  const textInputProps = { minLength: 2, required: 'true' };
-  const numberInputProps = { min: 0, max: 999, required: 'true' };
+  const textInputProps = { minLength: 2 };
+  const numberInputProps = { min: 0, max: 999 };
   return (
     <Paper className={classes.container}>
       <form onSubmit={onSubmit}>
@@ -104,6 +104,7 @@ const AddMatchForm = props => {
                     type="text"
                     name="homeTeamName"
                     inputProps={textInputProps}
+                    required
                     onChange={onChange}
                     value={homeTeamName}
                   />
@@ -118,6 +119,7 @@ const AddMatchForm = props => {
                     type="number"
                     name="homeTeamScore"
                     inputProps={numberInputProps}
+                    required
                     onChange={onChange}
                     value={homeTeamScore}
                   />
@@ -136,6 +138,7 @@ const AddMatchForm = props => {
                     type="text"
                     name="awayTeamName"
                     inputProps={textInputProps}
+                    required
                     onChange={onChange}
                     value={awayTeamName}
                   />
@@ -150,6 +153,7 @@ const AddMatchForm = props => {
                     type="number"
                     name="awayTeamScore"
                     inputProps={numberInputProps}
+                    required
                     onChange={onChange}
                     value={awayTeamScore}
                   />

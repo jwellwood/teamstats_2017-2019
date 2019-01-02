@@ -17,11 +17,11 @@ import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 // Component
 import Grid from '@material-ui/core/Grid';
-import Container from '../hoc/Container';
+import Container from '../../hoc/Container';
 // import ConfirmDelete from './PlayersComponents/ConfirmDelete';
-import ConfirmMatchDelete from './ResultsComponents/ConfirmMatchDelete';
-import Spinner from '../layout/Warnings/Spinner';
-import PageHeader from '../layout/Navs/PageHeader';
+import Spinner from '../../layout/Warnings/Spinner';
+import PageHeader from '../../layout/Navs/PageHeader';
+import DeleteConfirm from '../../layout/Warnings/DeleteConfirm';
 
 const styles = theme => ({
   container: {
@@ -81,8 +81,8 @@ class EditResult extends Component {
 
   render() {
     const { classes, result } = this.props;
-    const textInputProps = { minLength: 2, required: 'true' };
-    const numberInputProps = { min: 0, required: 'true' };
+    const textInputProps = { minLength: 2 };
+    const numberInputProps = { min: 0 };
     if (result) {
       return (
         <Container>
@@ -97,6 +97,7 @@ class EditResult extends Component {
                   type="date"
                   name="date"
                   inputProps={textInputProps}
+                  required
                   inputRef={this.dateInput}
                   defaultValue={result.date}
                 />
@@ -107,7 +108,7 @@ class EditResult extends Component {
                   inputRef={this.matchTypeInput}
                   defaultValue={result.matchType}
                   required
-                  input={<FilledInput name="matchType" id="matchType" labelwidth={0} />}
+                  input={<FilledInput name="matchType" id="matchType" labelWidth={0} />}
                 >
                   <option value="League">League</option>
                   <option value="Cup">Cup</option>
@@ -144,6 +145,7 @@ class EditResult extends Component {
                           type="text"
                           name="homeTeamName"
                           inputProps={textInputProps}
+                          required
                           inputRef={this.homeTeamNameInput}
                           defaultValue={result.homeTeamName}
                         />
@@ -158,6 +160,7 @@ class EditResult extends Component {
                           type="number"
                           name="homeTeamScore"
                           inputProps={numberInputProps}
+                          required
                           inputRef={this.homeTeamScoreInput}
                           defaultValue={result.homeTeamScore}
                         />
@@ -176,6 +179,7 @@ class EditResult extends Component {
                           type="text"
                           name="awayTeamName"
                           inputProps={textInputProps}
+                          required
                           inputRef={this.awayTeamNameInput}
                           defaultValue={result.awayTeamName}
                         />
@@ -190,6 +194,7 @@ class EditResult extends Component {
                           type="number"
                           name="awayTeamScore"
                           inputProps={numberInputProps}
+                          required
                           inputRef={this.awayTeamScoreInput}
                           defaultValue={result.awayTeamScore}
                         />
@@ -222,7 +227,7 @@ class EditResult extends Component {
               </div>
 
             </form>
-            <ConfirmMatchDelete onDelete={this.onDelete} />
+            <DeleteConfirm onDelete={this.onDelete} type="match" />
           </Paper>
         </Container>
       );

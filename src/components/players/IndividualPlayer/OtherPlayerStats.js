@@ -7,17 +7,9 @@ import StatsAvatar from '../../layout/Stats/StatsAvatar';
 // Component
 const OtherPlayerStats = props => {
   const { player, totalGoals } = props;
-  const { apps, goals, assists, mvp, balance } = player;
-  let goalsPG = (goals / apps).toFixed(2);
-  let assistsPG = (assists / apps).toFixed(2);
-  let mvpPG = (mvp / apps).toFixed(2);
+  const { mvp, balance } = player;
 
   const goalContribution = ((player.goals + player.assists) * 100) / totalGoals;
-  if (apps === 0) {
-    goalsPG = '0';
-    assistsPG = '0';
-    mvpPG = '0';
-  }
 
   // Data to map
   let id = 0;
@@ -27,9 +19,6 @@ const OtherPlayerStats = props => {
   }
 
   const listItems = [
-    createData(<i className="fas fa-futbol" />, 'Goals / game', goalsPG),
-    createData(<i className="fas fa-key" />, 'Assists / game', assistsPG),
-    createData(<i className="far fa-star" />, 'MVP / game', mvpPG),
     createData(<i className="fas fa-star" />, 'MVP', mvp),
     createData(
       <i className="fas fa-percentage" />,

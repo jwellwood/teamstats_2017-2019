@@ -3,6 +3,12 @@ import PropTypes from 'prop-types';
 // MUI
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import StarIcon from '@material-ui/icons/Star';
+
 import Typography from '@material-ui/core/Typography';
 // Components
 import Container from '../hoc/Container';
@@ -14,7 +20,7 @@ const styles = theme => ({
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2,
   },
-  title: { margin: '10px auto' },
+  title: { margin: '10px auto', textAlign: 'left', fontWeigh: 'bold' },
 });
 
 const About = props => {
@@ -25,38 +31,84 @@ const About = props => {
         <Typography variant="h6" component="h3" color="primary" className={classes.title}>
           About
         </Typography>
-        <p>
-          <strong>This app allows users to:</strong>
-        </p>
-        <ul style={{ textAlign: 'left' }}>
-          <li>View the latest results</li>
-          <li>View the current playing squad</li>
-          <li>Track individual goal, assist and MVP stats</li>
-          <li>Check how much money is owed</li>
-        </ul>
-        <hr />
-        <p>
-          <strong>The team captain can:</strong>
-        </p>
-        <ul style={{ textAlign: 'left' }}>
-          <li>Add, edit and delete matches or players</li>
-          <li>Set a player's targets for the season</li>
-          <li>Enable registration for other admins</li>
-        </ul>
-        <hr />
-        <p>
-          <strong>If you notice a mistake in your stats, contact website admin</strong>{' '}
-        </p>
+        <Typography variant="subtitle2" className={classes.title}>
+          Users can:
+        </Typography>
+        <List dense>
+          <ListItem>
+            <ListItemIcon>
+              <StarIcon />
+            </ListItemIcon>
+            <ListItemText primary="View Results" secondary="Check the latest results" />
+          </ListItem>
+          <ListItem>
+            <ListItemIcon>
+              <StarIcon />
+            </ListItemIcon>
+            <ListItemText
+              primary="View the current squad"
+              secondary="Track individual and team stats"
+            />
+          </ListItem>
+          <ListItem>
+            <ListItemIcon>
+              <StarIcon />
+            </ListItemIcon>
+            <ListItemText
+              primary="Balance the books"
+              secondary="Check how much money each team member owes"
+            />
+          </ListItem>
+        </List>
 
         <hr />
-        <Typography variant="caption" align="center">
+        <Typography variant="subtitle2" className={classes.title}>
+          Registered users can:
+        </Typography>
+        <List dense>
+          <ListItem>
+            <ListItemIcon>
+              <StarIcon />
+            </ListItemIcon>
+            <ListItemText
+              primary="Manage the team"
+              secondary="Add, edit or delete matches or players"
+            />
+          </ListItem>
+          <ListItem>
+            <ListItemIcon>
+              <StarIcon />
+            </ListItemIcon>
+            <ListItemText
+              primary="Set targets"
+              secondary="Set a player's appearance, goal, and assist targets for the season"
+            />
+          </ListItem>
+          <ListItem>
+            <ListItemIcon>
+              <StarIcon />
+            </ListItemIcon>
+            <ListItemText
+              primary="Enable registration"
+              secondary="Allow other users to create accounts. To do this go to settings and click allow registration"
+            />
+          </ListItem>
+        </List>
+
+        <hr />
+        <Typography variant="body2">
+          <strong>If you notice a mistake in your stats, contact website admin</strong>{' '}
+        </Typography>
+
+        <hr />
+        <Typography variant="caption" align="center" style={{ color: '#ccc' }}>
           You can view the source code for this project here:{' '}
           <a href="https://github.com/jwellwood/teamstats">
             <i className="fab fa-github" />
           </a>
         </Typography>
         <Typography variant="caption" align="center">
-          Version: 1.0.3
+          Version: 2.0.1
         </Typography>
       </Paper>
     </Container>

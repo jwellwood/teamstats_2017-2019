@@ -1,0 +1,35 @@
+import React from 'react';
+import { Doughnut } from 'react-chartjs-2';
+import Grid from '@material-ui/core/Grid';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import Avatar from '@material-ui/core/Avatar';
+import StatsAvatar from '../../../layout/Stats/StatsAvatar';
+
+const TotalPieChart = props => {
+  const { data, title, itemsToMap, totalPlayed } = props;
+  return (
+    <div>
+      <List dense>
+        <ListItem>
+          <ListItemText primary={<span style={{ textTransform: 'uppercase' }}>{title}</span>} />
+          <ListItemAvatar>
+            <Avatar>{totalPlayed}</Avatar>
+          </ListItemAvatar>
+        </ListItem>
+      </List>
+      <Grid container direction="row" justify="center" alignItems="center">
+        <Grid item xs={12} style={{ textAlign: 'center' }} />
+        <Doughnut data={data} legend={{ position: 'right' }} />
+        <Grid item xs={12}>
+          <StatsAvatar itemsToMap={itemsToMap} />
+        </Grid>
+      </Grid>
+      <hr />
+    </div>
+  );
+};
+
+export default TotalPieChart;

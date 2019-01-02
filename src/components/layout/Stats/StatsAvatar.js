@@ -25,7 +25,9 @@ const StatsAvatar = props => {
       >
         {itemsToMap.map(item => (
           <Grid item xs={4} sm={2} key={item.id} className={classes.item}>
-            <Avatar style={{ margin: 'auto', background: item.color }}>{item.icon}</Avatar>
+            <Avatar style={{ margin: 'auto', background: item.color, fontWeight: 'bold' }}>
+              {item.icon}
+            </Avatar>
             <Typography className={classes.value}>{item.value}</Typography>
             <Typography className={classes.statsKey}>{item.title}</Typography>
           </Grid>

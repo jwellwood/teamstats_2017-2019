@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import ProgressBars from './ProgressBars';
 import Leaderboard from './Leaderboard';
 import OtherPlayerStats from './OtherPlayerStats';
+import PositionsGraph from './PositionsGraph';
 
 const PlayersOverview = props => {
   const {
@@ -22,6 +23,7 @@ const PlayersOverview = props => {
     <div>
       <Leaderboard Apps={Apps} Goals={Goals} Assists={Assists} MVP={MVP} players={players} />
       <ProgressBars Apps={Apps} Goals={Goals} Assists={Assists} MVP={MVP} />
+      <PositionsGraph players={players} />
       <OtherPlayerStats
         totalPlayers={totalPlayers}
         playersPerMatch={playersPerMatch}

@@ -19,8 +19,8 @@ import FilledInput from '@material-ui/core/FilledInput';
 // Component
 import Container from '../../hoc/Container';
 import PageHeader from '../../layout/Navs/PageHeader';
-import ConfirmDelete from '../ConfirmDelete';
 import Spinner from '../../layout/Warnings/Spinner';
+import DeleteConfirm from '../../layout/Warnings/DeleteConfirm';
 
 const styles = theme => ({
   container: {
@@ -120,7 +120,7 @@ class EditPlayer extends Component {
                 inputRef={this.positionInput}
                 defaultValue={player.position}
                 required
-                input={<FilledInput name="position" id="position" labelwidth={0} />}
+                input={<FilledInput name="position" id="position" labelWidth={0} />}
               >
                 <option value="GK">Goalkeeper</option>
                 <option value="DF">Defender</option>
@@ -151,7 +151,7 @@ class EditPlayer extends Component {
                 />
               </FormControl>
               <Grid container direction="row" justify="space-between" alignItems="center">
-                <ConfirmDelete onDelete={this.onDelete} player={player} />
+                <DeleteConfirm onDelete={this.onDelete} type="player" name={player.name} />
                 <Button
                   variant="contained"
                   color="secondary"

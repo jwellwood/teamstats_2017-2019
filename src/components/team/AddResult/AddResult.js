@@ -3,18 +3,18 @@ import PropTypes from 'prop-types';
 // Firestore
 import { firestoreConnect } from 'react-redux-firebase';
 // Components
-import Container from '../hoc/Container';
-import AddMatchForm from './FormComponents/AddMatchForm';
-import PageHeader from '../layout/Navs/PageHeader';
+import Container from '../../hoc/Container';
+import AddMatchForm from './AddMatchForm';
+import PageHeader from '../../layout/Navs/PageHeader';
 
 class AddResult extends Component {
   state = {
     date: '',
     matchType: 'League',
     homeTeamName: '',
-    homeTeamScore: 0,
+    homeTeamScore: '',
     awayTeamName: '',
-    awayTeamScore: 0,
+    awayTeamScore: '',
     resultIndicator: 'W',
     forfeitedMatch: false,
   };

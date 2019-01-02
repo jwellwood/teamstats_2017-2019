@@ -12,9 +12,9 @@ import Icon from '@material-ui/core/Icon';
 // Components
 import Container from '../hoc/Container';
 import PageHeader from '../layout/Navs/PageHeader';
-import ResultBox from './ResultsComponents/ResultBox';
+import ResultBox from './ResultsList/ResultsCard/ResultBox';
 import Spinner from '../layout/Warnings/Spinner';
-import TotalsTable from './ResultsComponents/ResultsTotals/TotalsTable';
+import ResultsList from './ResultsList/ResultsList';
 
 const styles = theme => ({
   button: { margin: theme.spacing.unit },
@@ -27,54 +27,10 @@ const styles = theme => ({
 const Results = props => {
   const { classes, results, onDelete } = props;
 
-  const getGoals = (a, b) => a + b;
-
-  const getGoalsFor = () => {
-    const getMyTeamHome = results.filter(result => result.homeTeamName === 'Madrid Reds');
-    const getMyTeamAway = results.filter(result => result.awayTeamName === 'Madrid Reds');
-    const myTeamHomeArray = getMyTeamHome.map(goals => +goals.homeTeamScore);
-    const myTeamAwayArray = getMyTeamAway.map(goals => +goals.awayTeamScore);
-    const homeTeamGoals = myTeamHomeArray.reduce(getGoals, 0);
-    const awayTeamGoals = myTeamAwayArray.reduce(getGoals, 0);
-    const goalsFor = homeTeamGoals + awayTeamGoals;
-    return goalsFor;
-  };
-
-  const getGoalsAgainst = () => {
-    const getOtherTeamHome = results.filter(result => result.homeTeamName !== 'Madrid Reds');
-    const getOtherTeamAway = results.filter(result => result.awayTeamName !== 'Madrid Reds');
-    const otherTeamHomeArray = getOtherTeamHome.map(goals => +goals.homeTeamScore);
-    const otherTeamAwayArray = getOtherTeamAway.map(goals => +goals.awayTeamScore);
-    const otherHomeTeamGoals = otherTeamHomeArray.reduce(getGoals, 0);
-    const otherAwayTeamGoals = otherTeamAwayArray.reduce(getGoals, 0);
-    const goalsAgainst = otherHomeTeamGoals + otherAwayTeamGoals;
-    return goalsAgainst;
-  };
-
-  const totalMatches = results.length;
-  const winCounter = results.filter(result => result.resultIndicator === 'W');
-  const drawCounter = results.filter(result => result.resultIndicator === 'D');
-  const lossCounter = results.filter(result => result.resultIndicator === 'L');
-  const totalWins = winCounter.length;
-  const totalDraws = drawCounter.length;
-  const totalLoss = lossCounter.length;
-  const winPercentage = (totalWins * 100) / totalMatches;
-  const drawPercentage = (totalDraws * 100) / totalMatches;
-  const lossPercentage = (totalLoss * 100) / totalMatches;
-
   return (
     <Container>
       <PageHeader title="Results" icon="" link="/" />
-      <TotalsTable
-        values={{
-          totalMatches,
-          getGoalsFor,
-          getGoalsAgainst,
-          totalWins,
-          totalDraws,
-          totalLoss,
-        }}
-      />
+      <ResultsList results={results} />
       <Button
         component={Link}
         to="/results/addResult"

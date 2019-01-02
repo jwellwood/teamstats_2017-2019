@@ -18,6 +18,7 @@ import PlayerTargets from './PlayerTargets';
 import OtherPlayerStats from './OtherPlayerStats';
 // helpers
 import { PlayerStatsTransition } from '../../../helpers/transitions';
+import PerGameGraph from './PerGameGraph';
 
 const styles = {
   appBar: { position: 'sticky' },
@@ -66,6 +67,7 @@ class PlayerDetails extends React.Component {
           <Container>
             <PlayerOverview player={player} totalMatches={totalMatches} />
             <PlayerTargets player={player} />
+            <PerGameGraph player={player} />
             <OtherPlayerStats player={player} totalGoals={totalGoals} />
           </Container>
         </Dialog>

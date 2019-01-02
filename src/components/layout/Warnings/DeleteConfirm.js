@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // MUI
 import Button from '@material-ui/core/Button';
@@ -9,13 +9,10 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import Slide from '@material-ui/core/Slide';
+// Helpers
+import { MoreStatsTransition } from '../../../helpers/transitions';
 
-function Transition(props) {
-  return <Slide direction="up" {...props} />;
-}
-
-class ConfirmMatchDelete extends React.Component {
+class DeleteConfirm extends Component {
   state = { open: false };
 
   handleClickOpen = () => {
@@ -28,7 +25,8 @@ class ConfirmMatchDelete extends React.Component {
 
   render() {
     const { open } = this.state;
-    const { onDelete } = this.props;
+    const { onDelete, type, name } = this.props;
+    const message = type === 'player' ? name : 'this match';
     return (
       <div>
         <IconButton onClick={this.handleClickOpen}>
@@ -36,21 +34,16 @@ class ConfirmMatchDelete extends React.Component {
         </IconButton>
         <Dialog
           open={open}
-          TransitionComponent={Transition}
+          TransitionComponent={MoreStatsTransition}
           keepMounted
           onClose={this.handleClose}
-          aria-labelledby="alert-dialog-slide-title"
-          aria-describedby="alert-dialog-slide-description"
         >
-          <DialogTitle id="alert-dialog-slide-title">
-            {'Are you sure you want to delete this match?'}
-          </DialogTitle>
+          <DialogTitle>{`Are you sure you want to delete ${message}?`}</DialogTitle>
           <DialogContent>
-            <DialogContentText id="alert-dialog-slide-description">
-              You will lose all data for this match.{' '}
-              <span style={{ color: '#9a0007', fontWeight: 'bold' }}>
-                This action cannot be undone.
-              </span>
+            <DialogContentText>You will lose all data for this {type}.</DialogContentText>
+            <hr />
+            <DialogContentText style={{ color: '#9a0007', fontWeight: 'bold' }}>
+              This action cannot be undone.
             </DialogContentText>
           </DialogContent>
           <DialogActions>
@@ -67,6 +60,12 @@ class ConfirmMatchDelete extends React.Component {
   }
 }
 
-ConfirmMatchDelete.propTypes = { onDelete: PropTypes.func.isRequired };
+DeleteConfirm.propTypes = {
+  onDelete: PropTypes.func.isRequired,
+  type: PropTypes.string.isRequired,
+  name: PropTypes.string,
+};
 
-export default ConfirmMatchDelete;
+DeleteConfirm.defaultProps = { name: '' };
+
+export default DeleteConfirm;
