@@ -1,6 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { HorizontalBar } from 'react-chartjs-2';
+// Components
 import StatsHeader from '../../layout/Stats/StatsHeader';
+// Helpers
 import { colors } from '../../../assets/styles/colors';
 
 const PerGameGraph = props => {
@@ -34,5 +37,7 @@ const PerGameGraph = props => {
     </div>
   );
 };
+
+PerGameGraph.propTypes = { player: PropTypes.shape({}).isRequired };
 
 export default PerGameGraph;

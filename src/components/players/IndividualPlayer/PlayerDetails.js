@@ -16,9 +16,9 @@ import Player from '../Squad/PlayerCard/Player';
 import PlayerOverview from './PlayerOverview';
 import PlayerTargets from './PlayerTargets';
 import OtherPlayerStats from './OtherPlayerStats';
+import PerGameGraph from './PerGameGraph';
 // helpers
 import { PlayerStatsTransition } from '../../../helpers/transitions';
-import PerGameGraph from './PerGameGraph';
 
 const styles = {
   appBar: { position: 'sticky' },

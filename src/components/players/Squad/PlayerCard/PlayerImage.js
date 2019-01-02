@@ -6,7 +6,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 // Assets
 import avatar from '../../../../assets/images/avatar.png';
-import { colors } from '../../../../assets/styles/colors';
+import { positions } from '../../../../assets/styles/colors';
 
 const styles = theme => ({
   avatar: { margin: '5px' },
@@ -32,16 +32,16 @@ const PlayerImage = props => {
   let color = '#fff';
   switch (position) {
     case 'GK':
-      color = colors.GK;
+      color = positions.GK;
       break;
     case 'DF':
-      color = colors.DF;
+      color = positions.DF;
       break;
     case 'MF':
-      color = colors.MF;
+      color = positions.MF;
       break;
     case 'FW':
-      color = colors.FW;
+      color = positions.FW;
       break;
     default:
       return color;

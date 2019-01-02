@@ -1,8 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+// MUI
 import { withStyles } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 
-const styles = theme => ({
+const styles = () => ({
   heading: {
     fontFamily: 'Anton',
     margin: '10px',
@@ -15,6 +17,11 @@ const styles = theme => ({
 const StatsHeader = props => {
   const { classes, title } = props;
   return <Typography className={classes.heading}>{title}</Typography>;
+};
+
+StatsHeader.propTypes = {
+  classes: PropTypes.shape({}).isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(StatsHeader);

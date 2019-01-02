@@ -1,20 +1,29 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+// MUI
 import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
 import Dialog from '@material-ui/core/Dialog';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
+import Button from '@material-ui/core/Button';
 import Fab from '@material-ui/core/Fab';
+// Components
 import Container from '../../hoc/Container';
+// Helpers
 import { MoreStatsTransition } from '../../../helpers/transitions';
 
-const styles = {
+const styles = () => ({
   appBar: { position: 'sticky' },
   flex: { flex: 1 },
-};
+  buttons: { background: '#333', padding: '5px 0px', margin: '10px auto' },
+  button: { margin: '10px' },
+  fab: { margin: '5px' },
+});
 
 class MoreStatsModal extends Component {
   state = { open: false };
@@ -29,19 +38,23 @@ class MoreStatsModal extends Component {
 
   render() {
     const { open } = this.state;
-    const { classes, title, children } = this.props;
+    const { classes, title, link, icon, children } = this.props;
     return (
       <div>
-        <div className={classes.fab}>
-          <Fab
+        <Paper className={classes.buttons}>
+          <Button
+            className={classes.button}
+            variant="contained"
             color="secondary"
             size="small"
             onClick={this.handleClickOpen}
-            className={classes.button}
           >
-            <i className="material-icons">bar_chart</i>
+            View {title} stats
+          </Button>
+          <Fab className={classes.fab} component={Link} to={link} size="small" color="default">
+            <i className="material-icons">{icon}</i>
           </Fab>
-        </div>
+        </Paper>
         <Dialog
           fullScreen
           open={open}
@@ -65,6 +78,12 @@ class MoreStatsModal extends Component {
   }
 }
 
-MoreStatsModal.propTypes = { classes: PropTypes.shape({}).isRequired };
+MoreStatsModal.propTypes = {
+  classes: PropTypes.shape({}).isRequired,
+  title: PropTypes.string.isRequired,
+  link: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+};
 
 export default withStyles(styles)(MoreStatsModal);

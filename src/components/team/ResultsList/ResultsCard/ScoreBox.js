@@ -1,8 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+// MUI
 import { withStyles } from '@material-ui/core/styles';
-import { Paper } from '@material-ui/core';
+import Paper from '@material-ui/core/Paper';
+// Helpers
+import { colors } from '../../../../assets/styles/colors';
 
-const styles = theme => ({
+const styles = () => ({
   fixtureTeams: {
     width: '100%',
     margin: '5px auto',
@@ -26,7 +30,6 @@ const styles = theme => ({
     margin: '5 auto',
     width: '50px',
     padding: '5px',
-    // position: 'absolute',
   },
   scoreNumbers: {
     width: '20px',
@@ -42,14 +45,22 @@ const styles = theme => ({
 const ScoreBox = props => {
   const { classes, result } = props;
   const { resultIndicator } = result;
-  let resultColor = 'white';
-  if (resultIndicator === 'W') {
-    resultColor = '#58D68D';
-  } else if (resultIndicator === 'D') {
-    resultColor = '#F5B041';
-  } else if (resultIndicator === 'L') {
-    resultColor = '#E74C3C';
+  let resultColor = colors.draw;
+
+  switch (resultIndicator) {
+    case 'W':
+      resultColor = colors.win;
+      break;
+    case 'D':
+      resultColor = colors.draw;
+      break;
+    case 'L':
+      resultColor = colors.lose;
+      break;
+    default:
+      return resultColor;
   }
+
   return (
     <div className={classes.fixtureTeams}>
       <Paper className={classes.teamNames} style={{ float: 'right', textAlign: 'right' }}>
@@ -64,6 +75,11 @@ const ScoreBox = props => {
       </Paper>
     </div>
   );
+};
+
+ScoreBox.propTypes = {
+  classes: PropTypes.shape({}).isRequired,
+  result: PropTypes.shape({}).isRequired,
 };
 
 export default withStyles(styles)(ScoreBox);

@@ -1,11 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Doughnut } from 'react-chartjs-2';
+// MUI
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
+// Components
 import StatsAvatar from '../../../layout/Stats/StatsAvatar';
 
 const TotalPieChart = props => {
@@ -30,6 +33,13 @@ const TotalPieChart = props => {
       <hr />
     </div>
   );
+};
+
+TotalPieChart.propTypes = {
+  data: PropTypes.shape({}).isRequired,
+  title: PropTypes.string.isRequired,
+  itemsToMap: PropTypes.instanceOf(Array).isRequired,
+  totalPlayed: PropTypes.number.isRequired,
 };
 
 export default TotalPieChart;

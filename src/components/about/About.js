@@ -97,7 +97,7 @@ const About = props => {
 
         <hr />
         <Typography variant="body2">
-          <strong>If you notice a mistake in your stats, contact website admin</strong>{' '}
+          <strong>If you notice a mistake in your stats, contact website admin</strong>
         </Typography>
 
         <hr />
@@ -108,7 +108,7 @@ const About = props => {
           </a>
         </Typography>
         <Typography variant="caption" align="center">
-          Version: 2.0.1
+          Version: 2.0.2
         </Typography>
       </Paper>
     </Container>

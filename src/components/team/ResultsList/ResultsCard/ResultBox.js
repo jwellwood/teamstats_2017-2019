@@ -6,11 +6,19 @@ import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Icon from '@material-ui/core/Icon';
-// Components
 import IconButton from '@material-ui/core/IconButton';
+import Avatar from '@material-ui/core/Avatar';
+// Components
 import ScoreBox from './ScoreBox';
+// Helpers
+import { colors, matchTypes } from '../../../../assets/styles/colors';
 
 const styles = theme => ({
+  box: {
+    marginBottom: '20px',
+    border: '1px solid #222',
+    background: '#eee',
+  },
   dateBar: {
     fontSize: '12px',
     padding: '0px 0px 0px 5px ',
@@ -23,13 +31,13 @@ const styles = theme => ({
     backgroundColor: '#333',
   },
   resultMarker: { width: '39px' },
-  resultIndicator: {
-    fontWeight: 'bold',
-    borderRadius: '50%',
-    width: '20px',
-    height: '20px',
+  avatar: {
+    margin: 5,
+    width: 20,
+    height: 20,
     fontSize: '12px',
-    lineHeight: '20px',
+    fontWeight: 'bold',
+    color: '#111',
   },
   date: { color: 'white', margin: 5 },
   matchType: { marginBottom: 2 },
@@ -90,27 +98,42 @@ const ResultBox = props => {
         default:
           return month;
       }
-      let resultColor = 'white';
-      if (resultIndicator === 'W') {
-        resultColor = '#58D68D';
-      } else if (resultIndicator === 'D') {
-        resultColor = '#F5B041';
-      } else if (resultIndicator === 'L') {
-        resultColor = '#E74C3C';
+
+      let resultColor = colors.draw;
+      switch (resultIndicator) {
+        case 'W':
+          resultColor = colors.win;
+          break;
+        case 'D':
+          resultColor = colors.draw;
+          break;
+        case 'L':
+          resultColor = colors.lose;
+          break;
+        default:
+          return resultColor;
       }
-      let matchTypeColor = '#ddd';
-      if (matchType === 'Friendly') {
-        matchTypeColor = '#85C1E9';
-      } else if (matchType === 'Cup') {
-        matchTypeColor = '#F4D03F';
-      } else if (matchType === 'Tournament') {
-        matchTypeColor = '#BB8FCE';
+
+      let matchTypeColor = matchTypes.league;
+      switch (matchType) {
+        case 'League':
+          matchTypeColor = matchTypes.league;
+          break;
+        case 'Cup':
+          matchTypeColor = matchTypes.cup;
+          break;
+        case 'Friendly':
+          matchTypeColor = matchTypes.friendly;
+          break;
+        case 'Tournament':
+          matchTypeColor = matchTypes.tournament;
+          break;
+        default:
+          return matchTypeColor;
       }
+
       return (
-        <Paper
-          style={{ marginBottom: '20px', border: '1px solid #222', background: '#eee' }}
-          key={result.id}
-        >
+        <Paper className={classes.box} key={result.id}>
           <Grid container direction="row" alignItems="center" justify="space-between">
             <Grid
               container
@@ -119,11 +142,9 @@ const ResultBox = props => {
               justify="space-between"
               className={classes.dateBar}
             >
-              <div className={classes.resultMarker}>
-                <div className={classes.resultIndicator} style={{ backgroundColor: resultColor }}>
-                  {result.resultIndicator}
-                </div>
-              </div>
+              <Avatar className={classes.avatar} style={{ background: resultColor }}>
+                {result.resultIndicator}
+              </Avatar>
 
               <div className={classes.date}>
                 {day}-{month}-{year}

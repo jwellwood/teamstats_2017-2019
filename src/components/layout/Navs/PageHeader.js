@@ -15,15 +15,10 @@ const styles = theme => ({
 
 // component
 const PageHeader = props => {
-  const { classes, icon, title, link } = props;
+  const { classes, title, link } = props;
   return (
     <Grid container direction="row" justify="space-between" alignItems="center">
-      <h2 className={classes.root}>
-        <span>
-          <i className={icon} />
-        </span>{' '}
-        {title}
-      </h2>
+      <h2 className={classes.root}>{title}</h2>
       <IconButton
         component={Link}
         to={link}
@@ -39,7 +34,6 @@ const PageHeader = props => {
 
 PageHeader.propTypes = {
   classes: PropTypes.shape({}).isRequired,
-  icon: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
 };

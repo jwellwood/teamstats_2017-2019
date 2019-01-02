@@ -10,7 +10,6 @@ const TopStatItem = props => {
         marginRight: '5px',
         display: 'block',
         fontFamily: 'Righteous',
-        fontWeight: 'bold',
       }}
     >
       {data}

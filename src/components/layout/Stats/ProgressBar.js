@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import LinearProgress from '@material-ui/core/LinearProgress';
+// MUI
 import { withStyles } from '@material-ui/core/styles';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
@@ -45,6 +47,14 @@ const ProgressBar = props => {
       </Grid>
     </div>
   );
+};
+
+ProgressBar.propTypes = {
+  classes: PropTypes.shape({}).isRequired,
+  title: PropTypes.string.isRequired,
+  total: PropTypes.number.isRequired,
+  percentage: PropTypes.number.isRequired,
+  target: PropTypes.number.isRequired,
 };
 
 export default withStyles(styles)(ProgressBar);

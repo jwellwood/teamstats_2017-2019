@@ -9,9 +9,11 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import Typography from '@material-ui/core/Typography';
+// Assets
+import avatar from '../../../assets/images/avatar.png';
 // Components
 import StatsHeader from '../../layout/Stats/StatsHeader';
-import { colors } from '../../../assets/styles/colors';
+import { positions } from '../../../assets/styles/colors';
 
 const styles = theme => ({
   bigAvatar: {
@@ -28,23 +30,25 @@ const styles = theme => ({
 const PlayerOverview = props => {
   const { classes, player, totalMatches } = props;
   const playedPercentage = (player.apps * 100) / totalMatches;
+
   let color = '#fff';
   switch (player.position) {
     case 'GK':
-      color = colors.GK;
+      color = positions.GK;
       break;
     case 'DF':
-      color = colors.DF;
+      color = positions.DF;
       break;
     case 'MF':
-      color = colors.MF;
+      color = positions.MF;
       break;
     case 'FW':
-      color = colors.FW;
+      color = positions.FW;
       break;
     default:
       return color;
   }
+
   let id = 0;
   const createData = (title, value, textColor) => {
     id += 1;
@@ -62,11 +66,7 @@ const PlayerOverview = props => {
       <StatsHeader title="Details" />
       <Grid container direction="row" justify="center" alignItems="center">
         <Grid item xs={4}>
-          <Avatar
-            alt="Player avatar"
-            src="https://images.vexels.com/media/users/3/129733/isolated/preview/a558682b158debb6d6f49d07d854f99f-casual-male-avatar-silhouette-by-vexels.png"
-            className={classes.bigAvatar}
-          />
+          <Avatar alt="Player avatar" src={avatar} className={classes.bigAvatar} />
         </Grid>
         <Grid item xs={8} className={classes.details}>
           {listItems.map(item => (
@@ -77,7 +77,7 @@ const PlayerOverview = props => {
                 />
               </ListItem>
               <ListItemSecondaryAction>
-                <Typography className={classes.number} style={{ color: item.color }}>
+                <Typography className={classes.number} style={{ color: item.textColor }}>
                   {item.value}
                 </Typography>
               </ListItemSecondaryAction>

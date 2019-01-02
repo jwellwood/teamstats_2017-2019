@@ -86,7 +86,7 @@ class EditResult extends Component {
     if (result) {
       return (
         <Container>
-          <PageHeader title="Edit Match" icon="fas fa-futbol" link="/results" />
+          <PageHeader title="Edit Match" link="/results" />
           <Paper className={classes.container}>
             <form onSubmit={this.onSubmit}>
               <Grid container direction="column" alignItems="center" justify="center">

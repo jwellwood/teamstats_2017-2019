@@ -47,7 +47,7 @@ class AddResult extends Component {
     } = this.state;
     return (
       <Container>
-        <PageHeader title="Add Match" icon="fas fa-futbol" link="/results" />
+        <PageHeader title="Add Match" link="/results" />
         <AddMatchForm
           onChange={this.onChange}
           onCheck={this.onCheck}

@@ -53,28 +53,27 @@ const TotalsTable = props => {
   return (
     <Paper className={classes.root}>
       <StatsAvatar itemsToMap={listItems} />
-      <div style={{ textAlign: 'right' }}>
-        <MoreStatsModal title="Players">
-          <PlayersOverview
-            totalPlayers={totalPlayers}
-            playersPerMatch={playersPerMatch}
-            mvpPerGame={mvpPerGame}
-            Apps={Apps}
-            Goals={Goals}
-            Assists={Assists}
-            Money={Money}
-            MVP={MVP}
-            players={players}
-            // totalMatches={totalMatches}
-          />
-        </MoreStatsModal>
-      </div>
+      <MoreStatsModal title="Squad" link="/players/addplayer" icon="person_add">
+        <PlayersOverview
+          totalPlayers={totalPlayers}
+          playersPerMatch={playersPerMatch}
+          mvpPerGame={mvpPerGame}
+          Apps={Apps}
+          Goals={Goals}
+          Assists={Assists}
+          Money={Money}
+          MVP={MVP}
+          players={players}
+          // totalMatches={totalMatches}
+        />
+      </MoreStatsModal>
     </Paper>
   );
 };
 
 TotalsTable.propTypes = {
   classes: PropTypes.shape({}).isRequired,
+  players: PropTypes.instanceOf(Array).isRequired,
   Apps: PropTypes.shape({}).isRequired,
   Goals: PropTypes.shape({}).isRequired,
   Assists: PropTypes.shape({}).isRequired,

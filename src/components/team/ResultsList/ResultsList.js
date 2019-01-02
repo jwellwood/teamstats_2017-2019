@@ -73,17 +73,15 @@ const ResultsList = props => {
   return (
     <Paper className={classes.root}>
       <StatsAvatar itemsToMap={listItems} />
-      <div style={{ textAlign: 'right' }}>
-        <MoreStatsModal title="Results">
-          <ResultsStats
-            results={results}
-            matchTotals={matchTotals}
-            goalTotals={goalTotals}
-            homeResults={homeResults}
-            awayResults={awayResults}
-          />
-        </MoreStatsModal>
-      </div>
+      <MoreStatsModal title="Results" link="results/addresult" icon="add_box">
+        <ResultsStats
+          results={results}
+          matchTotals={matchTotals}
+          goalTotals={goalTotals}
+          homeResults={homeResults}
+          awayResults={awayResults}
+        />
+      </MoreStatsModal>
     </Paper>
   );
 };

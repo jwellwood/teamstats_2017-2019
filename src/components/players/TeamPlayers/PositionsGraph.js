@@ -1,6 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Bar } from 'react-chartjs-2';
+// Components
 import StatsHeader from '../../layout/Stats/StatsHeader';
+// Helpers
 import { colors } from '../../../assets/styles/colors';
 
 const PositionsGraph = props => {
@@ -40,5 +43,7 @@ const PositionsGraph = props => {
     </div>
   );
 };
+
+PositionsGraph.propTypes = { players: PropTypes.instanceOf(Array).isRequired };
 
 export default PositionsGraph;
