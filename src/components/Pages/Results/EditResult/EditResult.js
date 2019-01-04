@@ -7,40 +7,28 @@ import { firestoreConnect } from 'react-redux-firebase';
 // MUI
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
-import Icon from '@material-ui/core/Icon';
 import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
-import FilledInput from '@material-ui/core/FilledInput';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 // Component
-import Grid from '@material-ui/core/Grid';
 import Container from '../../../hoc/Container';
-// import ConfirmDelete from './PlayersComponents/ConfirmDelete';
 import Spinner from '../../../layout/Warnings/Spinner';
 import PageHeader from '../../../layout/Navs/PageHeader';
 import DeleteConfirm from '../../../layout/Warnings/DeleteConfirm';
+import FormTitle from '../../../layout/Forms/FormTitle';
 
-const styles = theme => ({
+const styles = () => ({
   container: {
     padding: '5px',
-    textAlign: 'center',
+    margin: '10px',
+    background: '#E5E8E8',
   },
-  paper: { margin: '10px auto', borderColor: theme.palette.primary.dark, border: '2px solid' },
-  matchInfo: {
-    padding: '10px',
-    marginBottom: '10px',
-    backgroundColor: theme.palette.secondary.light,
-  },
-  inputStyle: { width: '300px', display: 'block', margin: '5px 0px' },
-  numberInput: { width: '60px', margin: '0px 0px 0px 10px' },
-  teamAndScore: { margin: '10px' },
-  button: {
-    marginTop: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-  },
+  formControl: { width: '250px', margin: '10px', textAlign: 'center' },
+  teamAndScore: { width: '250px', margin: '10px auto', textAlign: 'center' },
 });
 
 class EditResult extends Component {
@@ -54,6 +42,7 @@ class EditResult extends Component {
     this.awayTeamNameInput = React.createRef();
     this.homeTeamScoreInput = React.createRef();
     this.awayTeamScoreInput = React.createRef();
+    this.matchNotesInput = React.createRef();
   }
 
   onSubmit = e => {
@@ -68,6 +57,7 @@ class EditResult extends Component {
       homeTeamScore: this.homeTeamScoreInput.current.value,
       awayTeamName: this.awayTeamNameInput.current.value,
       awayTeamScore: this.awayTeamScoreInput.current.value,
+      matchNotes: this.matchNotesInput.current.value,
     };
     firestore
       .update({ collection: 'results', doc: result.id }, updatedResult)
@@ -87,148 +77,136 @@ class EditResult extends Component {
       return (
         <Container>
           <PageHeader title="Edit Match" link="/results" />
-          <Paper className={classes.container}>
-            <form onSubmit={this.onSubmit}>
-              <Grid container direction="column" alignItems="center" justify="center">
-                <TextField
-                  fullWidth
-                  className={classes.inputStyle}
-                  variant="filled"
-                  type="date"
-                  name="date"
-                  inputProps={textInputProps}
-                  required
-                  inputRef={this.dateInput}
-                  defaultValue={result.date}
-                />
-
-                <Select
-                  className={classes.inputStyle}
-                  native
-                  inputRef={this.matchTypeInput}
-                  defaultValue={result.matchType}
-                  required
-                  input={<FilledInput name="matchType" id="matchType" labelWidth={0} />}
-                >
-                  <option value="League">League</option>
-                  <option value="Cup">Cup</option>
-                  <option value="Tournament">Tournament</option>
-                  <option value="Friendly">Friendly</option>
-                </Select>
-
-                <Select
-                  className={classes.inputStyle}
-                  native
-                  inputProps={numberInputProps}
-                  inputRef={this.resultIndicatorInput}
-                  defaultValue={result.resultIndicator}
-                  required
-                  input={
-                    <FilledInput name="resultIndicator" id="resultIndicator" labelWidth={0} />
-                  }
-                >
-                  <option value="W">Win</option>
-                  <option value="D">Draw</option>
-                  <option value="L">Lose</option>
-                </Select>
-              </Grid>
-
-              <Grid container direction="column" justify="center" alignItems="center">
-                <div className={classes.teamAndScore}>
-                  <Grid container direction="row">
-                    <Grid item xs={9}>
-                      <FormControl className={classes.formControl}>
-                        <TextField
-                          label="Home Team"
-                          placeholder="Home Team"
-                          variant="filled"
-                          type="text"
-                          name="homeTeamName"
-                          inputProps={textInputProps}
-                          required
-                          inputRef={this.homeTeamNameInput}
-                          defaultValue={result.homeTeamName}
-                        />
-                      </FormControl>
-                    </Grid>
-
-                    <Grid item xs={3}>
-                      <FormControl className={classes.numberInput}>
-                        <TextField
-                          label="Score"
-                          variant="filled"
-                          type="number"
-                          name="homeTeamScore"
-                          inputProps={numberInputProps}
-                          required
-                          inputRef={this.homeTeamScoreInput}
-                          defaultValue={result.homeTeamScore}
-                        />
-                      </FormControl>
-                    </Grid>
-                  </Grid>
-                </div>
-                <div className={classes.teamAndScore}>
-                  <Grid container direction="row">
-                    <Grid item xs={9}>
-                      <FormControl className={classes.formControl}>
-                        <TextField
-                          label="Away Team"
-                          placeholder="Away Team"
-                          variant="filled"
-                          type="text"
-                          name="awayTeamName"
-                          inputProps={textInputProps}
-                          required
-                          inputRef={this.awayTeamNameInput}
-                          defaultValue={result.awayTeamName}
-                        />
-                      </FormControl>
-                    </Grid>
-
-                    <Grid item xs={3}>
-                      <FormControl className={classes.numberInput}>
-                        <TextField
-                          label="Score"
-                          variant="filled"
-                          type="number"
-                          name="awayTeamScore"
-                          inputProps={numberInputProps}
-                          required
-                          inputRef={this.awayTeamScoreInput}
-                          defaultValue={result.awayTeamScore}
-                        />
-                      </FormControl>
-                    </Grid>
-                  </Grid>
-                </div>
-
-              </Grid>
-              <FormControlLabel
-                control={(
-                  <Checkbox
-                    inputRef={this.forfeitedMatchInput}
-                    defaultChecked={result.forfeitedMatch}
-                    color="primary"
+          <Container>
+            <Paper className={classes.container}>
+              <form onSubmit={this.onSubmit}>
+                <FormTitle title="Match Details" />
+                <FormControl className={classes.formControl}>
+                  <TextField
+                    type="date"
+                    name="date"
+                    inputProps={textInputProps}
+                    required
+                    inputRef={this.dateInput}
+                    defaultValue={result.date}
                   />
-                )}
-                label="Forfeit?"
-              />
-              <div>
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  className={classes.button}
-                  type="submit"
-                  value="Submit"
-                >
-                  Update <Icon className={classes.rightIcon}>edit</Icon>
-                </Button>
-              </div>
+                </FormControl>
+                <FormControl className={classes.formControl}>
+                  <Select
+                    native
+                    inputRef={this.matchTypeInput}
+                    defaultValue={result.matchType}
+                    required
+                    inputProps={{ name: 'matchType', id: 'matchType' }}
+                  >
+                    <option value="League">League</option>
+                    <option value="Cup">Cup</option>
+                    <option value="Tournament">Tournament</option>
+                    <option value="Friendly">Friendly</option>
+                  </Select>
+                </FormControl>
+                <FormControl className={classes.formControl}>
+                  <Select
+                    native
+                    inputRef={this.resultIndicatorInput}
+                    defaultValue={result.resultIndicator}
+                    required
+                    inputProps={{ name: 'resultIndicator', id: 'resultIndicator' }}
+                  >
+                    <option value="W">Win</option>
+                    <option value="D">Draw</option>
+                    <option value="L">Lose</option>
+                  </Select>
+                </FormControl>
 
-            </form>
-            <DeleteConfirm onDelete={this.onDelete} type="match" />
-          </Paper>
+                <FormTitle title="Score" />
+                <div className={classes.teamAndScore}>
+                  <Grid container direction="row" justify="space-between">
+                    <Grid item xs={9}>
+                      <TextField
+                        label="Home Team"
+                        type="text"
+                        name="homeTeamName"
+                        inputProps={textInputProps}
+                        required
+                        inputRef={this.homeTeamNameInput}
+                        defaultValue={result.homeTeamName}
+                      />
+                    </Grid>
+                    <Grid item xs={2}>
+                      <TextField
+                        label="Score"
+                        type="number"
+                        name="homeTeamScore"
+                        inputProps={numberInputProps}
+                        required
+                        inputRef={this.homeTeamScoreInput}
+                        defaultValue={result.homeTeamScore}
+                      />
+                    </Grid>
+                  </Grid>
+                </div>
+                <div className={classes.teamAndScore}>
+                  <Grid container direction="row" justify="space-between">
+                    <Grid item xs={9}>
+                      <TextField
+                        label="Away Team"
+                        type="text"
+                        name="awayTeamName"
+                        inputProps={textInputProps}
+                        required
+                        inputRef={this.awayTeamNameInput}
+                        defaultValue={result.awayTeamName}
+                      />
+                    </Grid>
+                    <Grid item xs={2}>
+                      <TextField
+                        label="Score"
+                        type="number"
+                        name="awayTeamScore"
+                        inputProps={numberInputProps}
+                        required
+                        inputRef={this.awayTeamScoreInput}
+                        defaultValue={result.awayTeamScore}
+                      />
+                    </Grid>
+                  </Grid>
+                </div>
+                <FormTitle title="Other" />
+                <FormControl className={classes.formControl}>
+                  <TextField
+                    label="Match Notes"
+                    variant="filled"
+                    multiline
+                    type="text"
+                    name="matchNotes"
+                    inputRef={this.matchNotesInput}
+                    defaultValue={result.matchNotes}
+                  />
+                </FormControl>
+                <FormControl className={classes.formControl}>
+                  <FormControlLabel
+                    control={(
+                      <Checkbox
+                        inputRef={this.forfeitedMatchInput}
+                        defaultChecked={result.forfeitedMatch}
+                        color="primary"
+                      />
+                    )}
+                    label="Forfeit?"
+                  />
+                </FormControl>
+
+                <Grid container direction="row" justify="space-between" alignItems="center">
+                  <DeleteConfirm onDelete={this.onDelete} type="match" />
+                  <Button variant="contained" color="secondary" type="submit" value="Submit">
+                    Update
+                  </Button>
+                </Grid>
+              </form>
+
+            </Paper>
+          </Container>
         </Container>
       );
     }

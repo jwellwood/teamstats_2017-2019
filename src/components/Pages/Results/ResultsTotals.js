@@ -1,20 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+
 import Paper from '@material-ui/core/Paper';
 import MoreStatsModal from '../../layout/Stats/MoreStatsModal';
 import StatsAvatar from '../../layout/Stats/StatsAvatar';
 import ResultsStats from './ResultsStats/ResultsStats';
-
-const styles = () => ({
-  root: { padding: '5px' },
-  item: { margin: '5px auto' },
-  value: { fontWeight: 'bold' },
-  statsKey: { fontSize: '10px', color: '#aaa', margin: '0 auto' },
-});
+import BoxContainer from '../../hoc/BoxContainer';
 
 const ResultsTotals = props => {
-  const { classes, results } = props;
+  const { results } = props;
 
   const homeResults = results.filter(result => result.homeTeamName === 'Madrid Reds');
   const awayResults = results.filter(result => result.awayTeamName === 'Madrid Reds');
@@ -71,24 +65,23 @@ const ResultsTotals = props => {
   ];
 
   return (
-    <Paper className={classes.root}>
-      <StatsAvatar itemsToMap={listItems} />
-      <MoreStatsModal title="Results" link="results/addresult" icon="add_box">
-        <ResultsStats
-          results={results}
-          matchTotals={matchTotals}
-          goalTotals={goalTotals}
-          homeResults={homeResults}
-          awayResults={awayResults}
-        />
-      </MoreStatsModal>
-    </Paper>
+    <BoxContainer>
+      <Paper style={{ padding: '10px' }}>
+        <StatsAvatar itemsToMap={listItems} />
+        <MoreStatsModal title="Results" link="results/addresult" icon="add_box">
+          <ResultsStats
+            results={results}
+            matchTotals={matchTotals}
+            goalTotals={goalTotals}
+            homeResults={homeResults}
+            awayResults={awayResults}
+          />
+        </MoreStatsModal>
+      </Paper>
+    </BoxContainer>
   );
 };
 
-ResultsTotals.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
-  results: PropTypes.instanceOf(Array).isRequired,
-};
+ResultsTotals.propTypes = { results: PropTypes.instanceOf(Array).isRequired };
 
-export default withStyles(styles)(ResultsTotals);
+export default ResultsTotals;

@@ -23,7 +23,7 @@ import About from './components/Pages/About/About';
 import NotFound from './components/layout/Warnings/NotFound';
 import './App.css';
 import EditResult from './components/Pages/Results/EditResult/EditResult';
-import ResultDetails from './components/Pages/Results/Result/ResultDetails';
+import ResultUpdater from './components/Pages/Results/UpdateResults/ResultUpdater';
 
 const App = () => (
   <Provider store={store}>
@@ -44,7 +44,7 @@ const App = () => (
             <Route exact path="/results" component={Results} />
             <Route exact path="/results/addResult" component={UserIsAuthenticated(AddResult)} />
             <Route exact path="/results/:id/edit" component={UserIsAuthenticated(EditResult)} />
-            <Route exact path="/results/:id" component={ResultDetails} />
+            <Route exact path="/results/:id" component={ResultUpdater} />
             <Route path="*" component={NotFound} />
           </Switch>
         </div>

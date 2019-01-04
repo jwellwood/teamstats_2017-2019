@@ -8,7 +8,7 @@ import { firestoreConnect } from 'react-redux-firebase';
 import Container from '../../hoc/Container';
 import PageHeader from '../../layout/Navs/PageHeader';
 import SquadList from './SquadList';
-import TotalsTable from './SquadTotals';
+import SquadTotals from './SquadTotals';
 
 const Players = props => {
   const { players, results } = props;
@@ -16,7 +16,7 @@ const Players = props => {
   return (
     <Container>
       <PageHeader title="Squad" icon="" link="/" />
-      <TotalsTable players={players} results={totalMatches} />
+      <SquadTotals players={players} results={totalMatches} />
       <SquadList players={players} results={totalMatches} />
     </Container>
   );

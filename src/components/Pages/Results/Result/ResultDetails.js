@@ -1,75 +1,82 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-// Redux
-import { compose } from 'redux';
-import { connect } from 'react-redux';
-import { firestoreConnect } from 'react-redux-firebase';
 // MUI
 import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-
-// Component
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
-import Icon from '@material-ui/core/Icon';
+import Typography from '@material-ui/core/Typography';
+import CloseIcon from '@material-ui/icons/Close';
+// Components
 import Container from '../../../hoc/Container';
+import ResultCard from './ResultsCard/ResultCard';
+// helpers
+import { modalLeft } from '../../../../helpers/transitions';
+import MatchDetails from './Sections/MatchDetails';
+import MatchStats from './Sections/MatchStats';
+import MatchReport from './Sections/MatchReport';
 
-import Spinner from '../../../layout/Warnings/Spinner';
-import PageHeader from '../../../layout/Navs/PageHeader';
-
-const styles = theme => ({
-  container: {
-    padding: '5px',
-    textAlign: 'center',
-  },
-  formControl: {
-    margin: '20px auto',
-    width: '200px',
-    display: 'block',
-  },
-  button: { margin: theme.spacing.unit },
-  rightIcon: { marginLeft: theme.spacing.unit },
-});
+const styles = {
+  appBar: { position: 'sticky' },
+  flex: { flex: 1 },
+};
 
 class ResultDetails extends Component {
-  render() {
-    const { classes, result } = this.props;
+  state = { open: false };
 
-    if (result) {
-      return (
-        <Container>
-          <PageHeader title="Match Details" icon="fas fa-info-circle" link="/results" />
-          <Paper className={classes.container}>
-            <IconButton
-              onClick={this.handleClickOpen}
-              size="small"
-              component={Link}
-              to={`/results/${result.id}/edit`}
-            >
-              <Icon>edit</Icon>
-            </IconButton>
-          </Paper>
-        </Container>
-      );
-    }
-    return <Spinner />;
+  handleClickOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
+  render() {
+    const { open } = this.state;
+    const { classes, result } = this.props;
+    return (
+      <div>
+        <div role="presentation" onClick={this.handleClickOpen}>
+          <ResultCard result={result} />
+        </div>
+        <Dialog
+          fullScreen
+          open={open}
+          onClose={this.handleClose}
+          scroll="paper"
+          TransitionComponent={modalLeft}
+        >
+          <AppBar className={classes.appBar}>
+            <Toolbar>
+              <Typography variant="h6" color="inherit" className={classes.flex}>
+                {result.homeTeamName === 'Madrid Reds' ? result.awayTeamName : result.homeTeamName}
+              </Typography>
+              <Button color="inherit" component={Link} to={`/results/${result.id}/`}>
+                edit
+              </Button>
+              <IconButton color="inherit" onClick={this.handleClose} aria-label="Close">
+                <CloseIcon />
+              </IconButton>
+            </Toolbar>
+          </AppBar>
+          <Container>
+            <MatchDetails result={result} />
+            <MatchStats />
+            <MatchReport result={result} />
+          </Container>
+        </Dialog>
+      </div>
+    );
   }
 }
 
 ResultDetails.propTypes = {
-  firestore: PropTypes.shape({}).isRequired,
   classes: PropTypes.shape({}).isRequired,
-  history: PropTypes.shape({}).isRequired,
-  result: PropTypes.shape({}),
+  // players: PropTypes.instanceOf(Array).isRequired,
+  result: PropTypes.shape({}).isRequired,
 };
-
-ResultDetails.defaultProps = { result: {} };
-
-export default compose(
-  firestoreConnect(props => [
-    { collection: 'results', storeAs: 'result', doc: props.match.params.id },
-  ]),
-  // eslint-disable-next-line no-unused-vars
-  connect(({ firestore: { ordered } }, props) => ({ result: ordered.result && ordered.result[0] })),
-  withStyles(styles),
-)(ResultDetails);
+export default withStyles(styles)(ResultDetails);

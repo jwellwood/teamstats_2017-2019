@@ -12,11 +12,12 @@ class AddResult extends Component {
     date: '',
     matchType: 'League',
     homeTeamName: '',
-    homeTeamScore: '',
+    homeTeamScore: 0,
     awayTeamName: '',
-    awayTeamScore: '',
+    awayTeamScore: 0,
     resultIndicator: 'W',
     forfeitedMatch: false,
+    matchNotes: '',
   };
 
   onSubmit = e => {
@@ -44,6 +45,7 @@ class AddResult extends Component {
       awayTeamScore,
       resultIndicator,
       forfeitedMatch,
+      matchNotes,
     } = this.state;
     return (
       <Container>
@@ -60,6 +62,7 @@ class AddResult extends Component {
           awayTeamScore={parseInt(awayTeamScore, 10)}
           resultIndicator={resultIndicator}
           forfeitedMatch={forfeitedMatch}
+          matchNotes={matchNotes}
         />
       </Container>
     );

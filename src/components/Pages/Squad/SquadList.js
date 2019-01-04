@@ -6,22 +6,22 @@ import Spinner from '../../layout/Warnings/Spinner';
 
 const SquadList = props => {
   const { players, results } = props;
-  let squad = <Spinner />;
   if (players) {
-    const playersArray = players.map(player => (
+    return players.map(player => (
       <PlayerDetails key={player.id} player={player} results={results} players={players} />
     ));
-    squad = playersArray;
   }
   if (players.length === 0) {
-    squad = <div>Start adding players</div>;
+    return <div>Start adding players</div>;
   }
-  return squad;
+  return <Spinner />;
 };
 
 SquadList.propTypes = {
-  players: PropTypes.instanceOf(Array).isRequired,
-  results: PropTypes.instanceOf(Array).isRequired,
+  players: PropTypes.instanceOf(Array),
+  results: PropTypes.instanceOf(Array),
 };
+
+SquadList.defaultProps = { players: [], results: [] };
 
 export default SquadList;

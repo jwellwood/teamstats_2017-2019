@@ -9,32 +9,25 @@ import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-import Icon from '@material-ui/core/Icon';
 // Form
 import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import Input from '@material-ui/core/Input';
 import Select from '@material-ui/core/Select';
-import FilledInput from '@material-ui/core/FilledInput';
+import TextField from '@material-ui/core/TextField';
 // Component
 import Container from '../../../hoc/Container';
 import PageHeader from '../../../layout/Navs/PageHeader';
 import Spinner from '../../../layout/Warnings/Spinner';
 import DeleteConfirm from '../../../layout/Warnings/DeleteConfirm';
+import FormTitle from '../../../layout/Forms/FormTitle';
 
-const styles = theme => ({
+const styles = () => ({
   container: {
     padding: '5px',
-    textAlign: 'center',
+    margin: '10px',
+    background: '#E5E8E8',
   },
-  formControl: {
-    margin: '20px auto',
-    width: '200px',
-    display: 'block',
-  },
-  button: { margin: theme.spacing.unit },
-  rightIcon: { marginLeft: theme.spacing.unit },
-  inputStyle: { width: '200px', display: 'block', margin: '5px auto' },
+  formControl: { width: '250px', margin: '10px', textAlign: 'center' },
+  teamAndScore: { width: '250px', margin: '10px auto', textAlign: 'center' },
 });
 
 class EditPlayer extends Component {
@@ -76,12 +69,12 @@ class EditPlayer extends Component {
     if (player) {
       return (
         <Container>
-          <PageHeader title="Edit Player" icon="fas fa-user-edit" link="/players" />
+          <PageHeader title="Edit Player" link="/players" />
           <Paper className={classes.container}>
             <form onSubmit={this.onSubmit}>
+              <FormTitle title="Player Details" />
               <FormControl className={classes.formControl}>
-                <InputLabel htmlFor="name">Name</InputLabel>
-                <Input
+                <TextField
                   type="text"
                   name="name"
                   minLength="2"
@@ -92,8 +85,7 @@ class EditPlayer extends Component {
                 />
               </FormControl>
               <FormControl className={classes.formControl}>
-                <InputLabel htmlFor="number">Number</InputLabel>
-                <Input
+                <TextField
                   type="number"
                   name="number"
                   inputProps={numberInputProps}
@@ -103,8 +95,23 @@ class EditPlayer extends Component {
                 />
               </FormControl>
               <FormControl className={classes.formControl}>
-                <InputLabel htmlFor="targetApps">Target Appearances</InputLabel>
-                <Input
+                <Select
+                  native
+                  inputRef={this.positionInput}
+                  defaultValue={player.position}
+                  required
+                  inputProps={{ name: 'position', id: 'position' }}
+                >
+                  <option value="GK">Goalkeeper</option>
+                  <option value="DF">Defender</option>
+                  <option value="MF">Midfielder</option>
+                  <option value="FW">Forward</option>
+                </Select>
+              </FormControl>
+              <FormTitle title="Targets" />
+              <FormControl className={classes.formControl}>
+                <TextField
+                  label="Target Appearances"
                   type="number"
                   name="targetApps"
                   required
@@ -114,23 +121,9 @@ class EditPlayer extends Component {
                 />
               </FormControl>
 
-              <Select
-                className={classes.inputStyle}
-                native
-                inputRef={this.positionInput}
-                defaultValue={player.position}
-                required
-                input={<FilledInput name="position" id="position" labelWidth={0} />}
-              >
-                <option value="GK">Goalkeeper</option>
-                <option value="DF">Defender</option>
-                <option value="MF">Midfielder</option>
-                <option value="FW">Forward</option>
-              </Select>
-
               <FormControl className={classes.formControl}>
-                <InputLabel htmlFor="targetGoals">Target Goals</InputLabel>
-                <Input
+                <TextField
+                  label="Target Goals"
                   type="number"
                   name="targetGoals"
                   inputProps={numberInputProps}
@@ -140,8 +133,8 @@ class EditPlayer extends Component {
                 />
               </FormControl>
               <FormControl className={classes.formControl}>
-                <InputLabel htmlFor="targetAssists">Target Assists</InputLabel>
-                <Input
+                <TextField
+                  label="Target Assists"
                   type="number"
                   name="targetAssists"
                   inputProps={numberInputProps}
@@ -152,14 +145,8 @@ class EditPlayer extends Component {
               </FormControl>
               <Grid container direction="row" justify="space-between" alignItems="center">
                 <DeleteConfirm onDelete={this.onDelete} type="player" name={player.name} />
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  className={classes.button}
-                  type="submit"
-                  value="Submit"
-                >
-                  Update <Icon className={classes.rightIcon}>edit</Icon>
+                <Button variant="contained" color="secondary" type="submit" value="Submit">
+                  Update
                 </Button>
               </Grid>
             </form>

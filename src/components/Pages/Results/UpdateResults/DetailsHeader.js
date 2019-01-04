@@ -11,30 +11,32 @@ import BoxContainer from '../../../hoc/BoxContainer';
 
 // Component
 const DetailsHeader = props => {
-  const { player } = props;
+  const { result } = props;
   return (
     <Container>
       <BoxContainer>
         <Grid container direction="row" justify="space-between" alignItems="center">
-          <IconButton component={Link} to="/players" variant="fab" color="default">
+          <IconButton component={Link} to="/results" variant="fab" color="default">
             <Icon>arrow_back</Icon>
           </IconButton>
-          <div style={{ fontWeight: 'bold' }}>{player.name}</div>
+          <div style={{ fontWeight: 'bold' }}>
+            {result.homeTeamName === 'Madrid Reds' ? result.awayTeamName : result.homeTeamName}
+          </div>
           <IconButton
             variant="contained"
             color="default"
             component={Link}
-            to={`/players/edit/${player.id}`}
+            to={`/results/${result.id}/edit`}
           >
             <Icon>edit</Icon>
           </IconButton>
         </Grid>
-        <Typography variant="body2">Are you sure you want to edit this player?</Typography>
+        <Typography variant="body2">Are you sure you want to edit this game?</Typography>
       </BoxContainer>
     </Container>
   );
 };
 
-DetailsHeader.propTypes = { player: PropTypes.shape({}).isRequired };
+DetailsHeader.propTypes = { result: PropTypes.shape({}).isRequired };
 
 export default DetailsHeader;

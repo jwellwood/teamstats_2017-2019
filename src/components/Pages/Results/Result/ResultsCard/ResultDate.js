@@ -1,58 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import formatDate from '../../../../../helpers/results/date';
 
 const ResultDate = props => {
   const { result } = props;
-  const { date } = result;
-  const year = date.slice(2, -6);
-  let month = date.slice(5, -3);
-  const day = date.slice(8, 10);
-  switch (month) {
-    case '01':
-      month = 'Jan';
-      break;
-    case '02':
-      month = 'Feb';
-      break;
-    case '03':
-      month = 'Mar';
-      break;
-    case '04':
-      month = 'Apr';
-      break;
-    case '05':
-      month = 'May';
-      break;
-    case '06':
-      month = 'Jun';
-      break;
-    case '07':
-      month = 'Jul';
-      break;
-    case '08':
-      month = 'Aug';
-      break;
-    case '09':
-      month = 'Sep';
-      break;
-    case '10':
-      month = 'Oct';
-      break;
-    case '11':
-      month = 'Nov';
-      break;
-    case '12':
-      month = 'Dec';
-      break;
-    default:
-      return month;
-  }
+  const date = formatDate(result.date);
+  const { day, month, year } = date;
   return (
-    <div style={{ color: '#fff', fontWeight: 'bold' }}>
-      <p>
-        {day} {month} <span style={{ color: '#aaa' }}> {`'${year}`}</span>
-      </p>
+    <div style={{ padding: '5px', color: '#fff', fontWeight: 'bold' }}>
+      <div>
+        {day} {month} <div style={{ fontWeight: 'lighter', color: '#aaa' }}> {year}</div>
+      </div>
     </div>
   );
 };
+
+ResultDate.propTypes = { result: PropTypes.shape({}).isRequired };
 
 export default ResultDate;

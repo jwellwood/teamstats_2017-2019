@@ -1,22 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // MUI
-import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 // Components
 import PlayersOverview from './SquadStats/PlayersOverview';
 import MoreStatsModal from '../../layout/Stats/MoreStatsModal';
 import StatsAvatar from '../../layout/Stats/StatsAvatar';
+import BoxContainer from '../../hoc/BoxContainer';
 
-const styles = () => ({
-  root: { padding: '5px' },
-  item: { margin: '5px auto' },
-  value: { fontWeight: 'bold' },
-  statsKey: { fontSize: '10px', color: '#aaa', margin: '0 auto' },
-});
-
-const TotalsTable = props => {
-  const { classes, players, results } = props;
+const SquadTotals = props => {
+  const { players, results } = props;
 
   const totalPlayers = players.length;
   const totalTeamGoals = players.reduce((totalGoals, player) => totalGoals + player.goals, 0);
@@ -47,19 +40,20 @@ const TotalsTable = props => {
   ];
 
   return (
-    <Paper className={classes.root}>
-      <StatsAvatar itemsToMap={listItems} />
-      <MoreStatsModal title="Squad" link="/players/addplayer" icon="person_add">
-        <PlayersOverview players={players} results={results} />
-      </MoreStatsModal>
-    </Paper>
+    <BoxContainer>
+      <Paper style={{ padding: '10px' }}>
+        <StatsAvatar itemsToMap={listItems} />
+        <MoreStatsModal title="Squad" link="/players/addplayer" icon="person_add">
+          <PlayersOverview players={players} results={results} />
+        </MoreStatsModal>
+      </Paper>
+    </BoxContainer>
   );
 };
 
-TotalsTable.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
+SquadTotals.propTypes = {
   players: PropTypes.instanceOf(Array).isRequired,
   results: PropTypes.instanceOf(Array).isRequired,
 };
 
-export default withStyles(styles)(TotalsTable);
+export default SquadTotals;
