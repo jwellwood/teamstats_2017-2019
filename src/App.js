@@ -6,24 +6,24 @@ import store from './store';
 import { UserIsAuthenticated, UserIsNotAuthenticated } from './helpers/auth';
 // Components
 import NavBar from './components/layout/Navs/NavBar';
-import Home from './components/Home/Home';
+import Home from './components/Pages/Home/Home';
 // Auth
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 // Player
-import Players from './components/players/Players';
-import AddPlayer from './components/players/AddPlayer/AddPlayer';
-import PlayerUpdater from './components/players/UpdateStats/PlayerUpdater';
-import EditPlayer from './components/players/EditPlayer/EditPlayer';
+import Players from './components/Pages/Squad/Players';
+import AddPlayer from './components/Pages/Squad/AddPlayer/AddPlayer';
+import PlayerUpdater from './components/Pages/Squad/UpdateStats/PlayerUpdater';
+import EditPlayer from './components/Pages/Squad/EditPlayer/EditPlayer';
 // Team
-import Results from './components/team/Results';
-import AddResult from './components/team/AddResult/AddResult';
-import Settings from './components/settings/Settings';
-import About from './components/about/About';
+import Results from './components/Pages/Results/Results';
+import AddResult from './components/Pages/Results/AddResult/AddResult';
+import Settings from './components/Pages/Settings/Settings';
+import About from './components/Pages/About/About';
 import NotFound from './components/layout/Warnings/NotFound';
 import './App.css';
-import EditResult from './components/team/EditResult/EditResult';
-import MatchDetails from './components/team/IndividualResult/MatchDetails';
+import EditResult from './components/Pages/Results/EditResult/EditResult';
+import ResultDetails from './components/Pages/Results/Result/ResultDetails';
 
 const App = () => (
   <Provider store={store}>
@@ -44,7 +44,7 @@ const App = () => (
             <Route exact path="/results" component={Results} />
             <Route exact path="/results/addResult" component={UserIsAuthenticated(AddResult)} />
             <Route exact path="/results/:id/edit" component={UserIsAuthenticated(EditResult)} />
-            <Route exact path="/results/:id" component={MatchDetails} />
+            <Route exact path="/results/:id" component={ResultDetails} />
             <Route path="*" component={NotFound} />
           </Switch>
         </div>

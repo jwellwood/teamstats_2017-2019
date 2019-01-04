@@ -16,7 +16,8 @@ const TopStatItem = props => {
     </span>
   );
 };
-
-TopStatItem.propTypes = { data: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Array)]).isRequired };
+// eslint-disable-next-line
+TopStatItem.propTypes = {
+  data: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Array)]).isRequired };
 
 export default TopStatItem;

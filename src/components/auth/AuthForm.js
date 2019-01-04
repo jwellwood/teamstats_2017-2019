@@ -11,7 +11,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import LockIcon from '@material-ui/icons/LockOutlined';
 // Components
-import Alert from '../layout/Warnings/Alert';
+import Message from '../layout/Warnings/Message';
 
 // styling
 const styles = theme => ({
@@ -49,7 +49,7 @@ const AuthForm = props => {
   const { classes, message, messageType, onSubmit, onChange, email, password, title } = props;
   return (
     <main className={classes.layout}>
-      {message ? <Alert message={message} messageType={messageType} /> : null}
+      {message ? <Message message={message} messageType={messageType} /> : null}
       <Paper className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockIcon />

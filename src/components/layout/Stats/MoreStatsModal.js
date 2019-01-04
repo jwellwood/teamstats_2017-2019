@@ -15,7 +15,7 @@ import Fab from '@material-ui/core/Fab';
 // Components
 import Container from '../../hoc/Container';
 // Helpers
-import { MoreStatsTransition } from '../../../helpers/transitions';
+import { modalDown } from '../../../helpers/transitions';
 
 const styles = () => ({
   appBar: { position: 'sticky' },
@@ -55,12 +55,7 @@ class MoreStatsModal extends Component {
             <i className="material-icons">{icon}</i>
           </Fab>
         </Paper>
-        <Dialog
-          fullScreen
-          open={open}
-          onClose={this.handleClose}
-          TransitionComponent={MoreStatsTransition}
-        >
+        <Dialog fullScreen open={open} onClose={this.handleClose} TransitionComponent={modalDown}>
           <AppBar className={classes.appBar}>
             <Toolbar>
               <Typography variant="h6" color="inherit" className={classes.flex}>

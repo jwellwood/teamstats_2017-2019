@@ -1,18 +1,18 @@
 import React from 'react';
 import Slide from '@material-ui/core/Slide';
 
-export const MoreStatsTransition = props => (
+export const modalDown = props => (
   <Slide
-    direction="up"
+    direction="down"
     {...props}
     timeout={{
-      enter: 500,
+      enter: 700,
       exit: 300,
     }}
   />
 );
 
-export const PlayerStatsTransition = props => (
+export const modalLeft = props => (
   <Slide
     direction="left"
     {...props}

@@ -10,7 +10,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 // Helpers
-import { MoreStatsTransition } from '../../../helpers/transitions';
+import { modalDown } from '../../../helpers/transitions';
 
 class DeleteConfirm extends Component {
   state = { open: false };
@@ -32,12 +32,7 @@ class DeleteConfirm extends Component {
         <IconButton onClick={this.handleClickOpen}>
           <Icon>delete</Icon>
         </IconButton>
-        <Dialog
-          open={open}
-          TransitionComponent={MoreStatsTransition}
-          keepMounted
-          onClose={this.handleClose}
-        >
+        <Dialog open={open} TransitionComponent={modalDown} keepMounted onClose={this.handleClose}>
           <DialogTitle>{`Are you sure you want to delete ${message}?`}</DialogTitle>
           <DialogContent>
             <DialogContentText>You will lose all data for this {type}.</DialogContentText>
