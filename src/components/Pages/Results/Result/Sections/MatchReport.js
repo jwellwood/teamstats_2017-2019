@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import StatsHeader from '../../../../layout/Stats/StatsHeader';
 
-const styles = () => ({ text: { padding: '10px', fontFamily: 'Varela Round', fontSize: '13px', margin: '8px' } });
+const styles = () => ({ text: { padding: '10px', fontFamily: 'Varela Round', fontSize: '13px', margin: '16px' } });
 
 const MatchReport = props => {
   const { classes, result } = props;

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 // MUI
 import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import Dialog from '@material-ui/core/Dialog';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -20,8 +19,12 @@ import { modalDown } from '../../../helpers/transitions';
 const styles = () => ({
   appBar: { position: 'sticky' },
   flex: { flex: 1 },
-  buttons: { background: '#333', padding: '5px 0px', margin: '10px auto' },
-  button: { margin: '10px' },
+  buttons: {
+    margin: '10px 0px auto',
+    display: 'flex',
+    justifyContent: 'space-around',
+  },
+  button: { margin: '10px', width: '75%' },
   fab: { margin: '5px' },
 });
 
@@ -40,21 +43,20 @@ class MoreStatsModal extends Component {
     const { open } = this.state;
     const { classes, title, link, icon, children } = this.props;
     return (
-      <div>
-        <Paper className={classes.buttons}>
-          <Button
-            className={classes.button}
-            variant="contained"
-            color="secondary"
-            size="small"
-            onClick={this.handleClickOpen}
-          >
-            View {title} stats
-          </Button>
-          <Fab className={classes.fab} component={Link} to={link} size="small" color="default">
-            <i className="material-icons">{icon}</i>
-          </Fab>
-        </Paper>
+      <div className={classes.buttons}>
+        <Button
+          className={classes.button}
+          variant="contained"
+          color="secondary"
+          size="small"
+          onClick={this.handleClickOpen}
+        >
+          View {title} stats
+        </Button>
+        <Fab className={classes.fab} component={Link} to={link} size="small" color="default">
+          <i className="material-icons">{icon}</i>
+        </Fab>
+
         <Dialog fullScreen open={open} onClose={this.handleClose} TransitionComponent={modalDown}>
           <AppBar className={classes.appBar}>
             <Toolbar>

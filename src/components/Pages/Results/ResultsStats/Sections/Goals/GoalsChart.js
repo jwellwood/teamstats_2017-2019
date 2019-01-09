@@ -31,6 +31,8 @@ const GoalsChart = props => {
               yAxes: [{ ticks: { beginAtZero: true, stepSize: '10' } }],
               xAxes: [{ gridlines: { offsetGridLines: true } }],
             },
+
+            maintainAspectRatio: false,
           }}
         />
       </div>

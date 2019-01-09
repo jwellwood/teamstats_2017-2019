@@ -34,7 +34,10 @@ const PerGameGraph = props => {
         <HorizontalBar
           data={data}
           legend={{ display: false }}
-          options={{ scales: { xAxes: [{ ticks: { beginAtZero: true } }] } }}
+          options={{
+            scales: { xAxes: [{ ticks: { beginAtZero: true } }] },
+            maintainAspectRatio: false,
+          }}
         />
       </div>
     </div>

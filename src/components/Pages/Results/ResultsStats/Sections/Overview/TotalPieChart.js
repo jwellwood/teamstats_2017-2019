@@ -24,8 +24,10 @@ const TotalPieChart = props => {
         </ListItem>
       </List>
       <Grid container direction="row" justify="center" alignItems="center">
-        <Grid item xs={12} style={{ textAlign: 'center' }} />
-        <Doughnut data={data} legend={{ position: 'right' }} />
+        <Grid item xs={8} md={4} style={{ textAlign: 'center' }}>
+          <Doughnut data={data} legend={{ position: 'right' }} />
+        </Grid>
+
         <Grid item xs={12}>
           <StatsAvatar itemsToMap={itemsToMap} />
         </Grid>

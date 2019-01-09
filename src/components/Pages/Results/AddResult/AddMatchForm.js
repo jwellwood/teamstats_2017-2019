@@ -19,6 +19,7 @@ const styles = () => ({
     padding: '5px',
     margin: '10px',
     border: '2px solid #17A589',
+    minWidth: '260px',
   },
   formControl: { width: '250px', margin: '10px', textAlign: 'center' },
   teamAndScore: { width: '250px', margin: '10px auto', textAlign: 'center' },

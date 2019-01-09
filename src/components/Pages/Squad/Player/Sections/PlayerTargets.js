@@ -33,6 +33,12 @@ const PlayerTargets = props => {
     percentageGoals = '0';
     percentageAssists = '0';
   }
+  const playerTargetTotal = +player.targetApps + +player.targetGoals + +player.targetAssists;
+  let playerTargetAchieved = player.apps + player.goals + player.assists;
+  if (player.apps === '0') {
+    playerTargetAchieved = '0';
+  }
+  const percentageTotal = (playerTargetAchieved * 100) / playerTargetTotal;
 
   // Data to map
   let id = 0;
@@ -45,6 +51,7 @@ const PlayerTargets = props => {
     createData('APPS', percentageApps, player.apps, player.targetApps),
     createData('GOALS', percentageGoals, player.goals, player.targetGoals),
     createData('ASSISTS', percentageAssists, player.assists, player.targetAssists),
+    createData('TOTAL', percentageTotal, playerTargetAchieved, playerTargetTotal),
   ];
 
   return (

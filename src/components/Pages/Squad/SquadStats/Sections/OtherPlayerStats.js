@@ -14,6 +14,19 @@ const OtherPlayerStats = props => {
   const totalTeamMVP = players.reduce((totalMVP, player) => totalMVP + player.mvp, 0);
   const mvpPerGame = results ? totalTeamMVP / totalMatches : null;
 
+  const totalPlayerGoals = players.reduce((totalGoals, player) => totalGoals + player.goals, 0);
+  const getGoals = (a, b) => a + b;
+
+  const homeResults = results.filter(result => result.homeTeamName === 'Madrid Reds');
+  const awayResults = results.filter(result => result.awayTeamName === 'Madrid Reds');
+
+  const myTeamHomeArray = homeResults.map(goals => +goals.homeTeamScore);
+  const myTeamAwayArray = awayResults.map(goals => +goals.awayTeamScore);
+  const homeTeamGoals = myTeamHomeArray.reduce(getGoals, 0);
+  const awayTeamGoals = myTeamAwayArray.reduce(getGoals, 0);
+  const totalTeamGoals = homeTeamGoals + awayTeamGoals;
+  const ownGoalsFor = totalTeamGoals - totalPlayerGoals;
+
   // Money
   const totalTeamOwed = players.reduce(
     (totalOwed, player) => totalOwed + parseFloat(player.balance.toString()),
@@ -34,7 +47,7 @@ const OtherPlayerStats = props => {
     createData(<i className="fas fa-users" />, totalPlayers, 'Total Players'),
     createData(<i className="fas fa-user" />, playersPerMatch.toFixed(1), 'Players / Match'),
     createData(<i className="fas fa-star" />, mvpPerGame.toFixed(1), 'MVP / Match'),
-    createData(<i className="fas fa-meh" />, mvpPerGame.toFixed(1), 'MVP / Match'),
+    createData(<i className="fas fa-meh" />, ownGoalsFor, 'Own Goals (by other team)'),
     createData(
       <i className="fas fa-dollar-sign" />,
       <span style={totalTeamOwed > 0 ? { color: '#E74C3C' } : { color: '#28B463' }}>

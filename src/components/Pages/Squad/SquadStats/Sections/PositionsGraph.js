@@ -35,6 +35,7 @@ const PositionsGraph = props => {
               yAxes: [{ ticks: { beginAtZero: true, stepSize: '1' } }],
               xAxes: [{ gridlines: { offsetGridLines: true } }],
             },
+            maintainAspectRatio: false,
           }}
         />
       </div>
