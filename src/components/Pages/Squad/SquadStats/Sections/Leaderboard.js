@@ -79,7 +79,9 @@ const Leaderboard = props => {
             <ListItem>
               <ListItemText
                 primary={<span style={{ textTransform: 'uppercase' }}>{leader.description}</span>}
-                secondary={<span style={{ color: '#58D68D' }}>{leader.name}</span>}
+                secondary={
+                  <span style={{ color: '#58D68D' }}>{leader.value > 0 ? leader.name : null}</span>
+                }
               />
               <ListItemAvatar>
                 <NumberAvatar>{leader.value}</NumberAvatar>

@@ -14,7 +14,6 @@ import Avatar from '@material-ui/core/Avatar';
 import AppMenu from './AppMenu';
 import TopNav from './TopNav';
 import Logo from '../../../assets/images/logo.jpg';
-
 // styling
 const styles = theme => ({
   root: { flexGrow: 1 },
@@ -48,7 +47,7 @@ class NavBar extends Component {
   };
 
   render() {
-    const { classes, auth, settings } = this.props;
+    const { classes, auth, settings, team } = this.props;
     const { isAuthenticated } = this.state;
     const { allowRegistration } = settings;
     return (
@@ -71,7 +70,7 @@ class NavBar extends Component {
           <Grid container justify="space-around" alignItems="center">
             <Avatar alt="Team badge" src={Logo} className={classes.bigAvatar} />
             <Typography style={{ fontFamily: 'Righteous' }} variant="h6" color="inherit">
-              Madrid Reds
+              {team ? team[0].name : null}
             </Typography>
             <AppMenu isAuthenticated={isAuthenticated} onLogout={this.onLogout} />
           </Grid>
@@ -86,11 +85,21 @@ NavBar.propTypes = {
   firebase: PropTypes.shape({}).isRequired,
   auth: PropTypes.shape({}).isRequired,
   settings: PropTypes.shape({}).isRequired,
+  team: PropTypes.instanceOf(Array),
 };
 
+NavBar.defaultProps = { team: null };
+
 export default compose(
-  firebaseConnect(),
+  firebaseConnect('', [{ collection: 'team' }]),
   // eslint-disable-next-line no-unused-vars
-  connect((state, props) => ({ auth: state.firebase.auth, settings: state.settings })),
+  connect((state, props) => ({
+    auth: state.firebase.auth,
+    settings: state.settings,
+    team: state.firestore.ordered.team,
+  })),
+
+  // eslint-disable-next-line no-unused-vars
+
   withStyles(styles),
 )(NavBar);

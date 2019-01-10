@@ -50,7 +50,7 @@ const GoalStats = props => {
   const fewestScoredVs = getFewestGoalsScored(homeResults, awayResults, fewestScored);
   const fewestScoredAgainst = fewestScoredVs.map(name => <TopStatItem key={name} data={name} />);
   // Clean sheets
-  const cleanSheets = goalsAgainstArray.filter(result => result === '0').length;
+  const cleanSheets = goalsAgainstArray.filter(result => result === 0).length;
   const cleanSheetVs = getCleanSheets(homeResults, awayResults);
   const cleanSheetsAgainst = cleanSheetVs.map(name => <TopStatItem key={name} data={name} />);
 

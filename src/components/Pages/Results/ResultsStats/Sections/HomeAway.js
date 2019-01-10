@@ -27,6 +27,7 @@ const HomeAndAway = props => {
   const { homeGoalsFor, homeGoalsAgainst, awayGoalsFor, awayGoalsAgainst } = goalTotals;
   // Home
   const totalHomePlayed = homeResults.length;
+
   const totalHomeWins = getTotal(homeResults, 'W');
   const totalHomeDraws = getTotal(homeResults, 'D');
   const totalHomeLoss = getTotal(homeResults, 'L');
@@ -50,15 +51,15 @@ const HomeAndAway = props => {
     createData('Goals For', homeGoalsFor, awayGoalsFor, colors.win),
     createData(
       'Goals per game',
-      getGoalsPer(homeGoalsFor, homeResults),
-      getGoalsPer(awayGoalsFor, awayResults),
+      homeResults.length === 0 ? 0 : getGoalsPer(homeGoalsFor, homeResults),
+      awayResults.length === 0 ? 0 : getGoalsPer(awayGoalsFor, awayResults),
       colors.win,
     ),
     createData('Goals Against', homeGoalsAgainst, awayGoalsAgainst, colors.lose),
     createData(
       'Conceded per game',
-      getGoalsPer(homeGoalsAgainst, homeResults),
-      getGoalsPer(awayGoalsAgainst, awayResults),
+      homeResults.length === 0 ? 0 : getGoalsPer(homeGoalsAgainst, homeResults),
+      awayResults.length === 0 ? 0 : getGoalsPer(awayGoalsAgainst, awayResults),
       colors.lose,
     ),
     createData(
@@ -69,8 +70,8 @@ const HomeAndAway = props => {
     ),
     createData(
       'Points per game',
-      getPointsPer(totalHomeWins, totalAwayWins, totalHomePlayed),
-      getPointsPer(totalAwayWins, totalAwayDraws, totalAwayPlayed),
+      homeResults.length === 0 ? 0 : getPointsPer(totalHomeWins, totalAwayWins, totalHomePlayed),
+      awayResults.length === 0 ? 0 : getPointsPer(totalAwayWins, totalAwayDraws, totalAwayPlayed),
     ),
   ];
 

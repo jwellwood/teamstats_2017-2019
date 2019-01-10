@@ -7,7 +7,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 import Divider from '@material-ui/core/Divider';
-import Trophies from './Trophies';
+import Trophies from './Trophies/Trophies';
 
 // styling
 const styles = theme => ({
@@ -22,7 +22,8 @@ const styles = theme => ({
 
 // Component
 const TeamDetails = props => {
-  const { classes } = props;
+  const { classes, team, trophies } = props;
+  const { city, leagueFinish } = team[0];
 
   // Data to map
   let id = 0;
@@ -32,8 +33,8 @@ const TeamDetails = props => {
   }
 
   const listItems = [
-    createData(<i className="fas fa-globe-americas" />, 'Madrid', 'Home city'),
-    createData(<i className="fas fa-award" />, '5th', 'Finish last season'),
+    createData(<i className="fas fa-globe-americas" />, city, 'Home city'),
+    createData(<i className="fas fa-award" />, leagueFinish, 'Finish last season'),
   ];
 
   return (
@@ -48,18 +49,17 @@ const TeamDetails = props => {
             <Divider variant="inset" component="li" />
           </div>
         ))}
-        <ListItem>
-          <Avatar className={classes.avatar}>
-            <i className="fas fa-trophy" />
-          </Avatar>
-          <ListItemText primary={<Trophies />} />
-        </ListItem>
-        <Divider variant="inset" component="li" />
       </List>
+      <Trophies trophies={trophies} />
     </Grid>
   );
 };
 
-TeamDetails.propTypes = { classes: PropTypes.shape({}).isRequired };
+TeamDetails.propTypes = {
+  classes: PropTypes.shape({}).isRequired,
+  team: PropTypes.instanceOf(Array).isRequired,
+  trophies: PropTypes.instanceOf(Array),
+};
 
+TeamDetails.defaultProps = { trophies: null };
 export default withStyles(styles)(TeamDetails);

@@ -8,18 +8,17 @@ import ResultsStats from './ResultsStats/ResultsStats';
 import BoxContainer from '../../hoc/BoxContainer';
 
 const ResultsTotals = props => {
-  const { results } = props;
-
-  const homeResults = results.filter(result => result.homeTeamName === 'Madrid Reds');
-  const awayResults = results.filter(result => result.awayTeamName === 'Madrid Reds');
+  const { results, teamName } = props;
+  const homeResults = results.filter(result => result.homeTeamName === teamName);
+  const awayResults = results.filter(result => result.awayTeamName === teamName);
   const getGoals = (a, b) => a + b;
   const myTeamHomeArray = homeResults.map(goals => +goals.homeTeamScore);
   const myTeamAwayArray = awayResults.map(goals => +goals.awayTeamScore);
   const homeTeamGoals = myTeamHomeArray.reduce(getGoals, 0);
   const awayTeamGoals = myTeamAwayArray.reduce(getGoals, 0);
 
-  const opponentHomeResults = results.filter(result => result.homeTeamName !== 'Madrid Reds');
-  const opponentAwayResults = results.filter(result => result.awayTeamName !== 'Madrid Reds');
+  const opponentHomeResults = results.filter(result => result.homeTeamName !== teamName);
+  const opponentAwayResults = results.filter(result => result.awayTeamName !== teamName);
   const opponentHomeArray = opponentHomeResults.map(goals => +goals.homeTeamScore);
   const opponentAwayArray = opponentAwayResults.map(goals => +goals.awayTeamScore);
   const opponentHomeGoals = opponentHomeArray.reduce(getGoals, 0);
@@ -82,6 +81,9 @@ const ResultsTotals = props => {
   );
 };
 
-ResultsTotals.propTypes = { results: PropTypes.instanceOf(Array).isRequired };
+ResultsTotals.propTypes = {
+  results: PropTypes.instanceOf(Array).isRequired,
+  teamName: PropTypes.string.isRequired,
+};
 
 export default ResultsTotals;

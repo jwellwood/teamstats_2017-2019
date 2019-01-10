@@ -29,7 +29,10 @@ const styles = theme => ({
 
 const PlayerOverview = props => {
   const { classes, player, totalMatches } = props;
-  const playedPercentage = (player.apps * 100) / totalMatches;
+  let playedPercentage = (player.apps * 100) / totalMatches;
+  if (totalMatches === 0) {
+    playedPercentage = 0;
+  }
 
   let color = '#fff';
   switch (player.position) {

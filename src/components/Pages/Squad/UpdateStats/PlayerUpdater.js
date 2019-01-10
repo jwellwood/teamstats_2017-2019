@@ -13,7 +13,7 @@ import StatsUpdater from './StatsUpdater';
 
 class PlayerUpdater extends Component {
   state = {
-    showBalanceUpdate: false,
+    showBalanceUpdate: true,
     balanceUpdateAmount: '',
     isAuthenticated: false,
   };

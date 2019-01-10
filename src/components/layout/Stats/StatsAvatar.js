@@ -21,7 +21,7 @@ const StatsAvatar = props => {
         direction="row"
         justify="space-evenly"
         alignContent="center"
-        alignItems="center"
+        alignItems="flex-start"
       >
         {itemsToMap.map(item => (
           <Grid item xs={4} sm={2} key={item.id} className={classes.item}>

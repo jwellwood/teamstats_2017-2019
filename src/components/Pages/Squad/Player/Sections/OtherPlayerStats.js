@@ -8,7 +8,10 @@ import StatsAvatar from '../../../../layout/Stats/StatsAvatar';
 const OtherPlayerStats = props => {
   const { player, totalTeamGoals } = props;
   const { mvp, balance } = player;
-  const goalContribution = ((player.goals + player.assists) * 100) / totalTeamGoals;
+  let goalContribution = ((player.goals + player.assists) * 100) / totalTeamGoals;
+  if (totalTeamGoals === 0) {
+    goalContribution = 0;
+  }
 
   // Data to map
   let id = 0;

@@ -34,7 +34,7 @@ const OtherPlayerStats = props => {
   );
   const allBalance = players.map(player => player.balance);
   const topBalanceValue = Math.max(...allBalance);
-  const topBalanceObject = players.filter(player => (player.balance === topBalanceValue ? player.name : null));
+  const topBalanceObject = players.filter(player => (player.balance === topBalanceValue && topBalanceValue > 0 ? player.name : null));
   const topBalancePlayer = topBalanceObject.map(player => player.name);
 
   let id = 0;
@@ -47,7 +47,7 @@ const OtherPlayerStats = props => {
     createData(<i className="fas fa-users" />, totalPlayers, 'Total Players'),
     createData(<i className="fas fa-user" />, playersPerMatch.toFixed(1), 'Players / Match'),
     createData(<i className="fas fa-star" />, mvpPerGame.toFixed(1), 'MVP / Match'),
-    createData(<i className="fas fa-meh" />, ownGoalsFor, 'Own Goals (by other team)'),
+    createData(<i className="fas fa-meh" />, ownGoalsFor, 'Own Goals (by opposition)'),
     createData(
       <i className="fas fa-dollar-sign" />,
       <span style={totalTeamOwed > 0 ? { color: '#E74C3C' } : { color: '#28B463' }}>

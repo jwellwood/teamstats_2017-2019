@@ -21,10 +21,18 @@ export const getHomeAndAway = (home, away) => {
 
 export const getMostGoalsScored = (home, away, type) => {
   const mostScoredHome = Object.values(
-    home.map(result => (result.homeTeamScore.toString() === type ? result.awayTeamName : null)),
+    home.map(result => (result.homeTeamScore.toString() === type
+      && result.homeTeamScore >= 1
+      && !result.forfeitedMatch
+      ? result.awayTeamName
+      : null)),
   );
   const mostScoredAway = Object.values(
-    away.map(result => (result.awayTeamScore.toString() === type ? result.homeTeamName : null)),
+    away.map(result => (result.awayTeamScore.toString() === type
+      && result.awayTeamScore >= 1
+      && !result.forfeitedMatch
+      ? result.homeTeamName
+      : null)),
   );
   const mostScoredVs = getHomeAndAway(mostScoredHome, mostScoredAway);
   return mostScoredVs;
@@ -32,10 +40,14 @@ export const getMostGoalsScored = (home, away, type) => {
 
 export const getMostGoalsConceded = (home, away, type) => {
   const mostConcededHome = Object.values(
-    home.map(result => (result.awayTeamScore.toString() === type ? result.awayTeamName : null)),
+    home.map(result => (result.awayTeamScore.toString() === type && result.awayTeamScore >= 1
+      ? result.awayTeamName
+      : null)),
   );
   const mostConcededAway = Object.values(
-    away.map(result => (result.homeTeamScore.toString() === type ? result.homeTeamName : null)),
+    away.map(result => (result.homeTeamScore.toString() === type && result.homeTeamScore >= 1
+      ? result.homeTeamName
+      : null)),
   );
   const mostConcededVs = getHomeAndAway(mostConcededHome, mostConcededAway);
   return mostConcededVs;
@@ -43,10 +55,14 @@ export const getMostGoalsConceded = (home, away, type) => {
 
 export const getFewestGoalsScored = (home, away, type) => {
   const fewestScoredHome = Object.values(
-    home.map(result => (result.homeTeamScore.toString() === type ? result.awayTeamName : null)),
+    home.map(result => (result.homeTeamScore.toString() === type && !result.forfeitedMatch
+      ? result.awayTeamName
+      : null)),
   );
   const fewestScoredAway = Object.values(
-    away.map(result => (result.awayTeamScore.toString() === type ? result.homeTeamName : null)),
+    away.map(result => (result.awayTeamScore.toString() === type && !result.forfeitedMatch
+      ? result.homeTeamName
+      : null)),
   );
   const fewestScoredVs = getHomeAndAway(fewestScoredHome, fewestScoredAway);
   return fewestScoredVs;
@@ -54,10 +70,10 @@ export const getFewestGoalsScored = (home, away, type) => {
 
 export const getCleanSheets = (home, away) => {
   const cleanSheetHome = Object.values(
-    home.map(result => (result.awayTeamScore === '0' ? result.awayTeamName : null)),
+    home.map(result => (result.awayTeamScore === 0 ? result.awayTeamName : null)),
   );
   const cleanSheetAway = Object.values(
-    away.map(result => (result.homeTeamScore === '0' ? result.homeTeamName : null)),
+    away.map(result => (result.homeTeamScore === 0 ? result.homeTeamName : null)),
   );
   const cleanSheetVs = getHomeAndAway(cleanSheetHome, cleanSheetAway);
   return cleanSheetVs;

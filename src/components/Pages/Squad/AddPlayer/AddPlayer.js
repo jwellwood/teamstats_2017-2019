@@ -11,7 +11,7 @@ class AddPlayer extends Component {
   state = {
     name: '',
     number: '',
-    position: '',
+    position: 'GK',
     targetApps: '',
     targetGoals: '',
     targetAssists: '',

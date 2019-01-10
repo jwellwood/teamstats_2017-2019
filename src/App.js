@@ -6,7 +6,6 @@ import store from './store';
 import { UserIsAuthenticated, UserIsNotAuthenticated } from './helpers/auth';
 // Components
 import NavBar from './components/layout/Navs/NavBar';
-import Home from './components/Pages/Home/Home';
 // Auth
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
@@ -15,15 +14,20 @@ import Players from './components/Pages/Squad/Players';
 import AddPlayer from './components/Pages/Squad/AddPlayer/AddPlayer';
 import PlayerUpdater from './components/Pages/Squad/UpdateStats/PlayerUpdater';
 import EditPlayer from './components/Pages/Squad/EditPlayer/EditPlayer';
-// Team
+// Results
 import Results from './components/Pages/Results/Results';
 import AddResult from './components/Pages/Results/AddResult/AddResult';
+import ResultUpdater from './components/Pages/Results/UpdateResults/ResultUpdater';
+import EditResult from './components/Pages/Results/EditResult/EditResult';
+// Team
+import TeamHome from './components/Pages/Home/TeamHome';
+import EditTeam from './components/Pages/Home/EditTeam/EditTeam';
+import AddTrophy from './components/Pages/Home/Trophies/AddTrophy';
+// Other
 import Settings from './components/Pages/Settings/Settings';
 import About from './components/Pages/About/About';
 import NotFound from './components/layout/Warnings/NotFound';
 import './App.css';
-import EditResult from './components/Pages/Results/EditResult/EditResult';
-import ResultUpdater from './components/Pages/Results/UpdateResults/ResultUpdater';
 
 const App = () => (
   <Provider store={store}>
@@ -32,7 +36,9 @@ const App = () => (
         <NavBar />
         <div>
           <Switch>
-            <Route exact path="/" component={Home} />
+            <Route exact path="/" component={TeamHome} />
+            <Route exact path="/editteam" component={UserIsAuthenticated(EditTeam)} />
+            <Route exact path="/addtrophy" component={UserIsAuthenticated(AddTrophy)} />
             <Route exact path="/login" component={UserIsNotAuthenticated(Login)} />
             <Route exact path="/register" component={UserIsNotAuthenticated(Register)} />
             <Route exact path="/about" component={About} />
