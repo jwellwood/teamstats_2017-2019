@@ -10,7 +10,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import Typography from '@material-ui/core/Typography';
 // Assets
-import avatar from '../../../../../assets/images/avatar.png';
+
 // Components
 import StatsHeader from '../../../../layout/Stats/StatsHeader';
 import { positions } from '../../../../../assets/styles/colors';
@@ -28,7 +28,7 @@ const styles = theme => ({
 });
 
 const PlayerOverview = props => {
-  const { classes, player, totalMatches } = props;
+  const { classes, player, totalMatches, image } = props;
   let playedPercentage = (player.apps * 100) / totalMatches;
   if (totalMatches === 0) {
     playedPercentage = 0;
@@ -69,7 +69,7 @@ const PlayerOverview = props => {
       <StatsHeader title="Details" />
       <Grid container direction="row" justify="center" alignItems="center">
         <Grid item xs={4}>
-          <Avatar alt="Player avatar" src={avatar} className={classes.bigAvatar} />
+          <Avatar alt="Player avatar" src={image} className={classes.bigAvatar} />
         </Grid>
         <Grid item xs={8} className={classes.details}>
           {listItems.map(item => (

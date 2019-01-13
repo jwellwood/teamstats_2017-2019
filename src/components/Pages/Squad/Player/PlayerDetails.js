@@ -1,6 +1,10 @@
+/* eslint no-underscore-dangle: 0 */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { compose } from 'redux';
+import { firestoreConnect } from 'react-redux-firebase';
 // MUI
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -17,6 +21,7 @@ import PlayerOverview from './Sections/PlayerOverview';
 import PlayerTargets from './Sections/PlayerTargets';
 import OtherPlayerStats from './Sections/OtherPlayerStats';
 import PerGameGraph from './Sections/PerGameGraph';
+import avatar from '../../../../assets/images/avatar.png';
 // helpers
 import { modalLeft } from '../../../../helpers/transitions';
 
@@ -26,7 +31,32 @@ const styles = {
 };
 
 class PlayerDetails extends React.Component {
-  state = { open: false };
+  state = { open: false, playerImage: '', defaultImage: avatar };
+
+  _isMounted = false;
+
+  componentDidMount() {
+    this._isMounted = true;
+    const { player, firebase } = this.props;
+    const { defaultImage } = this.state;
+    if (player.image) {
+      firebase
+        .storage()
+        .ref('players')
+        .child(player.image)
+        .getDownloadURL()
+        .then(url => {
+          if (this._isMounted) {
+            this.setState({ playerImage: url });
+          }
+        });
+    }
+    return defaultImage;
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
 
   handleClickOpen = () => {
     this.setState({ open: true });
@@ -37,14 +67,14 @@ class PlayerDetails extends React.Component {
   };
 
   render() {
-    const { open } = this.state;
+    const { open, playerImage, defaultImage } = this.state;
     const { classes, player, results, players } = this.props;
     const totalMatches = results.length;
     const totalTeamGoals = players.reduce((totalGoals, a) => totalGoals + +a.goals, 0);
     return (
       <div>
         <div role="presentation" onClick={this.handleClickOpen}>
-          <PlayerCard player={player} />
+          <PlayerCard player={player} image={player.image ? playerImage : defaultImage} />
         </div>
         <Dialog
           fullScreen
@@ -67,7 +97,11 @@ class PlayerDetails extends React.Component {
             </Toolbar>
           </AppBar>
           <Container>
-            <PlayerOverview player={player} totalMatches={totalMatches} />
+            <PlayerOverview
+              player={player}
+              totalMatches={totalMatches}
+              image={player.image ? playerImage : defaultImage}
+            />
             <PlayerTargets player={player} />
             <PerGameGraph player={player} />
             <OtherPlayerStats player={player} totalTeamGoals={totalTeamGoals} />
@@ -81,8 +115,12 @@ class PlayerDetails extends React.Component {
 PlayerDetails.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   player: PropTypes.shape({}).isRequired,
+  firebase: PropTypes.shape({}).isRequired,
   players: PropTypes.instanceOf(Array).isRequired,
   results: PropTypes.instanceOf(Array).isRequired,
 };
 
-export default withStyles(styles)(PlayerDetails);
+export default compose(
+  firestoreConnect(),
+  withStyles(styles),
+)(PlayerDetails);

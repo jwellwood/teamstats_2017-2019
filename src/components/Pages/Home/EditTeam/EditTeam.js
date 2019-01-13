@@ -16,6 +16,8 @@ import Container from '../../../hoc/Container';
 import Spinner from '../../../layout/Warnings/Spinner';
 import PageHeader from '../../../layout/Navs/PageHeader';
 import FormTitle from '../../../layout/Forms/FormTitle';
+import FileUpload from '../../../layout/Forms/FileUpload';
+import defaultBadge from '../../../../assets/images/defaultBadge.png';
 
 const styles = () => ({
   container: {
@@ -29,8 +31,11 @@ const styles = () => ({
 });
 
 class EditTeam extends Component {
+  state = { defaultImg: defaultBadge };
+
   constructor(props) {
     super(props);
+    this.teamBadgeInput = React.createRef();
     this.teamNameInput = React.createRef();
     this.teamCityInput = React.createRef();
     this.leagueFinishInput = React.createRef();
@@ -41,6 +46,7 @@ class EditTeam extends Component {
     e.preventDefault();
     const { team, firestore, history } = this.props;
     const updatedTeam = {
+      badge: this.teamBadgeInput.current.value,
       name: this.teamNameInput.current.value,
       city: this.teamCityInput.current.value,
       leagueFinish: this.leagueFinishInput.current.value,
@@ -54,6 +60,8 @@ class EditTeam extends Component {
     firestore.delete({ collection: 'team', doc: team.id }).then(history.push('/'));
   };
 
+  storeFilename = filename => {};
+
   render() {
     const { classes, team } = this.props;
     const textInputProps = { minLength: 2 };
@@ -66,6 +74,13 @@ class EditTeam extends Component {
             <Paper className={classes.container}>
               <form onSubmit={this.onSubmit}>
                 <FormTitle title="Team Details" />
+                <FormControl className={classes.formControl}>
+                  <FileUpload
+                    dir="team"
+                    defaultImage={this.state.defaultImg}
+                    filename={filename => this.storeFilename(filename)}
+                  />
+                </FormControl>
                 <FormControl className={classes.formControl}>
                   <TextField
                     label="Team Name"

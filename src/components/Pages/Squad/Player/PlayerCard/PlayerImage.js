@@ -5,7 +5,6 @@ import { withStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 // Assets
-import avatar from '../../../../../assets/images/avatar.png';
 import { positions } from '../../../../../assets/styles/colors';
 
 const styles = theme => ({
@@ -28,7 +27,7 @@ const styles = theme => ({
 });
 
 const PlayerImage = props => {
-  const { classes, name, number, position } = props;
+  const { classes, name, number, position, image } = props;
   let color = '#fff';
   switch (position) {
     case 'GK':
@@ -51,7 +50,7 @@ const PlayerImage = props => {
     <Grid container direction="row" justify="center" alignItems="center">
       <Grid container direction="row" justify="center" alignItems="center">
         <div className={classes.numAvatar}>{number}</div>
-        <Avatar alt="player image" src={avatar} className={classes.avatar} />
+        <Avatar alt="player image" src={image} className={classes.avatar} />
         <div className={classes.numAvatar} style={{ color }}>
           {position}
         </div>
@@ -64,6 +63,7 @@ const PlayerImage = props => {
 
 PlayerImage.propTypes = {
   classes: PropTypes.shape({}).isRequired,
+  image: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   number: PropTypes.string.isRequired,
   position: PropTypes.string.isRequired,

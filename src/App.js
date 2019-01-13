@@ -28,6 +28,7 @@ import Settings from './components/Pages/Settings/Settings';
 import About from './components/Pages/About/About';
 import NotFound from './components/layout/Warnings/NotFound';
 import './App.css';
+import EditImage from './components/Pages/Squad/EditPlayer/EditImage';
 
 const App = () => (
   <Provider store={store}>
@@ -45,6 +46,11 @@ const App = () => (
             <Route exact path="/players" component={Players} />
             <Route exact path="/players/addPlayer" component={UserIsAuthenticated(AddPlayer)} />
             <Route exact path="/players/edit/:id" component={UserIsAuthenticated(EditPlayer)} />
+            <Route
+              exact
+              path="/players/edit/image/:id"
+              component={UserIsAuthenticated(EditImage)}
+            />
             <Route exact path="/settings" component={UserIsAuthenticated(Settings)} />
             <Route exact path="/players/:id" component={UserIsAuthenticated(PlayerUpdater)} />
             <Route exact path="/results" component={Results} />

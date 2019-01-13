@@ -53,6 +53,7 @@ class EditPlayer extends Component {
       targetGoals: this.targetGoalsInput.current.value,
       targetAssists: this.targetAssistsInput.current.value,
     };
+
     firestore
       .update({ collection: 'players', doc: player.id }, updatedPlayer)
       .then(history.push('/players'));

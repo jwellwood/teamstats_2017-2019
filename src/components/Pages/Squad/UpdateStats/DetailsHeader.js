@@ -20,14 +20,24 @@ const DetailsHeader = props => {
             <Icon>arrow_back</Icon>
           </IconButton>
           <div style={{ fontWeight: 'bold' }}>{player.name}</div>
-          <IconButton
-            variant="contained"
-            color="default"
-            component={Link}
-            to={`/players/edit/${player.id}`}
-          >
-            <Icon>edit</Icon>
-          </IconButton>
+          <div>
+            <IconButton
+              variant="contained"
+              color="default"
+              component={Link}
+              to={`/players/edit/${player.id}`}
+            >
+              <Icon>edit</Icon>
+            </IconButton>
+            <IconButton
+              variant="contained"
+              color="default"
+              component={Link}
+              to={`/players/edit/image/${player.id}`}
+            >
+              <Icon>photo</Icon>
+            </IconButton>
+          </div>
         </Grid>
         <Typography variant="body2">Are you sure you want to edit this player?</Typography>
       </BoxContainer>

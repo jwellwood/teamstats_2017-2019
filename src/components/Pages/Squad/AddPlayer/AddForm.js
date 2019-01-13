@@ -10,6 +10,8 @@ import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
 import Container from '../../../hoc/Container';
 import FormTitle from '../../../layout/Forms/FormTitle';
+import FileUpload from '../../../layout/Forms/FileUpload';
+import avatar from '../../../../assets/images/avatar.png';
 
 // styling
 const styles = () => ({
@@ -32,6 +34,7 @@ const AddForm = props => {
     classes,
     onSubmit,
     onChange,
+    storeFilename,
     name,
     number,
     position,
@@ -43,6 +46,14 @@ const AddForm = props => {
     <Container>
       <Paper className={classes.container}>
         <form onSubmit={onSubmit}>
+          <FormTitle title="Player Image" />
+          <FormControl className={classes.formControl}>
+            <FileUpload
+              dir="players"
+              defaultImg={avatar}
+              filename={filename => storeFilename(filename)}
+            />
+          </FormControl>
           <FormTitle title="Player Details" />
           <FormControl className={classes.formControl}>
             <TextField
@@ -131,6 +142,7 @@ AddForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
+  storeFilename: PropTypes.func.isRequired,
   number: PropTypes.string.isRequired,
   position: PropTypes.string.isRequired,
   targetApps: PropTypes.string.isRequired,

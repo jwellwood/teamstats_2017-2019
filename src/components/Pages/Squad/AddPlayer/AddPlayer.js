@@ -9,6 +9,7 @@ import PageHeader from '../../../layout/Navs/PageHeader';
 
 class AddPlayer extends Component {
   state = {
+    image: '',
     name: '',
     number: '',
     position: 'GK',
@@ -31,18 +32,29 @@ class AddPlayer extends Component {
     firestore.add({ collection: 'players' }, newPlayer).then(() => history.push('/players'));
   };
 
-  onChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
+  onChange = (e, content = '') => {
+    if (content === '') {
+      this.setState({ [e.target.name]: e.target.value });
+    } else {
+      this.setState({ image: content });
+    }
+  };
+
+  storeFilename = filename => {
+    const { image } = this.state;
+    this.onChange(image, filename);
   };
 
   render() {
-    const { name, number, position, targetApps, targetGoals, targetAssists } = this.state;
+    const { image, name, number, position, targetApps, targetGoals, targetAssists } = this.state;
     return (
       <Container>
         <PageHeader title="Add Player" icon="fas fa-user-plus" link="/players" />
         <AddForm
           onChange={this.onChange}
           onSubmit={this.onSubmit}
+          image={image}
+          storeFilename={this.storeFilename}
           name={name}
           number={number}
           position={position}
