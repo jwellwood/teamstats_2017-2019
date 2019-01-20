@@ -24,7 +24,6 @@ import {
 
 const GoalStats = props => {
   const { results, goalTotals } = props;
-
   // General stats
   const totalMatches = results.length;
   const goalsFor = goalTotals.totalGoalsFor;

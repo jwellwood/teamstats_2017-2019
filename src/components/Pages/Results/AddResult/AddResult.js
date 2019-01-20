@@ -57,9 +57,11 @@ class AddResult extends Component {
           matchType={matchType}
           date={date}
           homeTeamName={homeTeamName}
-          homeTeamScore={parseInt(homeTeamScore, 10)}
+          homeTeamScore={homeTeamScore}
+          // homeTeamScore={parseInt(homeTeamScore, 10)}
           awayTeamName={awayTeamName}
-          awayTeamScore={parseInt(awayTeamScore, 10)}
+          awayTeamScore={awayTeamScore}
+          // awayTeamScore={parseInt(awayTeamScore, 10)}
           resultIndicator={resultIndicator}
           forfeitedMatch={forfeitedMatch}
           matchNotes={matchNotes}

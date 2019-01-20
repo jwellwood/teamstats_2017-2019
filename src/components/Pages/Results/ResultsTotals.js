@@ -83,7 +83,9 @@ const ResultsTotals = props => {
 
 ResultsTotals.propTypes = {
   results: PropTypes.instanceOf(Array).isRequired,
-  teamName: PropTypes.string.isRequired,
+  teamName: PropTypes.string,
 };
+
+ResultsTotals.defaultProps = { teamName: null };
 
 export default ResultsTotals;

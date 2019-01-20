@@ -1,13 +1,13 @@
 export const getGoalsFor = (home, away) => {
-  const getHomeGoals = home.map(result => result.homeTeamScore);
-  const getAwayGoals = away.map(result => result.awayTeamScore);
+  const getHomeGoals = home.map(result => +result.homeTeamScore);
+  const getAwayGoals = away.map(result => +result.awayTeamScore);
   const goalsFor = getHomeGoals.concat(getAwayGoals);
   return goalsFor;
 };
 
 export const getGoalsAgainst = (home, away) => {
-  const getOppHomeGoals = home.map(result => result.awayTeamScore);
-  const getOppAwayGoals = away.map(result => result.homeTeamScore);
+  const getOppHomeGoals = home.map(result => +result.awayTeamScore);
+  const getOppAwayGoals = away.map(result => +result.homeTeamScore);
   const goalsAgainst = getOppHomeGoals.concat(getOppAwayGoals);
   return goalsAgainst;
 };
@@ -70,10 +70,10 @@ export const getFewestGoalsScored = (home, away, type) => {
 
 export const getCleanSheets = (home, away) => {
   const cleanSheetHome = Object.values(
-    home.map(result => (result.awayTeamScore === 0 ? result.awayTeamName : null)),
+    home.map(result => (parseInt(result.awayTeamScore, 10) === 0 ? result.awayTeamName : null)),
   );
   const cleanSheetAway = Object.values(
-    away.map(result => (result.homeTeamScore === 0 ? result.homeTeamName : null)),
+    away.map(result => (parseInt(result.homeTeamScore, 10) === 0 ? result.homeTeamName : null)),
   );
   const cleanSheetVs = getHomeAndAway(cleanSheetHome, cleanSheetAway);
   return cleanSheetVs;
