@@ -5,10 +5,10 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 // Components
-import Container from '../../hoc/Container';
-import PageHeader from '../../layout/Navs/PageHeader';
-import SquadList from './SquadList';
-import SquadTotals from './SquadTotals';
+import Container from '../components/hoc/Container';
+import PageHeader from '../components/layout/Navs/PageHeader';
+import SquadList from '../components/Pages/Squad/SquadList';
+import SquadTotals from '../components/Pages/Squad/SquadTotals';
 
 const Players = props => {
   const { players, results } = props;

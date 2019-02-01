@@ -10,9 +10,9 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Avatar from '@material-ui/core/Avatar';
 import Icon from '@material-ui/core/Icon';
 import Divider from '@material-ui/core/Divider';
-import Container from '../../hoc/Container';
-import { setAllowRegistration } from '../../../actions/settingsActions';
-import PageHeader from '../../layout/Navs/PageHeader';
+import Container from '../components/hoc/Container';
+import { setAllowRegistration } from '../actions/settingsActions';
+import PageHeader from '../components/layout/Navs/PageHeader';
 
 const styles = theme => ({
   root: {

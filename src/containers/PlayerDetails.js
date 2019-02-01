@@ -15,15 +15,15 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 // Components
-import Container from '../../../hoc/Container';
-import PlayerCard from './PlayerCard/PlayerCard';
-import PlayerOverview from './Sections/PlayerOverview';
-import PlayerTargets from './Sections/PlayerTargets';
-import OtherPlayerStats from './Sections/OtherPlayerStats';
-import PerGameGraph from './Sections/PerGameGraph';
-import avatar from '../../../../assets/images/avatar.png';
+import Container from '../components/hoc/Container';
+import PlayerCard from '../components/Pages/Squad/Player/PlayerCard/PlayerCard';
+import PlayerOverview from '../components/Pages/Squad/Player/Sections/PlayerOverview';
+import PlayerTargets from '../components/Pages/Squad/Player/Sections/PlayerTargets';
+import OtherPlayerStats from '../components/Pages/Squad/Player/Sections/OtherPlayerStats';
+import PerGameGraph from '../components/Pages/Squad/Player/Sections/PerGameGraph';
+import avatar from '../assets/images/avatar.png';
 // helpers
-import { modalLeft } from '../../../../helpers/transitions';
+import { modalLeft } from '../helpers/transitions';
 
 const styles = {
   appBar: { position: 'sticky' },

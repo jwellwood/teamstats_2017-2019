@@ -28,7 +28,7 @@ class Register extends Component {
         password,
       })
       // eslint-disable-next-line no-unused-vars
-      .catch(err => notifyUser('There was a problem with your registration. Try again', 'error'));
+      .catch(err => notifyUser('Registration error. Try again', 'error'));
   };
 
   render() {

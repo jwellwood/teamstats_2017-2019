@@ -2,31 +2,62 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // MUI
 import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 
-// styling
-const styles = theme => ({
-  root: { padding: theme.spacing.unit, marginTop: '20px' },
-  message: {
-    backgroundColor: theme.palette.secondary.light,
-    color: theme.palette.primary.dark,
-    fontWeight: 'bold',
-  },
-});
+const styles = theme => ({ close: { padding: theme.spacing.unit / 2 } });
 
-// component
-const Message = props => {
-  const { classes, message } = props;
+class Message extends React.Component {
+  state = { open: false };
 
-  return (
-    <Paper className={classes.root} elevation={1}>
-      <Typography variant="body1" component="h3" className={classes.message}>
-        {message}
-      </Typography>
-    </Paper>
-  );
-};
+  componentWillMount() {
+    const { message } = this.props;
+    if (message) {
+      this.setState({ open: true });
+    }
+  }
+
+  handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    this.setState({ open: false });
+  };
+
+  render() {
+    const { classes, message } = this.props;
+    const { open } = this.state;
+    return (
+      <div>
+        <Snackbar
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+          }}
+          open={open}
+          autoHideDuration={6000}
+          onClose={this.handleClose}
+          ContentProps={{ 'aria-describedby': 'message-id' }}
+          message={<span id="message-id">{message}</span>}
+          action={[
+            <IconButton
+              key="close"
+              aria-label="Close"
+              color="inherit"
+              className={classes.close}
+              onClick={this.handleClose}
+            >
+              <CloseIcon />
+            </IconButton>,
+          ]}
+        />
+      </div>
+    );
+  }
+}
+
 // propTypes
 Message.propTypes = {
   classes: PropTypes.shape({}).isRequired,

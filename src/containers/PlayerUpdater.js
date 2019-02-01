@@ -5,11 +5,11 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 // Components
-import Container from '../../../hoc/Container';
-import DetailsHeader from './DetailsHeader';
-import Spinner from '../../../layout/Warnings/Spinner';
-import BalanceForm from './BalanceForm';
-import StatsUpdater from './StatsUpdater';
+import Container from '../components/hoc/Container';
+import DetailsHeader from '../components/Pages/Squad/UpdateStats/DetailsHeader';
+import Spinner from '../components/layout/Warnings/Spinner';
+import BalanceForm from '../components/Pages/Squad/UpdateStats/BalanceForm';
+import StatsUpdater from '../components/Pages/Squad/UpdateStats/StatsUpdater';
 
 class PlayerUpdater extends Component {
   state = {

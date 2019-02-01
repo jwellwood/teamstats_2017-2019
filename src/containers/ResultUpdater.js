@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
-import DetailsHeader from './DetailsHeader';
-import Spinner from '../../../layout/Warnings/Spinner';
+import DetailsHeader from '../components/Pages/Results/UpdateResults/DetailsHeader';
+import Spinner from '../components/layout/Warnings/Spinner';
 
 const ResultUpdater = props => {
   const { result } = props;

@@ -11,11 +11,11 @@ import IconButton from '@material-ui/core/IconButton';
 import Icon from '@material-ui/core/Icon';
 // Components
 
-import Container from '../../hoc/Container';
-import TeamDetails from './TeamDetails';
-import HomeButtons from './HomeButtons';
-import Badge from './Badge';
-import Spinner from '../../layout/Warnings/Spinner';
+import Container from '../components/hoc/Container';
+import TeamDetails from '../components/Pages/Home/TeamDetails';
+import HomeButtons from '../components/Pages/Home/HomeButtons';
+import Badge from '../components/Pages/Home/Badge';
+import Spinner from '../components/layout/Warnings/Spinner';
 
 const TeamHome = props => {
   const { team, trophies } = props;

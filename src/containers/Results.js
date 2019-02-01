@@ -6,10 +6,10 @@ import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 
 // Components
-import Container from '../../hoc/Container';
-import PageHeader from '../../layout/Navs/PageHeader';
-import ResultsTotals from './ResultsTotals';
-import ResultList from './ResultList';
+import Container from '../components/hoc/Container';
+import PageHeader from '../components/layout/Navs/PageHeader';
+import ResultsTotals from '../components/Pages/Results/ResultsTotals';
+import ResultList from '../components/Pages/Results/ResultList';
 
 const Results = props => {
   const { results, team, onDelete } = props;
