@@ -7,22 +7,23 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 import Divider from '@material-ui/core/Divider';
+import Paper from '@material-ui/core/Paper';
 import Trophies from './Trophies/Trophies';
+import Logo from '../../../assets/images/logoBig.jpg';
 
 // styling
 const styles = theme => ({
-  root: {
-    width: '100%',
-    maxWidth: '400px',
-    margin: 'auto',
-    backgroundColor: theme.palette.background.paper,
+  root: { padding: '10px', margin: '10px' },
+  image: {
+    width: '100px',
+    padding: '10px',
   },
-  avatar: { background: theme.palette.primary.dark },
+  avatar: { background: '#eee', color: theme.palette.primary.main },
 });
 
 // Component
 const TeamDetails = props => {
-  const { classes, team, trophies } = props;
+  const { classes, team, trophies, players } = props;
   const { city, leagueFinish } = team[0];
 
   // Data to map
@@ -33,25 +34,38 @@ const TeamDetails = props => {
   }
 
   const listItems = [
-    createData(<i className="fas fa-globe-americas" />, city, 'Home city'),
-    createData(<i className="fas fa-award" />, leagueFinish, 'Finish last season'),
+    createData(<i className="fas fa-globe-americas" />, 'Home city', city),
+    createData(
+      <i className="fas fa-users" />,
+      'Current squad',
+      `${players ? players.length : null} players`,
+    ),
+    createData(<i className="fas fa-award" />, 'Finish last season', leagueFinish),
+    createData(<i className="fas fa-trophy" />, 'Trophies won', trophies ? trophies.length : null),
   ];
 
   return (
-    <Grid item xs={9} md={5}>
-      <List className={classes.root}>
-        {listItems.map(item => (
-          <div key={item.id}>
-            <ListItem>
-              <Avatar className={classes.avatar}>{item.icon}</Avatar>
-              <ListItemText primary={item.name} secondary={item.text} />
-            </ListItem>
-            <Divider variant="inset" component="li" />
-          </div>
-        ))}
-      </List>
-      <Trophies trophies={trophies} />
-    </Grid>
+    <Paper className={classes.root}>
+      <Grid container direction="column" justify="center" alignContent="center">
+        <Grid item>
+          <img src={Logo} className={classes.image} alt="team badge" />
+        </Grid>
+        <Grid item>
+          <List>
+            {listItems.map(item => (
+              <div key={item.id}>
+                <ListItem>
+                  <Avatar className={classes.avatar}>{item.icon}</Avatar>
+                  <ListItemText primary={item.name} secondary={item.text} />
+                </ListItem>
+                <Divider variant="inset" component="li" />
+              </div>
+            ))}
+          </List>
+          <Trophies trophies={trophies} />
+        </Grid>
+      </Grid>
+    </Paper>
   );
 };
 

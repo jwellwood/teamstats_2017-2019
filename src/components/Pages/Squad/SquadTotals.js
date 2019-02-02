@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 // MUI
 import Paper from '@material-ui/core/Paper';
 // Components
-import PlayersOverview from './SquadStats/PlayersOverview';
-import MoreStatsModal from '../../layout/Stats/MoreStatsModal';
 import StatsAvatar from '../../layout/Stats/StatsAvatar';
 import BoxContainer from '../../hoc/BoxContainer';
+import BoxLinks from '../../layout/Navs/BoxLinks';
 
 const SquadTotals = props => {
-  const { players, results } = props;
+  const { players } = props;
 
   const totalPlayers = players.length;
   const totalTeamGoals = players.reduce((totalGoals, player) => totalGoals + player.goals, 0);
@@ -43,17 +42,13 @@ const SquadTotals = props => {
     <BoxContainer>
       <Paper style={{ padding: '10px' }}>
         <StatsAvatar itemsToMap={listItems} />
-        <MoreStatsModal title="Squad" link="/players/addplayer" icon="person_add">
-          <PlayersOverview players={players} results={results} />
-        </MoreStatsModal>
+        <hr />
+        <BoxLinks link="/players/addplayer" />
       </Paper>
     </BoxContainer>
   );
 };
 
-SquadTotals.propTypes = {
-  players: PropTypes.instanceOf(Array).isRequired,
-  results: PropTypes.instanceOf(Array).isRequired,
-};
+SquadTotals.propTypes = { players: PropTypes.instanceOf(Array).isRequired };
 
 export default SquadTotals;

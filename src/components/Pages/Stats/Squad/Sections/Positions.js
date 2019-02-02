@@ -5,9 +5,9 @@ import { Bar } from 'react-chartjs-2';
 import StatsHeader from '../../../../layout/Stats/StatsHeader';
 // Helpers
 import { positions } from '../../../../../assets/styles/colors';
-import { getPosition } from '../../../../../helpers/players/helpers';
+import { getPosition } from '../../functions/playerCalcs';
 
-const PositionsGraph = props => {
+const Positions = props => {
   const { players } = props;
 
   const totalGKs = getPosition(players, 'GK');
@@ -43,6 +43,6 @@ const PositionsGraph = props => {
   );
 };
 
-PositionsGraph.propTypes = { players: PropTypes.instanceOf(Array).isRequired };
+Positions.propTypes = { players: PropTypes.instanceOf(Array).isRequired };
 
-export default PositionsGraph;
+export default Positions;

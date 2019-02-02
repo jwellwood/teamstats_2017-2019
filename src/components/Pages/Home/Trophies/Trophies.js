@@ -65,10 +65,10 @@ class Trophies extends React.Component {
       <div>
         <Button
           onClick={this.handleClickOpen}
-          color="secondary"
-          variant="contained"
+          variant="text"
           fullWidth
           size="small"
+          style={{ background: '#ddd' }}
         >
           Trophy Cabinet
         </Button>

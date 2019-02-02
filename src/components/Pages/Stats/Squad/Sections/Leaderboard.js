@@ -21,7 +21,7 @@ import {
   getMostMVP,
   getBestGoalPerGame,
   getBestAssistPerGame,
-} from '../../../../../helpers/players/helpers';
+} from '../../functions/playerCalcs';
 
 const styles = () => ({
   disclaimer: {

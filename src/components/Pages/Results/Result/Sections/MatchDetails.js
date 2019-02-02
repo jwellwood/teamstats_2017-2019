@@ -11,7 +11,7 @@ import StatsHeader from '../../../../layout/Stats/StatsHeader';
 import ScoreBox from '../ResultsCard/ScoreBox';
 // Helpers
 import { colors } from '../../../../../assets/styles/colors';
-import formatDate from '../../../../../helpers/results/date';
+import formatDate from '../../../../../helpers/date';
 
 const styles = theme => ({
   bigAvatar: {

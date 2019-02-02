@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import Paper from '@material-ui/core/Paper';
-import MoreStatsModal from '../../layout/Stats/MoreStatsModal';
 import StatsAvatar from '../../layout/Stats/StatsAvatar';
-import ResultsStats from './ResultsStats/ResultsStats';
 import BoxContainer from '../../hoc/BoxContainer';
+import { colors } from '../../../assets/styles/colors';
+import BoxLinks from '../../layout/Navs/BoxLinks';
 
 const ResultsTotals = props => {
   const { results, teamName } = props;
@@ -33,25 +32,11 @@ const ResultsTotals = props => {
     totalDraws: results.filter(result => result.resultIndicator === 'D').length,
     totalLoss: results.filter(result => result.resultIndicator === 'L').length,
   };
-  const goalTotals = {
-    totalGoalsFor: goalsFor,
-    totalGoalsAgainst: goalsAgainst,
-    homeGoalsFor: homeTeamGoals,
-    awayGoalsFor: awayTeamGoals,
-    homeGoalsAgainst: opponentAwayGoals,
-    awayGoalsAgainst: opponentHomeGoals,
-  };
   // Data to map
   let id = 0;
   const createData = (icon, value, title, color) => {
     id += 1;
     return { id, icon, value, title, color };
-  };
-
-  const colors = {
-    win: '#58D68D',
-    draw: '#F39C12',
-    lose: '#E74C3C',
   };
 
   const listItems = [
@@ -67,15 +52,8 @@ const ResultsTotals = props => {
     <BoxContainer>
       <Paper style={{ padding: '10px' }}>
         <StatsAvatar itemsToMap={listItems} />
-        <MoreStatsModal title="Results" link="results/addresult" icon="add_box">
-          <ResultsStats
-            results={results}
-            matchTotals={matchTotals}
-            goalTotals={goalTotals}
-            homeResults={homeResults}
-            awayResults={awayResults}
-          />
-        </MoreStatsModal>
+        <hr />
+        <BoxLinks link="/results/addresult" />
       </Paper>
     </BoxContainer>
   );

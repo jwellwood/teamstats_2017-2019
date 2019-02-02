@@ -4,21 +4,23 @@ import PropTypes from 'prop-types';
 import StatsHeader from '../../../../layout/Stats/StatsHeader';
 import StatsAvatar from '../../../../layout/Stats/StatsAvatar';
 // Helpers
-import { totalTeamApps } from '../../../../../helpers/players/helpers';
+import { totalTeamApps } from '../../functions/playerCalcs';
 
 const OtherPlayerStats = props => {
   const { players, results } = props;
-  const totalMatches = results.length;
+  const filteredResults = results.filter(res => !res.forfeitedMatch);
+  const totalMatches = filteredResults.length;
   const totalPlayers = players.length;
-  const playersPerMatch = results ? totalTeamApps(players) / totalMatches : null;
+
+  const playersPerMatch = filteredResults ? totalTeamApps(players) / totalMatches : null;
   const totalTeamMVP = players.reduce((totalMVP, player) => totalMVP + player.mvp, 0);
   const mvpPerGame = results ? totalTeamMVP / totalMatches : null;
 
   const totalPlayerGoals = players.reduce((totalGoals, player) => totalGoals + player.goals, 0);
   const getGoals = (a, b) => a + b;
 
-  const homeResults = results.filter(result => result.homeTeamName === 'Madrid Reds');
-  const awayResults = results.filter(result => result.awayTeamName === 'Madrid Reds');
+  const homeResults = filteredResults.filter(result => result.homeTeamName === 'Madrid Reds');
+  const awayResults = filteredResults.filter(result => result.awayTeamName === 'Madrid Reds');
 
   const myTeamHomeArray = homeResults.map(goals => +goals.homeTeamScore);
   const myTeamAwayArray = awayResults.map(goals => +goals.awayTeamScore);

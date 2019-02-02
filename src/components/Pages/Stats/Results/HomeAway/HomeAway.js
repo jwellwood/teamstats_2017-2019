@@ -11,7 +11,7 @@ import Divider from '@material-ui/core/Divider';
 import StatsHeader from '../../../../layout/Stats/StatsHeader';
 // Helpers
 import { colors } from '../../../../../assets/styles/colors';
-import { getPointsPer, getTotal, getGoalsPer, getDiff } from '../../../../../helpers/calcs';
+import { getPointsPer, getTotal, getGoalsPer, getDiff } from '../../functions/helpers';
 
 const styles = () => ({
   avatar: {

@@ -25,6 +25,7 @@ import Settings from './containers/Settings';
 import About from './components/Pages/About/About';
 import NotFound from './components/layout/Warnings/NotFound';
 import './App.css';
+import StatsContainer from './containers/StatsContainer';
 
 const Routes = () => (
   <div className="App">
@@ -38,6 +39,7 @@ const Routes = () => (
         <Route exact path="/register" component={UserIsNotAuthenticated(Register)} />
         <Route exact path="/about" component={About} />
         <Route exact path="/players" component={Players} />
+        <Route exact path="/stats" component={StatsContainer} />
         <Route exact path="/players/addPlayer" component={UserIsAuthenticated(AddPlayer)} />
         <Route exact path="/players/edit/:id" component={UserIsAuthenticated(EditPlayer)} />
         <Route exact path="/players/edit/image/:id" component={UserIsAuthenticated(EditImage)} />

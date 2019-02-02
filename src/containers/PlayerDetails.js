@@ -35,7 +35,7 @@ class PlayerDetails extends React.Component {
 
   _isMounted = false;
 
-  componentDidMount() {
+  componentWillMount() {
     this._isMounted = true;
     const { player, firebase } = this.props;
     const { defaultImage } = this.state;
@@ -56,6 +56,7 @@ class PlayerDetails extends React.Component {
 
   componentWillUnmount() {
     this._isMounted = false;
+    this.setState({ playerImage: '' });
   }
 
   handleClickOpen = () => {

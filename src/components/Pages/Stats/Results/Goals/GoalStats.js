@@ -8,11 +8,12 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Divider from '@material-ui/core/Divider';
 // Components
-import TopStatItem from '../../../../../layout/Stats/TopStatItem';
-import NumberAvatar from '../../../../../layout/Stats/NumberAvatar';
+import TopStatItem from '../../../../layout/Stats/TopStatItem';
+import NumberAvatar from '../../../../layout/Stats/NumberAvatar';
+import StatsHeader from '../../../../layout/Stats/StatsHeader';
 // Helpers
-import { colors } from '../../../../../../assets/styles/colors';
-import { getAverage, getMax, getMin } from '../../../../../../helpers/calcs';
+import { colors } from '../../../../../assets/styles/colors';
+import { getMax, getMin } from '../../functions/helpers';
 import {
   getMostGoalsScored,
   getMostGoalsConceded,
@@ -20,19 +21,11 @@ import {
   getCleanSheets,
   getGoalsFor,
   getGoalsAgainst,
-} from '../../../../../../helpers/goalCalcs';
+} from '../../functions/goalCalcs';
 
 const GoalStats = props => {
-  const { results, goalTotals } = props;
-  // General stats
-  const totalMatches = results.length;
-  const goalsFor = goalTotals.totalGoalsFor;
-  const goalsAgainst = goalTotals.totalGoalsAgainst;
-  const goalsForAverage = getAverage(goalsFor, totalMatches);
-  const goalAgainstAverage = getAverage(goalsAgainst, totalMatches);
-  // Home and away
-  const homeResults = results.filter(result => result.homeTeamName === 'Madrid Reds');
-  const awayResults = results.filter(result => result.awayTeamName === 'Madrid Reds');
+  const { homeResults, awayResults } = props;
+
   // Calc goals home and away
   const goalsForArray = getGoalsFor(homeResults, awayResults);
   const goalsAgainstArray = getGoalsAgainst(homeResults, awayResults);
@@ -60,16 +53,15 @@ const GoalStats = props => {
   };
 
   const goalsData = [
-    createData('Goals per game', '', goalsForAverage),
-    createData('Conceded per game', '', goalAgainstAverage),
-    createData('Most Goals in one game', mostScoredAgainst, mostScored, colors.win),
-    createData('Fewest scored in one game', fewestScoredAgainst, fewestScored, colors.draw),
-    createData('Most conceded in one game', mostConcededAgainst, mostConceded, colors.lose),
+    createData('Most scored', mostScoredAgainst, mostScored, colors.win),
+    createData('Fewest scored ', fewestScoredAgainst, fewestScored, colors.draw),
+    createData('Most conceded', mostConcededAgainst, mostConceded, colors.lose),
     createData('Clean sheets', cleanSheetsAgainst, cleanSheets, colors.win),
   ];
 
   return (
     <div>
+      <StatsHeader title="Game stats" />
       {goalsData.map(stat => (
         <Grid item xs={12} key={stat.id}>
           <List dense>
@@ -91,8 +83,8 @@ const GoalStats = props => {
 };
 
 GoalStats.propTypes = {
-  results: PropTypes.instanceOf(Array).isRequired,
-  goalTotals: PropTypes.shape({}).isRequired,
+  homeResults: PropTypes.instanceOf(Array).isRequired,
+  awayResults: PropTypes.instanceOf(Array).isRequired,
 };
 
 export default GoalStats;

@@ -11,9 +11,9 @@ import {
   targetTeamGoals,
   totalTeamAssists,
   targetTeamAssists,
-} from '../../../../../helpers/players/helpers';
+} from '../../functions/playerCalcs';
 
-const ProgressBars = props => {
+const Progress = props => {
   const { players } = props;
   const p = players;
 
@@ -49,6 +49,6 @@ const ProgressBars = props => {
   );
 };
 
-ProgressBars.propTypes = { players: PropTypes.instanceOf(Array).isRequired };
+Progress.propTypes = { players: PropTypes.instanceOf(Array).isRequired };
 
-export default ProgressBars;
+export default Progress;

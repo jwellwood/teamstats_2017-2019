@@ -17,11 +17,11 @@ const styles = theme => ({
   root: { flexGrow: 1 },
   appBar: {},
   bigAvatar: {
-    border: '2px solid',
+    border: '1px solid',
     borderColor: theme.palette.primary.dark,
     margin: '10px 0',
-    width: 48,
-    height: 48,
+    width: 32,
+    height: 32,
   },
 });
 const MainNav = props => {

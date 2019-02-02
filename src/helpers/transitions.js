@@ -1,5 +1,6 @@
 import React from 'react';
 import Slide from '@material-ui/core/Slide';
+import Typography from '@material-ui/core/Typography';
 
 export const modalDown = props => (
   <Slide
@@ -21,4 +22,10 @@ export const modalLeft = props => (
       exit: 300,
     }}
   />
+);
+
+export const TabContainer = ({ children, dir }) => (
+  <Typography component="div" dir={dir}>
+    {children}
+  </Typography>
 );

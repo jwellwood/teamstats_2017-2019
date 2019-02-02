@@ -6,7 +6,7 @@ import Logo from '../../../assets/images/logoBig.jpg';
 
 const styles = theme => ({
   image: {
-    margin: theme.spacing.unit,
+    // margin: theme.spacing.unit,
     padding: '20px',
   },
 });
@@ -14,7 +14,7 @@ const styles = theme => ({
 const Badge = props => {
   const { classes } = props;
   return (
-    <Grid item xs={9} md={5}>
+    <Grid item xs={5} md={5}>
       <img src={Logo} className={classes.image} alt="team badge" />
     </Grid>
   );

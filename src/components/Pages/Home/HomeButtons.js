@@ -4,44 +4,66 @@ import { Link } from 'react-router-dom';
 // MUI
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
+import Avatar from '@material-ui/core/Avatar';
 
 const styles = theme => ({
+  container: { margin: '30px auto' },
   button: {
-    margin: theme.spacing.unit,
-    background: theme.palette.secondary.main,
-    height: '100px',
-    width: '40%',
+    margin: '10px auto',
+    background: '#ddd',
+    height: '50px',
+    width: '50px',
     fontWeight: 'bold',
     color: theme.palette.primary.dark,
-    padding: '3px',
+    textDecoration: 'none',
   },
-  icon: {
-    fontSize: '2rem',
-    margin: '10px',
+  buttonText: {
+    textTransform: 'lowercase',
+    fontFamily: 'Righteous',
+    fontSize: '14px',
+    background: theme.palette.primary.dark,
+    borderRadius: '2px 2px 12px 2px',
+    padding: '5px',
+    color: '#fff',
   },
 });
+
+// Data to map
+let id = 0;
+function createData(icon, text, link) {
+  id += 1;
+  return { id, icon, text, link };
+}
+
+const listItems = [
+  createData(<i className="fas fa-user-friends" />, 'players', '/players'),
+  createData(<i className="fas fa-futbol" />, 'results', '/results'),
+  createData(<i className="fas fa-chart-pie" />, 'stats', '/stats'),
+];
 
 const HomeButtons = props => {
   const { classes } = props;
   return (
-    <Grid container direction="row" justify="center">
-      <Button variant="contained" component={Link} to="/players/" className={classes.button}>
-        <div>
-          View Players
-          <div className={classes.icon}>
-            <i className="fas fa-user-friends" />
-          </div>
-        </div>
-      </Button>
-      <Button variant="contained" component={Link} to="/results/" className={classes.button}>
-        <div>
-          View Matches
-          <div className={classes.icon}>
-            <i className="fas fa-futbol" />
-          </div>
-        </div>
-      </Button>
+    <Grid
+      container
+      direction="row"
+      justify="space-evenly"
+      alignItems="center"
+      className={classes.container}
+    >
+      {listItems.map(item => (
+        <Grid
+          key={item.id}
+          item
+          xs={3}
+          component={Link}
+          to={item.link}
+          style={{ textDecoration: 'none' }}
+        >
+          <Avatar className={classes.button}>{item.icon}</Avatar>
+          <div className={classes.buttonText}>{item.text}</div>
+        </Grid>
+      ))}
     </Grid>
   );
 };
