@@ -18,7 +18,7 @@ import Container from '../../../hoc/Container';
 import PageHeader from '../../../layout/Navs/PageHeader';
 import Spinner from '../../../layout/Warnings/Spinner';
 import DeleteConfirm from '../../../layout/Warnings/DeleteConfirm';
-import FormTitle from '../../../layout/Forms/FormTitle';
+import FormTitle from '../../Forms/layout/FormTitle';
 
 const styles = () => ({
   container: {

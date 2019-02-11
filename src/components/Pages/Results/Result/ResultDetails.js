@@ -21,7 +21,7 @@ import MatchReport from './Sections/MatchReport';
 
 const styles = {
   appBar: { position: 'sticky' },
-  flex: { flex: 1 },
+  flex: { flex: 1, fontFamily: 'Righteous' },
 };
 
 class ResultDetails extends Component {
@@ -37,7 +37,7 @@ class ResultDetails extends Component {
 
   render() {
     const { open } = this.state;
-    const { classes, result } = this.props;
+    const { classes, result, teamName } = this.props;
     return (
       <div>
         <div role="presentation" onClick={this.handleClickOpen}>
@@ -53,8 +53,9 @@ class ResultDetails extends Component {
           <AppBar className={classes.appBar}>
             <Toolbar>
               <Typography variant="h6" color="inherit" className={classes.flex}>
-                {result.homeTeamName === 'Madrid Reds' ? result.awayTeamName : result.homeTeamName}
+                {result.homeTeamName === teamName ? result.awayTeamName : result.homeTeamName}
               </Typography>
+
               <Button color="inherit" component={Link} to={`/results/${result.id}/`}>
                 edit
               </Button>
@@ -65,7 +66,7 @@ class ResultDetails extends Component {
           </AppBar>
           <Container>
             <MatchDetails result={result} />
-            <MatchStats />
+            <MatchStats result={result} />
             <MatchReport result={result} />
           </Container>
         </Dialog>
@@ -76,7 +77,9 @@ class ResultDetails extends Component {
 
 ResultDetails.propTypes = {
   classes: PropTypes.shape({}).isRequired,
-  // players: PropTypes.instanceOf(Array).isRequired,
+  teamName: PropTypes.string,
   result: PropTypes.shape({}).isRequired,
 };
+
+ResultDetails.defaultProps = { teamName: '' };
 export default withStyles(styles)(ResultDetails);

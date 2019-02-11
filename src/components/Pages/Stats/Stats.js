@@ -75,7 +75,9 @@ Stats.propTypes = {
   theme: PropTypes.shape({}).isRequired,
   results: PropTypes.instanceOf(Array).isRequired,
   players: PropTypes.instanceOf(Array).isRequired,
-  teamName: PropTypes.string.isRequired,
+  teamName: PropTypes.string,
 };
+
+Stats.defaultProps = { teamName: '' };
 
 export default withStyles(styles, { withTheme: true })(Stats);

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // Firestore
 import { firestoreConnect } from 'react-redux-firebase';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 // Components
 import Container from '../../../hoc/Container';
 import AddMatchForm from './AddMatchForm';
@@ -18,6 +20,15 @@ class AddResult extends Component {
     resultIndicator: 'W',
     forfeitedMatch: false,
     matchNotes: '',
+    stats: [
+      {
+        name: '',
+        app: false,
+        goals: 0,
+        assists: 0,
+        mvp: false,
+      },
+    ],
   };
 
   onSubmit = e => {
@@ -35,6 +46,12 @@ class AddResult extends Component {
     this.setState({ forfeitedMatch: e.target.checked });
   };
 
+  addAppButton = () => {
+    const { player, firestore } = this.props;
+    const addApp = { apps: player.apps + 1 };
+    firestore.update({ collection: 'players', doc: player.id }, addApp);
+  };
+
   render() {
     const {
       matchType,
@@ -45,12 +62,15 @@ class AddResult extends Component {
       awayTeamScore,
       resultIndicator,
       forfeitedMatch,
+      stats,
       matchNotes,
     } = this.state;
+    const { players } = this.props;
     return (
       <Container>
         <PageHeader title="Add Match" link="/results" />
         <AddMatchForm
+          players={players}
           onChange={this.onChange}
           onCheck={this.onCheck}
           onSubmit={this.onSubmit}
@@ -58,12 +78,11 @@ class AddResult extends Component {
           date={date}
           homeTeamName={homeTeamName}
           homeTeamScore={homeTeamScore}
-          // homeTeamScore={parseInt(homeTeamScore, 10)}
           awayTeamName={awayTeamName}
           awayTeamScore={awayTeamScore}
-          // awayTeamScore={parseInt(awayTeamScore, 10)}
           resultIndicator={resultIndicator}
           forfeitedMatch={forfeitedMatch}
+          stats={stats}
           matchNotes={matchNotes}
         />
       </Container>
@@ -76,4 +95,16 @@ AddResult.propTypes = {
   history: PropTypes.shape({}).isRequired,
 };
 
-export default firestoreConnect()(AddResult);
+// export default firestoreConnect()(AddResult);
+
+export default compose(
+  firestoreConnect([
+    { collection: 'players', orderBy: ['apps', 'desc'] },
+    { collection: 'results' },
+  ]),
+  // eslint-disable-next-line no-unused-vars
+  connect((state, props) => ({
+    players: state.firestore.ordered.players,
+    results: state.firestore.ordered.results,
+  })),
+)(AddResult);

@@ -6,16 +6,21 @@ import Spinner from '../../layout/Warnings/Spinner';
 import ResultDetails from './Result/ResultDetails';
 
 const ResultList = props => {
-  const { results } = props;
+  const { results, teamName } = props;
   if (results) {
-    return results.map(result => <ResultDetails key={result.id} result={result} />);
+    return results.map(result => (
+      <ResultDetails key={result.id} result={result} teamName={teamName} />
+    ));
   }
   if (results.length === 0) return <div>Start adding results!</div>;
   return <Spinner />;
 };
 
-ResultList.propTypes = { results: PropTypes.instanceOf(Array) };
+ResultList.propTypes = {
+  results: PropTypes.instanceOf(Array),
+  teamName: PropTypes.string,
+};
 
-ResultList.defaultProps = { results: [] };
+ResultList.defaultProps = { results: [], teamName: '' };
 
 export default ResultList;

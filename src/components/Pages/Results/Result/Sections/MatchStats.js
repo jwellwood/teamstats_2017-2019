@@ -9,6 +9,15 @@ const MatchStats = () => (
     <StatsHeader title="Match Stats" />
     <Container>
       <Typography style={{ textAlign: 'center', color: 'green' }}>Coming soon</Typography>
+      {/* {result.stats.map(player => (
+          <div key={stats[].name}>
+            <p>Name: {player.name}</p>
+            <p>Played: {player.apps ? 'Y' : 'N'}</p>
+            <p>Goals: {player.goals}</p>
+            <p>Assists: {player.assists}</p>
+            <p>MVP: {player.mvp ? 'Y' : 'N'}</p>
+          </div>
+        ))} */}
     </Container>
   </div>
 );

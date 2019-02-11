@@ -24,6 +24,7 @@ import PerGameGraph from '../components/Pages/Squad/Player/Sections/PerGameGraph
 import avatar from '../assets/images/avatar.png';
 // helpers
 import { modalLeft } from '../helpers/transitions';
+import Spinner from '../components/layout/Warnings/Spinner';
 
 const styles = {
   appBar: { position: 'sticky' },
@@ -31,7 +32,7 @@ const styles = {
 };
 
 class PlayerDetails extends React.Component {
-  state = { open: false, playerImage: '', defaultImage: avatar };
+  state = { open: false, playerImage: avatar, defaultImage: avatar, loading: true };
 
   _isMounted = false;
 
@@ -54,9 +55,13 @@ class PlayerDetails extends React.Component {
     return defaultImage;
   }
 
+  componentDidMount() {
+    this.setState({ loading: false });
+  }
+
   componentWillUnmount() {
     this._isMounted = false;
-    this.setState({ playerImage: '' });
+    this.setState({ playerImage: avatar });
   }
 
   handleClickOpen = () => {
@@ -68,15 +73,21 @@ class PlayerDetails extends React.Component {
   };
 
   render() {
-    const { open, playerImage, defaultImage } = this.state;
+    const { open, playerImage, defaultImage, loading } = this.state;
     const { classes, player, results, players } = this.props;
     const totalMatches = results.length;
     const totalTeamGoals = players.reduce((totalGoals, a) => totalGoals + +a.goals, 0);
+
     return (
       <div>
-        <div role="presentation" onClick={this.handleClickOpen}>
-          <PlayerCard player={player} image={player.image ? playerImage : defaultImage} />
-        </div>
+        {loading ? (
+          <Spinner />
+        ) : (
+          <div role="presentation" onClick={this.handleClickOpen}>
+            <PlayerCard player={player} image={player.image ? playerImage : defaultImage} />
+          </div>
+        )}
+
         <Dialog
           fullScreen
           open={open}

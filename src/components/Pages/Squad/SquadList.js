@@ -11,10 +11,7 @@ const SquadList = props => {
       <PlayerDetails key={player.id} player={player} results={results} players={players} />
     ));
   }
-  if (players.length === 0) {
-    return <div>Start adding players</div>;
-  }
-  return <Spinner />;
+  return players.length === 0 ? <div>Start adding players</div> : <Spinner />;
 };
 
 SquadList.propTypes = {

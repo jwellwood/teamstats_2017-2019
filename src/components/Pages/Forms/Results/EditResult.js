@@ -19,7 +19,7 @@ import Container from '../../../hoc/Container';
 import Spinner from '../../../layout/Warnings/Spinner';
 import PageHeader from '../../../layout/Navs/PageHeader';
 import DeleteConfirm from '../../../layout/Warnings/DeleteConfirm';
-import FormTitle from '../../../layout/Forms/FormTitle';
+import FormTitle from '../layout/FormTitle';
 
 const styles = () => ({
   container: {

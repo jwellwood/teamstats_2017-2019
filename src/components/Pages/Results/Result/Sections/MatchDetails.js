@@ -52,10 +52,6 @@ const MatchDetails = props => {
     }
   }
 
-  let numberOfPlayers = 'Coming soon';
-  if (result.forfeitedMatch) {
-    numberOfPlayers = 'Forfeit';
-  }
 
   let id = 0;
   const createData = (title, value, textColor) => {
@@ -67,7 +63,6 @@ const MatchDetails = props => {
     createData('Date', `${day} ${month} ${year}`, ''),
     createData('Match Type', result.matchType, ''),
     createData('Points', matchPoints, color),
-    createData('No. of players', numberOfPlayers, colors.draw),
   ];
 
   return (

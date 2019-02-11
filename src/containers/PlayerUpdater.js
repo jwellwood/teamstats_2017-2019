@@ -29,6 +29,14 @@ class PlayerUpdater extends Component {
 
   // ******************************************************************************
 
+  addStat = type => {
+    const { player, firestore } = this.props;
+    const add = { type: player.type + 1 };
+    firestore.update({ collection: 'players', doc: player.id }, add);
+  };
+
+  // addStat(apps)
+
   addAppButton = () => {
     const { player, firestore } = this.props;
     const addApp = { apps: player.apps + 1 };

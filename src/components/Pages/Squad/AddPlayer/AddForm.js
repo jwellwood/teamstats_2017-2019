@@ -9,7 +9,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
 import Container from '../../../hoc/Container';
-import FormTitle from '../../../layout/Forms/FormTitle';
+import FormTitle from '../../Forms/layout/FormTitle';
 import FileUpload from '../../../layout/Forms/FileUpload';
 import avatar from '../../../../assets/images/avatar.png';
 

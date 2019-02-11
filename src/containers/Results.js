@@ -18,7 +18,7 @@ const Results = props => {
     <Container>
       <PageHeader title="Results" icon="" link="/" />
       <ResultsTotals results={results} teamName={teamName} />
-      <ResultList results={results} onDelete={onDelete} />
+      <ResultList results={results} onDelete={onDelete} teamName={teamName} />
     </Container>
   );
 };
