@@ -17,17 +17,27 @@ const styles = theme => ({
     fontFamily: 'Anton',
   },
   name: {
-    margin: '10px',
+    margin: '5px 10px',
     padding: '3px',
     color: 'white',
     fontFamily: 'Righteous',
     background: theme.palette.primary.light,
     width: '100%',
   },
+  captain: {
+    position: 'absolute',
+    margin: '-2px 15px',
+    width: 18,
+    height: 18,
+    fontFamily: 'Righteous',
+    fontSize: '0.6rem',
+    background: theme.palette.primary.dark,
+    color: '#fff',
+  },
 });
 
 const PlayerImage = props => {
-  const { classes, name, number, position, image } = props;
+  const { classes, name, number, position, image, captain } = props;
   let color = '#fff';
   switch (position) {
     case 'GK':
@@ -55,7 +65,7 @@ const PlayerImage = props => {
           {position}
         </div>
       </Grid>
-
+      {captain ? <Avatar className={classes.captain}>C</Avatar> : null}
       <div className={classes.name}>{name}</div>
     </Grid>
   );
@@ -67,6 +77,7 @@ PlayerImage.propTypes = {
   name: PropTypes.string.isRequired,
   number: PropTypes.string.isRequired,
   position: PropTypes.string.isRequired,
+  captain: PropTypes.bool.isRequired,
 };
 
 export default withStyles(styles)(PlayerImage);

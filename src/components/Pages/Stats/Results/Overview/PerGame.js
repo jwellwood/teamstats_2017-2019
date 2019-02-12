@@ -23,7 +23,7 @@ const PerGame = props => {
   ];
 
   return (
-    <div style={{ margin: '15px auto' }}>
+    <div style={{ margin: '15px' }}>
       {goalsData.map(item => (
         <div key={item.id}>
           <Grid container direction="row" justify="space-between" alignItems="center">

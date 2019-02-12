@@ -38,33 +38,32 @@ class Stats extends React.Component {
     return (
       <Container>
         <PageHeader title="Stats" link="/" />
-        <div className={classes.root}>
-          <AppBar position="static" color="default">
-            <Tabs
-              value={value}
-              onChange={this.handleChange}
-              indicatorColor="primary"
-              textColor="primary"
-              variant="fullWidth"
-              centered
-            >
-              <Tab fullWidth label="Players" />
-              <Tab fullWidth label="Results" />
-            </Tabs>
-          </AppBar>
-          <SwipeableViews
-            axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-            index={value}
-            onChangeIndex={this.handleChangeIndex}
+
+        <AppBar position="static" color="default">
+          <Tabs
+            value={value}
+            onChange={this.handleChange}
+            indicatorColor="primary"
+            textColor="primary"
+            variant="fullWidth"
+            centered
           >
-            <TabContainer dir={theme.direction}>
-              <PlayerStats players={players} results={results} />
-            </TabContainer>
-            <TabContainer dir={theme.direction}>
-              <ResultsStats results={results} teamName={teamName} />
-            </TabContainer>
-          </SwipeableViews>
-        </div>
+            <Tab fullWidth label="Players" />
+            <Tab fullWidth label="Results" />
+          </Tabs>
+        </AppBar>
+        <SwipeableViews
+          axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+          index={value}
+          onChangeIndex={this.handleChangeIndex}
+        >
+          <TabContainer dir={theme.direction}>
+            <PlayerStats players={players} results={results} />
+          </TabContainer>
+          <TabContainer dir={theme.direction}>
+            <ResultsStats results={results} teamName={teamName} />
+          </TabContainer>
+        </SwipeableViews>
       </Container>
     );
   }

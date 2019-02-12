@@ -22,6 +22,7 @@ const PlayerCard = props => {
               name={player.name}
               position={player.position}
               image={image}
+              captain={player.captain}
             />
           </Grid>
           <Grid item xs={6}>

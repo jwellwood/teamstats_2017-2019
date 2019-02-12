@@ -8,7 +8,7 @@ import Register from './components/auth/Register';
 import Players from './containers/Players';
 import AddPlayerForm from './components/Pages/Forms/Squad/AddPlayerForm';
 import PlayerUpdater from './containers/PlayerUpdater';
-import EditPlayer from './components/Pages/Squad/EditPlayer/EditPlayer';
+import EditPlayer from './components/Pages/Forms/Squad/EditPlayer';
 import EditImage from './components/Pages/Squad/EditPlayer/EditImage';
 // Results
 import Results from './containers/Results';

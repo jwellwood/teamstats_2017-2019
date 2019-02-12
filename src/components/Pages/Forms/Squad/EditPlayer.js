@@ -13,12 +13,14 @@ import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 // Component
 import Container from '../../../hoc/Container';
 import PageHeader from '../../../layout/Navs/PageHeader';
 import Spinner from '../../../layout/Warnings/Spinner';
 import DeleteConfirm from '../../../layout/Warnings/DeleteConfirm';
-import FormTitle from '../../Forms/layout/FormTitle';
+import FormTitle from '../layout/FormTitle';
 
 const styles = () => ({
   container: {
@@ -37,6 +39,7 @@ class EditPlayer extends Component {
     this.nameInput = React.createRef();
     this.numberInput = React.createRef();
     this.positionInput = React.createRef();
+    this.captainInput = React.createRef();
     this.targetAppsInput = React.createRef();
     this.targetGoalsInput = React.createRef();
     this.targetAssistsInput = React.createRef();
@@ -49,6 +52,7 @@ class EditPlayer extends Component {
       name: this.nameInput.current.value,
       number: this.numberInput.current.value,
       position: this.positionInput.current.value,
+      captain: this.captainInput.current.checked,
       targetApps: this.targetAppsInput.current.value,
       targetGoals: this.targetGoalsInput.current.value,
       targetAssists: this.targetAssistsInput.current.value,
@@ -109,6 +113,18 @@ class EditPlayer extends Component {
                   <option value="MF">Midfielder</option>
                   <option value="FW">Forward</option>
                 </Select>
+              </FormControl>
+              <FormControl className={classes.formControl}>
+                <FormControlLabel
+                  control={(
+                    <Checkbox
+                      inputRef={this.captainInput}
+                      defaultChecked={player.captain}
+                      color="primary"
+                    />
+)}
+                  label="Captain?"
+                />
               </FormControl>
               <FormTitle title="Targets" />
               <FormControl className={classes.formControl}>

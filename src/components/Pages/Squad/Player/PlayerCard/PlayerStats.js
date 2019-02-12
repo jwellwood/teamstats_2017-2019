@@ -37,6 +37,13 @@ const styles = theme => ({
 const PlayerStats = props => {
   const { classes, player } = props;
 
+  const playerTargetTotal = +player.targetApps + +player.targetGoals + +player.targetAssists;
+  let playerTargetAchieved = player.apps + player.goals + player.assists;
+  if (player.apps === '0') {
+    playerTargetAchieved = '0';
+  }
+  const percentageTotal = (playerTargetAchieved * 100) / playerTargetTotal;
+
   let id = 0;
   const createData = (statType, statValue, statTarget, statColor) => {
     id += 1;
@@ -79,7 +86,13 @@ const PlayerStats = props => {
         ))}
       </Grid>
 
-      <Grid container direction="row" justify="space-between" className={classes.extras}>
+      <Grid
+        container
+        direction="row"
+        justify="space-between"
+        alignItems="center"
+        className={classes.extras}
+      >
         <div
           style={
             player.balance > 0
@@ -89,9 +102,10 @@ const PlayerStats = props => {
         >
           €{parseFloat(player.balance).toFixed(2)}
         </div>
-
-        <div style={{ color: '#ccc', padding: '5px' }}>
-          MVP: <span style={{ color: '#111', fontWeight: 'bold' }}>{player.mvp}</span>
+        <div style={{ fontWeight: 'bold' }}>
+          <span style={{ color: '#bbb' }}>Target: </span>
+          {percentageTotal.toFixed(1)}
+          <span style={{ color: '#bbb' }}>%</span>
         </div>
       </Grid>
     </Grid>

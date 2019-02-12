@@ -42,32 +42,30 @@ const Overall = props => {
   ];
 
   return (
-    <Container>
+    <div>
       <StatsHeader title="Overview" />
-      <div className={classes.root}>
-        <Paper>
-          <Grid container direction="row" justify="space-evenly" alignItems="center">
-            {tableItems.map(item => (
-              <Grid item key={item.id}>
-                <Grid container direction="column" justify="center" alignItems="center">
-                  <Typography variant="subtitle1" style={{ opacity: '0.5' }}>
-                    {item.header}
-                  </Typography>
-                  <Typography variant="caption" style={{ fontWeight: 'bold', color: item.color }}>
-                    {item.data}
-                  </Typography>
-                </Grid>
+      <Paper style={{ margin: '15px' }}>
+        <Grid container direction="row" justify="space-evenly" alignItems="center">
+          {tableItems.map(item => (
+            <Grid item key={item.id}>
+              <Grid container direction="column" justify="center" alignItems="center">
+                <Typography variant="subtitle1" style={{ opacity: '0.5' }}>
+                  {item.header}
+                </Typography>
+                <Typography variant="caption" style={{ fontWeight: 'bold', color: item.color }}>
+                  {item.data}
+                </Typography>
               </Grid>
-            ))}
-          </Grid>
-        </Paper>
-        <PerGame
-          goalsPerGame={goalsPerGame}
-          againstPerGame={againstPerGame}
-          pointsPerGame={pointsPerGame}
-        />
-      </div>
-    </Container>
+            </Grid>
+          ))}
+        </Grid>
+      </Paper>
+      <PerGame
+        goalsPerGame={goalsPerGame}
+        againstPerGame={againstPerGame}
+        pointsPerGame={pointsPerGame}
+      />
+    </div>
   );
 };
 

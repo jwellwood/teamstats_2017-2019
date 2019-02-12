@@ -64,7 +64,7 @@ class ResultsStats extends Component {
     // =================================================================================
 
     return (
-      <Container>
+      <div>
         <div style={{ textAlign: 'left', paddingLeft: '10px' }}>
           <FormControlLabel
             control={(
@@ -87,7 +87,7 @@ class ResultsStats extends Component {
           awayResults={awayResults}
         />
         <HomeAway goalTotals={goalTotals} homeResults={homeResults} awayResults={awayResults} />
-      </Container>
+      </div>
     );
   }
 }
