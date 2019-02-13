@@ -43,7 +43,7 @@ const styles = () => ({
 });
 
 const ScoreBox = props => {
-  const { classes, result } = props;
+  const { classes, result, teamName } = props;
   const { resultIndicator } = result;
   let resultColor = colors.draw;
 
@@ -61,17 +61,31 @@ const ScoreBox = props => {
       return resultColor;
   }
 
+  let homeTeam = teamName;
+  let homeScore = result.teamScore;
+  if (result.homeOrAway === 'away') {
+    homeTeam = result.opponentName;
+    homeScore = result.opponentScore;
+  }
+
+  let awayTeam = teamName;
+  let awayScore = result.teamScore;
+  if (result.homeOrAway === 'home') {
+    awayTeam = result.opponentName;
+    awayScore = result.opponentScore;
+  }
+
   return (
     <div className={classes.fixtureTeams}>
       <Paper className={classes.teamNames} style={{ float: 'right', textAlign: 'right' }}>
-        {result.homeTeamName}
+        {homeTeam}
       </Paper>
       <Paper className={classes.scoreBox} style={{ backgroundColor: resultColor }}>
-        <p className={classes.scoreNumbers}>{result.homeTeamScore}</p>
-        <p className={classes.scoreNumbers}>{result.awayTeamScore}</p>
+        <p className={classes.scoreNumbers}>{homeScore}</p>
+        <p className={classes.scoreNumbers}>{awayScore}</p>
       </Paper>
       <Paper className={classes.teamNames} style={{ float: 'left', textAlign: 'left' }}>
-        {result.awayTeamName}
+        {awayTeam}
       </Paper>
     </div>
   );
@@ -80,6 +94,9 @@ const ScoreBox = props => {
 ScoreBox.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   result: PropTypes.shape({}).isRequired,
+  teamName: PropTypes.string,
 };
+
+ScoreBox.defaultProps = { teamName: '' };
 
 export default withStyles(styles)(ScoreBox);

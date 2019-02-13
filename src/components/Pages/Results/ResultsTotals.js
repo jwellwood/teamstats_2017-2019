@@ -7,24 +7,13 @@ import { colors } from '../../../assets/styles/colors';
 import BoxLinks from '../../layout/Navs/BoxLinks';
 
 const ResultsTotals = props => {
-  const { results, teamName } = props;
-  const homeResults = results.filter(result => result.homeTeamName === teamName);
-  const awayResults = results.filter(result => result.awayTeamName === teamName);
-  const getGoals = (a, b) => a + b;
-  const myTeamHomeArray = homeResults.map(goals => +goals.homeTeamScore);
-  const myTeamAwayArray = awayResults.map(goals => +goals.awayTeamScore);
-  const homeTeamGoals = myTeamHomeArray.reduce(getGoals, 0);
-  const awayTeamGoals = myTeamAwayArray.reduce(getGoals, 0);
+  const { results } = props;
+  const getGoals = arr => arr.reduce((a, b) => a + b, 0);
 
-  const opponentHomeResults = results.filter(result => result.homeTeamName !== teamName);
-  const opponentAwayResults = results.filter(result => result.awayTeamName !== teamName);
-  const opponentHomeArray = opponentHomeResults.map(goals => +goals.homeTeamScore);
-  const opponentAwayArray = opponentAwayResults.map(goals => +goals.awayTeamScore);
-  const opponentHomeGoals = opponentHomeArray.reduce(getGoals, 0);
-  const opponentAwayGoals = opponentAwayArray.reduce(getGoals, 0);
-
-  const goalsFor = homeTeamGoals + awayTeamGoals;
-  const goalsAgainst = opponentHomeGoals + opponentAwayGoals;
+  const goalsForArray = results.map(result => +result.teamScore);
+  const goalsAgainstArray = results.map(result => +result.opponentScore);
+  const goalsFor = getGoals(goalsForArray);
+  const goalsAgainst = getGoals(goalsAgainstArray);
 
   const matchTotals = {
     totalPlayed: results.length,
@@ -59,11 +48,6 @@ const ResultsTotals = props => {
   );
 };
 
-ResultsTotals.propTypes = {
-  results: PropTypes.instanceOf(Array).isRequired,
-  teamName: PropTypes.string,
-};
-
-ResultsTotals.defaultProps = { teamName: null };
+ResultsTotals.propTypes = { results: PropTypes.instanceOf(Array).isRequired };
 
 export default ResultsTotals;

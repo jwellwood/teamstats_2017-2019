@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// Firestore
 import { firestoreConnect } from 'react-redux-firebase';
 // MUI
 import Button from '@material-ui/core/Button';
-
+// Components
 import FormFields from '../FormFields';
 import PageHeader from '../../../layout/Navs/PageHeader';
 import ValidationMessage from '../layout/ValidationMessage';
@@ -69,63 +68,60 @@ class AddResultForm extends Component {
         validation: { required: false },
         valid: true,
       },
-      homeTeamName: {
+      homeOrAway: {
+        element: 'select',
+        value: 'home',
+        label: true,
+        labelText: 'My Team Details',
+        config: {
+          name: 'homeOrAway_input',
+          options: [{ val: 'home', text: 'Home' }, { val: 'away', text: 'Away' }],
+        },
+        validation: { required: false },
+        valid: true,
+      },
+      teamScore: {
+        element: 'input',
+        value: 0,
+        label: false,
+        labelText: 'Team Score',
+        config: {
+          name: 'teamScore_input',
+          type: 'number',
+          placeholder: 'Score',
+        },
+        validation: { required: true },
+        valid: true,
+        touched: false,
+        validationMessage: '',
+      },
+      opponentName: {
         element: 'input',
         value: '',
         label: true,
-        labelText: 'Home Team*',
+        labelText: 'Opponent Details*',
         config: {
-          name: 'homeTeamName_input',
+          name: 'opponentName_input',
           type: 'text',
-          placeholder: 'Home team',
+          placeholder: 'Opponent team name',
         },
         validation: { required: true, minChar: 3 },
         valid: false,
         touched: false,
         validationMessage: '',
       },
-      homeTeamScore: {
+      opponentScore: {
         element: 'input',
         value: 0,
         label: false,
-        labelText: 'Home Team Score',
+        labelText: 'Opponent Score',
         config: {
-          name: 'homeTeamScore_input',
+          name: 'opponentScore_input',
           type: 'number',
           placeholder: 'Score',
         },
         validation: { required: true },
-        valid: false,
-        touched: false,
-        validationMessage: '',
-      },
-      awayTeamName: {
-        element: 'input',
-        value: '',
-        label: true,
-        labelText: 'Away Team*',
-        config: {
-          name: 'awayTeamName_input',
-          type: 'text',
-          placeholder: 'Away team',
-        },
-        validation: { required: true, minChar: 3 },
-        valid: false,
-        touched: false,
-        validationMessage: '',
-      },
-      awayTeamScore: {
-        element: 'input',
-        value: 0,
-        label: false,
-        labelText: 'Away Team Score',
-        config: {
-          name: 'awayTeamScore_input',
-          type: 'number',
-          placeholder: 'Score',
-        },
-        validation: { required: true },
-        valid: false,
+        valid: true,
         touched: false,
         validationMessage: '',
       },

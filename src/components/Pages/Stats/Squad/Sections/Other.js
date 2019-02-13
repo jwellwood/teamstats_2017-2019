@@ -19,15 +19,10 @@ const OtherPlayerStats = props => {
   const totalPlayerGoals = players.reduce((totalGoals, player) => totalGoals + player.goals, 0);
   const getGoals = (a, b) => a + b;
 
-  const homeResults = filteredResults.filter(result => result.homeTeamName === 'Madrid Reds');
-  const awayResults = filteredResults.filter(result => result.awayTeamName === 'Madrid Reds');
+  const totalTeamGoals = filteredResults.map(res => +res.teamScore);
+  const teamGoals = totalTeamGoals.reduce(getGoals, 0);
 
-  const myTeamHomeArray = homeResults.map(goals => +goals.homeTeamScore);
-  const myTeamAwayArray = awayResults.map(goals => +goals.awayTeamScore);
-  const homeTeamGoals = myTeamHomeArray.reduce(getGoals, 0);
-  const awayTeamGoals = myTeamAwayArray.reduce(getGoals, 0);
-  const totalTeamGoals = homeTeamGoals + awayTeamGoals;
-  const ownGoalsFor = totalTeamGoals - totalPlayerGoals;
+  const ownGoalsFor = teamGoals - totalPlayerGoals;
 
   // Money
   const totalTeamOwed = players.reduce(

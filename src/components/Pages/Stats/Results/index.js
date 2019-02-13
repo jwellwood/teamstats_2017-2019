@@ -8,7 +8,6 @@ import Overall from './Overview/Overall';
 import Percentages from './Overview/Percentages';
 import GoalStats from './Goals/GoalStats';
 import HomeAway from './HomeAway/HomeAway';
-import Container from '../../../hoc/Container';
 // functions
 import { getTotal } from '../functions/helpers';
 
@@ -20,7 +19,7 @@ class ResultsStats extends Component {
   };
 
   render() {
-    const { results, teamName } = this.props;
+    const { results } = this.props;
     const { includeForfeits } = this.state;
     let filteredResults = results;
     if (!includeForfeits) {
@@ -34,31 +33,33 @@ class ResultsStats extends Component {
     };
 
     // ================================================================================
-    const homeResults = filteredResults.filter(result => result.homeTeamName === teamName);
-    const awayResults = filteredResults.filter(result => result.awayTeamName === teamName);
-    const getGoals = (a, b) => a + b;
-    const myTeamHomeArray = homeResults.map(goals => +goals.homeTeamScore);
-    const myTeamAwayArray = awayResults.map(goals => +goals.awayTeamScore);
-    const homeTeamGoals = myTeamHomeArray.reduce(getGoals, 0);
-    const awayTeamGoals = myTeamAwayArray.reduce(getGoals, 0);
 
-    const opponentHomeResults = filteredResults.filter(result => result.homeTeamName !== teamName);
-    const opponentAwayResults = filteredResults.filter(result => result.awayTeamName !== teamName);
-    const opponentHomeArray = opponentHomeResults.map(goals => +goals.homeTeamScore);
-    const opponentAwayArray = opponentAwayResults.map(goals => +goals.awayTeamScore);
-    const opponentHomeGoals = opponentHomeArray.reduce(getGoals, 0);
-    const opponentAwayGoals = opponentAwayArray.reduce(getGoals, 0);
+    const getGoals = arr => arr.reduce((a, b) => a + b, 0);
+    const goalsForArray = filteredResults.map(result => +result.teamScore);
+    const goalsAgainstArray = filteredResults.map(result => +result.opponentScore);
+    const goalsFor = getGoals(goalsForArray);
+    const goalsAgainst = getGoals(goalsAgainstArray);
 
-    const goalsFor = homeTeamGoals + awayTeamGoals;
-    const goalsAgainst = opponentHomeGoals + opponentAwayGoals;
+    const homeResults = filteredResults.filter(result => result.homeOrAway === 'home');
+    const awayResults = filteredResults.filter(result => result.homeOrAway === 'away');
+
+    const homeGoalsForArray = homeResults.map(res => +res.teamScore);
+    const awayGoalsForArray = awayResults.map(res => +res.teamScore);
+    const homeGoalsFor = getGoals(homeGoalsForArray);
+    const awayGoalsFor = getGoals(awayGoalsForArray);
+
+    const homeGoalsAgainstArray = homeResults.map(res => +res.opponentScore);
+    const awayGoalsAgainstArray = awayResults.map(res => +res.opponentScore);
+    const homeGoalsAgainst = getGoals(homeGoalsAgainstArray);
+    const awayGoalsAgainst = getGoals(awayGoalsAgainstArray);
 
     const goalTotals = {
       totalGoalsFor: goalsFor,
       totalGoalsAgainst: goalsAgainst,
-      homeGoalsFor: homeTeamGoals,
-      awayGoalsFor: awayTeamGoals,
-      homeGoalsAgainst: opponentAwayGoals,
-      awayGoalsAgainst: opponentHomeGoals,
+      homeGoalsFor,
+      awayGoalsFor,
+      homeGoalsAgainst,
+      awayGoalsAgainst,
     };
 
     // =================================================================================
@@ -92,11 +93,6 @@ class ResultsStats extends Component {
   }
 }
 
-ResultsStats.propTypes = {
-  results: PropTypes.instanceOf(Array).isRequired,
-  teamName: PropTypes.string,
-};
-
-ResultsStats.defaultProps = { teamName: '' };
+ResultsStats.propTypes = { results: PropTypes.instanceOf(Array).isRequired };
 
 export default ResultsStats;

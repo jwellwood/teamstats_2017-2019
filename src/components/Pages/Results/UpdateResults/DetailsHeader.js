@@ -19,9 +19,7 @@ const DetailsHeader = props => {
           <IconButton component={Link} to="/results" variant="fab" color="default">
             <Icon>arrow_back</Icon>
           </IconButton>
-          <div style={{ fontWeight: 'bold' }}>
-            {result.homeTeamName === 'Madrid Reds' ? result.awayTeamName : result.homeTeamName}
-          </div>
+          <div style={{ fontWeight: 'bold' }}>{result.opponentName}</div>
           <IconButton
             variant="contained"
             color="default"

@@ -34,6 +34,9 @@ const PlayerCard = props => {
   );
 };
 
-PlayerCard.propTypes = { player: PropTypes.shape({}).isRequired };
+PlayerCard.propTypes = {
+  player: PropTypes.shape({}).isRequired,
+  image: PropTypes.string.isRequired,
+};
 
 export default PlayerCard;

@@ -45,7 +45,7 @@ const styles = theme => ({
 });
 
 const ResultCard = props => {
-  const { classes, result } = props;
+  const { classes, result, teamName } = props;
   const { matchType, resultIndicator } = result;
   let resultColor = colors.draw;
   switch (resultIndicator) {
@@ -116,7 +116,7 @@ const ResultCard = props => {
               {result.matchType}
             </div>
           </Grid>
-          <ScoreBox result={result} />
+          <ScoreBox result={result} teamName={teamName} />
           {result.forfeitedMatch ? (
             <div className={classes.forfeit}>*Automatic 7-0 due to forfeit</div>
           ) : null}

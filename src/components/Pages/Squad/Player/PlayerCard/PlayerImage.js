@@ -17,7 +17,7 @@ const styles = theme => ({
     fontFamily: 'Anton',
   },
   name: {
-    margin: '5px 10px',
+    margin: '5px',
     padding: '3px',
     color: 'white',
     fontFamily: 'Righteous',

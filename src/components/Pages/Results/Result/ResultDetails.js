@@ -41,7 +41,7 @@ class ResultDetails extends Component {
     return (
       <div>
         <div role="presentation" onClick={this.handleClickOpen}>
-          <ResultCard result={result} />
+          <ResultCard result={result} teamName={teamName} />
         </div>
         <Dialog
           fullScreen
@@ -53,7 +53,7 @@ class ResultDetails extends Component {
           <AppBar className={classes.appBar}>
             <Toolbar>
               <Typography variant="h6" color="inherit" className={classes.flex}>
-                {result.homeTeamName === teamName ? result.awayTeamName : result.homeTeamName}
+                {result.opponentName}
               </Typography>
 
               <Button color="inherit" component={Link} to={`/results/${result.id}/`}>
@@ -65,7 +65,7 @@ class ResultDetails extends Component {
             </Toolbar>
           </AppBar>
           <Container>
-            <MatchDetails result={result} />
+            <MatchDetails result={result} teamName={teamName} />
             <MatchStats result={result} />
             <MatchReport result={result} />
           </Container>

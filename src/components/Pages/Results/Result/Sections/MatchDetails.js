@@ -26,7 +26,7 @@ const styles = theme => ({
 });
 
 const MatchDetails = props => {
-  const { classes, result } = props;
+  const { classes, result, teamName } = props;
 
   const date = formatDate(result.date);
   const { day, month, year } = date;
@@ -52,7 +52,6 @@ const MatchDetails = props => {
     }
   }
 
-
   let id = 0;
   const createData = (title, value, textColor) => {
     id += 1;
@@ -69,7 +68,7 @@ const MatchDetails = props => {
     <div>
       <StatsHeader title="Details" />
       <Grid container style={{ fontFamily: 'Varela Round' }}>
-        <ScoreBox result={result} />
+        <ScoreBox result={result} teamName={teamName} />
       </Grid>
 
       {listItems.map(item => (
