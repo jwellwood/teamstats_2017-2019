@@ -164,7 +164,7 @@ const Comparison = props => {
         },
         {
           Header: <div style={{ color: '#FFC300' }}>%</div>,
-          id: 'percentGoalTarget',
+          id: 'percentAssistTarget',
           accessor: a => Number(a.percentAssistTarget),
           width: 45,
           resizable: false,
