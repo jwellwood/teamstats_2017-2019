@@ -31,7 +31,7 @@ const OtherPlayerStats = props => {
   );
   const allBalance = players.map(player => player.balance);
   const topBalanceValue = Math.max(...allBalance);
-  const topBalanceObject = players.filter(player => (player.balance === topBalanceValue && topBalanceValue > 0 ? player.name : null));
+  const topBalanceObject = players.filter(p => (p.balance === topBalanceValue && topBalanceValue > 0 ? p.name : null));
   const topBalancePlayer = topBalanceObject.map(player => player.name);
 
   let id = 0;

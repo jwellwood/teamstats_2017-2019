@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SwipeableViews from 'react-swipeable-views';
 // MUI
-import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -13,13 +12,6 @@ import ResultsStats from './Results';
 import PlayerStats from './Squad';
 // helpers
 import { TabContainer } from '../../../helpers/transitions';
-
-const styles = theme => ({
-  root: {
-    backgroundColor: theme.palette.background.paper,
-    width: '100%',
-  },
-});
 
 class Stats extends React.Component {
   state = { value: 0 };
@@ -33,7 +25,7 @@ class Stats extends React.Component {
   };
 
   render() {
-    const { classes, theme, results, players, teamName } = this.props;
+    const { results, players, teamName } = this.props;
     const { value } = this.state;
     return (
       <Container>
@@ -52,15 +44,11 @@ class Stats extends React.Component {
             <Tab fullWidth label="Results" />
           </Tabs>
         </AppBar>
-        <SwipeableViews
-          axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-          index={value}
-          onChangeIndex={this.handleChangeIndex}
-        >
-          <TabContainer dir={theme.direction}>
+        <SwipeableViews index={value} onChangeIndex={this.handleChangeIndex}>
+          <TabContainer>
             <PlayerStats players={players} results={results} />
           </TabContainer>
-          <TabContainer dir={theme.direction}>
+          <TabContainer>
             <ResultsStats results={results} teamName={teamName} />
           </TabContainer>
         </SwipeableViews>
@@ -70,8 +58,6 @@ class Stats extends React.Component {
 }
 
 Stats.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
-  theme: PropTypes.shape({}).isRequired,
   results: PropTypes.instanceOf(Array).isRequired,
   players: PropTypes.instanceOf(Array).isRequired,
   teamName: PropTypes.string,
@@ -79,4 +65,4 @@ Stats.propTypes = {
 
 Stats.defaultProps = { teamName: '' };
 
-export default withStyles(styles, { withTheme: true })(Stats);
+export default Stats;

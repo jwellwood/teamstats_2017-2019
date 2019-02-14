@@ -47,6 +47,7 @@ const styles = theme => ({
 const ResultCard = props => {
   const { classes, result, teamName } = props;
   const { matchType, resultIndicator } = result;
+
   let resultColor = colors.draw;
   switch (resultIndicator) {
     case 'W':
@@ -102,14 +103,6 @@ const ResultCard = props => {
               {result.resultIndicator}
             </Avatar>
             <ResultDate result={result} />
-            {/* <IconButton
-              className={classes.iconButton}
-              size="small"
-              component={Link}
-              to={`/results/${result.id}/edit`}
-            >
-              <Icon className={classes.editButton}>equalizer</Icon>
-            </IconButton> */}
           </Grid>
           <Grid container className={classes.matchTypeBar}>
             <div className={classes.matchType} style={{ color: matchTypeColor }}>
@@ -129,6 +122,9 @@ const ResultCard = props => {
 ResultCard.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   result: PropTypes.shape({}).isRequired,
+  teamName: PropTypes.string,
 };
+
+ResultCard.defaultProps = { teamName: '' };
 
 export default withStyles(styles)(ResultCard);

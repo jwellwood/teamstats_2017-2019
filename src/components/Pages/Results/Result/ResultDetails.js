@@ -38,6 +38,7 @@ class ResultDetails extends Component {
   render() {
     const { open } = this.state;
     const { classes, result, teamName } = this.props;
+    
     return (
       <div>
         <div role="presentation" onClick={this.handleClickOpen}>

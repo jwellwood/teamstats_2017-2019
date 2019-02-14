@@ -5,6 +5,7 @@ import Leaderboard from './Sections/Leaderboard';
 import Progress from './Sections/Progress';
 import Positions from './Sections/Positions';
 import OtherPlayerStats from './Sections/Other';
+import Comparison from './Sections/Comparison';
 
 const PlayerStats = props => {
   const { players, results } = props;
@@ -14,6 +15,7 @@ const PlayerStats = props => {
       <Progress players={players} />
       <Positions players={players} />
       <OtherPlayerStats players={players} results={results} />
+      <Comparison players={players} results={results} />
     </div>
   );
 };

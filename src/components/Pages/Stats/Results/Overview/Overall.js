@@ -8,7 +8,6 @@ import Typography from '@material-ui/core/Typography';
 import StatsHeader from '../../../../layout/Stats/StatsHeader';
 // Components
 import PerGame from './PerGame';
-import Container from '../../../../hoc/Container';
 import { colors } from '../../../../../assets/styles/colors';
 
 const styles = () => ({
@@ -23,7 +22,7 @@ function createData(header, data, color) {
 }
 
 const Overall = props => {
-  const { classes, matchTotals, goalTotals } = props;
+  const { matchTotals, goalTotals } = props;
   const { totalPlayed, totalWins, totalDraws, totalLosses } = matchTotals;
   const { totalGoalsFor, totalGoalsAgainst } = goalTotals;
   const goalDiff = totalGoalsFor - totalGoalsAgainst;

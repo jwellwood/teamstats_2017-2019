@@ -81,12 +81,7 @@ class ResultsStats extends Component {
 
         <Overall matchTotals={matchTotals} goalTotals={goalTotals} />
         <Percentages matchTotals={matchTotals} />
-        <GoalStats
-          results={filteredResults}
-          goalTotals={goalTotals}
-          homeResults={homeResults}
-          awayResults={awayResults}
-        />
+        <GoalStats results={filteredResults} homeResults={homeResults} awayResults={awayResults} />
         <HomeAway goalTotals={goalTotals} homeResults={homeResults} awayResults={awayResults} />
       </div>
     );

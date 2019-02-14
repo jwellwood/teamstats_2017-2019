@@ -92,6 +92,7 @@ const MatchDetails = props => {
 MatchDetails.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   result: PropTypes.shape({}).isRequired,
+  teamName: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(MatchDetails);

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 export const getGoalsFor = (home, away) => {
   const getHomeGoals = home.map(result => +result.teamScore);
   const getAwayGoals = away.map(result => +result.teamScore);

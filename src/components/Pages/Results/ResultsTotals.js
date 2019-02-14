@@ -9,18 +9,14 @@ import BoxLinks from '../../layout/Navs/BoxLinks';
 const ResultsTotals = props => {
   const { results } = props;
   const getGoals = arr => arr.reduce((a, b) => a + b, 0);
-
   const goalsForArray = results.map(result => +result.teamScore);
   const goalsAgainstArray = results.map(result => +result.opponentScore);
   const goalsFor = getGoals(goalsForArray);
   const goalsAgainst = getGoals(goalsAgainstArray);
-
-  const matchTotals = {
-    totalPlayed: results.length,
-    totalWins: results.filter(result => result.resultIndicator === 'W').length,
-    totalDraws: results.filter(result => result.resultIndicator === 'D').length,
-    totalLoss: results.filter(result => result.resultIndicator === 'L').length,
-  };
+  const played = results.length;
+  const wins = results.filter(res => (+res.teamScore > +res.opponentScore ? res : null)).length;
+  const draws = results.filter(res => (+res.teamScore === +res.opponentScore ? res : null)).length;
+  const loss = results.filter(res => (+res.teamScore < +res.opponentScore ? res : null)).length;
   // Data to map
   let id = 0;
   const createData = (icon, value, title, color) => {
@@ -29,12 +25,12 @@ const ResultsTotals = props => {
   };
 
   const listItems = [
-    createData(<i className="fas fa-list" />, matchTotals.totalPlayed, 'TOTAL MATCHES', ''),
+    createData(<i className="fas fa-list" />, played, 'TOTAL MATCHES', ''),
     createData(<i className="fas fa-plus" />, goalsFor, 'GOALS FOR', ''),
     createData(<i className="fas fa-minus" />, goalsAgainst, 'GOALS AGAINST', ''),
-    createData(null, matchTotals.totalWins, 'WIN', colors.win),
-    createData(null, matchTotals.totalDraws, 'DRAW', colors.draw),
-    createData(null, matchTotals.totalLoss, 'LOSE', colors.lose),
+    createData(null, wins, 'WIN', colors.win),
+    createData(null, draws, 'DRAW', colors.draw),
+    createData(null, loss, 'LOSE', colors.lose),
   ];
 
   return (

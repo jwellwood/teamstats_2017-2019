@@ -45,6 +45,7 @@ const styles = () => ({
 const ScoreBox = props => {
   const { classes, result, teamName } = props;
   const { resultIndicator } = result;
+
   let resultColor = colors.draw;
 
   switch (resultIndicator) {
