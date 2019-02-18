@@ -6,8 +6,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 // Components
-import Container from '../../hoc/Container';
-import PageHeader from '../../layout/Navs/PageHeader';
 import ResultsStats from './Results';
 import PlayerStats from './Squad';
 // helpers
@@ -28,9 +26,7 @@ class Stats extends React.Component {
     const { results, players, teamName } = this.props;
     const { value } = this.state;
     return (
-      <Container>
-        <PageHeader title="Stats" link="/" />
-
+      <div>
         <AppBar position="static" color="default">
           <Tabs
             value={value}
@@ -52,7 +48,7 @@ class Stats extends React.Component {
             <ResultsStats results={results} teamName={teamName} />
           </TabContainer>
         </SwipeableViews>
-      </Container>
+      </div>
     );
   }
 }

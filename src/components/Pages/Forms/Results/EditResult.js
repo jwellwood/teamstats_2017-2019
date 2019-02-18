@@ -35,14 +35,29 @@ const styles = () => ({
 class EditResult extends Component {
   constructor(props) {
     super(props);
+
+    // date,
+    // matchType,
+    // resultIndicator,
+    // forfeitedMatch,
+    // homeOrAway,
+    // teamScore,
+    // opponentName,
+    // opponentScore,
+    // matchNotes,
+
     this.dateInput = React.createRef();
     this.matchTypeInput = React.createRef();
     this.resultIndicatorInput = React.createRef();
     this.forfeitedMatchInput = React.createRef();
-    this.homeTeamNameInput = React.createRef();
-    this.awayTeamNameInput = React.createRef();
-    this.homeTeamScoreInput = React.createRef();
-    this.awayTeamScoreInput = React.createRef();
+    // this.homeTeamNameInput = React.createRef();
+    this.homeOrAwayInput = React.createRef();
+    // this.awayTeamNameInput = React.createRef();
+    this.teamScoreInput = React.createRef();
+    // this.homeTeamScoreInput = React.createRef();
+    this.opponentNameInput = React.createRef();
+    // this.awayTeamScoreInput = React.createRef();
+    this.opponentScoreInput = React.createRef();
     this.matchNotesInput = React.createRef();
   }
 
@@ -54,10 +69,14 @@ class EditResult extends Component {
       matchType: this.matchTypeInput.current.value,
       resultIndicator: this.resultIndicatorInput.current.value,
       forfeitedMatch: this.forfeitedMatchInput.current.checked,
-      homeTeamName: this.homeTeamNameInput.current.value,
-      homeTeamScore: this.homeTeamScoreInput.current.value,
-      awayTeamName: this.awayTeamNameInput.current.value,
-      awayTeamScore: this.awayTeamScoreInput.current.value,
+      // homeTeamName: this.homeTeamNameInput.current.value,
+      homeOrAway: this.homeOrAwayInput.current.value,
+      // homeTeamScore: this.homeTeamScoreInput.current.value,
+      teamScore: this.teamScoreInput.current.value,
+      // awayTeamName: this.awayTeamNameInput.current.value,
+      opponentName: this.opponentNameInput.current.value,
+      // awayTeamScore: this.awayTeamScoreInput.current.value,
+      opponentScore: this.opponentScoreInput.current.value,
       matchNotes: this.matchNotesInput.current.value,
     };
     firestore
@@ -119,56 +138,72 @@ class EditResult extends Component {
                     <option value="L">Lose</option>
                   </Select>
                 </FormControl>
-
-                <FormTitle title="Score" />
-                <div className={classes.teamAndScore}>
-                  <Grid container direction="row" justify="space-between">
-                    <Grid item xs={9}>
-                      <TextField
-                        label="Home Team"
-                        type="text"
-                        name="homeTeamName"
-                        inputProps={textInputProps}
-                        required
-                        inputRef={this.homeTeamNameInput}
-                        defaultValue={result.homeTeamName}
+                <FormControl className={classes.formControl}>
+                  <FormControlLabel
+                    control={(
+                      <Checkbox
+                        inputRef={this.forfeitedMatchInput}
+                        defaultChecked={result.forfeitedMatch}
+                        color="primary"
                       />
+)}
+                    label="Forfeit?"
+                  />
+                </FormControl>
+                <FormTitle title="Score" />
+
+                <div className={classes.teamAndScore}>
+                  <Grid container direction="row" justify="space-between" alignItems="flex-end">
+                    <Grid item xs={9}>
+                      <Select
+                        native
+                        fullWidth
+                        inputRef={this.homeOrAwayInput}
+                        defaultValue={result.homeOrAway}
+                        required
+                        inputProps={{ name: 'homeOrAway', id: 'homeOrAway' }}
+                      >
+                        <option value="home">Home</option>
+                        <option value="away">Away</option>
+                      </Select>
                     </Grid>
+
                     <Grid item xs={2}>
                       <TextField
                         label="Score"
                         type="number"
-                        name="homeTeamScore"
+                        name="teamScore"
                         inputProps={numberInputProps}
                         required
-                        inputRef={this.homeTeamScoreInput}
-                        defaultValue={result.homeTeamScore}
+                        inputRef={this.teamScoreInput}
+                        defaultValue={result.teamScore}
                       />
                     </Grid>
                   </Grid>
                 </div>
+                <FormTitle title="Opponent" />
                 <div className={classes.teamAndScore}>
                   <Grid container direction="row" justify="space-between">
                     <Grid item xs={9}>
                       <TextField
-                        label="Away Team"
+                        label="Opponent"
                         type="text"
-                        name="awayTeamName"
+                        name="opponentName"
                         inputProps={textInputProps}
                         required
-                        inputRef={this.awayTeamNameInput}
-                        defaultValue={result.awayTeamName}
+                        inputRef={this.opponentNameInput}
+                        defaultValue={result.opponentName}
                       />
                     </Grid>
                     <Grid item xs={2}>
                       <TextField
                         label="Score"
                         type="number"
-                        name="awayTeamScore"
+                        name="opponentScore"
                         inputProps={numberInputProps}
                         required
-                        inputRef={this.awayTeamScoreInput}
-                        defaultValue={result.awayTeamScore}
+                        inputRef={this.opponentScoreInput}
+                        defaultValue={result.opponentScore}
                       />
                     </Grid>
                   </Grid>
@@ -185,19 +220,6 @@ class EditResult extends Component {
                     defaultValue={result.matchNotes}
                   />
                 </FormControl>
-                <FormControl className={classes.formControl}>
-                  <FormControlLabel
-                    control={(
-                      <Checkbox
-                        inputRef={this.forfeitedMatchInput}
-                        defaultChecked={result.forfeitedMatch}
-                        color="primary"
-                      />
-                    )}
-                    label="Forfeit?"
-                  />
-                </FormControl>
-
                 <Grid container direction="row" justify="space-between" alignItems="center">
                   <DeleteConfirm onDelete={this.onDelete} type="match" />
                   <Button variant="contained" color="secondary" type="submit" value="Submit">
@@ -205,7 +227,6 @@ class EditResult extends Component {
                   </Button>
                 </Grid>
               </form>
-
             </Paper>
           </Container>
         </Container>

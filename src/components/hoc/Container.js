@@ -7,7 +7,7 @@ const Container = props => {
   const { children } = props;
   return (
     <Grid container justify="center">
-      <Grid item xs={12} sm={10} md={6}>
+      <Grid item xs={12} sm={12} md={8}>
         {children}
       </Grid>
     </Grid>

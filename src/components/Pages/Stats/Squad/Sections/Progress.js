@@ -20,7 +20,9 @@ const Progress = props => {
   const appPercentage = (totalTeamApps(p) * 100) / targetTeamApps(p);
   const goalPercentage = (totalTeamGoals(p) * 100) / targetTeamGoals(p);
   const assistPercentage = (totalTeamAssists(p) * 100) / targetTeamAssists(p);
-
+  const totalStats = totalTeamApps(p) + totalTeamGoals(p) + totalTeamAssists(p);
+  const totalTarget = targetTeamApps(p) + targetTeamGoals(p) + targetTeamAssists(p);
+  const totalProgress = (totalStats * 100) / totalTarget;
   let percentageId = 0;
   const createPercentageData = (description, total, target, percentage) => {
     percentageId += 1;
@@ -31,6 +33,7 @@ const Progress = props => {
     createPercentageData('Apps', totalTeamApps(p), targetTeamApps(p), appPercentage),
     createPercentageData('Goals', totalTeamGoals(p), targetTeamGoals(p), goalPercentage),
     createPercentageData('Assists', totalTeamAssists(p), targetTeamAssists(p), assistPercentage),
+    createPercentageData('Total', totalStats, totalTarget, totalProgress),
   ];
 
   return (

@@ -7,6 +7,7 @@ import { firestoreConnect } from 'react-redux-firebase';
 
 // Components
 import Container from '../components/hoc/Container';
+import PageHeader from '../components/layout/Navs/PageHeader';
 import Stats from '../components/Pages/Stats/Stats';
 
 const StatsContainer = props => {
@@ -14,6 +15,7 @@ const StatsContainer = props => {
   const teamName = team ? team[0].name : null;
   return (
     <Container>
+      <PageHeader title="Stats" link="/" />
       <Stats results={results} teamName={teamName} players={players} />
     </Container>
   );

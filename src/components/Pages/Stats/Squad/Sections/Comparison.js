@@ -43,7 +43,7 @@ const Comparison = props => {
     {
       Header: '',
       accessor: 'name',
-      style: { backgroundColor: '#FFC300', fontWeight: 'bold' },
+      style: { backgroundColor: '#d32f2f', color: '#fff', fontWeight: 'bold' },
     },
     {
       Header: 'Apps',
@@ -233,6 +233,13 @@ const Comparison = props => {
               textTransform: 'uppercase',
               fontWeight: 'bold',
               textAlign: 'left',
+            },
+          })}
+          getTdProps={() => ({
+            style: {
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
             },
           })}
           defaultSortDesc
