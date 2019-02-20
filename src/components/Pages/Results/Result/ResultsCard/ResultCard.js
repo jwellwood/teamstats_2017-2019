@@ -46,21 +46,20 @@ const styles = theme => ({
 
 const ResultCard = props => {
   const { classes, result, teamName } = props;
-  const { matchType, resultIndicator } = result;
+  const { matchType, teamScore, opponentScore } = result;
 
-  let resultColor = colors.draw;
-  switch (resultIndicator) {
-    case 'W':
-      resultColor = colors.win;
-      break;
-    case 'D':
-      resultColor = colors.draw;
-      break;
-    case 'L':
-      resultColor = colors.lose;
-      break;
-    default:
-      return resultColor;
+  let teamResult = null;
+  let resultColor = null;
+
+  if (+teamScore > +opponentScore) {
+    teamResult = 'W';
+    resultColor = colors.win;
+  } else if (+teamScore === +opponentScore) {
+    teamResult = 'D';
+    resultColor = colors.draw;
+  } else {
+    teamResult = 'L';
+    resultColor = colors.lose;
   }
 
   let matchTypeColor = matchTypes.league;
@@ -100,7 +99,7 @@ const ResultCard = props => {
             className={classes.dateBar}
           >
             <Avatar className={classes.avatar} style={{ background: resultColor }}>
-              {result.resultIndicator}
+              {teamResult}
             </Avatar>
             <ResultDate result={result} />
           </Grid>
@@ -109,7 +108,7 @@ const ResultCard = props => {
               {result.matchType}
             </div>
           </Grid>
-          <ScoreBox result={result} teamName={teamName} />
+          <ScoreBox result={result} teamName={teamName} teamResult={teamResult} />
           {result.forfeitedMatch ? (
             <div className={classes.forfeit}>*Automatic 7-0 due to forfeit</div>
           ) : null}

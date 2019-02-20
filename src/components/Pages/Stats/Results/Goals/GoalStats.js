@@ -22,9 +22,10 @@ import {
   getGoalsFor,
   getGoalsAgainst,
 } from '../../functions/goalCalcs';
+import ForfeitButton from '../forfeitButton';
 
 const GoalStats = props => {
-  const { homeResults, awayResults } = props;
+  const { homeResults, awayResults, checked, handleChange, value } = props;
 
   // Calc goals home and away
   const goalsForArray = getGoalsFor(homeResults, awayResults);
@@ -62,6 +63,7 @@ const GoalStats = props => {
   return (
     <div>
       <StatsHeader title="Game stats" />
+      <ForfeitButton checked={checked} handleChange={handleChange} value={value} />
       {goalsData.map(stat => (
         <Grid item xs={12} key={stat.id}>
           <List dense>

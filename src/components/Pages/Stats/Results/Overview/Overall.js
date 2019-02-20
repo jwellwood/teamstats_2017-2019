@@ -9,6 +9,7 @@ import StatsHeader from '../../../../layout/Stats/StatsHeader';
 // Components
 import PerGame from './PerGame';
 import { colors } from '../../../../../assets/styles/colors';
+import ForfeitButton from '../forfeitButton';
 
 const styles = () => ({
   root: { padding: '5px 15px' },
@@ -22,16 +23,22 @@ function createData(header, data, color) {
 }
 
 const Overall = props => {
-  const { matchTotals, goalTotals } = props;
-  const { totalPlayed, totalWins, totalDraws, totalLosses } = matchTotals;
-  const { totalGoalsFor, totalGoalsAgainst } = goalTotals;
+  const { matchTotals, checked, handleChange, value } = props;
+  const {
+    totalMatches,
+    totalWins,
+    totalDraws,
+    totalLosses,
+    totalGoalsFor,
+    totalGoalsAgainst,
+  } = matchTotals;
   const goalDiff = totalGoalsFor - totalGoalsAgainst;
-  const goalsPerGame = (totalGoalsFor / totalPlayed).toFixed(2);
-  const againstPerGame = (totalGoalsAgainst / totalPlayed).toFixed(2);
-  const pointsPerGame = ((totalWins * 3 + totalDraws) / totalPlayed).toFixed(2);
+  const goalsPerGame = (totalGoalsFor / totalMatches).toFixed(2);
+  const againstPerGame = (totalGoalsAgainst / totalMatches).toFixed(2);
+  const pointsPerGame = ((totalWins * 3 + totalDraws) / totalMatches).toFixed(2);
 
   const tableItems = [
-    createData('Pl', totalPlayed),
+    createData('Pl', totalMatches),
     createData('W', totalWins),
     createData('D', totalDraws),
     createData('L', totalLosses),
@@ -43,6 +50,7 @@ const Overall = props => {
   return (
     <div>
       <StatsHeader title="Overview" />
+      <ForfeitButton checked={checked} handleChange={handleChange} value={value} />
       <Paper style={{ margin: '15px' }}>
         <Grid container direction="row" justify="space-evenly" alignItems="center">
           {tableItems.map(item => (
@@ -71,7 +79,6 @@ const Overall = props => {
 Overall.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   matchTotals: PropTypes.shape({}).isRequired,
-  goalTotals: PropTypes.shape({}).isRequired,
 };
 
 export default withStyles(styles)(Overall);

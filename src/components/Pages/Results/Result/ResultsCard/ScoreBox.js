@@ -43,12 +43,10 @@ const styles = () => ({
 });
 
 const ScoreBox = props => {
-  const { classes, result, teamName } = props;
-  const { resultIndicator } = result;
+  const { classes, result, teamName, teamResult } = props;
+  let resultColor = null;
 
-  let resultColor = colors.draw;
-
-  switch (resultIndicator) {
+  switch (teamResult) {
     case 'W':
       resultColor = colors.win;
       break;
@@ -96,6 +94,7 @@ ScoreBox.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   result: PropTypes.shape({}).isRequired,
   teamName: PropTypes.string,
+  teamResult: PropTypes.string.isRequired,
 };
 
 ScoreBox.defaultProps = { teamName: '' };

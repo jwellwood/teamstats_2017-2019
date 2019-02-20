@@ -104,7 +104,7 @@ const About = props => {
             </a>
           </Typography>
           <Typography variant="caption" align="center">
-            Version: 2.1.6
+            Version: 2.2.0
           </Typography>
         </div>
       </BoxContainer>

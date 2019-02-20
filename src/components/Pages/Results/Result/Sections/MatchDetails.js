@@ -27,14 +27,24 @@ const styles = theme => ({
 
 const MatchDetails = props => {
   const { classes, result, teamName } = props;
-
+  const { teamScore, opponentScore } = result;
   const date = formatDate(result.date);
   const { day, month, year } = date;
 
   let matchPoints = '-';
   let color = null;
+
+  let teamResult = null;
+  if (+teamScore > +opponentScore) {
+    teamResult = 'W';
+  } else if (+teamScore === +opponentScore) {
+    teamResult = 'D';
+  } else {
+    teamResult = 'L';
+  }
+
   if (result.matchType === 'League') {
-    switch (result.resultIndicator) {
+    switch (teamResult) {
       case 'W':
         matchPoints = 3;
         color = colors.win;
@@ -68,7 +78,7 @@ const MatchDetails = props => {
     <div>
       <StatsHeader title="Details" />
       <Grid container style={{ fontFamily: 'Varela Round' }}>
-        <ScoreBox result={result} teamName={teamName} />
+        <ScoreBox result={result} teamName={teamName} teamResult={teamResult} />
       </Grid>
 
       {listItems.map(item => (

@@ -7,10 +7,10 @@ import { colors } from '../../../../../assets/styles/colors';
 
 const Percentages = props => {
   const { matchTotals } = props;
-  const { totalPlayed, totalWins, totalDraws, totalLosses } = matchTotals;
-  const winPercentage = getPercentage(totalWins, totalPlayed);
-  const drawPercentage = getPercentage(totalDraws, totalPlayed);
-  const lossPercentage = getPercentage(totalLosses, totalPlayed);
+  const { totalMatches, totalWins, totalDraws, totalLosses } = matchTotals;
+  const winPercentage = getPercentage(totalWins, totalMatches);
+  const drawPercentage = getPercentage(totalDraws, totalMatches);
+  const lossPercentage = getPercentage(totalLosses, totalMatches);
 
   let id = 0;
   const createData = (icon, value, title, color) => {
@@ -34,9 +34,7 @@ const Percentages = props => {
     ],
   };
 
-  return (
-    <Graph data={data} title="Total Matches" itemsToMap={listItems} totalPlayed={totalPlayed} />
-  );
+  return <Graph data={data} title="Total Matches" itemsToMap={listItems} />;
 };
 
 Percentages.propTypes = { matchTotals: PropTypes.shape({}).isRequired };

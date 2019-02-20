@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// MUI
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
-import Overall from './Overview/Overall';
 // Components
+import Overall from './Overview/Overall';
 import Percentages from './Overview/Percentages';
 import GoalStats from './Goals/GoalStats';
-import HomeAway from './HomeAway/HomeAway';
 // functions
-import { getTotal } from '../functions/helpers';
+import {
+  getResultsWithoutForfeits,
+  getAllWins,
+  getAllDraws,
+  getAllLosses,
+  getGoalsFor,
+  getGoalsAgainst,
+  getAllHomeMatches,
+  getAllAwayMatches,
+} from '../../../../functions/Results/functions';
+import HomeAndAway from './HomeAway/HomeAndAway';
 
 class ResultsStats extends Component {
   state = { includeForfeits: true };
@@ -21,68 +27,54 @@ class ResultsStats extends Component {
   render() {
     const { results } = this.props;
     const { includeForfeits } = this.state;
-    let filteredResults = results;
-    if (!includeForfeits) {
-      filteredResults = results.filter(result => !result.forfeitedMatch);
-    }
+    const teamResults = !includeForfeits ? getResultsWithoutForfeits(results) : results;
+    const homeResults = getAllHomeMatches(teamResults);
+    const awayResults = getAllAwayMatches(teamResults);
+    const totalMatches = teamResults.length;
+    const totalWins = getAllWins(teamResults).length;
+    const totalDraws = getAllDraws(teamResults).length;
+    const totalLosses = getAllLosses(teamResults).length;
+    const totalGoalsFor = getGoalsFor(teamResults);
+    const totalGoalsAgainst = getGoalsAgainst(teamResults);
+
     const matchTotals = {
-      totalPlayed: filteredResults.length,
-      totalWins: getTotal(filteredResults, 'W'),
-      totalDraws: getTotal(filteredResults, 'D'),
-      totalLosses: getTotal(filteredResults, 'L'),
+      totalMatches,
+      totalWins,
+      totalDraws,
+      totalLosses,
+      totalGoalsFor,
+      totalGoalsAgainst,
     };
-
-    // ================================================================================
-
-    const getGoals = arr => arr.reduce((a, b) => a + b, 0);
-    const goalsForArray = filteredResults.map(result => +result.teamScore);
-    const goalsAgainstArray = filteredResults.map(result => +result.opponentScore);
-    const goalsFor = getGoals(goalsForArray);
-    const goalsAgainst = getGoals(goalsAgainstArray);
-
-    const homeResults = filteredResults.filter(result => result.homeOrAway === 'home');
-    const awayResults = filteredResults.filter(result => result.homeOrAway === 'away');
-
-    const homeGoalsForArray = homeResults.map(res => +res.teamScore);
-    const awayGoalsForArray = awayResults.map(res => +res.teamScore);
-    const homeGoalsFor = getGoals(homeGoalsForArray);
-    const awayGoalsFor = getGoals(awayGoalsForArray);
-
-    const homeGoalsAgainstArray = homeResults.map(res => +res.opponentScore);
-    const awayGoalsAgainstArray = awayResults.map(res => +res.opponentScore);
-    const homeGoalsAgainst = getGoals(homeGoalsAgainstArray);
-    const awayGoalsAgainst = getGoals(awayGoalsAgainstArray);
-
-    const goalTotals = {
-      totalGoalsFor: goalsFor,
-      totalGoalsAgainst: goalsAgainst,
-      homeGoalsFor,
-      awayGoalsFor,
-      homeGoalsAgainst,
-      awayGoalsAgainst,
-    };
-
-    // =================================================================================
 
     return (
       <div>
-        <div style={{ textAlign: 'left', paddingLeft: '10px' }}>
-          <FormControlLabel
-            control={(
-              <Switch
-                checked={includeForfeits}
-                onChange={this.handleChange('includeForfeits')}
-                value="includeForfeits"
-              />
-)}
-            label="Show forfeited matches"
-          />
-        </div>
-
-        <Overall matchTotals={matchTotals} goalTotals={goalTotals} />
-        <Percentages matchTotals={matchTotals} />
-        <GoalStats results={filteredResults} homeResults={homeResults} awayResults={awayResults} />
-        <HomeAway goalTotals={goalTotals} homeResults={homeResults} awayResults={awayResults} />
+        <Overall
+          matchTotals={matchTotals}
+          handleChange={this.handleChange('includeForfeits')}
+          checked={includeForfeits}
+          value="includeforfeits"
+        />
+        <Percentages
+          matchTotals={matchTotals}
+          handleChange={this.handleChange('includeForfeits')}
+          checked={includeForfeits}
+          value="includeforfeits"
+        />
+        <GoalStats
+          results={teamResults}
+          homeResults={homeResults}
+          awayResults={awayResults}
+          handleChange={this.handleChange('includeForfeits')}
+          checked={includeForfeits}
+          value="includeforfeits"
+        />
+        <HomeAndAway
+          homeResults={homeResults}
+          awayResults={awayResults}
+          handleChange={this.handleChange('includeForfeits')}
+          checked={includeForfeits}
+          value="includeforfeits"
+        />
       </div>
     );
   }
