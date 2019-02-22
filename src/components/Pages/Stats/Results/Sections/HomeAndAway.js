@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
-
+import { resultColumns } from '../../TableData';
 import {
   getAllWins,
   getAllDraws,
@@ -13,8 +13,7 @@ import {
   perGame,
   getPointsPer,
 } from '../../../../../functions/Results/functions';
-import StatsHeader from '../../../../layout/Stats/StatsHeader';
-import ForfeitButton from '../forfeitButton';
+import SwitchButton from '../../../../layout/ui/SwitchButton';
 
 const HomeAndAway = props => {
   const { homeResults, awayResults, checked, handleChange, value } = props;
@@ -50,10 +49,10 @@ const HomeAndAway = props => {
     id += 1;
     if (+home > +away) {
       // eslint-disable-next-line no-param-reassign
-      arrow = <i style={{ color: '#222' }} className="fas fa-arrow-circle-left" />;
+      arrow = <i style={{ color: '#222' }} className="fas fa-arrow-left" />;
     } else if (+home < +away) {
       // eslint-disable-next-line no-param-reassign
-      arrow = <i className="fas fa-arrow-circle-right" />;
+      arrow = <i className="fas fa-arrow-right" />;
     }
     return { id, statName, home, arrow, away };
   }
@@ -66,54 +65,24 @@ const HomeAndAway = props => {
     createData('Scored', homeGoals, arrow, awayGoals),
     createData('Conceded', homeGoalsAgainst, arrow, awayGoalsAgainst),
     createData('Goal difference', goalDiffHome, arrow, goalDiffAway),
-    createData('goals / game', homeGoalsPerGame, arrow, awayGoalsPerGame),
-    createData('conceded / game', homeGoalsAgainstPerGame, arrow, awayGoalsAgainstPerGame),
-    createData('difference / game', goalDiffHomePerGame, arrow, goalDiffAwayPerGame),
-    createData('points / game', pointsHomePerGame, arrow, pointsAwayPerGame),
-  ];
-
-  const columns = [
-    {
-      Header: '',
-      accessor: 'statName',
-      style: { fontWeight: 'bold', textAlign: 'left' },
-      sortable: false,
-      resizable: false,
-    },
-    {
-      Header: 'Home',
-      accessor: 'home',
-      width: 60,
-      style: { backgroundColor: '#d32f2f', color: '#fff', fontWeight: 'bold' },
-      sortable: false,
-      resizable: false,
-    },
-    {
-      Header: '',
-      accessor: 'arrow',
-      width: 30,
-      style: { backgroundColor: '#d32f2f', color: '#fff', fontWeight: 'bold' },
-      sortable: false,
-      resizable: false,
-    },
-    {
-      Header: 'Away',
-      accessor: 'away',
-      width: 60,
-      style: { backgroundColor: '#d32f2f', color: '#fff', fontWeight: 'bold' },
-      sortable: false,
-      resizable: false,
-    },
+    createData('Avg. Goals', homeGoalsPerGame, arrow, awayGoalsPerGame),
+    createData('Avg. Conceded', homeGoalsAgainstPerGame, arrow, awayGoalsAgainstPerGame),
+    createData('Avg. Difference', goalDiffHomePerGame, arrow, goalDiffAwayPerGame),
+    createData('Avg. Points', pointsHomePerGame, arrow, pointsAwayPerGame),
   ];
 
   return (
     <div>
-      <StatsHeader title="Home vs Away" />
-      <ForfeitButton checked={checked} handleChange={handleChange} value={value} />
-      <div style={{ margin: '10px' }}>
+      <SwitchButton
+        checked={checked}
+        handleChange={handleChange}
+        value={value}
+        label="Include forfeits"
+      />
+      <div>
         <ReactTable
           data={data}
-          columns={columns}
+          columns={resultColumns}
           showPagination={false}
           minRows={1}
           className="-striped"

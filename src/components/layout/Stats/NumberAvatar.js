@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 
-const styles = theme => ({ number: { background: theme.palette.primary.dark, fontSize: '13px', fontWeight: 'bold' } });
+const styles = theme => ({ number: { background: '#333', fontSize: '13px', fontWeight: 'bold' } });
 
 const NumberAvatar = props => {
   const { classes, children, background } = props;

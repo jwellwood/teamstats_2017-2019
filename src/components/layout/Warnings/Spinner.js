@@ -5,9 +5,9 @@ import { withStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 // styling
-const styles = theme => ({
+const styles = () => ({
   progress: {
-    margin: theme.spacing.unit * 2,
+    margin: '10px auto',
     textAlign: 'center',
   },
 });

@@ -42,7 +42,7 @@ const formatDate = date => {
     default:
       return month;
   }
-  return { day, month, year };
+  return `${day} ${month} ${year}`;
 };
 
 export default formatDate;

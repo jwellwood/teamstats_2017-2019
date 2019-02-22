@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 const styles = () => ({
   heading: {
     fontFamily: 'Anton',
-    margin: '10px',
+    margin: '5px 0px',
     background: '#ddd',
     padding: '3px 10px',
     fontSize: '20px',

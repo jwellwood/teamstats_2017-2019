@@ -26,13 +26,13 @@ const styles = theme => ({
   },
   captain: {
     position: 'absolute',
-    margin: '-2px 15px',
-    width: 18,
-    height: 18,
+    margin: '0px auto',
+    width: 30,
+    height: 10,
     fontFamily: 'Righteous',
     fontSize: '0.6rem',
-    background: theme.palette.primary.dark,
-    color: '#fff',
+    background: '#ddd',
+    color: '#333',
   },
 });
 
@@ -60,12 +60,13 @@ const PlayerImage = props => {
     <Grid container direction="row" justify="center" alignItems="center">
       <Grid container direction="row" justify="center" alignItems="center">
         <div className={classes.numAvatar}>{number}</div>
+
         <Avatar alt="player image" src={image} className={classes.avatar} />
         <div className={classes.numAvatar} style={{ color }}>
           {position}
         </div>
       </Grid>
-      {captain ? <Avatar className={classes.captain}>C</Avatar> : null}
+      {captain ? <div className={classes.captain}>C</div> : null}
       <div className={classes.name}>{name}</div>
     </Grid>
   );

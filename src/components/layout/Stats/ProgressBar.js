@@ -8,12 +8,12 @@ import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
-const styles = theme => ({
+const styles = () => ({
   root: { padding: '8px 16px', margin: '0 auto' },
   total: { fontWeight: 'bold', color: '#58D68D' },
   progress: { padding: '5px' },
   avatar: { margin: '10px' },
-  percentage: { padding: '3px', fontSize: '12px', background: theme.palette.primary.dark },
+  percentage: { padding: '3px', fontSize: '12px', background: '#222' },
 });
 
 const ProgressBar = props => {
@@ -41,7 +41,10 @@ const ProgressBar = props => {
 
         <Grid item>
           <ListItemAvatar className={classes.avatar}>
-            <Avatar className={classes.percentage}>{percentage.toFixed(1)}%</Avatar>
+            <Avatar className={classes.percentage}>
+              {percentage.toFixed(1)}
+              <span style={{ fontSize: '10px', opacity: '0.7' }}>%</span>
+            </Avatar>
           </ListItemAvatar>
         </Grid>
       </Grid>

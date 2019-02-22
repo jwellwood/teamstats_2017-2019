@@ -5,11 +5,11 @@ import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import StatsHeader from '../../../../layout/Stats/StatsHeader';
 // Components
 import PerGame from './PerGame';
 import { colors } from '../../../../../assets/styles/colors';
-import ForfeitButton from '../forfeitButton';
+import SwitchButton from '../../../../layout/ui/SwitchButton';
+import Percentages from './Percentages';
 
 const styles = () => ({
   root: { padding: '5px 15px' },
@@ -35,6 +35,7 @@ const Overall = props => {
   const goalDiff = totalGoalsFor - totalGoalsAgainst;
   const goalsPerGame = (totalGoalsFor / totalMatches).toFixed(2);
   const againstPerGame = (totalGoalsAgainst / totalMatches).toFixed(2);
+  const differencePerGame = (goalDiff / totalMatches).toFixed(2);
   const pointsPerGame = ((totalWins * 3 + totalDraws) / totalMatches).toFixed(2);
 
   const tableItems = [
@@ -49,9 +50,13 @@ const Overall = props => {
 
   return (
     <div>
-      <StatsHeader title="Overview" />
-      <ForfeitButton checked={checked} handleChange={handleChange} value={value} />
-      <Paper style={{ margin: '15px' }}>
+      <SwitchButton
+        checked={checked}
+        handleChange={handleChange}
+        value={value}
+        label="Include forfeits"
+      />
+      <Paper>
         <Grid container direction="row" justify="space-evenly" alignItems="center">
           {tableItems.map(item => (
             <Grid item key={item.id}>
@@ -70,8 +75,10 @@ const Overall = props => {
       <PerGame
         goalsPerGame={goalsPerGame}
         againstPerGame={againstPerGame}
+        differencePerGame={differencePerGame}
         pointsPerGame={pointsPerGame}
       />
+      <Percentages matchTotals={matchTotals} />
     </div>
   );
 };

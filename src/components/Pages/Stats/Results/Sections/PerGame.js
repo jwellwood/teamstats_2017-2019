@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import { colors } from '../../../../../assets/styles/colors';
 
 const PerGame = props => {
-  const { goalsPerGame, againstPerGame, pointsPerGame } = props;
+  const { goalsPerGame, againstPerGame, differencePerGame, pointsPerGame } = props;
 
   let id = 0;
   const createData = (description, value, color) => {
@@ -19,6 +19,10 @@ const PerGame = props => {
   const goalsData = [
     createData('Goals / game', goalsPerGame),
     createData('Conceded / game', againstPerGame),
+    createData(
+      'Goal Difference / game',
+      differencePerGame > 0 ? `+${differencePerGame}` : differencePerGame,
+    ),
     createData('Points / game', pointsPerGame, pointsPerGame > 1.66 ? colors.win : colors.lose),
   ];
 

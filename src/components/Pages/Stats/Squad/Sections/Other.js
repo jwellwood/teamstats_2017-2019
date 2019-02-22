@@ -5,6 +5,7 @@ import StatsHeader from '../../../../layout/Stats/StatsHeader';
 import StatsAvatar from '../../../../layout/Stats/StatsAvatar';
 // Helpers
 import { totalTeamApps } from '../../functions/playerCalcs';
+import Positions from './Positions';
 
 const OtherPlayerStats = props => {
   const { players, results } = props;
@@ -65,6 +66,7 @@ const OtherPlayerStats = props => {
     <div>
       <StatsHeader title="Other" />
       <StatsAvatar itemsToMap={listItems} />
+      <Positions players={players} />
     </div>
   );
 };

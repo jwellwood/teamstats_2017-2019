@@ -1,18 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // MUI
-import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Divider from '@material-ui/core/Divider';
-import Typography from '@material-ui/core/Typography';
 // Components
-import StatsHeader from '../../../../layout/Stats/StatsHeader';
 import TopStatItem from '../../../../layout/Stats/TopStatItem';
 import NumberAvatar from '../../../../layout/Stats/NumberAvatar';
+import Spinner from '../../../../layout/Warnings/Spinner';
 // Helpers
 import {
   getMostApps,
@@ -22,17 +20,10 @@ import {
   getBestGoalPerGame,
   getBestAssistPerGame,
 } from '../../functions/playerCalcs';
-
-const styles = () => ({
-  disclaimer: {
-    color: '#ccc',
-    fontSize: '9px',
-    margin: '2px 10px',
-  },
-});
+import Disclaimer from '../../../../layout/Warnings/Disclaimer';
 
 const Leaderboard = props => {
-  const { classes, players } = props;
+  const { players } = props;
 
   const mostApps = getMostApps(players).name.map(name => <TopStatItem key={name} data={name} />);
   const mostGoals = getMostGoals(players).name.map(name => <TopStatItem key={name} data={name} />);
@@ -72,7 +63,6 @@ const Leaderboard = props => {
 
   return (
     <div>
-      <StatsHeader title="Leaderboard" />
       {leaderboard.map(leader => (
         <Grid item xs={12} key={leader.id}>
           <List dense>
@@ -84,23 +74,24 @@ const Leaderboard = props => {
                 }
               />
               <ListItemAvatar>
-                <NumberAvatar>{leader.value}</NumberAvatar>
+                <NumberAvatar>
+                  {leader.value === -Infinity || leader.value === '-Infinity' ? (
+                    <Spinner />
+                  ) : (
+                    leader.value
+                  )}
+                </NumberAvatar>
               </ListItemAvatar>
             </ListItem>
             <Divider />
           </List>
         </Grid>
       ))}
-      <Typography className={classes.disclaimer}>
-        * Players must have played more than one match
-      </Typography>
+      <Disclaimer message="*Players must have played more than one match" />
     </div>
   );
 };
 
-Leaderboard.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
-  players: PropTypes.instanceOf(Array).isRequired,
-};
+Leaderboard.propTypes = { players: PropTypes.instanceOf(Array).isRequired };
 
-export default withStyles(styles)(Leaderboard);
+export default Leaderboard;

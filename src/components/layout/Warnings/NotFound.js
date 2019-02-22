@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { Icon } from '@material-ui/core';
-import Container from '../../hoc/Container';
+import BoxContainer from '../../hoc/BoxContainer';
 
 // styling
 const styles = theme => ({
@@ -20,7 +20,7 @@ const styles = theme => ({
 const NotFound = props => {
   const { classes } = props;
   return (
-    <Container>
+    <BoxContainer>
       <Paper className={classes.root} elevation={1}>
         <Typography variant="h5" component="h3" color="primary">
           Page not found
@@ -30,7 +30,7 @@ const NotFound = props => {
           Sorry, that page is unavailable. Please use a valid URL.
         </Typography>
       </Paper>
-    </Container>
+    </BoxContainer>
   );
 };
 

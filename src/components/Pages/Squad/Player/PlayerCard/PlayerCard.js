@@ -14,7 +14,7 @@ const PlayerCard = props => {
 
   return (
     <BoxContainer>
-      <Paper elevation={12} square style={{ margin: '10px 2px', cursor: 'pointer' }}>
+      <Paper elevation={12} square style={{ cursor: 'pointer' }}>
         <Grid container direction="row" alignItems="center">
           <Grid item xs={6} style={{ background: ' #333' }}>
             <PlayerImage

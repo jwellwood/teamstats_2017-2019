@@ -11,6 +11,7 @@ import ResultDate from './ResultDate';
 import BoxContainer from '../../../../hoc/BoxContainer';
 // Helpers
 import { colors, matchTypes } from '../../../../../assets/styles/colors';
+import Disclaimer from '../../../../layout/Warnings/Disclaimer';
 
 const styles = theme => ({
   dateBar: {
@@ -84,7 +85,6 @@ const ResultCard = props => {
       <Paper
         elevation={20}
         style={{
-          margin: '20px 0px',
           borderLeft: '3px solid',
           borderColor: resultColor,
           cursor: 'pointer',
@@ -109,9 +109,7 @@ const ResultCard = props => {
             </div>
           </Grid>
           <ScoreBox result={result} teamName={teamName} teamResult={teamResult} />
-          {result.forfeitedMatch ? (
-            <div className={classes.forfeit}>*Automatic 7-0 due to forfeit</div>
-          ) : null}
+          {result.forfeitedMatch ? <Disclaimer message="*Automatic 7-0 due to forfeit" /> : null}
         </Grid>
       </Paper>
     </BoxContainer>

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // Components
 import Graph from './Graph';
-import { getPercentage } from '../../functions/helpers';
+import { getPercentage } from '../../../../../functions/Results/functions';
 import { colors } from '../../../../../assets/styles/colors';
 
 const Percentages = props => {
@@ -19,13 +19,13 @@ const Percentages = props => {
   };
 
   const listItems = [
-    createData(totalWins, `${winPercentage}%`, '', colors.win),
-    createData(totalDraws, `${drawPercentage}%`, '', colors.draw),
-    createData(totalLosses, `${lossPercentage}%`, '', colors.lose),
+    createData('', `${winPercentage}%`, '', colors.win),
+    createData('', `${drawPercentage}%`, '', colors.draw),
+    createData('', `${lossPercentage}%`, '', colors.lose),
   ];
 
   const data = {
-    labels: ['Win', 'Draw', 'Defeat'],
+    // labels: ['Win', 'Draw', 'Defeat'],
     datasets: [
       {
         data: [winPercentage, drawPercentage, lossPercentage],

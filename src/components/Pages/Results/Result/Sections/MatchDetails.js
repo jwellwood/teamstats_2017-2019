@@ -29,7 +29,6 @@ const MatchDetails = props => {
   const { classes, result, teamName } = props;
   const { teamScore, opponentScore } = result;
   const date = formatDate(result.date);
-  const { day, month, year } = date;
 
   let matchPoints = '-';
   let color = null;
@@ -69,7 +68,7 @@ const MatchDetails = props => {
   };
 
   const listItems = [
-    createData('Date', `${day} ${month} ${year}`, ''),
+    createData('Date', date, ''),
     createData('Match Type', result.matchType, ''),
     createData('Points', matchPoints, color),
   ];
