@@ -14,14 +14,15 @@ import Typography from '@material-ui/core/Typography';
 // Components
 import StatsHeader from '../../../../layout/Stats/StatsHeader';
 import { positions } from '../../../../../assets/styles/colors';
+import BoxContainer from '../../../../hoc/BoxContainer';
 
 const styles = theme => ({
   bigAvatar: {
-    border: '1px solid',
+    border: '3px solid',
     borderColor: theme.palette.primary.dark,
     margin: '10px auto',
-    width: 60,
-    height: 60,
+    width: 80,
+    height: 80,
   },
   details: { padding: '1px 10px' },
   number: { fontWeight: 'bold' },
@@ -61,11 +62,11 @@ const PlayerOverview = props => {
   const listItems = [
     createData('Number', player.number, ''),
     createData('Position', player.position, color),
-    createData('Played %', `${playedPercentage.toFixed(1)}%`, ''),
+    createData('Played', `${playedPercentage.toFixed(1)}%`, ''),
   ];
 
   return (
-    <div>
+    <BoxContainer>
       <StatsHeader title="Details" />
       <Grid container direction="row" justify="center" alignItems="center">
         <Grid item xs={4}>
@@ -88,7 +89,7 @@ const PlayerOverview = props => {
           ))}
         </Grid>
       </Grid>
-    </div>
+    </BoxContainer>
   );
 };
 
@@ -96,6 +97,7 @@ PlayerOverview.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   player: PropTypes.shape({}).isRequired,
   totalMatches: PropTypes.number.isRequired,
+  image: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(PlayerOverview);

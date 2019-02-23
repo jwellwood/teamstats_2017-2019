@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 // Components
+import { Divider } from '@material-ui/core';
 import PerGame from './PerGame';
 import { colors } from '../../../../../assets/styles/colors';
 import SwitchButton from '../../../../layout/ui/SwitchButton';
@@ -60,7 +61,7 @@ const Overall = props => {
         <Grid container direction="row" justify="space-evenly" alignItems="center">
           {tableItems.map(item => (
             <Grid item key={item.id}>
-              <Grid container direction="column" justify="center" alignItems="center">
+              <Grid container direction="column" justify="flex-start" alignContent="flex-start">
                 <Typography variant="subtitle1" style={{ opacity: '0.5' }}>
                   {item.header}
                 </Typography>
@@ -71,14 +72,16 @@ const Overall = props => {
             </Grid>
           ))}
         </Grid>
+        <Divider style={{ margin: '5px 0px' }} />
+        <Percentages matchTotals={matchTotals} />
       </Paper>
+
       <PerGame
         goalsPerGame={goalsPerGame}
         againstPerGame={againstPerGame}
         differencePerGame={differencePerGame}
         pointsPerGame={pointsPerGame}
       />
-      <Percentages matchTotals={matchTotals} />
     </div>
   );
 };

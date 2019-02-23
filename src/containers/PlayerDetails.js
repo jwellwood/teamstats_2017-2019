@@ -19,12 +19,11 @@ import Container from '../components/hoc/Container';
 import PlayerCard from '../components/Pages/Squad/Player/PlayerCard/PlayerCard';
 import PlayerOverview from '../components/Pages/Squad/Player/Sections/PlayerOverview';
 import PlayerTargets from '../components/Pages/Squad/Player/Sections/PlayerTargets';
-import OtherPlayerStats from '../components/Pages/Squad/Player/Sections/OtherPlayerStats';
-import PerGameGraph from '../components/Pages/Squad/Player/Sections/PerGameGraph';
 import avatar from '../assets/images/avatar.png';
 // helpers
 import { modalLeft } from '../helpers/transitions';
 import Spinner from '../components/layout/Warnings/Spinner';
+import IndividualStats from '../components/Pages/Squad/Player/Sections/IndividualStats';
 
 const styles = {
   appBar: { position: 'sticky' },
@@ -115,8 +114,7 @@ class PlayerDetails extends React.Component {
               image={player.image ? playerImage : defaultImage}
             />
             <PlayerTargets player={player} />
-            <PerGameGraph player={player} />
-            <OtherPlayerStats player={player} totalTeamGoals={totalTeamGoals} />
+            <IndividualStats player={player} totalTeamGoals={totalTeamGoals} />
           </Container>
         </Dialog>
       </div>

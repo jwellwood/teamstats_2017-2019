@@ -1,41 +1,53 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // MUI
-import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
-// helpers
-import { colors } from '../../../../../assets/styles/colors';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ValueBox from '../../../../layout/Stats/ValueBox';
 
 const PerGame = props => {
   const { goalsPerGame, againstPerGame, differencePerGame, pointsPerGame } = props;
 
+  const goalDifference = differencePerGame > 0 ? `+${differencePerGame}` : `-${differencePerGame}`;
   let id = 0;
-  const createData = (description, value, color) => {
+  const createData = (description, value) => {
     id += 1;
-    return { id, description, value, color };
+    return { id, description, value };
   };
 
   const goalsData = [
     createData('Goals / game', goalsPerGame),
     createData('Conceded / game', againstPerGame),
-    createData(
-      'Goal Difference / game',
-      differencePerGame > 0 ? `+${differencePerGame}` : differencePerGame,
-    ),
-    createData('Points / game', pointsPerGame, pointsPerGame > 1.66 ? colors.win : colors.lose),
+    createData('Goal Difference / game', goalDifference),
+    createData('Points / game', pointsPerGame),
   ];
 
   return (
-    <div style={{ margin: '15px' }}>
+    <div>
       {goalsData.map(item => (
         <div key={item.id}>
-          <Grid container direction="row" justify="space-between" alignItems="center">
-            <Typography style={{ textTransform: 'uppercase', fontSize: '11px' }}>
-              {item.description}
-            </Typography>
-            <div style={{ fontWeight: 'bold', color: item.color }}>{item.value}</div>
-          </Grid>
+          <List dense>
+            <ListItem>
+              <ListItemText>
+                <Typography
+                  style={{
+                    textAlign: 'left',
+                    textTransform: 'uppercase',
+                    color: '#333',
+                    fontSize: '12px',
+                    fontWeight: 'bold',
+                  }}
+                >
+                  {item.description}
+                </Typography>
+              </ListItemText>
+
+              <ValueBox>{item.value}</ValueBox>
+            </ListItem>
+          </List>
           <Divider />
         </div>
       ))}
@@ -47,6 +59,7 @@ PerGame.propTypes = {
   goalsPerGame: PropTypes.string.isRequired,
   againstPerGame: PropTypes.string.isRequired,
   pointsPerGame: PropTypes.string.isRequired,
+  differencePerGame: PropTypes.string.isRequired,
 };
 
 export default PerGame;

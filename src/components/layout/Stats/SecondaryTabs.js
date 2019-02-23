@@ -13,7 +13,7 @@ const styles = () => ({
     color: 'white',
   },
   tabs: { margin: 'auto', color: '#eee', height: 15 },
-  labelContainer: { height: '15px', fontSize: '13px' },
+  // labelContainer: { height: '15px', fontSize: '13px' },
 });
 
 class SecondaryTabs extends Component {

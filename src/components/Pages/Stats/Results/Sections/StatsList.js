@@ -11,8 +11,9 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { colors } from '../../../../../assets/styles/colors';
 import formatDate from '../../../../../helpers/date';
+import ValueBox from '../../../../layout/Stats/ValueBox';
 
-const styles = theme => ({
+const styles = () => ({
   root: { width: '100%', margin: '1px auto' },
   avatar: {
     margin: 5,
@@ -61,7 +62,7 @@ class StatsList extends Component {
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
             <Grid container direction="row" justify="space-between" alignItems="center">
               <Typography className={classes.heading}>{title}</Typography>
-              <Avatar className={classes.avatar}>{value}</Avatar>
+              <ValueBox>{value}</ValueBox>
             </Grid>
           </ExpansionPanelSummary>
           {data.map(item => (
@@ -117,23 +118,3 @@ StatsList.propTypes = {
 };
 
 export default withStyles(styles)(StatsList);
-
-//         {data.map(item => (
-//           <Paper key={item.date}>
-//             <Grid container direction="row" alignContent="center" justify="space-evenly">
-//               <div>{item.date}</div>
-//               <div>{item.opponentName}</div>
-//               <div>{item.matchType}</div>
-//               <div>{item.teamScore}</div>
-//               <div>{item.opponentScore}</div>
-//             </Grid>
-//           </Paper>
-//         ))}
-//       </Paper>
-//     </div>
-//   );
-// };
-
-// };
-
-// export default StatsList;

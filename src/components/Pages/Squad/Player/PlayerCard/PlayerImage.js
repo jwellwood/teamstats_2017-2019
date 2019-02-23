@@ -29,6 +29,7 @@ const styles = theme => ({
     margin: '0px auto',
     width: 30,
     height: 10,
+    borderRadius: '5px',
     fontFamily: 'Righteous',
     fontSize: '0.6rem',
     background: '#ddd',

@@ -5,6 +5,7 @@ import { HorizontalBar } from 'react-chartjs-2';
 import StatsHeader from '../../../../layout/Stats/StatsHeader';
 // Helpers
 import { colors } from '../../../../../assets/styles/colors';
+import BoxContainer from '../../../../hoc/BoxContainer';
 
 const PerGameGraph = props => {
   const { player } = props;
@@ -28,7 +29,7 @@ const PerGameGraph = props => {
   };
 
   return (
-    <div>
+    <BoxContainer>
       <StatsHeader title="Per Game" />
       <div style={{ padding: '0px 8px' }}>
         <HorizontalBar
@@ -40,7 +41,7 @@ const PerGameGraph = props => {
           }}
         />
       </div>
-    </div>
+    </BoxContainer>
   );
 };
 

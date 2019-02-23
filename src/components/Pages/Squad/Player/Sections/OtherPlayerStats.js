@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 // Components
 import StatsHeader from '../../../../layout/Stats/StatsHeader';
 import StatsAvatar from '../../../../layout/Stats/StatsAvatar';
+import BoxContainer from '../../../../hoc/BoxContainer';
 
 // Component
 const OtherPlayerStats = props => {
@@ -37,10 +38,10 @@ const OtherPlayerStats = props => {
   ];
 
   return (
-    <div>
+    <BoxContainer>
       <StatsHeader title="Stats" />
       <StatsAvatar itemsToMap={listItems} />
-    </div>
+    </BoxContainer>
   );
 };
 

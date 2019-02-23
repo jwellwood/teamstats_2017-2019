@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // Components
 import Leaderboard from './Sections/Leaderboard';
 import Progress from './Sections/Progress';
-import OtherPlayerStats from './Sections/Other';
+import OtherStats from './Sections/OtherStats';
 import Comparison from './Sections/Comparison';
 import BoxContainer from '../../../hoc/BoxContainer';
 import SecondaryTabs from '../../../layout/Stats/SecondaryTabs';
@@ -21,7 +21,7 @@ const PlayerStats = props => {
   const tabContent = [
     { id: 1, content: <Leaderboard players={players} /> },
     { id: 2, content: <Progress players={players} /> },
-    { id: 3, content: <OtherPlayerStats players={players} results={results} /> },
+    { id: 3, content: <OtherStats players={players} results={results} /> },
     { id: 4, content: <Comparison players={players} results={results} /> },
   ];
 

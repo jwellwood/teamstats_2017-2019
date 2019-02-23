@@ -33,7 +33,7 @@ const GoalStats = props => {
   );
   const biggestWin = (
     <StatsList
-      title="Biggest winning margin"
+      title="Biggest win"
       data={getBiggestWinningMargin(results).match}
       value={getBiggestWinningMargin(results).value}
     />

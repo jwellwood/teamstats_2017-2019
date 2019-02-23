@@ -12,6 +12,7 @@ import StatsHeader from '../../../../layout/Stats/StatsHeader';
 import NumberAvatar from '../../../../layout/Stats/NumberAvatar';
 // Helpers
 import { colors } from '../../../../../assets/styles/colors';
+import BoxContainer from '../../../../hoc/BoxContainer';
 
 // Styling
 const styles = () => ({
@@ -55,7 +56,7 @@ const PlayerTargets = props => {
   ];
 
   return (
-    <div>
+    <BoxContainer>
       <StatsHeader title="Targets" />
 
       {listItems.map(item => (
@@ -87,7 +88,7 @@ const PlayerTargets = props => {
           <Divider />
         </div>
       ))}
-    </div>
+    </BoxContainer>
   );
 };
 
