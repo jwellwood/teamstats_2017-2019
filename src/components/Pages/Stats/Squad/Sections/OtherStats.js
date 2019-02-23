@@ -10,34 +10,24 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ValueBox from '../../../../layout/Stats/ValueBox';
 import Positions from './Positions';
 // functions
-import { getTotalTeamApps } from '../../../../../functions/Players/functions';
+import {
+  getTotalTeamApps,
+  getTotalTeamGoals,
+  getTotalTeamAssists,
+  getTotalTeamOwed,
+} from '../../../../../functions/Players/functions';
+import { getResultsWithoutForfeits, getGoalsFor } from '../../../../../functions/Results/functions';
 
 const OtherStats = props => {
   const { players, results } = props;
-  const totalPlayers = players.length;
-  const filteredResults = results.filter(res => !res.forfeitedMatch);
+  const filteredResults = getResultsWithoutForfeits(results);
   const totalMatches = filteredResults.length;
+  const totalPlayers = players.length;
   const playersPerMatch = (getTotalTeamApps(players) / totalMatches).toFixed(2);
-  const totalTeamOwed = players.reduce(
-    (totalOwed, player) => totalOwed + parseFloat(player.balance.toString()),
-    0,
-  );
-  const totalOwed = (
-    <span style={totalTeamOwed > 0 ? { color: '#E74C3C' } : { color: '#28B463' }}>
-      €{parseFloat(totalTeamOwed).toFixed(2)}
-    </span>
-  );
-
-  const totalPlayerGoals = players.reduce((totalGoals, player) => totalGoals + player.goals, 0);
-  const totalPlayerAssists = players.reduce(
-    (totalAssists, player) => totalAssists + player.assists,
-    0,
-  );
-  const getGoals = (a, b) => a + b;
-
-  const totalTeamGoals = filteredResults.map(res => +res.teamScore);
-  const teamGoals = totalTeamGoals.reduce(getGoals, 0);
-
+  const totalOwed = getTotalTeamOwed(players);
+  const totalPlayerGoals = getTotalTeamGoals(players);
+  const totalPlayerAssists = getTotalTeamAssists(players);
+  const teamGoals = getGoalsFor(filteredResults);
   const ownGoalsFor = teamGoals - totalPlayerGoals;
 
   let id = 0;

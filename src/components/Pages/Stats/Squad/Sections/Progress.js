@@ -5,22 +5,22 @@ import ProgressBar from '../../../../layout/Stats/ProgressBar';
 import StatsHeader from '../../../../layout/Stats/StatsHeader';
 // Calcs
 import {
-  totalTeamApps,
+  getTotalTeamApps,
   targetTeamApps,
-  totalTeamGoals,
+  getTotalTeamGoals,
   targetTeamGoals,
-  totalTeamAssists,
+  getTotalTeamAssists,
   targetTeamAssists,
-} from '../../functions/playerCalcs';
+} from '../../../../../functions/Players/functions';
 
 const Progress = props => {
   const { players } = props;
   const p = players;
 
-  const appPercentage = (totalTeamApps(p) * 100) / targetTeamApps(p);
-  const goalPercentage = (totalTeamGoals(p) * 100) / targetTeamGoals(p);
-  const assistPercentage = (totalTeamAssists(p) * 100) / targetTeamAssists(p);
-  const totalStats = totalTeamApps(p) + totalTeamGoals(p) + totalTeamAssists(p);
+  const appPercentage = (getTotalTeamApps(p) * 100) / targetTeamApps(p);
+  const goalPercentage = (getTotalTeamGoals(p) * 100) / targetTeamGoals(p);
+  const assistPercentage = (getTotalTeamAssists(p) * 100) / targetTeamAssists(p);
+  const totalStats = getTotalTeamApps(p) + getTotalTeamGoals(p) + getTotalTeamAssists(p);
   const totalTarget = targetTeamApps(p) + targetTeamGoals(p) + targetTeamAssists(p);
   const totalProgress = (totalStats * 100) / totalTarget;
   let percentageId = 0;
@@ -30,9 +30,9 @@ const Progress = props => {
   };
 
   const percentages = [
-    createPercentageData('Apps', totalTeamApps(p), targetTeamApps(p), appPercentage),
-    createPercentageData('Goals', totalTeamGoals(p), targetTeamGoals(p), goalPercentage),
-    createPercentageData('Assists', totalTeamAssists(p), targetTeamAssists(p), assistPercentage),
+    createPercentageData('Apps', getTotalTeamApps(p), targetTeamApps(p), appPercentage),
+    createPercentageData('Goals', getTotalTeamGoals(p), targetTeamGoals(p), goalPercentage),
+    createPercentageData('Assists', getTotalTeamAssists(p), targetTeamAssists(p), assistPercentage),
     createPercentageData('Total', totalStats, totalTarget, totalProgress),
   ];
 

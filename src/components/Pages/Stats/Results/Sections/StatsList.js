@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+// MUI
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import Avatar from '@material-ui/core/Avatar';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+// Components
+import ValueBox from '../../../../layout/Stats/ValueBox';
+// helpers
 import { colors } from '../../../../../assets/styles/colors';
 import formatDate from '../../../../../helpers/date';
-import ValueBox from '../../../../layout/Stats/ValueBox';
 
 const styles = () => ({
   root: { width: '100%', margin: '1px auto' },

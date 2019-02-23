@@ -86,10 +86,10 @@ const HomeAndAway = props => {
           showPagination={false}
           minRows={1}
           className="-striped"
-          getTheadThProps={() => ({ style: { backgroundColor: '#9a0007', color: '#fff' } })}
+          getTheadThProps={() => ({ style: { backgroundColor: '#333', color: '#fff' } })}
           getTheadGroupThProps={() => ({
             style: {
-              backgroundColor: '#9a0007',
+              backgroundColor: '#333',
               color: '#fff',
               textTransform: 'uppercase',
               fontWeight: 'bold',

@@ -6,12 +6,12 @@ import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-// helpers
-import { Paper } from '@material-ui/core';
-import { colors } from '../../../../../assets/styles/colors';
+// Components
 import StatsHeader from '../../../../layout/Stats/StatsHeader';
 import BoxContainer from '../../../../hoc/BoxContainer';
 import ValueBox from '../../../../layout/Stats/ValueBox';
+// helpers
+import { colors } from '../../../../../assets/styles/colors';
 
 const IndividualStats = props => {
   const { player, totalTeamGoals } = props;

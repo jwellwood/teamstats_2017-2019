@@ -26,13 +26,13 @@ const styles = theme => ({
   },
   captain: {
     position: 'absolute',
-    margin: '0px auto',
+    margin: '5px auto',
     width: 30,
     height: 10,
     borderRadius: '5px',
     fontFamily: 'Righteous',
     fontSize: '0.6rem',
-    background: '#ddd',
+    background: theme.palette.secondary.main,
     color: '#333',
   },
 });

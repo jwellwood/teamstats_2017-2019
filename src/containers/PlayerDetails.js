@@ -73,9 +73,10 @@ class PlayerDetails extends React.Component {
 
   render() {
     const { open, playerImage, defaultImage, loading } = this.state;
-    const { classes, player, results, players } = this.props;
+    const { classes, player, results } = this.props;
     const totalMatches = results.length;
-    const totalTeamGoals = players.reduce((totalGoals, a) => totalGoals + +a.goals, 0);
+    const filterResults = results.filter(a => !a.forfeitedMatch);
+    const totalTeamGoals = filterResults.reduce((totalGoals, a) => totalGoals + +a.teamScore, 0);
 
     return (
       <div>
@@ -126,7 +127,6 @@ PlayerDetails.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   player: PropTypes.shape({}).isRequired,
   firebase: PropTypes.shape({}).isRequired,
-  players: PropTypes.instanceOf(Array).isRequired,
   results: PropTypes.instanceOf(Array).isRequired,
 };
 

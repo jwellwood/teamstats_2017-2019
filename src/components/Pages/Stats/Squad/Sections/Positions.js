@@ -5,7 +5,7 @@ import { Bar } from 'react-chartjs-2';
 import StatsHeader from '../../../../layout/Stats/StatsHeader';
 // Helpers
 import { positions } from '../../../../../assets/styles/colors';
-import { getPosition } from '../../functions/playerCalcs';
+import { getPosition } from '../../../../../functions/Players/functions';
 
 const Positions = props => {
   const { players } = props;
