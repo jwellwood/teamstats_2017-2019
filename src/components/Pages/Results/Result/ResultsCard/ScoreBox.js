@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 // Helpers
-import { colors } from '../../../../../assets/styles/colors';
+import { resultColor } from '../../../../../assets/styles/colors';
 
 const styles = () => ({
   fixtureTeams: {
@@ -44,22 +44,6 @@ const styles = () => ({
 
 const ScoreBox = props => {
   const { classes, result, teamName, teamResult } = props;
-  let resultColor = null;
-
-  switch (teamResult) {
-    case 'W':
-      resultColor = colors.win;
-      break;
-    case 'D':
-      resultColor = colors.draw;
-      break;
-    case 'L':
-      resultColor = colors.lose;
-      break;
-    default:
-      return resultColor;
-  }
-
   let homeTeam = teamName;
   let homeScore = result.teamScore;
   if (result.homeOrAway === 'away') {
@@ -76,16 +60,16 @@ const ScoreBox = props => {
 
   return (
     <div className={classes.fixtureTeams}>
-      <Paper className={classes.teamNames} style={{ float: 'right', textAlign: 'right' }}>
+      <div className={classes.teamNames} style={{ float: 'right', textAlign: 'right' }}>
         {homeTeam}
-      </Paper>
-      <Paper className={classes.scoreBox} style={{ backgroundColor: resultColor }}>
+      </div>
+      <Paper className={classes.scoreBox} style={{ backgroundColor: resultColor(teamResult) }}>
         <p className={classes.scoreNumbers}>{homeScore}</p>
         <p className={classes.scoreNumbers}>{awayScore}</p>
       </Paper>
-      <Paper className={classes.teamNames} style={{ float: 'left', textAlign: 'left' }}>
+      <div className={classes.teamNames} style={{ float: 'left', textAlign: 'left' }}>
         {awayTeam}
-      </Paper>
+      </div>
     </div>
   );
 };

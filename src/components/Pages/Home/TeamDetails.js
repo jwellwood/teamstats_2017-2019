@@ -73,7 +73,8 @@ TeamDetails.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   team: PropTypes.instanceOf(Array).isRequired,
   trophies: PropTypes.instanceOf(Array),
+  players: PropTypes.instanceOf(Array),
 };
 
-TeamDetails.defaultProps = { trophies: null };
+TeamDetails.defaultProps = { trophies: null, players: [] };
 export default withStyles(styles)(TeamDetails);

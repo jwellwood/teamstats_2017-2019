@@ -8,7 +8,7 @@ import Avatar from '@material-ui/core/Avatar';
 
 const styles = () => ({
   item: { margin: '5px auto', textAlign: 'center' },
-  value: { fontWeight: 'bold', margin: '0 auto' },
+  value: { fontWeight: 'bold', margin: '0 auto', color: '#fff' },
   statsKey: { fontSize: '10px', color: '#aaa', textTransform: 'uppercase', margin: '0 auto' },
 });
 

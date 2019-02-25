@@ -4,7 +4,7 @@ export const resultColumns = [
   {
     Header: '',
     accessor: 'statName',
-    style: { fontWeight: 'bold', textAlign: 'left' },
+    style: { fontWeight: 'bold', textAlign: 'left', fontSize: '12px', textTransform: 'uppercase' },
     sortable: false,
     resizable: false,
   },
@@ -37,7 +37,13 @@ export const playerColumns = [
   {
     Header: '',
     accessor: 'name',
-    style: { backgroundColor: '#333', color: '#fff', fontWeight: 'bold' },
+    style: {
+      backgroundColor: '#333',
+      color: '#fff',
+      fontWeight: 'bold',
+      textAlign: 'left',
+      fontSize: '12px',
+    },
   },
   {
     Header: 'Apps',

@@ -111,6 +111,9 @@ const HomeAndAway = props => {
 HomeAndAway.propTypes = {
   homeResults: PropTypes.instanceOf(Array).isRequired,
   awayResults: PropTypes.instanceOf(Array).isRequired,
+  checked: PropTypes.bool.isRequired,
+  value: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
 };
 
 export default HomeAndAway;

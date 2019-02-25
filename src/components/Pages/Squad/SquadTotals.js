@@ -40,7 +40,7 @@ const SquadTotals = props => {
 
   return (
     <BoxContainer>
-      <Paper style={{ padding: '10px' }}>
+      <Paper style={{ padding: '10px', background: '#333' }}>
         <StatsAvatar itemsToMap={listItems} />
         <hr />
         <BoxLinks link="/players/addplayer" />

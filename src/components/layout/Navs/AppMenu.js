@@ -16,11 +16,9 @@ const styles = theme => ({
   menuItem: {
     '&:focus': {
       backgroundColor: theme.palette.primary.main,
-      '& $primary, & $icon': { color: theme.palette.common.white },
+      color: theme.palette.common.white,
     },
   },
-  primary: {},
-  icon: {},
 });
 
 // Component
@@ -46,6 +44,7 @@ class AppMenu extends React.Component {
       createData('home', 'Home', '/'),
       createData('people', 'Squad', '/players'),
       createData('play_circle_filled', 'Results', '/results'),
+      createData('bar_chart', 'Stats', '/stats'),
       createData('help_outline', 'About', '/about'),
     ];
 
@@ -67,21 +66,16 @@ class AppMenu extends React.Component {
           anchorEl={anchorEl}
           open={Boolean(anchorEl)}
           onClick={this.handleClose}
-          className={classes.menu}
           disableAutoFocusItem
         >
           {listItems.map(item => (
             <div key={item.id}>
               <NavLink to={item.link} style={{ textDecoration: 'none' }}>
                 <MenuItem className={classes.menuItem}>
-                  <ListItemIcon className={classes.icon}>
+                  <ListItemIcon>
                     <Icon>{item.icon}</Icon>
                   </ListItemIcon>
-                  <ListItemText
-                    classes={{ primary: classes.primary }}
-                    variant="inset"
-                    primary={item.text}
-                  />
+                  <ListItemText variant="inset" primary={item.text} />
                 </MenuItem>
               </NavLink>
             </div>
@@ -92,14 +86,10 @@ class AppMenu extends React.Component {
               <Divider />
               <NavLink to="/settings" style={{ textDecoration: 'none' }}>
                 <MenuItem className={classes.menuItem}>
-                  <ListItemIcon className={classes.icon}>
+                  <ListItemIcon>
                     <Icon>settings</Icon>
                   </ListItemIcon>
-                  <ListItemText
-                    classes={{ primary: classes.primary }}
-                    variant="inset"
-                    primary="Settings"
-                  />
+                  <ListItemText variant="inset" primary="Settings" />
                 </MenuItem>
               </NavLink>
             </div>

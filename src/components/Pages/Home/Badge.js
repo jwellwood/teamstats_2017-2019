@@ -4,12 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Logo from '../../../assets/images/logoBig.jpg';
 
-const styles = theme => ({
-  image: {
-    // margin: theme.spacing.unit,
-    padding: '20px',
-  },
-});
+const styles = () => ({ image: { padding: '20px' } });
 
 const Badge = props => {
   const { classes } = props;

@@ -41,7 +41,9 @@ const Graph = props => {
                   alignContent="center"
                   justify="space-between"
                 >
-                  <div>{item.title}</div>
+                  <div style={{ fontSize: '12px', fontWeight: 'bold', textTransform: 'uppercase' }}>
+                    {item.title}
+                  </div>
                   <div>
                     {item.value}
                     <span style={{ color: '#ccc', fontSize: '9px' }}>%</span>

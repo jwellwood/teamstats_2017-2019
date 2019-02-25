@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // Components
-import TopStatItem from '../../../../layout/Stats/TopStatItem';
+import StatBox from '../../../../layout/Stats/StatBox';
 import Disclaimer from '../../../../layout/Warnings/Disclaimer';
 // Helpers
 import {
-  getMostAppsPlayer,
   getMostGoalsPlayer,
   getMostAssistsPlayer,
   getMostMvpPlayer,
@@ -16,43 +15,41 @@ import {
 const Leaderboard = props => {
   const { players } = props;
 
-  const mostApps = (
-    <TopStatItem
-      title="Most Apps"
-      data={getMostAppsPlayer(players).player}
-      value={getMostAppsPlayer(players).value}
-    />
-  );
   const mostGoals = (
-    <TopStatItem
-      title="Most Goals"
+    <StatBox
+      type="players"
+      title="Top Scorer"
       data={getMostGoalsPlayer(players).player}
       value={getMostGoalsPlayer(players).value}
     />
   );
   const mostAssists = (
-    <TopStatItem
+    <StatBox
+      type="players"
       title="Most Assists"
       data={getMostAssistsPlayer(players).player}
       value={getMostAssistsPlayer(players).value}
     />
   );
   const mostMVP = (
-    <TopStatItem
+    <StatBox
+      type="players"
       title="Most MVP"
       data={getMostMvpPlayer(players).player}
       value={getMostMvpPlayer(players).value}
     />
   );
   const bestGpg = (
-    <TopStatItem
+    <StatBox
+      type="players"
       title="Best Goals per Game*"
       data={getBestGoalsPerGame(players).player}
       value={getBestGoalsPerGame(players).value}
     />
   );
   const bestApg = (
-    <TopStatItem
+    <StatBox
+      type="players"
       title="Best Assists per Game*"
       data={getBestAssistsPerGame(players).player}
       value={getBestAssistsPerGame(players).value}
@@ -66,7 +63,6 @@ const Leaderboard = props => {
   };
 
   const leaderData = [
-    createData(mostApps),
     createData(mostGoals),
     createData(mostAssists),
     createData(mostMVP),

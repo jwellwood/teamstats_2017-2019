@@ -10,7 +10,7 @@ const styles = () => ({
     margin: '5px 0px',
     background: '#ddd',
     padding: '3px 10px',
-    fontSize: '20px',
+    fontSize: '18px',
   },
 });
 

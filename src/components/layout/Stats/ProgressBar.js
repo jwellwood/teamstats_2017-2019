@@ -9,8 +9,9 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
 const styles = () => ({
-  root: { padding: '8px 16px', margin: '0 auto' },
+  root: { margin: '0 auto' },
   total: { fontWeight: 'bold', color: '#58D68D' },
+  target: { fontSize: '12px', fontWeight: 'bold' },
   progress: { padding: '5px' },
   avatar: { margin: '10px' },
   percentage: { padding: '3px', fontSize: '12px', background: '#222' },
@@ -23,10 +24,12 @@ const ProgressBar = props => {
       <Grid container direction="row" justify="space-between" alignItems="center">
         <Grid item xs={9}>
           <Grid container direction="row" justify="space-between" alignContent="center">
-            <Typography variant="body2" style={{ textTransform: 'uppercase' }}>
+            <Typography
+              style={{ textTransform: 'uppercase', fontWeight: 'bold', fontSize: '12px' }}
+            >
               {title}
             </Typography>
-            <Typography>
+            <Typography className={classes.target}>
               <span className={classes.total}>{total}</span>/ {target}
             </Typography>
           </Grid>

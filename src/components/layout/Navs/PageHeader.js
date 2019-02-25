@@ -18,7 +18,7 @@ const PageHeader = props => {
   const { classes, title, link } = props;
   return (
     <Grid container direction="row" justify="space-between" alignItems="center">
-      <h2 className={classes.root}>{title}</h2>
+      <h3 className={classes.root}>{title}</h3>
       <IconButton
         component={Link}
         to={link}

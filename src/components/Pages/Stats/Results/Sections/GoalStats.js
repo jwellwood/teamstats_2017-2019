@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // Components
 import SwitchButton from '../../../../layout/ui/SwitchButton';
-import StatsList from './StatsList';
 // functions
 import {
   getMostGoalsScored,
@@ -13,47 +12,54 @@ import {
   getBiggestWinningMargin,
   getBiggestLosingMargin,
 } from '../../../../../functions/Results/functions';
+import StatBox from '../../../../layout/Stats/StatBox';
 
 const GoalStats = props => {
   const { results, checked, handleChange, value } = props;
 
   const mostGoalsMatch = (
-    <StatsList
+    <StatBox
+      type="results"
       title="Most goals"
       data={getMostGoalsScored(results).match}
       value={getMostGoalsScored(results).value}
     />
   );
   const fewestGoalsMatch = (
-    <StatsList
+    <StatBox
+      type="results"
       title="Fewest goals"
       data={getFewestGoalsScored(results).match}
       value={getFewestGoalsScored(results).value}
     />
   );
   const biggestWin = (
-    <StatsList
+    <StatBox
+      type="results"
       title="Biggest win"
       data={getBiggestWinningMargin(results).match}
       value={getBiggestWinningMargin(results).value}
     />
   );
   const mostConcededMatch = (
-    <StatsList
+    <StatBox
+      type="results"
       title="Most conceded"
       data={getMostGoalsConceded(results).match}
       value={getMostGoalsConceded(results).value}
     />
   );
   const fewestConcededMatch = (
-    <StatsList
+    <StatBox
+      type="results"
       title="Fewest conceded"
       data={getFewestGoalsConceded(results).match}
       value={getFewestGoalsConceded(results).value}
     />
   );
   const cleanSheets = (
-    <StatsList
+    <StatBox
+      type="results"
       title="Clean sheets"
       data={getCleanSheets(results)}
       value={getCleanSheets(results).length}
@@ -61,7 +67,8 @@ const GoalStats = props => {
   );
 
   const biggestLoss = (
-    <StatsList
+    <StatBox
+      type="results"
       title="Heaviest defeat"
       data={getBiggestLosingMargin(results).match}
       value={getBiggestLosingMargin(results).value}

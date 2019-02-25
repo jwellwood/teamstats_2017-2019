@@ -56,6 +56,7 @@ const Comparison = props => {
             textTransform: 'uppercase',
             fontWeight: 'bold',
             textAlign: 'left',
+            fontSize: '12px',
           },
         })}
         getTdProps={() => ({

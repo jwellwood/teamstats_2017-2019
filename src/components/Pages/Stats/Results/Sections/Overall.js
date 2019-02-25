@@ -65,7 +65,7 @@ const Overall = props => {
                 <Typography variant="subtitle1" style={{ opacity: '0.5' }}>
                   {item.header}
                 </Typography>
-                <Typography variant="caption" style={{ fontWeight: 'bold', color: item.color }}>
+                <Typography style={{ fontWeight: 'bold', color: item.color, fontSize: '12px' }}>
                   {item.data}
                 </Typography>
               </Grid>
@@ -89,6 +89,9 @@ const Overall = props => {
 Overall.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   matchTotals: PropTypes.shape({}).isRequired,
+  checked: PropTypes.bool.isRequired,
+  value: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(Overall);

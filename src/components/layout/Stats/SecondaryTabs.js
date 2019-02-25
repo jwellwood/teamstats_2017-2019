@@ -13,7 +13,6 @@ const styles = () => ({
     color: 'white',
   },
   tabs: { margin: 'auto', color: '#eee', height: 15 },
-  // labelContainer: { height: '15px', fontSize: '13px' },
 });
 
 class SecondaryTabs extends Component {
@@ -57,6 +56,10 @@ class SecondaryTabs extends Component {
   }
 }
 
-SecondaryTabs.propTypes = { children: PropTypes.node.isRequired };
+SecondaryTabs.propTypes = {
+  classes: PropTypes.shape({}).isRequired,
+  children: PropTypes.node.isRequired,
+  tabTitles: PropTypes.instanceOf(Array).isRequired,
+};
 
 export default withStyles(styles)(SecondaryTabs);

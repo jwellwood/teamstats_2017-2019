@@ -64,6 +64,7 @@ class EditTeam extends Component {
 
   render() {
     const { classes, team } = this.props;
+    const { defaultImg } = this.state;
     const textInputProps = { minLength: 2 };
     const numberInputProps = { min: 0, max: 100 };
     if (team) {
@@ -77,7 +78,7 @@ class EditTeam extends Component {
                 <FormControl className={classes.formControl}>
                   <FileUpload
                     dir="team"
-                    defaultImage={this.state.defaultImg}
+                    defaultImage={defaultImg}
                     filename={filename => this.storeFilename(filename)}
                   />
                 </FormControl>
