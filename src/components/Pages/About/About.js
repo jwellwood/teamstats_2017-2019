@@ -23,6 +23,28 @@ const styles = theme => ({
   },
 });
 
+// Data to map
+let id = 0;
+function createData(title, text) {
+  id += 1;
+  return { id, title, text };
+}
+
+const listItemsMain = [
+  createData('RESULTS', 'Keep up to date with the latest results'),
+  createData('SQUAD', 'Check progress against set targets'),
+  createData('STATS', 'Track the player and team stats throughout the season'),
+];
+
+const listItemsAdvanced = [
+  createData('MANAGE', 'Add, edit or delete matches or players'),
+  createData('SET TARGETS', "Set a player's appearance, goal, and assist targets for the season"),
+  createData(
+    'REGISTER USERS',
+    'Allow other users to create accounts. To do this go to settings and click allow registration',
+  ),
+];
+
 const About = props => {
   const { classes } = props;
   return (
@@ -34,27 +56,14 @@ const About = props => {
             Main features
           </Typography>
           <List dense>
-            <ListItem>
-              <ListItemIcon>
-                <i className="material-icons">done_outline</i>
-              </ListItemIcon>
-              <ListItemText primary="RESULTS" secondary="Keep up to date with the latest results" />
-            </ListItem>
-            <ListItem>
-              <ListItemIcon>
-                <i className="material-icons">done_outline</i>
-              </ListItemIcon>
-              <ListItemText primary="SQUAD" secondary="Track individual and team stats" />
-            </ListItem>
-            <ListItem>
-              <ListItemIcon>
-                <i className="material-icons">done_outline</i>
-              </ListItemIcon>
-              <ListItemText
-                primary="ACCOUNTS"
-                secondary="Check how much money each team member owes"
-              />
-            </ListItem>
+            {listItemsMain.map(item => (
+              <ListItem>
+                <ListItemIcon>
+                  <i className="material-icons">done_outline</i>
+                </ListItemIcon>
+                <ListItemText primary={item.title} secondary={item.text} />
+              </ListItem>
+            ))}
           </List>
 
           <hr />
@@ -65,30 +74,14 @@ const About = props => {
             (for registered users)
           </Typography>
           <List dense>
-            <ListItem>
-              <ListItemIcon>
-                <StarIcon />
-              </ListItemIcon>
-              <ListItemText primary="MANAGE" secondary="Add, edit or delete matches or players" />
-            </ListItem>
-            <ListItem>
-              <ListItemIcon>
-                <StarIcon />
-              </ListItemIcon>
-              <ListItemText
-                primary="SET TARGETS"
-                secondary="Set a player's appearance, goal, and assist targets for the season"
-              />
-            </ListItem>
-            <ListItem>
-              <ListItemIcon>
-                <StarIcon />
-              </ListItemIcon>
-              <ListItemText
-                primary="REGISTER USERS"
-                secondary="Allow other users to create accounts. To do this go to settings and click allow registration"
-              />
-            </ListItem>
+            {listItemsAdvanced.map(item => (
+              <ListItem>
+                <ListItemIcon>
+                  <StarIcon />
+                </ListItemIcon>
+                <ListItemText primary={item.title} secondary={item.text} />
+              </ListItem>
+            ))}
           </List>
 
           <hr />
@@ -104,7 +97,7 @@ const About = props => {
             </a>
           </Typography>
           <Typography variant="caption" align="center">
-            Version: 2.2.1
+            Version: 2.2.2
           </Typography>
         </div>
       </BoxContainer>
