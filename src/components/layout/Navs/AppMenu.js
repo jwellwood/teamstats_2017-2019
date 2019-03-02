@@ -40,6 +40,7 @@ class AppMenu extends React.Component {
       id += 1;
       return { id, icon, text, link };
     };
+
     const listItems = [
       createData('home', 'Home', '/'),
       createData('people', 'Squad', '/players'),

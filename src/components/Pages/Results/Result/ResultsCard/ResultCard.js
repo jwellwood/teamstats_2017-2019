@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 // MUI
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -10,10 +11,15 @@ import ScoreBox from './ScoreBox';
 import ResultDate from './ResultDate';
 import BoxContainer from '../../../../hoc/BoxContainer';
 // Helpers
-import { colors, matchTypes } from '../../../../../assets/styles/colors';
+import { resultColor, matchTypeColor } from '../../../../../assets/styles/colors';
 import Disclaimer from '../../../../layout/Warnings/Disclaimer';
 
 const styles = theme => ({
+  main: {
+    textDecoration: 'none',
+    borderLeft: '3px solid',
+    cursor: 'pointer',
+  },
   dateBar: {
     fontSize: '12px',
     padding: '0px 0px 0px 5px ',
@@ -50,47 +56,30 @@ const ResultCard = props => {
   const { matchType, teamScore, opponentScore } = result;
 
   let teamResult = null;
-  let resultColor = null;
-
   if (+teamScore > +opponentScore) {
     teamResult = 'W';
-    resultColor = colors.win;
   } else if (+teamScore === +opponentScore) {
     teamResult = 'D';
-    resultColor = colors.draw;
   } else {
     teamResult = 'L';
-    resultColor = colors.lose;
   }
 
-  let matchTypeColor = matchTypes.league;
-  switch (matchType) {
-    case 'League':
-      matchTypeColor = matchTypes.league;
-      break;
-    case 'Cup':
-      matchTypeColor = matchTypes.cup;
-      break;
-    case 'Friendly':
-      matchTypeColor = matchTypes.friendly;
-      break;
-    case 'Tournament':
-      matchTypeColor = matchTypes.tournament;
-      break;
-    default:
-      return matchTypeColor;
-  }
   return (
     <BoxContainer>
       <Paper
         elevation={20}
-        style={{
-          borderLeft: '3px solid',
-          borderColor: resultColor,
-          cursor: 'pointer',
-        }}
+        className={classes.main}
+        style={{ textDecoration: 'none', borderColor: resultColor(teamResult) }}
       >
-        <Grid container direction="row" alignItems="center" justify="space-between">
+        <Grid
+          container
+          direction="row"
+          alignItems="center"
+          justify="space-between"
+          component={Link}
+          to={`results/${result.id}`}
+          style={{ textDecoration: 'none' }}
+        >
           <Grid
             container
             direction="row"
@@ -98,13 +87,13 @@ const ResultCard = props => {
             justify="space-between"
             className={classes.dateBar}
           >
-            <Avatar className={classes.avatar} style={{ background: resultColor }}>
+            <Avatar className={classes.avatar} style={{ background: resultColor(teamResult) }}>
               {teamResult}
             </Avatar>
             <ResultDate result={result} />
           </Grid>
           <Grid container className={classes.matchTypeBar}>
-            <div className={classes.matchType} style={{ color: matchTypeColor }}>
+            <div className={classes.matchType} style={{ color: matchTypeColor(matchType) }}>
               {result.matchType}
             </div>
           </Grid>

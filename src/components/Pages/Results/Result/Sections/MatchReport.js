@@ -3,18 +3,29 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import StatsHeader from '../../../../layout/Stats/StatsHeader';
+import Container from '../../../../hoc/Container';
 
-const styles = () => ({ text: { padding: '10px', fontFamily: 'Varela Round', fontSize: '13px', margin: '16px' } });
+const styles = () => ({
+  text: {
+    textAlign: 'left',
+    padding: '5px',
+    fontFamily: 'Varela Round',
+    fontSize: '13px',
+    margin: '10px',
+  },
+});
 
 const MatchReport = props => {
   const { classes, result } = props;
   return (
-    <div>
+    <Container>
       <StatsHeader title="Match Notes" />
-      <Paper elevation={5} className={classes.text}>
-        {result.matchNotes ? result.matchNotes : 'There are no notes for this match'}
+      <Paper style={{ background: '#333', padding: '1px' }}>
+        <Paper elevation={5} className={classes.text} square>
+          {result.matchNotes ? result.matchNotes : 'There are no notes for this match'}
+        </Paper>
       </Paper>
-    </div>
+    </Container>
   );
 };
 

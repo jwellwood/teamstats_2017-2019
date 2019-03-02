@@ -130,3 +130,18 @@ export const matchNotes = {
   touched: false,
   validationMessage: '',
 };
+
+export const matchPlayers = {
+  element: 'emptyArray',
+  value: [],
+  label: false,
+  labelText: 'Match Players',
+  config: {
+    name: 'matchPlayers_input',
+    type: 'array',
+  },
+  validation: { required: false },
+  valid: true,
+  touched: false,
+  validationMessage: '',
+};

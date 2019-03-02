@@ -13,19 +13,20 @@ import EditImage from './components/Pages/Squad/EditPlayer/EditImage';
 // Results
 import Results from './containers/Results';
 import AddResultForm from './components/Pages/Forms/Results/AddResultForm';
-import ResultUpdater from './containers/ResultUpdater';
+import ResultDetails from './containers/ResultDetails';
 import EditResult from './components/Pages/Forms/Results/EditResult';
 // Team
 import TeamHome from './containers/TeamHome';
 import EditTeam from './components/Pages/Home/EditTeam/EditTeam';
 import AddTrophy from './components/Pages/Home/Trophies/AddTrophy';
+import StatsContainer from './containers/StatsContainer';
 // Other
 import NavBar from './containers/NavBar';
 import Settings from './containers/Settings';
 import About from './components/Pages/About/About';
 import NotFound from './components/layout/Warnings/NotFound';
 import './App.css';
-import StatsContainer from './containers/StatsContainer';
+import AddMatchPlayers from './components/Pages/Forms/Results/AddMatchPlayers';
 
 const Routes = () => (
   <div className="App">
@@ -47,8 +48,9 @@ const Routes = () => (
         <Route exact path="/players/:id" component={UserIsAuthenticated(PlayerUpdater)} />
         <Route exact path="/results" component={Results} />
         <Route exact path="/results/addResult" component={UserIsAuthenticated(AddResultForm)} />
+        <Route exact path="/results/:id" component={ResultDetails} />
+        <Route exact path="/results/:id/add_details" component={UserIsAuthenticated(AddMatchPlayers)} />
         <Route exact path="/results/:id/edit" component={UserIsAuthenticated(EditResult)} />
-        <Route exact path="/results/:id" component={ResultUpdater} />
         <Route path="*" component={NotFound} />
       </Switch>
     </div>

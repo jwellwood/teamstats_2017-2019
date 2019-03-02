@@ -45,3 +45,18 @@ export const positionColor = position => {
       return '#333';
   }
 };
+
+export const matchTypeColor = matchType => {
+  switch (matchType) {
+    case 'League':
+      return '#ddd';
+    case 'Cup':
+      return '#F4D03F';
+    case 'Tournament':
+      return '#BB8FCE';
+    case 'Friendly':
+      return '#85C1E9';
+    default:
+      return '#ddd';
+  }
+};

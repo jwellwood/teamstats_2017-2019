@@ -27,7 +27,7 @@ import IndividualStats from '../components/Pages/Squad/Player/Sections/Individua
 
 const styles = {
   appBar: { position: 'sticky' },
-  flex: { flex: 1 },
+  flex: { flex: 1, fontFamily: 'Righteous' },
 };
 
 class PlayerDetails extends React.Component {

@@ -16,6 +16,7 @@ const styles = () => ({
     textAlign: 'center',
     fontSize: '15px',
     alignItems: 'center',
+    color: '#222',
   },
   teamNames: {
     display: 'inline-block',

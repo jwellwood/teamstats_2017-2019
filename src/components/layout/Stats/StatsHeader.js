@@ -6,11 +6,15 @@ import Typography from '@material-ui/core/Typography';
 
 const styles = () => ({
   heading: {
-    fontFamily: 'Anton',
+    fontFamily: 'Maven Pro',
+    textTransform: 'uppercase',
+    fontWeight: 'bold',
+    textAlign: 'left',
     margin: '5px 0px',
     background: '#ddd',
     padding: '3px 10px',
-    fontSize: '18px',
+    fontSize: '15px',
+    borderRadius: '2px 2px 12px 2px',
   },
 });
 

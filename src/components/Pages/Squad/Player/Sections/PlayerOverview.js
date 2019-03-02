@@ -8,12 +8,11 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import Typography from '@material-ui/core/Typography';
 // Assets
-
+import { positionColor } from '../../../../../assets/styles/colors';
 // Components
 import StatsHeader from '../../../../layout/Stats/StatsHeader';
-import { positions } from '../../../../../assets/styles/colors';
+import ValueBox from '../../../../layout/Stats/ValueBox';
 import BoxContainer from '../../../../hoc/BoxContainer';
 
 const styles = theme => ({
@@ -35,24 +34,6 @@ const PlayerOverview = props => {
     playedPercentage = 0;
   }
 
-  let color = '#fff';
-  switch (player.position) {
-    case 'GK':
-      color = positions.GK;
-      break;
-    case 'DF':
-      color = positions.DF;
-      break;
-    case 'MF':
-      color = positions.MF;
-      break;
-    case 'FW':
-      color = positions.FW;
-      break;
-    default:
-      return color;
-  }
-
   let id = 0;
   const createData = (title, value, textColor) => {
     id += 1;
@@ -61,7 +42,7 @@ const PlayerOverview = props => {
 
   const listItems = [
     createData('Number', player.number, ''),
-    createData('Position', player.position, color),
+    createData('Position', player.position, positionColor(player.position)),
     createData('Played', `${playedPercentage.toFixed(1)}%`, ''),
   ];
 
@@ -81,9 +62,7 @@ const PlayerOverview = props => {
                 />
               </ListItem>
               <ListItemSecondaryAction>
-                <Typography className={classes.number} style={{ color: item.textColor }}>
-                  {item.value}
-                </Typography>
+                <ValueBox textColor={item.textColor}>{item.value}</ValueBox>
               </ListItemSecondaryAction>
             </List>
           ))}

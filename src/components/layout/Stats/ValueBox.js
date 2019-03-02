@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import { colors } from '../../../assets/styles/colors';
 
 const ValueBox = props => {
-  const { children, color } = props;
+  const { children, color, textColor } = props;
   return (
     <Paper
       style={{
@@ -19,7 +19,7 @@ const ValueBox = props => {
         style={{
           textAlign: 'right',
           textTransform: 'uppercase',
-          color: '#fff',
+          color: textColor || '#fff',
           fontSize: '12px',
           fontWeight: 'bold',
         }}
@@ -30,6 +30,10 @@ const ValueBox = props => {
   );
 };
 
-ValueBox.propTypes = { children: PropTypes.node.isRequired, color: PropTypes.string };
-ValueBox.defaultProps = { color: '' };
+ValueBox.propTypes = {
+  children: PropTypes.node.isRequired,
+  color: PropTypes.string,
+  textColor: PropTypes.string,
+};
+ValueBox.defaultProps = { color: '', textColor: '' };
 export default ValueBox;

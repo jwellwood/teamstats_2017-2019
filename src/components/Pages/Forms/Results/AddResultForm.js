@@ -17,6 +17,7 @@ import {
   opponentName,
   opponentScore,
   matchNotes,
+  matchPlayers,
 } from './index';
 
 class AddResultForm extends Component {
@@ -31,6 +32,7 @@ class AddResultForm extends Component {
       opponentName,
       opponentScore,
       matchNotes,
+      matchPlayers,
     },
     submissionError: false,
   };

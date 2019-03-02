@@ -57,7 +57,7 @@ const About = props => {
           </Typography>
           <List dense>
             {listItemsMain.map(item => (
-              <ListItem>
+              <ListItem key={item.id}>
                 <ListItemIcon>
                   <i className="material-icons">done_outline</i>
                 </ListItemIcon>
@@ -75,7 +75,7 @@ const About = props => {
           </Typography>
           <List dense>
             {listItemsAdvanced.map(item => (
-              <ListItem>
+              <ListItem key={item.id}>
                 <ListItemIcon>
                   <StarIcon />
                 </ListItemIcon>
@@ -97,7 +97,7 @@ const About = props => {
             </a>
           </Typography>
           <Typography variant="caption" align="center">
-            Version: 2.2.2
+            Version: 2.2.3
           </Typography>
         </div>
       </BoxContainer>

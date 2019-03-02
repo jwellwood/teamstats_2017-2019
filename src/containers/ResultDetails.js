@@ -4,27 +4,25 @@ import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
-import DetailsHeader from '../components/Pages/Results/UpdateResults/DetailsHeader';
-import Spinner from '../components/layout/Warnings/Spinner';
+import ResultPage from '../components/Pages/Results/Result/ResultPage';
 
-const ResultUpdater = props => {
-  const { result } = props;
-  if (result) {
-    return <DetailsHeader result={result} />;
-  }
-  return <Spinner />;
+const ResultDetails = props => {
+  const { result, team } = props;
+  return result && team ? <ResultPage result={result} teamName={team[0].name} /> : null;
 };
 
-ResultUpdater.propTypes = { result: PropTypes.shape({}) };
-ResultUpdater.defaultProps = { result: {} };
+ResultDetails.propTypes = { result: PropTypes.shape({}), team: PropTypes.instanceOf(Array) };
+ResultDetails.defaultProps = { result: null, team: null };
 
 export default compose(
   firestoreConnect(props => [
     { collection: 'results', storeAs: 'result', doc: props.match.params.id },
+    { collection: 'team' },
   ]),
   // eslint-disable-next-line no-unused-vars
   connect((state, props) => ({
     result: state.firestore.ordered.result && state.firestore.ordered.result[0],
     auth: state.firebase.auth,
+    team: state.firestore.ordered.team,
   })),
-)(ResultUpdater);
+)(ResultDetails);
