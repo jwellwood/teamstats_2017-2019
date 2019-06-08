@@ -7,7 +7,7 @@ import Paper from '@material-ui/core/Paper';
 // Components
 import PlayerImage from './PlayerImage';
 import PlayerStats from './PlayerStats';
-import BoxContainer from '../../../../hoc/BoxContainer';
+import BoxContainer from '../../../../layout/hoc/BoxContainer';
 
 const PlayerCard = props => {
   const { player, image } = props;

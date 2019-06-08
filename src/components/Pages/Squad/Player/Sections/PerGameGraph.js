@@ -5,7 +5,7 @@ import { HorizontalBar } from 'react-chartjs-2';
 import StatsHeader from '../../../../layout/Stats/StatsHeader';
 // Helpers
 import { colors } from '../../../../../assets/styles/colors';
-import BoxContainer from '../../../../hoc/BoxContainer';
+import BoxContainer from '../../../../layout/hoc/BoxContainer';
 
 const PerGameGraph = props => {
   const { player } = props;

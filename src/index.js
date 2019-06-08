@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
 import orange from '@material-ui/core/colors/orange';
-import store from './store';
+import store from './redux/store';
 import Routes from './routes';
 import registerServiceWorker from './registerServiceWorker';
 

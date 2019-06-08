@@ -8,7 +8,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 // Components
 import StatsHeader from '../../../../layout/Stats/StatsHeader';
-import BoxContainer from '../../../../hoc/BoxContainer';
+import BoxContainer from '../../../../layout/hoc/BoxContainer';
 import ValueBox from '../../../../layout/Stats/ValueBox';
 // helpers
 import { colors } from '../../../../../assets/styles/colors';

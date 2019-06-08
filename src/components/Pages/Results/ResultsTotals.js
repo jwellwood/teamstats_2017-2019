@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 import StatsAvatar from '../../layout/Stats/StatsAvatar';
-import BoxContainer from '../../hoc/BoxContainer';
+import BoxContainer from '../../layout/hoc/BoxContainer';
 import { colors } from '../../../assets/styles/colors';
 import BoxLinks from '../../layout/Navs/BoxLinks';
 

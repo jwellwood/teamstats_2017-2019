@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // Components
 import StatsHeader from '../../../../layout/Stats/StatsHeader';
 import StatsAvatar from '../../../../layout/Stats/StatsAvatar';
-import BoxContainer from '../../../../hoc/BoxContainer';
+import BoxContainer from '../../../../layout/hoc/BoxContainer';
 
 // Component
 const OtherPlayerStats = props => {

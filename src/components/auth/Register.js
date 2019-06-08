@@ -6,7 +6,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firebaseConnect } from 'react-redux-firebase';
 // Actions
-import { notifyUser } from '../../actions/notifyActions';
+import { notifyUser } from '../../redux/actions/notifyActions';
 // Components
 import AuthForm from './AuthForm';
 

@@ -5,7 +5,7 @@ import Leaderboard from './Sections/Leaderboard';
 import Progress from './Sections/Progress';
 import OtherStats from './Sections/OtherStats';
 import Comparison from './Sections/Comparison';
-import BoxContainer from '../../../hoc/BoxContainer';
+import BoxContainer from '../../../layout/hoc/BoxContainer';
 import SecondaryTabs from '../../../layout/Stats/SecondaryTabs';
 
 const PlayerStats = props => {

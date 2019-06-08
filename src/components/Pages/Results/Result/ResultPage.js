@@ -5,7 +5,7 @@ import MatchDetails from './Sections/MatchDetails';
 import MatchStats from './Sections/MatchStats';
 import MatchReport from './Sections/MatchReport';
 import PageHeader from '../../../layout/Navs/PageHeader';
-import BoxContainer from '../../../hoc/BoxContainer';
+import BoxContainer from '../../../layout/hoc/BoxContainer';
 
 const ResultPage = props => {
   const { result, teamName } = props;

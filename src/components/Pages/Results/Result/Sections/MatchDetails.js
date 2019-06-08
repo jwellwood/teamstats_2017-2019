@@ -16,7 +16,7 @@ import ScoreBox from '../ResultsCard/ScoreBox';
 // Helpers
 import { resultColor, matchTypeColor } from '../../../../../assets/styles/colors';
 import formatDate from '../../../../../helpers/date';
-import Container from '../../../../hoc/Container';
+import Container from '../../../../layout/hoc/Container';
 
 const styles = theme => ({
   details: { padding: '1px 10px' },

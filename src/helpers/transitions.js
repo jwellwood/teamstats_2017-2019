@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Slide from '@material-ui/core/Slide';
 import Typography from '@material-ui/core/Typography';
 
@@ -29,3 +30,10 @@ export const TabContainer = ({ children, dir }) => (
     {children}
   </Typography>
 );
+
+TabContainer.propTypes = {
+  children: PropTypes.node.isRequired,
+  dir: PropTypes.string,
+};
+
+TabContainer.defaultProps = { dir: '' };

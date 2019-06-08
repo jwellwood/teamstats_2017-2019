@@ -6,8 +6,8 @@ import IconButton from '@material-ui/core/IconButton';
 import Icon from '@material-ui/core/Icon';
 import Grid from '@material-ui/core/Grid';
 import { Typography } from '@material-ui/core';
-import Container from '../../../hoc/Container';
-import BoxContainer from '../../../hoc/BoxContainer';
+import Container from '../../../layout/hoc/Container';
+import BoxContainer from '../../../layout/hoc/BoxContainer';
 
 // Component
 const DetailsHeader = props => {

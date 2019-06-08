@@ -5,35 +5,35 @@ import { UserIsAuthenticated, UserIsNotAuthenticated } from './helpers/auth';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 // Player
-import Players from './containers/Players';
-import AddPlayerForm from './components/Pages/Forms/Squad/AddPlayerForm';
-import PlayerUpdater from './containers/PlayerUpdater';
-import EditPlayer from './components/Pages/Forms/Squad/EditPlayer';
-import EditImage from './components/Pages/Squad/EditPlayer/EditImage';
+import Players from './components/Pages/Squad/Players';
+import AddPlayerForm from './components/Pages/Squad/Forms/AddPlayerForm';
+import PlayerUpdater from './components/Pages/Squad/PlayerUpdater';
+import EditPlayer from './components/Pages/Squad/Forms/EditPlayer';
+import EditImage from './components/Pages/Squad/Forms/EditImage';
 // Results
-import Results from './containers/Results';
-import AddResultForm from './components/Pages/Forms/Results/AddResultForm';
-import ResultDetails from './containers/ResultDetails';
-import EditResult from './components/Pages/Forms/Results/EditResult';
+import Results from './components/Pages/Results/Results';
+import AddResultForm from './components/Pages/Results/Forms/AddResultForm';
+import ResultDetails from './components/Pages/Results/ResultDetails';
+import EditResult from './components/Pages/Results/Forms/EditResult';
 // Team
-import TeamHome from './containers/TeamHome';
+import Home from './components/Pages/Home';
 import EditTeam from './components/Pages/Home/EditTeam/EditTeam';
-import AddTrophy from './components/Pages/Home/Trophies/AddTrophy';
-import StatsContainer from './containers/StatsContainer';
+import AddTrophy from './components/Pages/Home/Details/Trophies/AddTrophy';
+import StatsContainer from './components/Pages/Stats/StatsContainer';
 // Other
-import NavBar from './containers/NavBar';
-import Settings from './containers/Settings';
-import About from './components/Pages/About/About';
+import NavBar from './components/NavBar/NavBar';
+import Settings from './components/Pages/Settings/Settings';
+import About from './components/Pages/About';
 import NotFound from './components/layout/Warnings/NotFound';
-import './App.css';
-import AddMatchPlayers from './components/Pages/Forms/Results/AddMatchPlayers';
+import './assets/styles/App.css';
+import AddMatchPlayers from './components/Pages/Results/Forms/AddMatchPlayers';
 
 const Routes = () => (
   <div className="App">
     <NavBar />
     <div>
       <Switch>
-        <Route exact path="/" component={TeamHome} />
+        <Route exact path="/" component={Home} />
         <Route exact path="/editteam" component={UserIsAuthenticated(EditTeam)} />
         <Route exact path="/addtrophy" component={UserIsAuthenticated(AddTrophy)} />
         <Route exact path="/login" component={UserIsNotAuthenticated(Login)} />
@@ -49,7 +49,11 @@ const Routes = () => (
         <Route exact path="/results" component={Results} />
         <Route exact path="/results/addResult" component={UserIsAuthenticated(AddResultForm)} />
         <Route exact path="/results/:id" component={ResultDetails} />
-        <Route exact path="/results/:id/add_details" component={UserIsAuthenticated(AddMatchPlayers)} />
+        <Route
+          exact
+          path="/results/:id/add_details"
+          component={UserIsAuthenticated(AddMatchPlayers)}
+        />
         <Route exact path="/results/:id/edit" component={UserIsAuthenticated(EditResult)} />
         <Route path="*" component={NotFound} />
       </Switch>

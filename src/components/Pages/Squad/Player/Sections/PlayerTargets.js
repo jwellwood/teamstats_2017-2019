@@ -12,7 +12,7 @@ import StatsHeader from '../../../../layout/Stats/StatsHeader';
 import NumberAvatar from '../../../../layout/Stats/NumberAvatar';
 // Helpers
 import { colors } from '../../../../../assets/styles/colors';
-import BoxContainer from '../../../../hoc/BoxContainer';
+import BoxContainer from '../../../../layout/hoc/BoxContainer';
 
 // Styling
 const styles = () => ({

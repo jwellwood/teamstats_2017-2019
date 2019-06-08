@@ -12,10 +12,10 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
 // Component
-import Container from '../../../hoc/Container';
+import Container from '../../../layout/hoc/Container';
 import Spinner from '../../../layout/Warnings/Spinner';
 import PageHeader from '../../../layout/Navs/PageHeader';
-import FormTitle from '../../Forms/layout/FormTitle';
+import FormTitle from '../../../layout/Forms/FormTitle';
 import FileUpload from '../../../layout/Forms/FileUpload';
 import defaultBadge from '../../../../assets/images/defaultBadge.png';
 

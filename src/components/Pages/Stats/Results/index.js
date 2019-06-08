@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Overall from './Sections/Overall';
 import GoalStats from './Sections/GoalStats';
 import HomeAndAway from './Sections/HomeAndAway';
-import BoxContainer from '../../../hoc/BoxContainer';
+import BoxContainer from '../../../layout/hoc/BoxContainer';
 // functions
 
 import {

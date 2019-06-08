@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 // Components
 import StatsAvatar from '../../layout/Stats/StatsAvatar';
-import BoxContainer from '../../hoc/BoxContainer';
+import BoxContainer from '../../layout/hoc/BoxContainer';
 import BoxLinks from '../../layout/Navs/BoxLinks';
 
 const SquadTotals = props => {

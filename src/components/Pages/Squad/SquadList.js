@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // Components
-import PlayerDetails from '../../../containers/PlayerDetails';
+import PlayerDetails from './PlayerDetails';
 import Spinner from '../../layout/Warnings/Spinner';
 
 const SquadList = props => {

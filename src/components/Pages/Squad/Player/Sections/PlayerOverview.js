@@ -13,7 +13,7 @@ import { positionColor } from '../../../../../assets/styles/colors';
 // Components
 import StatsHeader from '../../../../layout/Stats/StatsHeader';
 import ValueBox from '../../../../layout/Stats/ValueBox';
-import BoxContainer from '../../../../hoc/BoxContainer';
+import BoxContainer from '../../../../layout/hoc/BoxContainer';
 
 const styles = theme => ({
   bigAvatar: {

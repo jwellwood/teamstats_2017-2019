@@ -9,7 +9,7 @@ import Avatar from '@material-ui/core/Avatar';
 // Components
 import ScoreBox from './ScoreBox';
 import ResultDate from './ResultDate';
-import BoxContainer from '../../../../hoc/BoxContainer';
+import BoxContainer from '../../../../layout/hoc/BoxContainer';
 // Helpers
 import { resultColor, matchTypeColor } from '../../../../../assets/styles/colors';
 import Disclaimer from '../../../../layout/Warnings/Disclaimer';

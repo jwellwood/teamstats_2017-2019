@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import StatsHeader from '../../../../layout/Stats/StatsHeader';
-import Container from '../../../../hoc/Container';
+import Container from '../../../../layout/hoc/Container';
 
 const styles = () => ({
   text: {
