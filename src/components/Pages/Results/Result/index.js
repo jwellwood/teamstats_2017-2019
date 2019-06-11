@@ -7,7 +7,7 @@ import MatchReport from './Sections/MatchReport';
 import PageHeader from '../../../layout/Navs/PageHeader';
 import BoxContainer from '../../../layout/hoc/BoxContainer';
 
-const ResultPage = props => {
+const Result = props => {
   const { result, teamName } = props;
   return (
     <BoxContainer>
@@ -19,9 +19,9 @@ const ResultPage = props => {
   );
 };
 
-ResultPage.propTypes = {
+Result.propTypes = {
   result: PropTypes.shape({}).isRequired,
   teamName: PropTypes.string.isRequired,
 };
 
-export default ResultPage;
+export default Result;

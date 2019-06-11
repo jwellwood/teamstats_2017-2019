@@ -1,4 +1,4 @@
-export const columns = [
+const columns = [
   {
     Header: '',
     accessor: 'name',
@@ -7,7 +7,7 @@ export const columns = [
       textAlign: 'left',
       fontSize: '12px',
       textTransform: 'uppercase',
-      background: '#fff',
+      background: '#E5E7E9',
     },
     sortable: false,
     resizable: false,
@@ -29,11 +29,12 @@ export const columns = [
     resizable: false,
   },
   {
-    Header: 'MVP',
+    Header: '',
     accessor: 'mvp',
-    width: 60,
+    width: 30,
     style: { backgroundColor: '#333', color: '#fff', fontWeight: 'bold' },
     sortable: false,
     resizable: false,
   },
 ];
+export default columns;

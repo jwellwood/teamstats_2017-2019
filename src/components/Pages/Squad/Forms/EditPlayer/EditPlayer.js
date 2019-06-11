@@ -16,22 +16,12 @@ import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 // Component
-import Container from '../../../layout/hoc/Container';
-import PageHeader from '../../../layout/Navs/PageHeader';
-import Spinner from '../../../layout/Warnings/Spinner';
-import DeleteConfirm from '../../../layout/Warnings/DeleteConfirm';
-import FormTitle from '../../../layout/Forms/FormTitle';
-
-const styles = () => ({
-  container: {
-    padding: '5px',
-    margin: '10px',
-    background: '#E5E8E8',
-    minWidth: '260px',
-  },
-  formControl: { width: '250px', margin: '10px', textAlign: 'center' },
-  teamAndScore: { width: '250px', margin: '10px auto', textAlign: 'center' },
-});
+import Container from '../../../../layout/hoc/Container';
+import PageHeader from '../../../../layout/Navs/PageHeader';
+import Spinner from '../../../../layout/Warnings/Spinner';
+import DeleteConfirm from '../../../../layout/Warnings/DeleteConfirm';
+import FormTitle from '../../../../layout/Forms/FormTitle';
+import styles from './styles';
 
 class EditPlayer extends Component {
   constructor(props) {

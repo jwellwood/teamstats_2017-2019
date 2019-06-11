@@ -6,46 +6,17 @@ import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 // Assets
 import { positionColor } from '../../../../../assets/styles/colors';
-
-const styles = theme => ({
-  avatar: { margin: '5px' },
-  numAvatar: {
-    width: 22,
-    height: 22,
-    color: '#fafafa',
-    margin: '3px',
-    fontFamily: 'Anton',
-  },
-  name: {
-    margin: '5px',
-    padding: '3px',
-    color: 'white',
-    fontFamily: 'Righteous',
-    background: theme.palette.primary.light,
-    width: '100%',
-  },
-  captain: {
-    position: 'absolute',
-    margin: '5px auto',
-    width: 30,
-    height: 10,
-    borderRadius: '5px',
-    fontFamily: 'Righteous',
-    fontSize: '0.6rem',
-    background: theme.palette.secondary.main,
-    color: '#333',
-  },
-});
+import styles from './styles';
 
 const PlayerImage = props => {
   const { classes, name, number, position, image, captain } = props;
   return (
     <Grid container direction="row" justify="center" alignItems="center">
       <Grid container direction="row" justify="center" alignItems="center">
-        <div className={classes.numAvatar}>{number}</div>
+        <div className={classes.playerNumber}>{number}</div>
 
         <Avatar alt="player image" src={image} className={classes.avatar} />
-        <div className={classes.numAvatar} style={{ color: positionColor(position) }}>
+        <div className={classes.playerNumber} style={{ color: positionColor(position) }}>
           {position}
         </div>
       </Grid>

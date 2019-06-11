@@ -4,35 +4,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
-
-const styles = theme => ({
-  avatar: { margin: '5px' },
-  numAvatar: {
-    width: 19,
-    height: 19,
-    padding: '5px',
-    margin: '3px auto',
-    fontWeight: 'bold',
-    fontSize: 14,
-
-    background: theme.palette.primary.light,
-  },
-  name: {
-    margin: '10px',
-    padding: '3px',
-    color: 'white',
-    fontFamily: 'Righteous',
-    background: theme.palette.primary.light,
-    width: '100%',
-  },
-  statsKey: { fontSize: '10px', color: '#bbb' },
-  extras: {
-    padding: '2px',
-    fontSize: '11px',
-    borderTop: '1px solid #333',
-    marginTop: '3px',
-  },
-});
+import styles from './styles';
 
 const PlayerStats = props => {
   const { classes, player } = props;

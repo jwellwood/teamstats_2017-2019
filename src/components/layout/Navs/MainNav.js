@@ -43,7 +43,7 @@ const MainNav = props => {
         <TopNav text="Register" icon="lock_open" link="/register" />
       ) : null}
       <Toolbar>
-        <Grid container justify="space-around" alignItems="center">
+        <Grid container justify="space-between" alignItems="center">
           <NavLink to="/" style={{ textDecoration: 'none' }}>
             <Avatar alt="Team badge" src={Logo} className={classes.bigAvatar} />
           </NavLink>

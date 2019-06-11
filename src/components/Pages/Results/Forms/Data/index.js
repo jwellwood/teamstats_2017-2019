@@ -132,7 +132,7 @@ export const matchNotes = {
 };
 
 export const matchPlayers = {
-  element: 'emptyArray',
+  element: 'Array',
   value: [],
   label: false,
   labelText: 'Match Players',

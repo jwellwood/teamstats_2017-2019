@@ -229,6 +229,7 @@ EditResult.defaultProps = { result: {} };
 export default compose(
   firestoreConnect(props => [
     { collection: 'results', storeAs: 'result', doc: props.match.params.id },
+    { collection: 'players' },
   ]),
   // eslint-disable-next-line no-unused-vars
   connect(({ firestore: { ordered } }, props) => ({ result: ordered.result && ordered.result[0] })),

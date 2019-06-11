@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
-import ResultPage from './Result/ResultPage';
+import Result from '.';
 
 const ResultDetails = props => {
   const { result, team } = props;
-  return result && team ? <ResultPage result={result} teamName={team[0].name} /> : null;
+  return result && team ? <Result result={result} teamName={team[0].name} /> : null;
 };
 
 ResultDetails.propTypes = { result: PropTypes.shape({}), team: PropTypes.instanceOf(Array) };

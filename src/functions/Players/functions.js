@@ -1,4 +1,5 @@
 import React from 'react';
+
 // get total number of players
 export const getTotalPlayers = array => array.length;
 // players per match

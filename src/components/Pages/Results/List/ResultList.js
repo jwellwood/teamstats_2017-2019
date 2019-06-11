@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // MUI
-import Spinner from '../../layout/Warnings/Spinner';
+import Spinner from '../../../layout/Warnings/Spinner';
 // Components
-import ResultCard from './Result/ResultsCard/ResultCard';
+import ResultCard from '../Result/ResultsCard/ResultCard';
 
 const ResultList = props => {
   const { results, teamName } = props;

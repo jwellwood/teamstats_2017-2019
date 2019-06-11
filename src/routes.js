@@ -5,21 +5,21 @@ import { UserIsAuthenticated, UserIsNotAuthenticated } from './helpers/auth';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 // Player
-import Players from './components/Pages/Squad/Players';
-import AddPlayerForm from './components/Pages/Squad/Forms/AddPlayerForm';
-import PlayerUpdater from './components/Pages/Squad/PlayerUpdater';
-import EditPlayer from './components/Pages/Squad/Forms/EditPlayer';
-import EditImage from './components/Pages/Squad/Forms/EditImage';
+import Players from './components/Pages/Squad';
+import AddPlayerForm from './components/Pages/Squad/Forms/AddPlayer/AddPlayerForm';
+import PlayerUpdater from './components/Pages/Squad/Forms/UpdatePlayer/PlayerUpdater';
+import EditPlayer from './components/Pages/Squad/Forms/EditPlayer/EditPlayer';
+import EditImage from './components/Pages/Squad/Forms/EditPlayer/EditImage';
 // Results
-import Results from './components/Pages/Results/Results';
+import Results from './components/Pages/Results';
 import AddResultForm from './components/Pages/Results/Forms/AddResultForm';
-import ResultDetails from './components/Pages/Results/ResultDetails';
+import ResultDetails from './components/Pages/Results/Result/ResultDetails';
 import EditResult from './components/Pages/Results/Forms/EditResult';
 // Team
 import Home from './components/Pages/Home';
 import EditTeam from './components/Pages/Home/EditTeam/EditTeam';
 import AddTrophy from './components/Pages/Home/Details/Trophies/AddTrophy';
-import StatsContainer from './components/Pages/Stats/StatsContainer';
+import StatsContainer from './components/Pages/Stats';
 // Other
 import NavBar from './components/NavBar/NavBar';
 import Settings from './components/Pages/Settings/Settings';

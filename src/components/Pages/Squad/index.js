@@ -7,8 +7,8 @@ import { firestoreConnect } from 'react-redux-firebase';
 // Components
 import Container from '../../layout/hoc/Container';
 import PageHeader from '../../layout/Navs/PageHeader';
-import SquadList from './SquadList';
-import SquadTotals from './SquadTotals';
+import SquadList from './List/SquadList';
+import SquadTotals from './Totals/SquadTotals';
 
 const Players = props => {
   const { players, results } = props;

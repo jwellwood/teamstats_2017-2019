@@ -3,16 +3,15 @@ import PropTypes from 'prop-types';
 // MUI
 import Paper from '@material-ui/core/Paper';
 // Components
-import StatsAvatar from '../../layout/Stats/StatsAvatar';
-import BoxContainer from '../../layout/hoc/BoxContainer';
-import BoxLinks from '../../layout/Navs/BoxLinks';
+import StatsAvatar from '../../../layout/Stats/StatsAvatar';
+import BoxContainer from '../../../layout/hoc/BoxContainer';
+import BoxLinks from '../../../layout/Navs/BoxLinks';
 
 const SquadTotals = props => {
   const { players } = props;
 
   const totalPlayers = players.length;
   const totalTeamGoals = players.reduce((totalGoals, player) => totalGoals + player.goals, 0);
-
   const totalTeamOwed = players.reduce(
     (totalOwed, player) => totalOwed + parseFloat(player.balance.toString()),
     0,

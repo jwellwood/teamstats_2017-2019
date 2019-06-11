@@ -13,22 +13,12 @@ import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 
 // Component
-import Container from '../../../layout/hoc/Container';
-import FileUpload from '../../../layout/Forms/FileUpload';
+import Container from '../../../../layout/hoc/Container';
+import FileUpload from '../../../../layout/Forms/FileUpload';
 // Assets
-import avatar from '../../../../assets/images/avatar.png';
-import PageHeader from '../../../layout/Navs/PageHeader';
-
-const styles = () => ({
-  container: {
-    padding: '5px',
-    margin: '10px',
-    background: '#E5E8E8',
-    minWidth: '260px',
-  },
-  formControl: { width: '250px', margin: '10px', textAlign: 'center' },
-  teamAndScore: { width: '250px', margin: '10px auto', textAlign: 'center' },
-});
+import avatar from '../../../../../assets/images/avatar.png';
+import PageHeader from '../../../../layout/Navs/PageHeader';
+import styles from './styles';
 
 class EditImage extends Component {
   state = { image: '' };

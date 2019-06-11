@@ -15,22 +15,23 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 // Components
-import Container from '../../layout/hoc/Container';
-import PlayerCard from './Player/PlayerCard/PlayerCard';
-import PlayerOverview from './Player/Sections/PlayerOverview';
-import PlayerTargets from './Player/Sections/PlayerTargets';
-import avatar from '../../../assets/images/avatar.png';
+import Container from '../../../layout/hoc/Container';
+import PlayerCard from './PlayerCard/PlayerCard';
+import PlayerOverview from './Sections/PlayerOverview';
+import PlayerTargets from './Sections/PlayerTargets';
+import avatar from '../../../../assets/images/avatar.png';
 // helpers
-import { modalLeft } from '../../../helpers/transitions';
-import Spinner from '../../layout/Warnings/Spinner';
-import IndividualStats from './Player/Sections/IndividualStats';
+import { modalLeft } from '../../../../helpers/transitions';
+// import { playerGoals } from '../../../../functions/Players/functions';
+import Spinner from '../../../layout/Warnings/Spinner';
+import IndividualStats from './Sections/IndividualStats';
 
 const styles = {
   appBar: { position: 'sticky' },
   flex: { flex: 1, fontFamily: 'Righteous' },
 };
 
-class PlayerDetails extends React.Component {
+class Player extends React.Component {
   state = { open: false, playerImage: avatar, defaultImage: avatar, loading: true };
 
   _isMounted = false;
@@ -77,14 +78,17 @@ class PlayerDetails extends React.Component {
     const totalMatches = results.length;
     const filterResults = results.filter(a => !a.forfeitedMatch);
     const totalTeamGoals = filterResults.reduce((totalGoals, a) => totalGoals + +a.teamScore, 0);
-
     return (
       <div>
         {loading ? (
           <Spinner />
         ) : (
           <div role="presentation" onClick={this.handleClickOpen}>
-            <PlayerCard player={player} image={player.image ? playerImage : defaultImage} />
+            <PlayerCard
+              results={results}
+              player={player}
+              image={player.image ? playerImage : defaultImage}
+            />
           </div>
         )}
 
@@ -123,7 +127,7 @@ class PlayerDetails extends React.Component {
   }
 }
 
-PlayerDetails.propTypes = {
+Player.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   player: PropTypes.shape({}).isRequired,
   firebase: PropTypes.shape({}).isRequired,
@@ -133,4 +137,4 @@ PlayerDetails.propTypes = {
 export default compose(
   firestoreConnect(),
   withStyles(styles),
-)(PlayerDetails);
+)(Player);

@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import { firestoreConnect } from 'react-redux-firebase';
 // MUI
 import Button from '@material-ui/core/Button';
-
-import FormFields from '../../../layout/Forms/FormFields';
-import PageHeader from '../../../layout/Navs/PageHeader';
-import ValidationMessage from '../../../layout/Forms/ValidationMessage';
+// Other
+import FormFields from '../../../../layout/Forms/FormFields';
+import PageHeader from '../../../../layout/Navs/PageHeader';
+import ValidationMessage from '../../../../layout/Forms/ValidationMessage';
 
 import {
   image,
@@ -23,7 +23,7 @@ import {
   apps,
   mvp,
   balance,
-} from '.';
+} from './Data';
 
 class AddPlayerForm extends Component {
   state = {

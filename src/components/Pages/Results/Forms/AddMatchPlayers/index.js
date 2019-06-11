@@ -4,22 +4,28 @@ import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
-import PlayerMatchForm from './PlayerMatchForm';
+import MatchPlayerForm from './MatchPlayerForm';
+import FormContainer from '../../../../layout/Forms/FormContainer';
+import Label from '../../../../layout/Forms/Label';
 
 const AddMatchPlayers = props => {
-  const { players, result } = props;
+  const { players, matchPlayers } = props;
+
   return (
-    <div>
+    <FormContainer>
+      <Label>Match Players</Label>
       {players
-        ? players.map(player => <PlayerMatchForm player={player} key={player.id} result={result} />)
+        ? players.map(player => (
+          <MatchPlayerForm player={player} key={player.id} matchPlayers={matchPlayers} />
+        ))
         : null}
-    </div>
+    </FormContainer>
   );
 };
 
 AddMatchPlayers.propTypes = {
   players: PropTypes.instanceOf(Array),
-  result: PropTypes.shape({}).isRequired,
+  matchPlayers: PropTypes.shape({}).isRequired,
 };
 AddMatchPlayers.defaultProps = { players: [] };
 

@@ -5,11 +5,11 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 // Components
-import Container from '../../layout/hoc/Container';
-import DetailsHeader from './UpdateStats/DetailsHeader';
-import Spinner from '../../layout/Warnings/Spinner';
-import BalanceForm from './UpdateStats/BalanceForm';
-import StatsUpdater from './UpdateStats/StatsUpdater';
+import Container from '../../../../layout/hoc/Container';
+import DetailsHeader from './DetailsHeader';
+import Spinner from '../../../../layout/Warnings/Spinner';
+import BalanceForm from './BalanceForm';
+import StatsUpdater from './StatsUpdater';
 
 class PlayerUpdater extends Component {
   state = {
@@ -28,14 +28,6 @@ class PlayerUpdater extends Component {
   }
 
   // ******************************************************************************
-
-  addStat = type => {
-    const { player, firestore } = this.props;
-    const add = { type: player.type + 1 };
-    firestore.update({ collection: 'players', doc: player.id }, add);
-  };
-
-  // addStat(apps)
 
   addAppButton = () => {
     const { player, firestore } = this.props;

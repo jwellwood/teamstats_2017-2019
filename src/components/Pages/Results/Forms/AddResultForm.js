@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+// Redux
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 // MUI
 import Button from '@material-ui/core/Button';
 // Components
-import FormFields from '../../../layout/Forms/FormFields';
-import PageHeader from '../../../layout/Navs/PageHeader';
 import ValidationMessage from '../../../layout/Forms/ValidationMessage';
+import PageHeader from '../../../layout/Navs/PageHeader';
+import FormFields from '../../../layout/Forms/FormFields';
+import AddMatchPlayers from './AddMatchPlayers';
+
 import {
   date,
   matchType,
-  resultIndicator,
   forfeitedMatch,
   homeOrAway,
   teamScore,
@@ -18,14 +22,13 @@ import {
   opponentScore,
   matchNotes,
   matchPlayers,
-} from './index';
+} from './Data';
 
 class AddResultForm extends Component {
   state = {
     formData: {
       date,
       matchType,
-      resultIndicator,
       forfeitedMatch,
       homeOrAway,
       teamScore,
@@ -34,11 +37,15 @@ class AddResultForm extends Component {
       matchNotes,
       matchPlayers,
     },
-    submissionError: false,
   };
 
   updateForm = newState => {
     this.setState({ formData: newState });
+  };
+
+  onChange = e => {
+    e.preventDefault();
+    this.setState({ [e.target.name]: +e.target.value });
   };
 
   submitForm = e => {
@@ -55,6 +62,14 @@ class AddResultForm extends Component {
       formIsValid = formData[key].valid && formIsValid;
     });
 
+    const goalsScoredByPlayers = formData.matchPlayers.value
+      .map(a => a.matchGoals)
+      .reduce((a, b) => a + b, 0);
+    console.log(formData.teamScore.value, goalsScoredByPlayers);
+    if (+formData.teamScore.value < goalsScoredByPlayers) {
+      formIsValid = false;
+    }
+
     if (formIsValid) {
       const { firestore, history } = this.props;
       firestore.add({ collection: 'results' }, dataToSubmit).then(() => history.push('/results'));
@@ -65,10 +80,15 @@ class AddResultForm extends Component {
 
   render() {
     const { formData, submissionError } = this.state;
+    const goalsScoredByPlayers = formData.matchPlayers.value
+      .map(a => a.matchGoals)
+      .reduce((a, b) => a + b, 0);
     const submissionErrorMessage = (
       <ValidationMessage>
         <div style={{ maxWidth: '260px', margin: '5px auto' }}>
-          There was a problem with the submission. Check the fields marked *
+          {+formData.teamScore.value < goalsScoredByPlayers
+            ? 'You have entered more goals for players than the team scored'
+            : 'There was a problem with the submission. Check the fields marked *'}
         </div>
       </ValidationMessage>
     );
@@ -81,6 +101,7 @@ class AddResultForm extends Component {
             change={newState => this.updateForm(newState)}
             onblur={newState => this.updateForm(newState)}
           />
+          <AddMatchPlayers matchPlayers={formData.matchPlayers} />
           {submissionError ? submissionErrorMessage : null}
           <Button style={{ margin: '10px auto' }} variant="contained" color="primary" type="submit">
             Add Match
@@ -96,4 +117,10 @@ AddResultForm.propTypes = {
   history: PropTypes.shape({}).isRequired,
 };
 
-export default firestoreConnect()(AddResultForm);
+export default compose(
+  firestoreConnect([{ collection: 'players', orderBy: ['apps', 'desc'] }]),
+  // eslint-disable-next-line no-unused-vars
+  connect((state, props) => ({ players: state.firestore.ordered.players })),
+)(AddResultForm);
+
+// export default firestoreConnect()(AddResultForm);
