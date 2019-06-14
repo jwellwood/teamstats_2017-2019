@@ -2,30 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
-import StatsHeader from '../../../../layout/Stats/StatsHeader';
-import Container from '../../../../layout/hoc/Container';
 
-const styles = () => ({
+const styles = theme => ({
   text: {
     textAlign: 'left',
     padding: '5px',
     fontFamily: 'Varela Round',
-    fontSize: '13px',
-    margin: '10px',
+    fontSize: '11px',
+    margin: '5px 0px 0px 0px',
+    background: '#333',
+    color: theme.palette.secondary.main,
   },
 });
 
 const MatchReport = props => {
   const { classes, result } = props;
   return (
-    <Container>
-      <StatsHeader title="Match Notes" />
-      <Paper style={{ background: '#333', padding: '1px' }}>
-        <Paper elevation={5} className={classes.text} square>
-          {result.matchNotes ? result.matchNotes : 'There are no notes for this match'}
-        </Paper>
-      </Paper>
-    </Container>
+    <Paper elevation={5} className={classes.text}>
+      {result.matchNotes ? result.matchNotes : 'There are no notes for this match'}
+    </Paper>
   );
 };
 

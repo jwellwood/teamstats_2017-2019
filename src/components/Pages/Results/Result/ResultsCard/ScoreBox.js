@@ -8,9 +8,9 @@ import { resultColor } from '../../../../../assets/styles/colors';
 
 const styles = () => ({
   fixtureTeams: {
-    width: '100%',
     margin: '5px auto',
     display: 'flex',
+    justifyContent: 'center',
     padding: '0px 10px',
     fontWeight: 'bold',
     textAlign: 'center',
@@ -21,16 +21,17 @@ const styles = () => ({
   teamNames: {
     display: 'inline-block',
     padding: '3px',
-    width: '50%',
+    width: '100%',
     overflow: 'hidden',
     wordWrap: 'break-word',
-    margin: '0 5px',
+    // margin: '0px 5px',
+    fontSize: '12px',
   },
   scoreBox: {
     display: 'flex',
-    margin: '5 auto',
+    margin: '0px auto',
     width: '50px',
-    padding: '5px',
+    padding: '4px',
   },
   scoreNumbers: {
     width: '20px',

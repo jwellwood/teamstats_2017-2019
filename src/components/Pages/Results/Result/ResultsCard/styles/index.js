@@ -1,4 +1,5 @@
-const styles = theme => ({
+const styles = () => ({
+  root: { padding: '1px', margin: '0px auto', height: '70px' },
   main: {
     textDecoration: 'none',
     borderLeft: '3px solid',
@@ -24,15 +25,10 @@ const styles = theme => ({
     fontWeight: 'bold',
     color: '#111',
   },
-  date: { color: 'white', margin: 5 },
+  date: { color: 'white' },
   matchType: { marginBottom: 2 },
   forfeit: { fontSize: '10px', padding: '0 2px', margin: '0 auto', color: '#666' },
   iconButton: { width: '20px', height: '20px' },
-  editButton: {
-    color: theme.palette.primary.light,
-    cursor: 'pointer',
-    fontSize: '15px',
-  },
 });
 
 export default styles;

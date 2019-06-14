@@ -32,7 +32,12 @@ const styles = {
 };
 
 class Player extends React.Component {
-  state = { open: false, playerImage: avatar, defaultImage: avatar, loading: true };
+  state = {
+    open: false,
+    playerImage: avatar,
+    defaultImage: avatar,
+    loading: true,
+  };
 
   _isMounted = false;
 
@@ -56,6 +61,7 @@ class Player extends React.Component {
   }
 
   componentDidMount() {
+    // const { playerMatches } = this.props;
     this.setState({ loading: false });
   }
 
@@ -74,10 +80,14 @@ class Player extends React.Component {
 
   render() {
     const { open, playerImage, defaultImage, loading } = this.state;
-    const { classes, player, results } = this.props;
+
+    const { classes, player, results, playerMatches, playerMatchStats } = this.props;
+
     const totalMatches = results.length;
     const filterResults = results.filter(a => !a.forfeitedMatch);
     const totalTeamGoals = filterResults.reduce((totalGoals, a) => totalGoals + +a.teamScore, 0);
+    // player.apps = playerMatches.length;
+
     return (
       <div>
         {loading ? (
@@ -132,6 +142,8 @@ Player.propTypes = {
   player: PropTypes.shape({}).isRequired,
   firebase: PropTypes.shape({}).isRequired,
   results: PropTypes.instanceOf(Array).isRequired,
+  playerMatches: PropTypes.instanceOf(Array).isRequired,
+  playerMatchStats: PropTypes.instanceOf(Array).isRequired,
 };
 
 export default compose(

@@ -13,7 +13,6 @@ import EditImage from './components/Pages/Squad/Forms/EditPlayer/EditImage';
 // Results
 import Results from './components/Pages/Results';
 import AddResultForm from './components/Pages/Results/Forms/AddResultForm';
-import ResultDetails from './components/Pages/Results/Result/ResultDetails';
 import EditResult from './components/Pages/Results/Forms/EditResult';
 // Team
 import Home from './components/Pages/Home';
@@ -48,7 +47,6 @@ const Routes = () => (
         <Route exact path="/players/:id" component={UserIsAuthenticated(PlayerUpdater)} />
         <Route exact path="/results" component={Results} />
         <Route exact path="/results/addResult" component={UserIsAuthenticated(AddResultForm)} />
-        <Route exact path="/results/:id" component={ResultDetails} />
         <Route
           exact
           path="/results/:id/add_details"

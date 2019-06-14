@@ -16,8 +16,8 @@ const Players = props => {
   return (
     <Container>
       <PageHeader title="Squad" icon="" link="/" />
-      <SquadTotals players={players} results={totalMatches} />
-      <SquadList players={players} results={totalMatches} />
+      <SquadTotals players={players} results={totalMatches} allGames={results} />
+      <SquadList players={players} results={totalMatches} allGames={results} />
     </Container>
   );
 };

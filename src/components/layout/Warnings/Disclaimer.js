@@ -9,6 +9,7 @@ const styles = () => ({
     color: '#ccc',
     fontSize: '9px',
     margin: '2px 10px',
+    textAlign: 'center',
   },
 });
 

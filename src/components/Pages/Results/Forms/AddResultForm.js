@@ -11,7 +11,6 @@ import ValidationMessage from '../../../layout/Forms/ValidationMessage';
 import PageHeader from '../../../layout/Navs/PageHeader';
 import FormFields from '../../../layout/Forms/FormFields';
 import AddMatchPlayers from './AddMatchPlayers';
-
 import {
   date,
   matchType,
@@ -65,14 +64,28 @@ class AddResultForm extends Component {
     const goalsScoredByPlayers = formData.matchPlayers.value
       .map(a => a.matchGoals)
       .reduce((a, b) => a + b, 0);
-    console.log(formData.teamScore.value, goalsScoredByPlayers);
     if (+formData.teamScore.value < goalsScoredByPlayers) {
       formIsValid = false;
     }
 
     if (formIsValid) {
       const { firestore, history } = this.props;
-      firestore.add({ collection: 'results' }, dataToSubmit).then(() => history.push('/results'));
+      firestore
+        .add({ collection: 'results' }, dataToSubmit)
+        .then(() => this.setState({
+          formData: {
+            date,
+            matchType,
+            forfeitedMatch,
+            homeOrAway,
+            teamScore,
+            opponentName,
+            opponentScore,
+            matchNotes,
+            matchPlayers,
+          },
+        }))
+        .then(() => history.push('/results'));
     } else {
       this.setState({ submissionError: true });
     }
