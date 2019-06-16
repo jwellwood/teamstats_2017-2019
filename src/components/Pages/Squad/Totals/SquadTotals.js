@@ -8,7 +8,7 @@ import BoxContainer from '../../../layout/hoc/BoxContainer';
 import BoxLinks from '../../../layout/Navs/BoxLinks';
 
 const SquadTotals = props => {
-  const { players } = props;
+  const { auth, players } = props;
 
   const totalPlayers = players.length;
   const totalTeamGoals = players.reduce((totalGoals, player) => totalGoals + player.goals, 0);
@@ -42,12 +42,15 @@ const SquadTotals = props => {
       <Paper style={{ padding: '10px', background: '#333' }}>
         <StatsAvatar itemsToMap={listItems} />
         <hr />
-        <BoxLinks link="/players/addplayer" />
+        <BoxLinks auth={auth} link="/players/addplayer" />{' '}
       </Paper>
     </BoxContainer>
   );
 };
 
-SquadTotals.propTypes = { players: PropTypes.instanceOf(Array).isRequired };
+SquadTotals.propTypes = {
+  auth: PropTypes.bool.isRequired,
+  players: PropTypes.instanceOf(Array).isRequired,
+};
 
 export default SquadTotals;

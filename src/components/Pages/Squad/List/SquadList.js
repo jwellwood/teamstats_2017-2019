@@ -5,7 +5,7 @@ import Player from '../Player';
 import Spinner from '../../../layout/Warnings/Spinner';
 
 const SquadList = props => {
-  const { players, results } = props;
+  const { auth, players, results } = props;
 
   if (players) {
     return players.map(player => {
@@ -23,6 +23,7 @@ const SquadList = props => {
       // console.log(player.name, playerMatches, playerMatchStats);
       return (
         <Player
+          auth={auth}
           key={player.id}
           player={player}
           results={results}
@@ -38,6 +39,7 @@ const SquadList = props => {
 };
 
 SquadList.propTypes = {
+  auth: PropTypes.bool.isRequired,
   players: PropTypes.instanceOf(Array),
   results: PropTypes.instanceOf(Array),
 };

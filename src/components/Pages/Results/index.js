@@ -12,18 +12,19 @@ import ResultsTotals from './Totals/ResultsTotals';
 import ResultList from './List/ResultList';
 
 const Results = props => {
-  const { results, team, onDelete } = props;
+  const { auth, results, team, onDelete } = props;
   const teamName = team ? team[0].name : null;
   return (
     <Container>
       <PageHeader title="Results" icon="" link="/" />
-      <ResultsTotals results={results} teamName={teamName} />
-      <ResultList results={results} onDelete={onDelete} teamName={teamName} />
+      <ResultsTotals auth={!!auth.uid} results={results} teamName={teamName} />
+      <ResultList auth={!!auth.uid} results={results} onDelete={onDelete} teamName={teamName} />
     </Container>
   );
 };
 
 Results.propTypes = {
+  auth: PropTypes.shape({}).isRequired,
   results: PropTypes.instanceOf(Array),
   team: PropTypes.instanceOf(Array),
   onDelete: PropTypes.func,
@@ -35,6 +36,7 @@ export default compose(
   firestoreConnect([{ collection: 'results', orderBy: ['date', 'desc'] }, { collection: 'team' }]),
   // eslint-disable-next-line no-unused-vars
   connect((state, props) => ({
+    auth: state.firebase.auth,
     results: state.firestore.ordered.results,
     team: state.firestore.ordered.team,
   })),

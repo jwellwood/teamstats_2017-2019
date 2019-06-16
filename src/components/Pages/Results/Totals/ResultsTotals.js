@@ -7,7 +7,7 @@ import { colors } from '../../../../assets/styles/colors';
 import BoxLinks from '../../../layout/Navs/BoxLinks';
 
 const ResultsTotals = props => {
-  const { results } = props;
+  const { auth, results } = props;
   const getGoals = arr => arr.reduce((a, b) => a + b, 0);
   const goalsForArray = results.map(result => +result.teamScore);
   const goalsAgainstArray = results.map(result => +result.opponentScore);
@@ -38,12 +38,15 @@ const ResultsTotals = props => {
       <Paper style={{ padding: '10px', background: '#333' }}>
         <StatsAvatar itemsToMap={listItems} />
         <hr />
-        <BoxLinks link="/results/addresult" />
+        <BoxLinks auth={auth} link="/results/addresult" />
       </Paper>
     </BoxContainer>
   );
 };
 
-ResultsTotals.propTypes = { results: PropTypes.instanceOf(Array).isRequired };
+ResultsTotals.propTypes = {
+  auth: PropTypes.bool.isRequired,
+  results: PropTypes.instanceOf(Array).isRequired,
+};
 
 export default ResultsTotals;

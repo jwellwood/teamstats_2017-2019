@@ -6,10 +6,10 @@ import Spinner from '../../../layout/Warnings/Spinner';
 import ResultCard from '../Result/ResultsCard/ResultCard';
 
 const ResultList = props => {
-  const { results, teamName } = props;
+  const { auth, results, teamName } = props;
   if (results) {
     return results.map(result => (
-      <ResultCard key={result.id} result={result} teamName={teamName} />
+      <ResultCard auth={auth} key={result.id} result={result} teamName={teamName} />
     ));
   }
   if (results.length === 0) return <div>Start adding results!</div>;
@@ -17,6 +17,7 @@ const ResultList = props => {
 };
 
 ResultList.propTypes = {
+  auth: PropTypes.bool.isRequired,
   results: PropTypes.instanceOf(Array),
   teamName: PropTypes.string,
 };

@@ -80,9 +80,7 @@ class Player extends React.Component {
 
   render() {
     const { open, playerImage, defaultImage, loading } = this.state;
-
-    const { classes, player, results, playerMatches, playerMatchStats } = this.props;
-
+    const { auth, classes, player, results, playerMatches, playerMatchStats } = this.props;
     const totalMatches = results.length;
     const filterResults = results.filter(a => !a.forfeitedMatch);
     const totalTeamGoals = filterResults.reduce((totalGoals, a) => totalGoals + +a.teamScore, 0);
@@ -114,9 +112,12 @@ class Player extends React.Component {
               <Typography variant="h6" color="inherit" className={classes.flex}>
                 {player.name}
               </Typography>
-              <Button color="inherit" component={Link} to={`/players/${player.id}`}>
-                edit
-              </Button>
+              {auth ? (
+                <Button color="inherit" component={Link} to={`/players/${player.id}`}>
+                  edit
+                </Button>
+              ) : null}
+
               <IconButton color="inherit" onClick={this.handleClose} aria-label="Close">
                 <CloseIcon />
               </IconButton>
@@ -138,6 +139,7 @@ class Player extends React.Component {
 }
 
 Player.propTypes = {
+  auth: PropTypes.bool.isRequired,
   classes: PropTypes.shape({}).isRequired,
   player: PropTypes.shape({}).isRequired,
   firebase: PropTypes.shape({}).isRequired,

@@ -55,9 +55,6 @@ class AddResultForm extends Component {
 
     Object.keys(formData).forEach(key => {
       dataToSubmit[key] = formData[key].value;
-    });
-
-    Object.keys(formData).forEach(key => {
       formIsValid = formData[key].valid && formIsValid;
     });
 
@@ -93,14 +90,18 @@ class AddResultForm extends Component {
 
   render() {
     const { formData, submissionError } = this.state;
+    const teamGoals = +formData.teamScore.value;
     const goalsScoredByPlayers = formData.matchPlayers.value
       .map(a => a.matchGoals)
+      .reduce((a, b) => a + b, 0);
+    const assistsByPlayers = formData.matchPlayers.value
+      .map(a => a.matchAssists)
       .reduce((a, b) => a + b, 0);
     const submissionErrorMessage = (
       <ValidationMessage>
         <div style={{ maxWidth: '260px', margin: '5px auto' }}>
-          {+formData.teamScore.value < goalsScoredByPlayers
-            ? 'You have entered more goals for players than the team scored'
+          {teamGoals < goalsScoredByPlayers || teamGoals < assistsByPlayers
+            ? 'You have entered more goals / assists for players than the team scored'
             : 'There was a problem with the submission. Check the fields marked *'}
         </div>
       </ValidationMessage>
@@ -114,7 +115,10 @@ class AddResultForm extends Component {
             change={newState => this.updateForm(newState)}
             onblur={newState => this.updateForm(newState)}
           />
-          <AddMatchPlayers matchPlayers={formData.matchPlayers} />
+          {formData.forfeitedMatch.value === false ? (
+            <AddMatchPlayers matchPlayers={formData.matchPlayers} />
+          ) : null}
+
           {submissionError ? submissionErrorMessage : null}
           <Button style={{ margin: '10px auto' }} variant="contained" color="primary" type="submit">
             Add Match

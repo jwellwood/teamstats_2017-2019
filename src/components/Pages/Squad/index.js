@@ -11,18 +11,19 @@ import SquadList from './List/SquadList';
 import SquadTotals from './Totals/SquadTotals';
 
 const Players = props => {
-  const { players, results } = props;
+  const { auth, players, results } = props;
   const totalMatches = results.filter(result => !result.forfeitedMatch);
   return (
     <Container>
       <PageHeader title="Squad" icon="" link="/" />
-      <SquadTotals players={players} results={totalMatches} allGames={results} />
-      <SquadList players={players} results={totalMatches} allGames={results} />
+      <SquadTotals auth={!!auth.uid} players={players} results={totalMatches} allGames={results} />
+      <SquadList auth={!!auth.uid} players={players} results={totalMatches} allGames={results} />
     </Container>
   );
 };
 
 Players.propTypes = {
+  auth: PropTypes.shape({}).isRequired,
   firestore: PropTypes.shape({}).isRequired,
   players: PropTypes.instanceOf(Array),
   results: PropTypes.instanceOf(Array),
@@ -37,6 +38,7 @@ export default compose(
   ]),
   // eslint-disable-next-line no-unused-vars
   connect((state, props) => ({
+    auth: state.firebase.auth,
     players: state.firestore.ordered.players,
     results: state.firestore.ordered.results,
   })),

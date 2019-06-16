@@ -106,11 +106,14 @@ class Trophies extends React.Component {
             )}
           </DialogContent>
           <Grid container direction="row" justify="space-between">
-            <DialogActions>
-              <Button component={Link} to="/addtrophy" color="secondary" variant="text">
-                Add
-              </Button>
-            </DialogActions>
+            {isAuthenticated ? (
+              <DialogActions>
+                <Button component={Link} to="/addtrophy" color="secondary" variant="text">
+                  Add
+                </Button>
+              </DialogActions>
+            ) : null}
+
             <DialogActions>
               <Button onClick={this.handleClose} color="primary" variant="text">
                 Close

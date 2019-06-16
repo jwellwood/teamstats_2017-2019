@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 
 const BoxLinks = props => {
-  const { link } = props;
+  const { auth, link } = props;
   return (
     <div>
       <Grid container direction="row" justify="space-between" alignItems="center">
@@ -25,15 +25,20 @@ const BoxLinks = props => {
           </Button>
         </Grid>
         <Grid item xs={2}>
-          <Fab size="small" color="default" aria-label="Add" component={Link} to={link}>
-            <AddIcon />
-          </Fab>
+          {auth ? (
+            <Fab size="small" color="default" aria-label="Add" component={Link} to={link}>
+              <AddIcon />
+            </Fab>
+          ) : null}
         </Grid>
       </Grid>
     </div>
   );
 };
 
-BoxLinks.propTypes = { link: PropTypes.string.isRequired };
+BoxLinks.propTypes = {
+  auth: PropTypes.bool.isRequired,
+  link: PropTypes.string.isRequired,
+};
 
 export default BoxLinks;
