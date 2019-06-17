@@ -28,7 +28,7 @@ const rrfConfig = {
 firebase.initializeApp(firebaseConfig);
 // Init firestore
 const firestore = firebase.firestore();
-const settings = { /* your settings... */ timestampsInSnapshots: true };
+const settings = { /* your settings... */ };
 firestore.settings(settings);
 
 // Initialize other services on firebase instance

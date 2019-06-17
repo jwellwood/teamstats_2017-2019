@@ -2,19 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // MUI
 import { withStyles } from '@material-ui/core/styles';
-import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 import styles from './styles';
 
 const PlayerStats = props => {
   const { classes, player } = props;
-
-  const playerTargetTotal = +player.targetApps + +player.targetGoals + +player.targetAssists;
-  let playerTargetAchieved = player.apps + player.goals + player.assists;
-  if (player.apps === '0') {
-    playerTargetAchieved = '0';
-  }
-  const percentageTotal = (playerTargetAchieved * 100) / playerTargetTotal;
 
   let id = 0;
   const createData = (statType, statValue, statTarget, statColor) => {
@@ -40,10 +32,10 @@ const PlayerStats = props => {
 
   return (
     <Grid>
-      <Grid container direction="row" justify="space-evenly" alignItems="center">
+      <Grid container direction="row" justify="center" alignItems="center">
         {listItems.map(item => (
           <Grid item key={item.id} style={{ width: '30%' }}>
-            <Avatar
+            <div
               className={classes.numAvatar}
               style={
                 item.statValue >= item.statTarget
@@ -52,33 +44,10 @@ const PlayerStats = props => {
               }
             >
               {item.statValue}
-            </Avatar>
+            </div>
             <div className={classes.statsKey}>{item.statType}</div>
           </Grid>
         ))}
-      </Grid>
-
-      <Grid
-        container
-        direction="row"
-        justify="space-between"
-        alignItems="center"
-        className={classes.extras}
-      >
-        <div
-          style={
-            player.balance > 0
-              ? { color: '#E74C3C', padding: '5px' }
-              : { color: '#28B463', padding: '5px' }
-          }
-        >
-          €{parseFloat(player.balance).toFixed(2)}
-        </div>
-        <div style={{ fontWeight: 'bold' }}>
-          <span style={{ color: '#bbb' }}>Target: </span>
-          {percentageTotal.toFixed(1)}
-          <span style={{ color: '#bbb' }}>%</span>
-        </div>
       </Grid>
     </Grid>
   );

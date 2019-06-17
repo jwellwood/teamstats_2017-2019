@@ -5,23 +5,24 @@ import { withStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 // Assets
-import { positionColor } from '../../../../../assets/styles/colors';
 import styles from './styles';
 
 const PlayerImage = props => {
-  const { classes, name, number, position, image, captain } = props;
+  const { classes, name, number, image, captain } = props;
   return (
-    <Grid container direction="row" justify="center" alignItems="center">
-      <Grid container direction="row" justify="center" alignItems="center">
-        <div className={classes.playerNumber}>{number}</div>
+    <Grid container direction="row" justify="space-between" alignItems="center">
+      <Grid item xs={5}>
+        <Grid container direction="row" justify="flex-start" alignItems="center">
+          <div className={classes.playerNumber}>{number}</div>
+          <Avatar alt="player image" src={image} className={classes.avatar} />
+        </Grid>
+      </Grid>
 
-        <Avatar alt="player image" src={image} className={classes.avatar} />
-        <div className={classes.playerNumber} style={{ color: positionColor(position) }}>
-          {position}
+      <Grid item xs={7}>
+        <div className={classes.name}>
+          {name} {captain ? <span className={classes.captain}>(C)</span> : null}
         </div>
       </Grid>
-      {captain ? <div className={classes.captain}>C</div> : null}
-      <div className={classes.name}>{name}</div>
     </Grid>
   );
 };
@@ -31,7 +32,6 @@ PlayerImage.propTypes = {
   image: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   number: PropTypes.string.isRequired,
-  position: PropTypes.string.isRequired,
   captain: PropTypes.bool.isRequired,
 };
 

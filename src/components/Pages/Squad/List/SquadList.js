@@ -1,41 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // Components
-import Player from '../Player';
-import Spinner from '../../../layout/Warnings/Spinner';
+import StatsHeader from '../../../layout/Stats/StatsHeader';
+import BoxContainer from '../../../layout/hoc/BoxContainer';
+import PlayerList from './PlayerList';
 
 const SquadList = props => {
   const { auth, players, results } = props;
+  const goalkeepers = players.filter(player => player.position === 'GK');
+  const defenders = players.filter(player => player.position === 'DF');
+  const midfielders = players.filter(player => player.position === 'MF');
+  const forwards = players.filter(player => player.position === 'FW');
 
-  if (players) {
-    return players.map(player => {
-      const playerMatches = [];
-      // eslint-disable-next-line max-len
-      results.map(result => result.matchPlayers.map(pl => (pl.id === player.id ? playerMatches.push(result) : null)));
+  const data = (title, position) => ({ title, position });
+  const itemsToMap = [
+    data('Goalkeepers', goalkeepers),
+    data('Defenders', defenders),
+    data('Midfielders', midfielders),
+    data('Forwards', forwards),
+  ];
 
-      const playerMatchStats = playerMatches.map(match => {
-        const stats = match.matchPlayers.filter(pl => pl.id === player.id);
-        return stats[0];
-      });
-
-      // player.goals = playerMatchStats.map(({matchGoals}))
-
-      // console.log(player.name, playerMatches, playerMatchStats);
-      return (
-        <Player
-          auth={auth}
-          key={player.id}
-          player={player}
-          results={results}
-          players={players}
-          playerMatches={playerMatches}
-          playerMatchStats={playerMatchStats}
-        />
-      );
-    });
-  }
-
-  return players.length === 0 ? <div>Start adding players</div> : <Spinner />;
+  return (
+    <BoxContainer>
+      {itemsToMap.map(item => (
+        <div key={Math.random()}>
+          <StatsHeader title={item.title} />
+          <PlayerList players={item.position} results={results} auth={auth} />
+        </div>
+      ))}
+    </BoxContainer>
+  );
 };
 
 SquadList.propTypes = {

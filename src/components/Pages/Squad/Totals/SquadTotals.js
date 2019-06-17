@@ -6,16 +6,25 @@ import Paper from '@material-ui/core/Paper';
 import StatsAvatar from '../../../layout/Stats/StatsAvatar';
 import BoxContainer from '../../../layout/hoc/BoxContainer';
 import BoxLinks from '../../../layout/Navs/BoxLinks';
+// Calcs
+import {
+  getTotalTeamApps,
+  targetTeamApps,
+  getTotalTeamGoals,
+  targetTeamGoals,
+  getTotalTeamAssists,
+  targetTeamAssists,
+} from '../../../../functions/Players/functions';
 
 const SquadTotals = props => {
   const { auth, players } = props;
 
   const totalPlayers = players.length;
   const totalTeamGoals = players.reduce((totalGoals, player) => totalGoals + player.goals, 0);
-  const totalTeamOwed = players.reduce(
-    (totalOwed, player) => totalOwed + parseFloat(player.balance.toString()),
-    0,
-  );
+
+  const totalStats = getTotalTeamApps(players) + getTotalTeamGoals(players) + getTotalTeamAssists(players);
+  const totalTarget = targetTeamApps(players) + targetTeamGoals(players) + targetTeamAssists(players);
+  const totalProgress = (totalStats * 100) / totalTarget;
 
   // Data to map
   let id = 0;
@@ -28,11 +37,9 @@ const SquadTotals = props => {
     createData(<i className="fas fa-users" />, totalPlayers, 'TOTAL PLAYERS'),
     createData(<i className="fas fa-futbol" />, totalTeamGoals, 'GOALS SCORED'),
     createData(
-      <i className="fas fa-dollar-sign" />,
-      <span style={totalTeamOwed > 0 ? { color: '#E74C3C' } : { color: '#28B463' }}>
-        €{parseFloat(totalTeamOwed).toFixed(2)}
-      </span>,
-      'OWED',
+      <i className="fas fa-bullseye" />,
+      `${totalProgress.toFixed(1)}%`,
+      'Team Target',
       null,
     ),
   ];

@@ -42,7 +42,7 @@ const Leaderboard = props => {
   const bestGpg = (
     <StatBox
       type="players"
-      title="Best Goals per Game*"
+      title="Goals / Game*"
       data={getBestGoalsPerGame(players).player}
       value={getBestGoalsPerGame(players).value}
     />
@@ -50,7 +50,7 @@ const Leaderboard = props => {
   const bestApg = (
     <StatBox
       type="players"
-      title="Best Assists per Game*"
+      title="Assists / Game*"
       data={getBestAssistsPerGame(players).player}
       value={getBestAssistsPerGame(players).value}
     />
