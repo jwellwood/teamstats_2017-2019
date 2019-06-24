@@ -1,8 +1,8 @@
 const column = (head, access) => ({
   Header: head,
   accessor: access,
-  width: 35,
-  style: { backgroundColor: '#333', color: '#fff', fontWeight: 'bold' },
+  width: 37,
+  style: { backgroundColor: '#333', color: '#fff' },
   sortable: false,
   resizable: false,
 });

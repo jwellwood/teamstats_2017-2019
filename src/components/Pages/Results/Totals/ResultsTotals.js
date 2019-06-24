@@ -12,6 +12,7 @@ import BoxLinks from '../../../layout/Navs/BoxLinks';
 // Data
 import columns from './Data';
 // styles
+import { colors } from '../../../../assets/styles/colors';
 
 const styles = theme => ({
   tableHeader: {
@@ -30,7 +31,11 @@ const ResultsTotals = props => {
   const goalsAgainstArray = results.map(result => +result.opponentScore);
   const goalsFor = getGoals(goalsForArray);
   const goalsAgainst = getGoals(goalsAgainstArray);
-  const difference = goalsFor - goalsAgainst;
+  const difference = (
+    <span style={{ color: goalsFor - goalsAgainst > 0 ? colors.win : colors.lose }}>
+      {goalsFor - goalsAgainst}
+    </span>
+  );
   const played = results.length;
   const wins = results.filter(res => (+res.teamScore > +res.opponentScore ? res : null));
   const draws = results.filter(res => (+res.teamScore === +res.opponentScore ? res : null));
