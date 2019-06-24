@@ -1,4 +1,5 @@
 const styles = theme => ({
+  root: { padding: '0px', margin: '0px auto', height: '46px' },
   avatar: { margin: '3px' },
   playerNumber: {
     fontSize: '13px',

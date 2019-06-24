@@ -34,7 +34,7 @@ const SquadTotals = props => {
   };
 
   const listItems = [
-    createData(<i className="fas fa-users" />, totalPlayers, 'TOTAL PLAYERS'),
+    createData(<i className="fas fa-users" />, totalPlayers, 'PLAYERS'),
     createData(<i className="fas fa-futbol" />, totalTeamGoals, 'GOALS SCORED'),
     createData(
       <i className="fas fa-bullseye" />,

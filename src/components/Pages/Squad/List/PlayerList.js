@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // Components
-import Player from '../Player';
 import Spinner from '../../../layout/Warnings/Spinner';
+import PlayerCard from '../Player/PlayerCard/index';
 
 const PlayerList = props => {
   const { auth, results, players } = props;
@@ -17,11 +17,8 @@ const PlayerList = props => {
         return stats[0];
       });
 
-      // player.goals = playerMatchStats.map(({matchGoals}))
-
-      // console.log(player.name, playerMatches, playerMatchStats);
       return (
-        <Player
+        <PlayerCard
           auth={auth}
           key={player.id}
           player={player}

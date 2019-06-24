@@ -7,7 +7,7 @@ function createData(icon, text, link) {
 }
 
 const listItems = [
-  createData(<i className="fas fa-user-friends" />, 'players', '/players'),
+  createData(<i className="fas fa-user-friends" />, 'squad', '/players'),
   createData(<i className="fas fa-futbol" />, 'results', '/results'),
   createData(<i className="fas fa-chart-pie" />, 'stats', '/stats'),
 ];

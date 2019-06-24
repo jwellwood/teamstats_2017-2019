@@ -11,6 +11,7 @@ import AboutList from './Lists/AboutList';
 import Version from './Footer/Version';
 // Other
 import { listItemsMain, listItemsAdvanced } from './Data';
+// styles
 import styles from './styles';
 
 const About = props => {

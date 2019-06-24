@@ -6,7 +6,8 @@ import Grid from '@material-ui/core/Grid';
 import styles from './styles';
 
 const PlayerStats = props => {
-  const { classes, player } = props;
+  const { classes, player, playerStats } = props;
+  const { apps, goals, assists } = playerStats;
 
   let id = 0;
   const createData = (statType, statValue, statTarget, statColor) => {
@@ -15,40 +16,28 @@ const PlayerStats = props => {
   };
 
   const listItems = [
-    createData('APPS', player.apps, player.targetApps, player.apps === 0 ? '#E74C3C' : '#F39C12'),
-    createData(
-      'GOALS',
-      player.goals,
-      player.targetGoals,
-      player.goals === 0 ? '#E74C3C' : '#F39C12',
-    ),
-    createData(
-      'ASSISTS',
-      player.assists,
-      player.targetAssists,
-      player.assists === 0 ? '#E74C3C' : '#F39C12',
-    ),
+    createData('APPS', apps, player.targetApps, apps === 0 ? '#E74C3C' : '#F39C12'),
+    createData('GOALS', goals, player.targetGoals, goals === 0 ? '#E74C3C' : '#F39C12'),
+    createData('ASSISTS', assists, player.targetAssists, assists === 0 ? '#E74C3C' : '#F39C12'),
   ];
 
   return (
-    <Grid>
-      <Grid container direction="row" justify="center" alignItems="center">
-        {listItems.map(item => (
-          <Grid item key={item.id} style={{ width: '30%' }}>
-            <div
-              className={classes.numAvatar}
-              style={
-                item.statValue >= item.statTarget
-                  ? { background: '#229954' }
-                  : { background: item.statColor }
-              }
-            >
-              {item.statValue}
-            </div>
-            <div className={classes.statsKey}>{item.statType}</div>
-          </Grid>
-        ))}
-      </Grid>
+    <Grid container direction="row" justify="space-around" alignContent="center">
+      {listItems.map(item => (
+        <Grid item key={item.id}>
+          <div
+            className={classes.numAvatar}
+            style={
+              item.statValue >= item.statTarget
+                ? { background: '#229954' }
+                : { background: item.statColor }
+            }
+          >
+            {item.statValue}
+          </div>
+          <div className={classes.statsKey}>{item.statType}</div>
+        </Grid>
+      ))}
     </Grid>
   );
 };
@@ -56,6 +45,7 @@ const PlayerStats = props => {
 PlayerStats.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   player: PropTypes.shape({}).isRequired,
+  playerStats: PropTypes.shape({}).isRequired,
 };
 
 export default withStyles(styles)(PlayerStats);

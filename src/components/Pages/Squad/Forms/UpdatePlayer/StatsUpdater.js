@@ -28,17 +28,17 @@ const StatsUpdater = props => {
     isAuthenticated,
     toggleBalanceForm,
     balanceForm,
-    addAppButton,
-    addGoalButton,
-    addAssistButton,
-    addMvpButton,
-    removeAppButton,
-    removeGoalButton,
-    removeAssistButton,
-    removeMvpButton,
+    // addAppButton,
+    // addGoalButton,
+    // addAssistButton,
+    // addMvpButton,
+    // removeAppButton,
+    // removeGoalButton,
+    // removeAssistButton,
+    // removeMvpButton,
     balanceReset,
   } = props;
-  const { apps, goals, assists, mvp, balance } = player;
+  const { balance } = player;
 
   // Data to map
   let id = 0;
@@ -56,44 +56,20 @@ const StatsUpdater = props => {
     };
   };
   const listItems = [
+    // createData('fas fa-check', apps, 'Appearances', removeAppButton, 'remove', addAppButton, 'add'),
+    // createData('fas fa-futbol', goals, 'Goals', removeGoalButton, 'remove', addGoalButton, 'add'),
+    // createData(
+    //   'fas fa-key',
+    //   assists,
+    //   'Assists',
+    //   removeAssistButton,
+    //   'remove',
+    //   addAssistButton,
+    //   'add',
+    // ),
+    // createData('far fa-star', mvp, 'MVP', removeMvpButton, 'remove', addMvpButton, 'add'),
     createData(
-      <i className="fas fa-check" />,
-      apps,
-      'Appearances',
-      removeAppButton,
-      'remove',
-      addAppButton,
-      'add',
-    ),
-    createData(
-      <i className="fas fa-futbol" />,
-      goals,
-      'Goals',
-      removeGoalButton,
-      'remove',
-      addGoalButton,
-      'add',
-    ),
-    createData(
-      <i className="fas fa-key" />,
-      assists,
-      'Assists',
-      removeAssistButton,
-      'remove',
-      addAssistButton,
-      'add',
-    ),
-    createData(
-      <i className="far fa-star" />,
-      mvp,
-      'MVP',
-      removeMvpButton,
-      'remove',
-      addMvpButton,
-      'add',
-    ),
-    createData(
-      <i className="fas fa-dollar-sign" />,
+      'fas fa-dollar-sign',
       <span style={balance > 0 ? { color: '#E74C3C' } : { color: '#28B463' }}>
         €{parseFloat(balance).toFixed(2)}
       </span>,
@@ -128,7 +104,9 @@ const StatsUpdater = props => {
         return (
           <div key={item.id}>
             <ListItem>
-              <Avatar>{item.icon}</Avatar>
+              <Avatar>
+                <i className={item.icon} />
+              </Avatar>
               <ListItemText primary={item.total} secondary={item.text} />
               {minusButton} {plusButton}
             </ListItem>
@@ -147,14 +125,14 @@ StatsUpdater.propTypes = {
   player: PropTypes.shape({}).isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
   toggleBalanceForm: PropTypes.func.isRequired,
-  addAppButton: PropTypes.func.isRequired,
-  addGoalButton: PropTypes.func.isRequired,
-  addAssistButton: PropTypes.func.isRequired,
-  addMvpButton: PropTypes.func.isRequired,
-  removeAppButton: PropTypes.func.isRequired,
-  removeGoalButton: PropTypes.func.isRequired,
-  removeAssistButton: PropTypes.func.isRequired,
-  removeMvpButton: PropTypes.func.isRequired,
+  // addAppButton: PropTypes.func.isRequired,
+  // addGoalButton: PropTypes.func.isRequired,
+  // addAssistButton: PropTypes.func.isRequired,
+  // addMvpButton: PropTypes.func.isRequired,
+  // removeAppButton: PropTypes.func.isRequired,
+  // removeGoalButton: PropTypes.func.isRequired,
+  // removeAssistButton: PropTypes.func.isRequired,
+  // removeMvpButton: PropTypes.func.isRequired,
   balanceReset: PropTypes.func.isRequired,
   balanceForm: PropTypes.element,
 };

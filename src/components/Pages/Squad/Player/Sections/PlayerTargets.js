@@ -24,19 +24,19 @@ const styles = () => ({
 
 // Component
 const PlayerTargets = props => {
-  const { classes, player } = props;
-
-  let percentageApps = (player.apps * 100) / player.targetApps;
-  let percentageGoals = (player.goals * 100) / player.targetGoals;
-  let percentageAssists = (player.assists * 100) / player.targetAssists;
+  const { classes, player, playerStats } = props;
+  const { apps, goals, assists } = playerStats;
+  let percentageApps = (apps * 100) / player.targetApps;
+  let percentageGoals = (goals * 100) / player.targetGoals;
+  let percentageAssists = (assists * 100) / player.targetAssists;
   if (player.targetApps === 0 || player.targetGoals === 0 || player.targetAssists === 0) {
     percentageApps = '0';
     percentageGoals = '0';
     percentageAssists = '0';
   }
   const playerTargetTotal = +player.targetApps + +player.targetGoals + +player.targetAssists;
-  let playerTargetAchieved = player.apps + player.goals + player.assists;
-  if (player.apps === '0') {
+  let playerTargetAchieved = apps + goals + assists;
+  if (apps === '0') {
     playerTargetAchieved = '0';
   }
   const percentageTotal = (playerTargetAchieved * 100) / playerTargetTotal;
@@ -49,9 +49,9 @@ const PlayerTargets = props => {
   };
 
   const listItems = [
-    createData('APPS', percentageApps, player.apps, player.targetApps),
-    createData('GOALS', percentageGoals, player.goals, player.targetGoals),
-    createData('ASSISTS', percentageAssists, player.assists, player.targetAssists),
+    createData('APPS', percentageApps, apps, player.targetApps),
+    createData('GOALS', percentageGoals, goals, player.targetGoals),
+    createData('ASSISTS', percentageAssists, assists, player.targetAssists),
     createData('TOTAL', percentageTotal, playerTargetAchieved, playerTargetTotal),
   ];
 
@@ -95,6 +95,7 @@ const PlayerTargets = props => {
 PlayerTargets.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   player: PropTypes.shape({}).isRequired,
+  playerStats: PropTypes.shape({}).isRequired,
 };
 
 export default withStyles(styles)(PlayerTargets);

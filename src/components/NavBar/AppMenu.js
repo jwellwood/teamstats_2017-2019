@@ -9,19 +9,9 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import IconButton from '@material-ui/core/IconButton';
 import Icon from '@material-ui/core/Icon';
-import Divider from '@material-ui/core/Divider';
+// styles
+import styles from './styles';
 
-// styling
-const styles = theme => ({
-  menuItem: {
-    '&:focus': {
-      backgroundColor: theme.palette.primary.main,
-      color: theme.palette.common.white,
-    },
-  },
-});
-
-// Component
 class AppMenu extends React.Component {
   state = { anchorEl: null };
 
@@ -34,6 +24,8 @@ class AppMenu extends React.Component {
   };
 
   render() {
+    const { anchorEl } = this.state;
+    const { isAuthenticated, classes } = this.props;
     // data to map
     let id = 0;
     const createData = (icon, text, link) => {
@@ -49,8 +41,10 @@ class AppMenu extends React.Component {
       createData('help_outline', 'About', '/about'),
     ];
 
-    const { anchorEl } = this.state;
-    const { isAuthenticated, classes } = this.props;
+    if (isAuthenticated) {
+      listItems.push(createData('settings', 'Settings', '/settings'));
+    }
+
     return (
       <div>
         <IconButton
@@ -81,20 +75,6 @@ class AppMenu extends React.Component {
               </NavLink>
             </div>
           ))}
-
-          {isAuthenticated ? (
-            <div>
-              <Divider />
-              <NavLink to="/settings" style={{ textDecoration: 'none' }}>
-                <MenuItem className={classes.menuItem}>
-                  <ListItemIcon>
-                    <Icon>settings</Icon>
-                  </ListItemIcon>
-                  <ListItemText variant="inset" primary="Settings" />
-                </MenuItem>
-              </NavLink>
-            </div>
-          ) : null}
         </Menu>
       </div>
     );

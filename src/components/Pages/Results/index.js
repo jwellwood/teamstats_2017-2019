@@ -1,3 +1,7 @@
+/* Gets the list of results from redux, and passes them down the props chain.
+Gets auth and makes it a boolean value to decide whether or not to render add/edit buttons.
+Gets team name to dynamically render the team name in the result box.  */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 // Redux
@@ -13,7 +17,7 @@ import ResultList from './List/ResultList';
 
 const Results = props => {
   const { auth, results, team, onDelete } = props;
-  const teamName = team ? team[0].name : null;
+  const teamName = team ? team[0].name : 'Team Name';
   return (
     <Container>
       <PageHeader title="Results" icon="" link="/" />

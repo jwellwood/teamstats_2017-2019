@@ -25,7 +25,7 @@ const DetailsHeader = props => {
               variant="contained"
               color="default"
               component={Link}
-              to={`/players/edit/${player.id}`}
+              to={`/players/${player.id}/edit/details`}
             >
               <Icon>edit</Icon>
             </IconButton>

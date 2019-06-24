@@ -41,10 +41,11 @@ const Routes = () => (
         <Route exact path="/players" component={Players} />
         <Route exact path="/stats" component={StatsContainer} />
         <Route exact path="/players/addPlayer" component={UserIsAuthenticated(AddPlayerForm)} />
-        <Route exact path="/players/edit/:id" component={UserIsAuthenticated(EditPlayer)} />
+        <Route exact path="/players/:id/edit/details" component={UserIsAuthenticated(EditPlayer)} />
+        <Route exact path="/players/:id/edit" component={UserIsAuthenticated(PlayerUpdater)} />
+
         <Route exact path="/players/edit/image/:id" component={UserIsAuthenticated(EditImage)} />
         <Route exact path="/settings" component={UserIsAuthenticated(Settings)} />
-        <Route exact path="/players/:id" component={UserIsAuthenticated(PlayerUpdater)} />
         <Route exact path="/results" component={Results} />
         <Route exact path="/results/addResult" component={UserIsAuthenticated(AddResultForm)} />
         <Route

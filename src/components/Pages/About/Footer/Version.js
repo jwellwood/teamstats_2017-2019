@@ -15,7 +15,7 @@ const Version = () => (
       </a>
     </Typography>
     <Typography variant="caption" align="center">
-      Version: 2.3.0
+      Version: 2.8.0
     </Typography>
   </div>
 );

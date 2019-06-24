@@ -1,8 +1,7 @@
 const styles = () => ({
-  root: { padding: '1px', margin: '0px auto', height: '70px' },
+  root: { padding: '0px', margin: '0px auto', height: '65px' },
   main: {
     textDecoration: 'none',
-    borderLeft: '3px solid',
     cursor: 'pointer',
   },
   dateBar: {
@@ -12,9 +11,10 @@ const styles = () => ({
     borderRadius: '2px 2px 0px 0px',
   },
   matchTypeBar: {
-    fontSize: '12px',
+    fontSize: '10px',
     padding: '0 5px',
     backgroundColor: '#333',
+    borderRadius: '2px 2px 0px 0px',
   },
   resultMarker: { width: '39px' },
   avatar: {

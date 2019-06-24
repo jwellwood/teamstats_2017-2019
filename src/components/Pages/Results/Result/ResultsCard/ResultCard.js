@@ -96,6 +96,7 @@ const ResultCard = props => {
 };
 
 ResultCard.propTypes = {
+  auth: PropTypes.bool.isRequired,
   classes: PropTypes.shape({}).isRequired,
   result: PropTypes.shape({}).isRequired,
   teamName: PropTypes.string,

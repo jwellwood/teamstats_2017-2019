@@ -5,7 +5,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firebaseConnect } from 'react-redux-firebase';
 // Components
-import MainNav from '../layout/Navs/MainNav';
+import MainNav from './MainNav';
 
 class NavBar extends Component {
   state = { isAuthenticated: false };

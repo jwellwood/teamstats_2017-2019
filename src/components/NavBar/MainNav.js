@@ -11,19 +11,10 @@ import Avatar from '@material-ui/core/Avatar';
 // Components
 import AppMenu from './AppMenu';
 import TopNav from './TopNav';
-import Logo from '../../../assets/images/logo.jpg';
+import Logo from '../../assets/images/logo.jpg';
 // styling
-const styles = theme => ({
-  root: { flexGrow: 1 },
-  appBar: {},
-  bigAvatar: {
-    border: '1px solid',
-    borderColor: theme.palette.primary.dark,
-    margin: '10px 0',
-    width: 32,
-    height: 32,
-  },
-});
+import styles from './styles';
+
 const MainNav = props => {
   const { classes, isAuthenticated, team, onLogout, allowRegistration, auth } = props;
   return (

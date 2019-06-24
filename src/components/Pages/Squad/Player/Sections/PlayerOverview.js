@@ -9,7 +9,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 // Assets
-import { positionColor } from '../../../../../assets/styles/colors';
+import { positionColor, colors } from '../../../../../assets/styles/colors';
+
 // Components
 import StatsHeader from '../../../../layout/Stats/StatsHeader';
 import ValueBox from '../../../../layout/Stats/ValueBox';
@@ -28,12 +29,13 @@ const styles = theme => ({
 });
 
 const PlayerOverview = props => {
-  const { classes, player, totalMatches, image } = props;
-  let playedPercentage = (player.apps * 100) / totalMatches;
-  if (totalMatches === 0) {
-    playedPercentage = 0;
-  }
+  const { classes, player, playerImage } = props;
 
+  const displayBalance = (
+    <span style={player.balance > 0 ? { color: colors.lose } : { color: colors.win }}>
+      €{parseFloat(player.balance).toFixed(2)}
+    </span>
+  );
   let id = 0;
   const createData = (title, value, textColor) => {
     id += 1;
@@ -43,7 +45,8 @@ const PlayerOverview = props => {
   const listItems = [
     createData('Number', player.number, ''),
     createData('Position', player.position, positionColor(player.position)),
-    createData('Played', `${playedPercentage.toFixed(1)}%`, ''),
+
+    createData('Balance', displayBalance, ''),
   ];
 
   return (
@@ -51,7 +54,7 @@ const PlayerOverview = props => {
       <StatsHeader title="Details" />
       <Grid container direction="row" justify="center" alignItems="center">
         <Grid item xs={4}>
-          <Avatar alt="Player avatar" src={image} className={classes.bigAvatar} />
+          <Avatar alt="Player avatar" src={playerImage} className={classes.bigAvatar} />
         </Grid>
         <Grid item xs={8} className={classes.details}>
           {listItems.map(item => (
@@ -75,8 +78,7 @@ const PlayerOverview = props => {
 PlayerOverview.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   player: PropTypes.shape({}).isRequired,
-  totalMatches: PropTypes.number.isRequired,
-  image: PropTypes.string.isRequired,
+  playerImage: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(PlayerOverview);

@@ -3,36 +3,34 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 // Components
 import Grid from '@material-ui/core/Grid';
-import Fab from '@material-ui/core/Fab';
 import Button from '@material-ui/core/Button';
-import AddIcon from '@material-ui/icons/Add';
+import Icon from '@material-ui/core/Icon';
+import IconButton from '@material-ui/core/IconButton';
 
 const BoxLinks = props => {
   const { auth, link } = props;
   return (
-    <div>
-      <Grid container direction="row" justify="space-between" alignItems="center">
-        <Grid item xs={6}>
-          <Button
-            fullWidth
-            variant="contained"
-            size="small"
-            color="secondary"
-            component={Link}
-            to="/stats"
-          >
-            View more stats
-          </Button>
-        </Grid>
-        <Grid item xs={2}>
-          {auth ? (
-            <Fab size="small" color="default" aria-label="Add" component={Link} to={link}>
-              <AddIcon />
-            </Fab>
-          ) : null}
-        </Grid>
+    <Grid container direction="row" justify="space-between" alignItems="center">
+      <Grid item xs={6}>
+        <Button
+          fullWidth
+          variant="contained"
+          size="small"
+          color="primary"
+          component={Link}
+          to="/stats"
+        >
+          stats
+        </Button>
       </Grid>
-    </div>
+      <Grid item xs={2}>
+        {auth ? (
+          <IconButton size="small" color="secondary" aria-label="Add" component={Link} to={link}>
+            <Icon>add</Icon>
+          </IconButton>
+        ) : null}
+      </Grid>
+    </Grid>
   );
 };
 

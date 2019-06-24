@@ -8,7 +8,7 @@ import { resultColor } from '../../../../../assets/styles/colors';
 
 const styles = () => ({
   fixtureTeams: {
-    margin: '5px auto',
+    margin: '1px auto',
     display: 'flex',
     justifyContent: 'center',
     padding: '0px 10px',
@@ -25,7 +25,7 @@ const styles = () => ({
     overflow: 'hidden',
     wordWrap: 'break-word',
     // margin: '0px 5px',
-    fontSize: '12px',
+    fontSize: '14px',
   },
   scoreBox: {
     display: 'flex',

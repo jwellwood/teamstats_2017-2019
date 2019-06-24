@@ -18,10 +18,8 @@ const ResultList = props => {
 
 ResultList.propTypes = {
   auth: PropTypes.bool.isRequired,
-  results: PropTypes.instanceOf(Array),
-  teamName: PropTypes.string,
+  results: PropTypes.instanceOf(Array).isRequired,
+  teamName: PropTypes.string.isRequired,
 };
-
-ResultList.defaultProps = { results: [], teamName: '' };
 
 export default ResultList;
