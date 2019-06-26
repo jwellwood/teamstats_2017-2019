@@ -18,10 +18,6 @@ import {
   targetApps,
   targetGoals,
   targetAssists,
-  goals,
-  assists,
-  apps,
-  mvp,
   balance,
 } from './Data';
 
@@ -36,10 +32,6 @@ class AddPlayerForm extends Component {
       targetApps,
       targetGoals,
       targetAssists,
-      goals,
-      assists,
-      apps,
-      mvp,
       balance,
     },
     submissionError: false,

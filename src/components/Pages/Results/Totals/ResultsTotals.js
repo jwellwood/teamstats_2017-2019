@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactTable from 'react-table';
-import 'react-table/react-table.css';
+import { Link } from 'react-router-dom';
 // MUI
-import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 // Components
 import BoxContainer from '../../../layout/hoc/BoxContainer';
 import BoxLinks from '../../../layout/Navs/BoxLinks';
@@ -13,19 +12,10 @@ import BoxLinks from '../../../layout/Navs/BoxLinks';
 import columns from './Data';
 // styles
 import { colors } from '../../../../assets/styles/colors';
-
-const styles = theme => ({
-  tableHeader: {
-    backgroundColor: '#333',
-    color: theme.palette.secondary.main,
-    textTransform: 'uppercase',
-    fontWeight: 'bold',
-    fontSize: '12px',
-  },
-});
+import TableWrapper from '../../../layout/Table';
 
 const ResultsTotals = props => {
-  const { classes, auth, results } = props;
+  const { auth, results } = props;
   const getGoals = arr => arr.reduce((a, b) => a + b, 0);
   const goalsForArray = results.map(result => +result.teamScore);
   const goalsAgainstArray = results.map(result => +result.opponentScore);
@@ -56,38 +46,33 @@ const ResultsTotals = props => {
       points,
     },
   ];
-
   return (
     <BoxContainer>
       <Paper style={{ padding: '10px', background: '#222', textAlign: 'center' }}>
         <Grid container justify="center" style={{ margin: '10px auto' }}>
-          <ReactTable
-            data={data}
-            columns={columns}
-            showPagination={false}
-            minRows={1}
-            className="-striped"
-            getTheadThProps={() => ({ className: classes.tableHeader })}
-            getTdProps={() => ({
-              style: {
-                fontSize: '12px',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-              },
-            })}
-          />
+          <TableWrapper data={data} columns={columns} />
         </Grid>
-        <BoxLinks auth={auth} link="/results/addresult" />
+        <BoxLinks auth={auth} link="/results/addresult">
+          <Button
+            fullWidth
+            component={Link}
+            to="/stats"
+            variant="contained"
+            color="primary"
+            aria-label="View Stats"
+            size="small"
+          >
+            Stats
+          </Button>
+        </BoxLinks>
       </Paper>
     </BoxContainer>
   );
 };
 
 ResultsTotals.propTypes = {
-  classes: PropTypes.shape({}).isRequired,
   auth: PropTypes.bool.isRequired,
   results: PropTypes.instanceOf(Array).isRequired,
 };
 
-export default withStyles(styles)(ResultsTotals);
+export default ResultsTotals;

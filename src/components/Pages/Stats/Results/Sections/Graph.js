@@ -20,6 +20,9 @@ const Graph = props => {
   return (
     <div>
       <Grid container direction="row" justify="center" alignItems="center">
+        <Grid item xs={5} md={3} style={{ textAlign: 'center', padding: '10px' }}>
+          <Pie data={data} options={{ legend: { display: false } }} />
+        </Grid>
         <Grid item xs={6}>
           <Paper
             style={{
@@ -52,9 +55,6 @@ const Graph = props => {
               ))}
             </Grid>
           </Paper>
-        </Grid>
-        <Grid item xs={5} md={3} style={{ textAlign: 'center', padding: '10px' }}>
-          <Pie data={data} options={{ legend: { display: false } }} />
         </Grid>
       </Grid>
     </div>

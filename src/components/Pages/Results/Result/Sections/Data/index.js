@@ -2,15 +2,15 @@ import React from 'react';
 
 const columns = [
   {
-    Header: '',
+    Header: <i className="far fa-check-square" />,
     accessor: 'name',
     style: {
       fontWeight: 'bold',
       textAlign: 'left',
       fontSize: '12px',
       textTransform: 'uppercase',
-      background: '#333',
-      color: '#fff',
+      background: '#ddd',
+      color: '#333',
       borderBottom: '1px solid #666',
     },
     sortable: false,

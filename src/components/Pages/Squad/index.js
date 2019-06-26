@@ -32,10 +32,7 @@ Players.propTypes = {
 Players.defaultProps = { players: [], results: [] };
 
 export default compose(
-  firestoreConnect([
-    { collection: 'players', orderBy: ['apps', 'desc'] },
-    { collection: 'results' },
-  ]),
+  firestoreConnect([{ collection: 'players', orderBy: ['name'] }, { collection: 'results' }]),
   // eslint-disable-next-line no-unused-vars
   connect((state, props) => ({
     auth: state.firebase.auth,

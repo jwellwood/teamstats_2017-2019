@@ -42,7 +42,7 @@ const ProgressBar = props => {
           />
         </Grid>
 
-        <Grid item>
+        <Grid item xs={3}>
           <ListItemAvatar className={classes.avatar}>
             <Avatar className={classes.percentage}>
               {percentage.toFixed(1)}

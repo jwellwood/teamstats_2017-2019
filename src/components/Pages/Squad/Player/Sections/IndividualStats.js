@@ -1,27 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactTable from 'react-table';
-import 'react-table/react-table.css';
-
+// MUI
+import Typography from '@material-ui/core/Typography';
 // Components
-import { Typography } from '@material-ui/core';
 import StatsHeader from '../../../../layout/Stats/StatsHeader';
 import BoxContainer from '../../../../layout/hoc/BoxContainer';
+import TableWrapper from '../../../../layout/Table';
 
 // helpers
 import columns from './Data';
 import Percentages from './Percentages';
 
 const IndividualStats = props => {
-  const {
-    totalTeamGoals,
-    playerStats,
-    playerMatches,
-    playerMatchStats,
-    player,
-    results,
-    playerImage,
-  } = props;
+  const { totalTeamGoals, playerStats, playerMatches, playerMatchStats, results } = props;
   const { apps, goals, assists, mvp } = playerStats;
 
   const numberOfMatches = playerMatches.length;
@@ -88,32 +79,8 @@ const IndividualStats = props => {
   return (
     <BoxContainer>
       <StatsHeader title="Stats" />
-      <Percentages
-        player={player}
-        results={results}
-        playerImage={playerImage}
-        totalTeamGoals={totalTeamGoals}
-        playerMatches={playerMatches}
-        playerMatchStats={playerMatchStats}
-        avgScore={avgScore}
-      />
-      <ReactTable
-        data={data}
-        columns={columns}
-        showPagination={false}
-        minRows={1}
-        className="-striped"
-        TheadComponent={TheadComponent}
-        getTdProps={() => ({
-          style: {
-            fontFamily: 'Varela Round',
-            fontSize: '12px',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-          },
-        })}
-      />
+      <Percentages results={results} playerMatches={playerMatches} avgScore={avgScore} />
+      <TableWrapper data={data} columns={columns} noHeader={TheadComponent} />
     </BoxContainer>
   );
 };
@@ -121,6 +88,7 @@ const IndividualStats = props => {
 IndividualStats.propTypes = {
   playerStats: PropTypes.shape({}).isRequired,
   playerMatches: PropTypes.instanceOf(Array).isRequired,
+  results: PropTypes.instanceOf(Array).isRequired,
   playerMatchStats: PropTypes.instanceOf(Array).isRequired,
   totalTeamGoals: PropTypes.number.isRequired,
 };

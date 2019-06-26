@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
-import { playerColumns } from '../../TableData';
+// import { playerColumns } from '../../Data';
 
-const Comparison = props => {
+const ReferenceTable = props => {
   const { players, results } = props;
   const gamesWithoutForfeits = results.filter(res => !res.forfeitedMatch);
   const totalPlayed = gamesWithoutForfeits.length;
@@ -72,9 +72,9 @@ const Comparison = props => {
   );
 };
 
-Comparison.propTypes = {
+ReferenceTable.propTypes = {
   results: PropTypes.instanceOf(Array).isRequired,
   players: PropTypes.instanceOf(Array).isRequired,
 };
 
-export default Comparison;
+export default ReferenceTable;

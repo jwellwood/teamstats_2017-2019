@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
-import { resultColumns } from '../../TableData';
+import columns from './Data';
 import {
   getAllWins,
   getAllDraws,
@@ -82,7 +82,7 @@ const HomeAndAway = props => {
       <div>
         <ReactTable
           data={data}
-          columns={resultColumns}
+          columns={columns}
           showPagination={false}
           minRows={1}
           className="-striped"

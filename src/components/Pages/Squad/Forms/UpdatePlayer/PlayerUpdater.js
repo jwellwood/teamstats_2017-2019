@@ -29,58 +29,6 @@ class PlayerUpdater extends Component {
 
   // ******************************************************************************
 
-  addAppButton = () => {
-    const { player, firestore } = this.props;
-    const addApp = { apps: player.apps + 1 };
-    firestore.update({ collection: 'players', doc: player.id }, addApp);
-  };
-
-  addGoalButton = () => {
-    const { player, firestore } = this.props;
-    const addGoal = { goals: player.goals + 1 };
-    firestore.update({ collection: 'players', doc: player.id }, addGoal);
-  };
-
-  addAssistButton = () => {
-    const { player, firestore } = this.props;
-    const addAssist = { assists: player.assists + 1 };
-    firestore.update({ collection: 'players', doc: player.id }, addAssist);
-  };
-
-  addMvpButton = () => {
-    const { player, firestore } = this.props;
-    const addMvp = { mvp: player.mvp + 1 };
-    firestore.update({ collection: 'players', doc: player.id }, addMvp);
-  };
-
-  // ***************************************************************************
-
-  removeAppButton = () => {
-    const { player, firestore } = this.props;
-    const removeApp = { apps: player.apps - 1 };
-    firestore.update({ collection: 'players', doc: player.id }, removeApp);
-  };
-
-  removeGoalButton = () => {
-    const { player, firestore } = this.props;
-    const removeGoal = { goals: player.goals - 1 };
-    firestore.update({ collection: 'players', doc: player.id }, removeGoal);
-  };
-
-  removeAssistButton = () => {
-    const { player, firestore } = this.props;
-    const removeAssist = { assists: player.assists - 1 };
-    firestore.update({ collection: 'players', doc: player.id }, removeAssist);
-  };
-
-  removeMvpButton = () => {
-    const { player, firestore } = this.props;
-    const removeMvp = { mvp: player.mvp - 1 };
-    firestore.update({ collection: 'players', doc: player.id }, removeMvp);
-  };
-
-  // *********************************************************************************
-
   toggleBalanceForm = () => {
     const { showBalanceUpdate } = this.state;
     this.setState({ showBalanceUpdate: !showBalanceUpdate });
@@ -133,14 +81,6 @@ class PlayerUpdater extends Component {
             isAuthenticated={isAuthenticated}
             toggleBalanceForm={this.toggleBalanceForm}
             balanceForm={balanceForm}
-            addAppButton={this.addAppButton}
-            removeAppButton={this.removeAppButton}
-            addGoalButton={this.addGoalButton}
-            removeGoalButton={this.removeGoalButton}
-            addAssistButton={this.addAssistButton}
-            removeAssistButton={this.removeAssistButton}
-            addMvpButton={this.addMvpButton}
-            removeMvpButton={this.removeMvpButton}
             balanceReset={this.balanceReset}
           />
         </Container>

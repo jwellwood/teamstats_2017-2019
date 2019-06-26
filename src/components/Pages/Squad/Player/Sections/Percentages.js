@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+// MUI
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
-import { Typography } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
+// styles
 import styles from './styles';
 import { colors } from '../../../../../assets/styles/colors';
 
@@ -15,28 +17,26 @@ const Percentages = props => {
   }
   const wonMatches = playerMatches.filter(match => +match.teamScore > +match.opponentScore).length;
   const winPercentage = ((wonMatches / playerMatches.length) * 100).toFixed(1);
+  // Data
+  const createData = (stat, text, color) => ({ stat, text, color });
+  const listItems = [
+    createData(playedPercentage, '% played'),
+    createData(winPercentage, '% won'),
+    createData(avgScore, 'team avg', avgScore > 0 ? colors.win : colors.lose),
+  ];
+
   return (
     <Grid container direction="row" alignContent="center" justify="center" className={classes.root}>
-      <Grid item xs={4} sm={4}>
-        <Card className={classes.card}>
-          <Typography variant="h5">{playedPercentage}</Typography>
-          <Typography variant="caption">% played</Typography>
-        </Card>
-      </Grid>
-      <Grid item xs={4} sm={4}>
-        <Card className={classes.card}>
-          <Typography variant="h5">{winPercentage}</Typography>
-          <Typography variant="caption">% won</Typography>
-        </Card>
-      </Grid>
-      <Grid item xs={4} sm={4}>
-        <Card className={classes.card}>
-          <Typography style={{ color: avgScore > 0 ? colors.win : colors.lose }} variant="h5">
-            {avgScore}
-          </Typography>
-          <Typography variant="caption">team avg</Typography>
-        </Card>
-      </Grid>
+      {listItems.map(item => (
+        <Grid key={item.text} item xs={4} sm={4}>
+          <Card className={classes.card}>
+            <Typography variant="h5" style={{ color: item.color }}>
+              {item.stat}
+            </Typography>
+            <Typography variant="caption">{item.text}</Typography>
+          </Card>
+        </Grid>
+      ))}
     </Grid>
   );
 };

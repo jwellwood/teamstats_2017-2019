@@ -111,62 +111,6 @@ export const targetAssists = {
   valid: true,
 };
 
-export const goals = {
-  element: 'hidden',
-  value: 0,
-  label: false,
-  labelText: 'Goals',
-  config: {
-    name: 'goals_input',
-    type: 'number',
-    placeholder: 'Goals',
-  },
-  validation: { required: false },
-  valid: true,
-};
-
-export const assists = {
-  element: 'hidden',
-  value: 0,
-  label: false,
-  labelText: 'Assists',
-  config: {
-    name: 'assists_input',
-    type: 'number',
-    placeholder: 'Assists',
-  },
-  validation: { required: false },
-  valid: true,
-};
-
-export const apps = {
-  element: 'hidden',
-  value: 0,
-  label: false,
-  labelText: 'Appearances',
-  config: {
-    name: 'apps_input',
-    type: 'number',
-    placeholder: 'Apps',
-  },
-  validation: { required: false },
-  valid: true,
-};
-
-export const mvp = {
-  element: 'hidden',
-  value: 0,
-  label: false,
-  labelText: 'MVP',
-  config: {
-    name: 'mvp_input',
-    type: 'number',
-    placeholder: 'MVP',
-  },
-  validation: { required: false },
-  valid: true,
-};
-
 export const balance = {
   element: 'input',
   value: 0,

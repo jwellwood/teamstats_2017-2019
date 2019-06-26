@@ -23,7 +23,7 @@ const styles = theme => ({
 
 // Component
 const TeamDetails = props => {
-  const { classes, team, trophies, players } = props;
+  const { classes, team, trophies } = props;
   const { city, leagueFinish } = team[0];
   const trophiesWon = trophies ? trophies.filter(trophy => trophy.winner).length : null;
   // Data to map
@@ -35,11 +35,6 @@ const TeamDetails = props => {
 
   const listItems = [
     createData(<i className="fas fa-globe-americas" />, 'Home city', city),
-    createData(
-      <i className="fas fa-users" />,
-      'Current squad',
-      `${players ? players.length : null} players`,
-    ),
     createData(<i className="fas fa-award" />, 'Finish last season', leagueFinish),
     createData(<i className="fas fa-trophy" />, 'Trophies won', trophiesWon),
   ];
@@ -73,8 +68,7 @@ TeamDetails.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   team: PropTypes.instanceOf(Array).isRequired,
   trophies: PropTypes.instanceOf(Array),
-  players: PropTypes.instanceOf(Array),
 };
 
-TeamDetails.defaultProps = { trophies: [], players: [] };
+TeamDetails.defaultProps = { trophies: [] };
 export default withStyles(styles)(TeamDetails);

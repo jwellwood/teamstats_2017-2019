@@ -41,15 +41,6 @@ const MainCard = props => {
               <PlayerStats player={player} playerStats={playerStats} />
             </Grid>
           </Grid>
-          {player.balance > 0 ? (
-            <Typography
-              variant="caption"
-              color="primary"
-              style={{ textAlign: 'right', padding: '3px' }}
-            >
-              €{parseFloat(player.balance).toFixed(2)}
-            </Typography>
-          ) : null}
         </ExpansionPanelSummary>
         <ExpansionPanelDetails style={{ padding: '1px', margin: '0px auto', background: '#333' }}>
           <Grid container direction="row" justify="center" alignContent="center">
@@ -63,6 +54,13 @@ const MainCard = props => {
               <Graph {...props} />
             </Grid>
           </Grid>
+          {player.balance !== 0 ? (
+            <Typography variant="caption" style={{ textAlign: 'right', padding: '3px' }}>
+              <span style={{ color: player.balance < 0 ? '#2ECC71' : '#E74C3C' }}>
+                €{parseFloat(player.balance).toFixed(2)}
+              </span>
+            </Typography>
+          ) : null}
         </ExpansionPanelDetails>
       </ExpansionPanel>
     </BoxContainer>
