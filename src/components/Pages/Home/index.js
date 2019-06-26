@@ -38,8 +38,8 @@ export default compose(
   firestoreConnect([
     { collection: 'team' },
     { collection: 'trophies', orderBy: ['year', 'desc'] },
-    { collection: 'players', orderBy: ['apps', 'desc'] },
-    { collection: 'results', orderBy: ['date', 'desc'] },
+    { collection: 'players' },
+    { collection: 'results' },
   ]),
   // eslint-disable-next-line no-unused-vars
   connect((state, props) => ({

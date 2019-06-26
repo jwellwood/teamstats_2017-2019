@@ -16,8 +16,15 @@ const Players = props => {
   return (
     <Container>
       <PageHeader title="Squad" icon="" link="/" />
-      <SquadTotals auth={!!auth.uid} players={players} results={totalMatches} allGames={results} />
-      <SquadList auth={!!auth.uid} players={players} results={totalMatches} allGames={results} />
+      <div>
+        <SquadTotals
+          auth={!!auth.uid}
+          players={players}
+          results={totalMatches}
+          allGames={results}
+        />
+        <SquadList auth={!!auth.uid} players={players} results={totalMatches} allGames={results} />
+      </div>
     </Container>
   );
 };
@@ -32,7 +39,7 @@ Players.propTypes = {
 Players.defaultProps = { players: [], results: [] };
 
 export default compose(
-  firestoreConnect([{ collection: 'players', orderBy: ['name'] }, { collection: 'results' }]),
+  firestoreConnect([{ collection: 'players' }, { collection: 'results' }]),
   // eslint-disable-next-line no-unused-vars
   connect((state, props) => ({
     auth: state.firebase.auth,
