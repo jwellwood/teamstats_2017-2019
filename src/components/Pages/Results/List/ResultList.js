@@ -12,7 +12,7 @@ const ResultList = props => {
       <ResultCard auth={auth} key={result.id} result={result} teamName={teamName} />
     ));
   }
-  if (results.length === 0) return <div>Start adding results!</div>;
+  // if (results.length === 0) return <div>Start adding results!</div>;
   return <Spinner />;
 };
 

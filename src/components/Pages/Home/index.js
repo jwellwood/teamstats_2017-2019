@@ -39,7 +39,7 @@ export default compose(
     { collection: 'team' },
     { collection: 'trophies', orderBy: ['year', 'desc'] },
     { collection: 'players' },
-    { collection: 'results' },
+    { collection: 'results', orderBy: ['date', 'desc'] },
   ]),
   // eslint-disable-next-line no-unused-vars
   connect((state, props) => ({
