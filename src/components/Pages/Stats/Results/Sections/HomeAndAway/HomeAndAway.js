@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import ReactTable from 'react-table';
-import 'react-table/react-table.css';
+import SwitchButton from '../../../../../layout/ui/SwitchButton';
+import TableWrapper from '../../../../../layout/Table';
 import columns from './Data';
 import {
   getAllWins,
@@ -12,8 +11,7 @@ import {
   getGoalsAgainst,
   perGame,
   getPointsPer,
-} from '../../../../../functions/Results/functions';
-import SwitchButton from '../../../../layout/ui/SwitchButton';
+} from '../../../../../../functions/Results/functions';
 
 const HomeAndAway = props => {
   const { homeResults, awayResults, checked, handleChange, value } = props;
@@ -79,32 +77,8 @@ const HomeAndAway = props => {
         value={value}
         label="Include forfeits"
       />
-      <div>
-        <ReactTable
-          data={data}
-          columns={columns}
-          showPagination={false}
-          minRows={1}
-          className="-striped"
-          getTheadThProps={() => ({ style: { backgroundColor: '#333', color: '#fff' } })}
-          getTheadGroupThProps={() => ({
-            style: {
-              backgroundColor: '#333',
-              color: '#fff',
-              textTransform: 'uppercase',
-              fontWeight: 'bold',
-              textAlign: 'left',
-            },
-          })}
-          getTdProps={() => ({
-            style: {
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-            },
-          })}
-        />
-      </div>
+
+      <TableWrapper data={data} columns={columns} />
     </div>
   );
 };

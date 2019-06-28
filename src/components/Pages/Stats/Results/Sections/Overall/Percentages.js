@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // Components
 import Graph from './Graph';
-import { getPercentage } from '../../../../../functions/Results/functions';
-import { colors } from '../../../../../assets/styles/colors';
+import { getPercentage } from '../../../../../../functions/Results/functions';
+import { colors } from '../../../../../../assets/styles/colors';
 
 const Percentages = props => {
   const { matchTotals } = props;

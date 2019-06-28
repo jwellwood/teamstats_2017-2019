@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // Components
-import Overall from './Sections/Overall';
-import GoalStats from './Sections/GoalStats';
-import HomeAndAway from './Sections/HomeAndAway';
+import Overall from './Sections/Overall/Overall';
+import GoalStats from './Sections/GoalStats/GoalStats';
+import HomeAndAway from './Sections/HomeAndAway/HomeAndAway';
+import ByMonth from './Sections/ByMonth/ByMonth';
 import BoxContainer from '../../../layout/hoc/BoxContainer';
 // functions
 
@@ -52,6 +53,7 @@ class ResultsStats extends Component {
       { id: 1, icon: <i className="fas fa-list-ul" /> },
       { id: 2, icon: <i className="fas fa-futbol" /> },
       { id: 3, icon: <i className="fas fa-store-alt" /> },
+      { id: 4, icon: <i className="fas fa-chart-line" /> },
     ];
     const tabContent = [
       {
@@ -82,6 +84,17 @@ class ResultsStats extends Component {
           <HomeAndAway
             homeResults={homeResults}
             awayResults={awayResults}
+            handleChange={this.handleChange('includeForfeits')}
+            checked={includeForfeits}
+            value="includeforfeits"
+          />
+        ),
+      },
+      {
+        id: 4,
+        content: (
+          <ByMonth
+            results={teamResults}
             handleChange={this.handleChange('includeForfeits')}
             checked={includeForfeits}
             value="includeforfeits"

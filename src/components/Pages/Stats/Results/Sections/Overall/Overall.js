@@ -7,10 +7,10 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 // Components
 import PerGame from './PerGame';
-import SwitchButton from '../../../../layout/ui/SwitchButton';
+import SwitchButton from '../../../../../layout/ui/SwitchButton';
 import Percentages from './Percentages';
 // Helpers
-import { colors } from '../../../../../assets/styles/colors';
+import { colors } from '../../../../../../assets/styles/colors';
 
 const styles = () => ({
   root: { padding: '5px 15px' },
@@ -57,7 +57,7 @@ const Overall = props => {
         value={value}
         label="Include forfeits"
       />
-      <Paper>
+      <Paper style={{ marginBottom: '10px' }}>
         <Grid container direction="row" justify="space-evenly" alignItems="center">
           {tableItems.map(item => (
             <Grid item key={item.id}>

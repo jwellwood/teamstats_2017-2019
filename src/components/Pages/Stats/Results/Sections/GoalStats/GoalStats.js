@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // Components
-import SwitchButton from '../../../../layout/ui/SwitchButton';
+import SwitchButton from '../../../../../layout/ui/SwitchButton';
 // functions
 import {
   getMostGoalsScored,
@@ -11,15 +11,14 @@ import {
   getCleanSheets,
   getBiggestWinningMargin,
   getBiggestLosingMargin,
-} from '../../../../../functions/Results/functions';
-import StatBox from '../../../../layout/Stats/StatBox';
+} from '../../../../../../functions/Results/functions';
+import StatBox from './StatBox';
 
 const GoalStats = props => {
   const { results, checked, handleChange, value } = props;
 
   const mostGoalsMatch = (
     <StatBox
-      type="results"
       title="Most goals"
       data={getMostGoalsScored(results).match}
       value={getMostGoalsScored(results).value}
@@ -27,7 +26,6 @@ const GoalStats = props => {
   );
   const fewestGoalsMatch = (
     <StatBox
-      type="results"
       title="Fewest goals"
       data={getFewestGoalsScored(results).match}
       value={getFewestGoalsScored(results).value}
@@ -35,7 +33,6 @@ const GoalStats = props => {
   );
   const biggestWin = (
     <StatBox
-      type="results"
       title="Biggest win"
       data={getBiggestWinningMargin(results).match}
       value={getBiggestWinningMargin(results).value}
@@ -43,7 +40,6 @@ const GoalStats = props => {
   );
   const mostConcededMatch = (
     <StatBox
-      type="results"
       title="Most conceded"
       data={getMostGoalsConceded(results).match}
       value={getMostGoalsConceded(results).value}
@@ -51,7 +47,6 @@ const GoalStats = props => {
   );
   const fewestConcededMatch = (
     <StatBox
-      type="results"
       title="Fewest conceded"
       data={getFewestGoalsConceded(results).match}
       value={getFewestGoalsConceded(results).value}
@@ -59,7 +54,6 @@ const GoalStats = props => {
   );
   const cleanSheets = (
     <StatBox
-      type="results"
       title="Clean sheets"
       data={getCleanSheets(results)}
       value={getCleanSheets(results).length}
@@ -68,7 +62,6 @@ const GoalStats = props => {
 
   const biggestLoss = (
     <StatBox
-      type="results"
       title="Heaviest defeat"
       data={getBiggestLosingMargin(results).match}
       value={getBiggestLosingMargin(results).value}
@@ -76,9 +69,9 @@ const GoalStats = props => {
   );
 
   let id = 0;
-  const createData = (number, color) => {
+  const createData = number => {
     id += 1;
-    return { id, number, color };
+    return { id, number };
   };
 
   const goalsData = [
