@@ -16,8 +16,8 @@ import Container from '../../../layout/hoc/Container';
 import Spinner from '../../../layout/Warnings/Spinner';
 import PageHeader from '../../../layout/Navs/PageHeader';
 import FormTitle from '../../../layout/Forms/FormTitle';
-import FileUpload from '../../../layout/Forms/FileUpload';
-import defaultBadge from '../../../../assets/images/defaultBadge.png';
+// import FileUpload from '../../../layout/Forms/FileUpload';
+// import defaultBadge from '../../../../assets/images/logoBig.jpg';
 
 const styles = () => ({
   container: {
@@ -31,42 +31,43 @@ const styles = () => ({
 });
 
 class EditTeam extends Component {
-  state = { defaultImg: defaultBadge };
+  // state = { defaultImg: defaultBadge };
 
   constructor(props) {
     super(props);
-    this.teamBadgeInput = React.createRef();
+    // this.teamBadgeInput = React.createRef();
     this.teamNameInput = React.createRef();
     this.teamCityInput = React.createRef();
     this.leagueFinishInput = React.createRef();
-    this.forfeitScoreInput = React.createRef();
   }
 
   onSubmit = e => {
     e.preventDefault();
     const { team, firestore, history } = this.props;
     const updatedTeam = {
-      badge: this.teamBadgeInput.current.value,
+      // badge: this.teamBadgeInput.current.value,
       name: this.teamNameInput.current.value,
       city: this.teamCityInput.current.value,
       leagueFinish: this.leagueFinishInput.current.value,
-      forfeitScore: this.forfeitScoreInput.current.value,
     };
-    firestore.update({ collection: 'team', doc: team.id }, updatedTeam).then(history.push('/'));
+    firestore
+      .update({ collection: 'team', doc: team.id }, updatedTeam)
+      .then(history.push('/'));
   };
 
   onDelete = () => {
     const { team, firestore, history } = this.props;
-    firestore.delete({ collection: 'team', doc: team.id }).then(history.push('/'));
+    firestore
+      .delete({ collection: 'team', doc: team.id })
+      .then(history.push('/'));
   };
 
-  storeFilename = filename => {};
+  // storeFilename = filename => {};
 
   render() {
     const { classes, team } = this.props;
-    const { defaultImg } = this.state;
+    // const { defaultImg } = this.state;
     const textInputProps = { minLength: 2 };
-    const numberInputProps = { min: 0, max: 100 };
     if (team) {
       return (
         <Container>
@@ -75,13 +76,13 @@ class EditTeam extends Component {
             <Paper className={classes.container}>
               <form onSubmit={this.onSubmit}>
                 <FormTitle title="Team Details" />
-                <FormControl className={classes.formControl}>
+                {/* <FormControl className={classes.formControl}>
                   <FileUpload
                     dir="team"
-                    defaultImage={defaultImg}
+                    defaultImg={defaultImg}
                     filename={filename => this.storeFilename(filename)}
                   />
-                </FormControl>
+                </FormControl> */}
                 <FormControl className={classes.formControl}>
                   <TextField
                     label="Team Name"
@@ -112,7 +113,10 @@ class EditTeam extends Component {
                     inputRef={this.leagueFinishInput}
                     defaultValue={team.leagueFinish}
                     required
-                    inputProps={{ name: 'leaguePosition', id: 'leaguePosition' }}
+                    inputProps={{
+                      name: 'leaguePosition',
+                      id: 'leaguePosition',
+                    }}
                   >
                     <option value="None">N/A</option>
                     <option value="1st">1st</option>
@@ -138,20 +142,13 @@ class EditTeam extends Component {
                     <option value="Other">Other</option>
                   </Select>
                 </FormControl>
-                <FormControl className={classes.formControl}>
-                  <FormTitle title="League Details" />
-                  <TextField
-                    label="Forfeit Score"
-                    type="number"
-                    name="forfeitScore"
-                    inputProps={numberInputProps}
-                    required
-                    inputRef={this.forfeitScoreInput}
-                    defaultValue={team.forfeitScore}
-                  />
-                </FormControl>
 
-                <Button variant="contained" color="secondary" type="submit" value="Submit">
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  type="submit"
+                  value="Submit"
+                >
                   Update
                 </Button>
               </form>
@@ -174,8 +171,12 @@ EditTeam.propTypes = {
 EditTeam.defaultProps = { team: null };
 
 export default compose(
-  firestoreConnect(props => [{ collection: 'team', storeAs: 'team', doc: props.match.params.id }]),
+  firestoreConnect(props => [
+    { collection: 'team', storeAs: 'team', doc: props.match.params.id },
+  ]),
   // eslint-disable-next-line no-unused-vars
-  connect(({ firestore: { ordered } }, props) => ({ team: ordered.team && ordered.team[0] })),
+  connect(({ firestore: { ordered } }, props) => ({
+    team: ordered.team && ordered.team[0],
+  })),
   withStyles(styles),
 )(EditTeam);

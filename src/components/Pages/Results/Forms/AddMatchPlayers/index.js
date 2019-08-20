@@ -10,14 +10,17 @@ import Label from '../../../../layout/Forms/Label';
 
 const AddMatchPlayers = props => {
   const { players, matchPlayers } = props;
-
   return (
     <FormContainer>
       <Label>Match Players</Label>
       {players
         ? players.map(player => (
-          <MatchPlayerForm player={player} key={player.id} matchPlayers={matchPlayers} />
-        ))
+            <MatchPlayerForm
+              player={player}
+              key={player.id}
+              matchPlayers={matchPlayers}
+            />
+          ))
         : null}
     </FormContainer>
   );
@@ -27,10 +30,9 @@ AddMatchPlayers.propTypes = {
   players: PropTypes.instanceOf(Array),
   matchPlayers: PropTypes.shape({}).isRequired,
 };
-AddMatchPlayers.defaultProps = { players: [] };
 
 export default compose(
   firestoreConnect([{ collection: 'players', orderBy: ['apps', 'desc'] }]),
   // eslint-disable-next-line no-unused-vars
-  connect((state, props) => ({ players: state.firestore.ordered.players })),
+  connect(state => ({ players: state.firestore.ordered.players })),
 )(AddMatchPlayers);

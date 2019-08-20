@@ -32,7 +32,12 @@ Home.propTypes = {
   results: PropTypes.instanceOf(Array),
 };
 
-Home.defaultProps = { team: null, trophies: null, players: null, results: null };
+Home.defaultProps = {
+  team: null,
+  trophies: null,
+  players: null,
+  results: null,
+};
 
 export default compose(
   firestoreConnect([

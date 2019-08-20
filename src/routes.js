@@ -33,27 +33,67 @@ const Routes = () => (
     <div>
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/editteam" component={UserIsAuthenticated(EditTeam)} />
-        <Route exact path="/addtrophy" component={UserIsAuthenticated(AddTrophy)} />
+        <Route
+          exact
+          path="/editteam"
+          component={UserIsAuthenticated(EditTeam)}
+        />
+        <Route
+          exact
+          path="/addtrophy"
+          component={UserIsAuthenticated(AddTrophy)}
+        />
         <Route exact path="/login" component={UserIsNotAuthenticated(Login)} />
-        <Route exact path="/register" component={UserIsNotAuthenticated(Register)} />
+        <Route
+          exact
+          path="/register"
+          component={UserIsNotAuthenticated(Register)}
+        />
         <Route exact path="/about" component={About} />
         <Route exact path="/players" component={Players} />
         <Route exact path="/stats" component={StatsContainer} />
-        <Route exact path="/players/addPlayer" component={UserIsAuthenticated(AddPlayerForm)} />
-        <Route exact path="/players/:id/edit/details" component={UserIsAuthenticated(EditPlayer)} />
-        <Route exact path="/players/:id/edit" component={UserIsAuthenticated(PlayerUpdater)} />
+        <Route
+          exact
+          path="/players/addPlayer"
+          component={UserIsAuthenticated(AddPlayerForm)}
+        />
+        <Route
+          exact
+          path="/players/:id/edit/details"
+          component={UserIsAuthenticated(EditPlayer)}
+        />
+        <Route
+          exact
+          path="/players/:id/edit"
+          component={UserIsAuthenticated(PlayerUpdater)}
+        />
 
-        <Route exact path="/players/edit/image/:id" component={UserIsAuthenticated(EditImage)} />
-        <Route exact path="/settings" component={UserIsAuthenticated(Settings)} />
+        <Route
+          exact
+          path="/players/edit/image/:id"
+          component={UserIsAuthenticated(EditImage)}
+        />
+        <Route
+          exact
+          path="/settings"
+          component={UserIsAuthenticated(Settings)}
+        />
         <Route exact path="/results" component={Results} />
-        <Route exact path="/results/addResult" component={UserIsAuthenticated(AddResultForm)} />
+        <Route
+          exact
+          path="/results/addResult"
+          component={UserIsAuthenticated(AddResultForm)}
+        />
         <Route
           exact
           path="/results/:id/add_details"
           component={UserIsAuthenticated(AddMatchPlayers)}
         />
-        <Route exact path="/results/:id/edit" component={UserIsAuthenticated(EditResult)} />
+        <Route
+          exact
+          path="/results/:id/edit"
+          component={UserIsAuthenticated(EditResult)}
+        />
         <Route path="*" component={NotFound} />
       </Switch>
     </div>

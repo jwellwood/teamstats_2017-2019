@@ -33,7 +33,11 @@ class Results extends Component {
 
         {!loading && results && results.length !== 0 ? (
           <div>
-            <ResultsTotals auth={!!auth.uid} results={results} teamName={teamName} />
+            <ResultsTotals
+              auth={!!auth.uid}
+              results={results}
+              teamName={teamName}
+            />
             <ResultList
               auth={!!auth.uid}
               results={results}
@@ -59,11 +63,16 @@ Results.propTypes = {
 Results.defaultProps = { team: null, onDelete: undefined };
 
 export default compose(
-  firestoreConnect([{ collection: 'results', orderBy: ['date', 'desc'] }, { collection: 'team' }]),
+  firestoreConnect([
+    { collection: 'results', orderBy: ['date', 'desc'] },
+    { collection: 'team' },
+    { collection: 'players' },
+  ]),
   // eslint-disable-next-line no-unused-vars
   connect((state, props) => ({
     auth: state.firebase.auth,
     results: state.firestore.ordered.results,
     team: state.firestore.ordered.team,
+    players: state.firestore.ordered.players,
   })),
 )(Results);
