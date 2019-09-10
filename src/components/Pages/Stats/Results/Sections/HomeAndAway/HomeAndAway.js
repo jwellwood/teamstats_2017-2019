@@ -63,10 +63,30 @@ const HomeAndAway = props => {
     createData('Scored', homeGoals, arrow, awayGoals),
     createData('Conceded', homeGoalsAgainst, arrow, awayGoalsAgainst),
     createData('Goal difference', goalDiffHome, arrow, goalDiffAway),
-    createData('Avg. Goals', homeGoalsPerGame, arrow, awayGoalsPerGame),
-    createData('Avg. Conceded', homeGoalsAgainstPerGame, arrow, awayGoalsAgainstPerGame),
-    createData('Avg. Difference', goalDiffHomePerGame, arrow, goalDiffAwayPerGame),
-    createData('Avg. Points', pointsHomePerGame, arrow, pointsAwayPerGame),
+    createData(
+      'Avg. Goals',
+      homeGoalsPerGame,
+      arrow,
+      isNaN(awayGoalsPerGame) ? '-' : awayGoalsPerGame,
+    ),
+    createData(
+      'Avg. Conceded',
+      homeGoalsAgainstPerGame,
+      arrow,
+      isNaN(awayGoalsAgainstPerGame) ? '-' : awayGoalsAgainstPerGame,
+    ),
+    createData(
+      'Avg. Difference',
+      goalDiffHomePerGame,
+      arrow,
+      isNaN(goalDiffAwayPerGame) ? '-' : goalDiffAwayPerGame,
+    ),
+    createData(
+      'Avg. Points',
+      pointsHomePerGame,
+      arrow,
+      isNaN(pointsAwayPerGame) ? '-' : pointsAwayPerGame,
+    ),
   ];
 
   return (

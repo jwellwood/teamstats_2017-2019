@@ -8,6 +8,7 @@ import StatsWrapper from '../../../layout/Stats/StatsWrapper';
 import TopPlayers from './TopPlayers';
 import TeamTargets from './TeamTargets';
 import OtherStats from './OtherStats';
+import Typography from '@material-ui/core/Typography';
 
 const TeamStats = props => {
   const { players, results } = props;
@@ -16,7 +17,11 @@ const TeamStats = props => {
     players.map(player => {
       const playerMatches = [];
       // eslint-disable-next-line max-len
-      results.map(result => result.matchPlayers.map(pl => (pl.id === player.id ? playerMatches.push(result) : null)));
+      results.map(result =>
+        result.matchPlayers.map(pl =>
+          pl.id === player.id ? playerMatches.push(result) : null,
+        ),
+      );
 
       const playerMatchStats = playerMatches.map(match => {
         const stats = match.matchPlayers.filter(pl => pl.id === player.id);
@@ -29,9 +34,15 @@ const TeamStats = props => {
         const id = newId[0];
         const name = newName[0];
         const apps = playerMatchStats.length;
-        const goals = playerMatchStats.map(p => p.matchGoals).reduce((a, b) => a + b, 0);
-        const assists = playerMatchStats.map(p => p.matchAssists).reduce((a, b) => a + b, 0);
-        const mvp = playerMatchStats.map(p => p.matchMvp).reduce((a, b) => a + b, 0);
+        const goals = playerMatchStats
+          .map(p => p.matchGoals)
+          .reduce((a, b) => a + b, 0);
+        const assists = playerMatchStats
+          .map(p => p.matchAssists)
+          .reduce((a, b) => a + b, 0);
+        const mvp = playerMatchStats
+          .map(p => p.matchMvp)
+          .reduce((a, b) => a + b, 0);
         newPlayerStats = {
           id,
           name,
@@ -47,11 +58,21 @@ const TeamStats = props => {
 
   return (
     <StatsWrapper>
-      <BoxContainer>
-        <TopPlayers playerStats={playerStats} results={results} />
-        <TeamTargets playerStats={playerStats} players={players} />
-        <OtherStats playerStats={playerStats} players={players} results={results} />
-      </BoxContainer>
+      {players.length !== 0 && results.length !== 0 ? (
+        <BoxContainer>
+          <TopPlayers playerStats={playerStats} results={results} />
+          <TeamTargets playerStats={playerStats} players={players} />
+          <OtherStats
+            playerStats={playerStats}
+            players={players}
+            results={results}
+          />
+        </BoxContainer>
+      ) : (
+        <Typography variant="caption">
+          Stats will show here when results are added
+        </Typography>
+      )}
     </StatsWrapper>
   );
 };

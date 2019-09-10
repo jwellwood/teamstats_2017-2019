@@ -19,7 +19,6 @@ const styles = theme => ({
 
 const TableWrapper = props => {
   const { classes, data, columns, noHeader } = props;
-
   return (
     <div>
       <ReactTable

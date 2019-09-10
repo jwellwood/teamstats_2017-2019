@@ -14,6 +14,7 @@ import EditImage from './components/Pages/Squad/Forms/EditPlayer/EditImage';
 import Results from './components/Pages/Results';
 import AddResultForm from './components/Pages/Results/Forms/AddResultForm';
 import EditResult from './components/Pages/Results/Forms/EditResult';
+import AddMatchPlayers from './components/Pages/Results/Forms/AddMatchPlayers';
 // Team
 import Home from './components/Pages/Home';
 import EditTeam from './components/Pages/Home/EditTeam/EditTeam';
@@ -25,7 +26,7 @@ import Settings from './components/Pages/Settings/Settings';
 import About from './components/Pages/About';
 import NotFound from './components/layout/Warnings/NotFound';
 import './assets/styles/App.css';
-import AddMatchPlayers from './components/Pages/Results/Forms/AddMatchPlayers';
+// import Offline from './components/layout/Warnings/Offline';
 
 const Routes = () => (
   <div className="App">

@@ -15,7 +15,11 @@ const StatsContainer = props => {
   return (
     <Container>
       <PageHeader title="Stats" link="/" />
-      <ResultsStats results={results} teamName={teamName} />
+      {results.length !== 0 ? (
+        <ResultsStats results={results} teamName={teamName} />
+      ) : (
+        <div>No matches have been played yet</div>
+      )}
     </Container>
   );
 };
@@ -28,7 +32,10 @@ StatsContainer.propTypes = {
 StatsContainer.defaultProps = { results: [], team: null };
 
 export default compose(
-  firestoreConnect([{ collection: 'results', orderBy: ['date', 'desc'] }, { collection: 'team' }]),
+  firestoreConnect([
+    { collection: 'results', orderBy: ['date', 'desc'] },
+    { collection: 'team' },
+  ]),
   // eslint-disable-next-line no-unused-vars
   connect((state, props) => ({
     players: state.firestore.ordered.players,

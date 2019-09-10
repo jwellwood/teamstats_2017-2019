@@ -13,7 +13,7 @@ import styles from './styles';
 
 const StatBox = props => {
   const { classes, title, data, value } = props;
-
+  console.log(typeof value);
   return (
     <BoxContainer>
       <Grid
@@ -26,7 +26,9 @@ const StatBox = props => {
         <Typography variant="caption" className={classes.heading}>
           {title}
         </Typography>
-        <Typography className={classes.value}> {value}</Typography>
+        <Typography className={classes.value}>
+          {isFinite(value) || value === 0 ? value : null}
+        </Typography>
       </Grid>
 
       {data.map(item => (
@@ -50,11 +52,19 @@ const StatBox = props => {
                   item
                   style={{
                     fontWeight: 'bold',
-                    color: +item.teamScore > +item.opponentScore ? colors.win : colors.lose,
+                    color:
+                      +item.teamScore > +item.opponentScore
+                        ? colors.win
+                        : colors.lose,
                   }}
                 >
-                  {item.homeOrAway === 'home' ? item.teamScore : item.opponentScore} -{' '}
-                  {item.homeOrAway === 'away' ? item.teamScore : item.opponentScore}
+                  {item.homeOrAway === 'home'
+                    ? item.teamScore
+                    : item.opponentScore}{' '}
+                  -{' '}
+                  {item.homeOrAway === 'away'
+                    ? item.teamScore
+                    : item.opponentScore}
                 </Grid>
               </Grid>
             </Grid>

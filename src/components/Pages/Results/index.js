@@ -30,21 +30,24 @@ class Results extends Component {
     return (
       <Container>
         <PageHeader title="Results" icon="" link="/" />
-
-        {!loading && results && results.length !== 0 ? (
-          <div>
-            <ResultsTotals
-              auth={!!auth.uid}
-              results={results}
-              teamName={teamName}
-            />
-            <ResultList
-              auth={!!auth.uid}
-              results={results}
-              onDelete={onDelete}
-              teamName={teamName}
-            />
-          </div>
+        {!loading ? (
+          results ? (
+            <div>
+              <ResultsTotals
+                auth={!!auth.uid}
+                results={results}
+                teamName={teamName}
+              />
+              <ResultList
+                auth={!!auth.uid}
+                results={results}
+                onDelete={onDelete}
+                teamName={teamName}
+              />
+            </div>
+          ) : (
+            <div>No results yet</div>
+          )
         ) : (
           <Spinner />
         )}

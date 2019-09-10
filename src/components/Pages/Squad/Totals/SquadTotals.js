@@ -20,7 +20,11 @@ const SquadTotals = props => {
     <BoxContainer>
       <Paper style={{ padding: '10px', background: '#222' }}>
         <Grid container justify="center" style={{ margin: '10px auto' }}>
-          <TableWrapper data={data} columns={columns} noHeader={TheadComponent} />
+          <TableWrapper
+            data={data}
+            columns={columns}
+            noHeader={TheadComponent}
+          />
         </Grid>
         <BoxLinks auth={auth} link="/players/addplayer">
           <TeamStats players={players} results={results} />
