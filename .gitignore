@@ -12,10 +12,6 @@
 
 #firebase
 /.firebase
-.firebaserc
-firebase.json
-firestore.indexes.json
-firestore.rules
 
 # misc
 /src/Constants.js
