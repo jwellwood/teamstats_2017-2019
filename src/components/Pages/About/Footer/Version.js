@@ -17,7 +17,7 @@ const Version = () => (
       </a>
     </Typography>
     <Typography variant="caption" align="center">
-      Version: 3.3.0
+      Version: 3.3.1
     </Typography>
     <Typography variant="caption" align="center">
       jwellwood 2019

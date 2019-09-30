@@ -40,8 +40,8 @@ class MatchPlayerForm extends Component {
     const updateMatchPlayer = {
       id: player.id,
       name: player.name,
-      matchGoals: goals,
-      matchAssists: assists,
+      matchGoals: +goals,
+      matchAssists: +assists,
       matchMvp: mvp ? 1 : 0,
     };
     matchPlayers.value.push(updateMatchPlayer);
@@ -51,9 +51,11 @@ class MatchPlayerForm extends Component {
     e.preventDefault();
     const { player, matchPlayers } = this.props;
     this.setState({ ...INITIAL_STATE });
-    matchPlayers.value.map(a => (a.id === player.id
-      ? matchPlayers.value.splice(matchPlayers.value.indexOf(a), 1)
-      : matchPlayers.value));
+    matchPlayers.value.map(a =>
+      a.id === player.id
+        ? matchPlayers.value.splice(matchPlayers.value.indexOf(a), 1)
+        : matchPlayers.value,
+    );
     return matchPlayers;
   };
 

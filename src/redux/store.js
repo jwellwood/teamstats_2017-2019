@@ -8,6 +8,7 @@ import { reactReduxFirebase, firebaseReducer } from 'react-redux-firebase';
 import { reduxFirestore, firestoreReducer } from 'redux-firestore';
 import notifyReducer from './reducers/notifyReducer';
 import settingsReducer from './reducers/settingsReducer';
+import resultReducer from './reducers/resultReducer';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDQpjDlXsDXctEZGNjwexMyru6qdR7wQZk',
@@ -28,7 +29,9 @@ const rrfConfig = {
 firebase.initializeApp(firebaseConfig);
 // Init firestore
 const firestore = firebase.firestore();
-const settings = { /* your settings... */ };
+const settings = {
+  /* your settings... */
+};
 firestore.settings(settings);
 
 // Initialize other services on firebase instance
@@ -46,6 +49,7 @@ const rootReducer = combineReducers({
   firestore: firestoreReducer, // <- needed if using firestore
   notify: notifyReducer,
   settings: settingsReducer,
+  results: resultReducer,
 });
 
 /* eslint-disable no-underscore-dangle */

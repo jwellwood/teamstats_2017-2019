@@ -25,10 +25,20 @@ const FormComponents = props => {
             justify="space-between"
           >
             <Grid item xs={3}>
-              <NumberInput name="goals" label="Goals" value={goals} onChange={onChange} />
+              <NumberInput
+                name="goals"
+                label="Goals"
+                value={goals}
+                onChange={onChange}
+              />
             </Grid>
             <Grid item xs={3}>
-              <NumberInput name="assists" label="Assists" value={assists} onChange={onChange} />
+              <NumberInput
+                name="assists"
+                label="Assists"
+                value={assists}
+                onChange={onChange}
+              />
             </Grid>
             <Grid item xs={3}>
               <CheckboxInput {...props} />

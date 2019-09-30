@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // MUI
 import FormControl from '@material-ui/core/FormControl';
-import TextField from '@material-ui/core/TextField';
+import Input from '@material-ui/core/Input';
 
 const NumberInput = props => {
   const { onChange, name, label, value } = props;
 
   return (
     <FormControl fullWidth style={{ padding: '10px' }}>
-      <TextField
+      <Input
         type="number"
         name={name}
         label={label}

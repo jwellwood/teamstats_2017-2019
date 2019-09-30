@@ -15,14 +15,16 @@ const styles = () => ({
 
 const FormFields = props => {
   const { classes, formData, change } = props;
-
+  const newFormData = { ...formData };
   const validate = element => {
     let error = [true, ''];
 
     if (element.validation.minChar) {
       const valid = element.value.length >= element.validation.minChar;
       const message = `${
-        !valid ? `Must be more than ${element.validation.minChar} characters` : ''
+        !valid
+          ? `Must be more than ${element.validation.minChar} characters`
+          : ''
       }`;
       error = !valid ? [valid, message] : error;
     }
@@ -37,7 +39,7 @@ const FormFields = props => {
 
   const changeHandler = (e, id, blur) => {
     e.preventDefault();
-    const newState = formData;
+    const newState = newFormData;
     if (newState[id].element === 'checkbox') {
       newState[id].value = e.target.checked;
     } else {
@@ -60,7 +62,9 @@ const FormFields = props => {
   const showValidation = data => {
     let errorMessage = null;
     if (data.validation && !data.valid) {
-      errorMessage = <ValidationMessage>{data.validationMessage}</ValidationMessage>;
+      errorMessage = (
+        <ValidationMessage>{data.validationMessage}</ValidationMessage>
+      );
     }
     return errorMessage;
   };
@@ -82,7 +86,9 @@ const FormFields = props => {
                 onChange={e => changeHandler(e, data.id, false)}
                 onBlur={e => changeHandler(e, data.id, true)}
                 inputProps={
-                  values.config.name === 'balance_input' ? { step: 0.5 } : { min: 0, max: 99 }
+                  values.config.name === 'balance_input'
+                    ? { step: 0.5 }
+                    : { min: 0, max: 99 }
                 }
                 className={classes.selectInput}
                 variant="outlined"
@@ -140,13 +146,13 @@ const FormFields = props => {
       case 'checkbox':
         formTemplate = (
           <FormControlLabel
-            control={(
+            control={
               <Checkbox
                 checked={values.value}
                 onChange={e => changeHandler(e, data.id)}
                 color="primary"
               />
-)}
+            }
             label={values.labelText}
             labelPlacement="start"
           />
@@ -163,14 +169,16 @@ const FormFields = props => {
 
   const renderFormFields = () => {
     const formArray = [];
-    Object.keys(formData).forEach(elementName => {
+    Object.keys(newFormData).forEach(elementName => {
       formArray.push({
         id: elementName,
-        settings: formData[elementName],
+        settings: newFormData[elementName],
       });
     });
 
-    return formArray.map(item => <div key={item.id}>{renderTemplates(item)}</div>);
+    return formArray.map(item => (
+      <div key={item.id}>{renderTemplates(item)}</div>
+    ));
   };
 
   return <FormContainer>{renderFormFields()}</FormContainer>;
