@@ -11,7 +11,7 @@ import ValidationMessage from '../../../layout/Forms/ValidationMessage';
 import PageHeader from '../../../layout/Navs/PageHeader';
 import FormFields from '../../../layout/Forms/FormFields';
 import AddMatchPlayers from './AddMatchPlayers';
-import { initialFormData } from './data';
+import { initialFormData } from './Data';
 
 class AddResultForm extends Component {
   state = {
@@ -215,7 +215,7 @@ class AddResultForm extends Component {
 
     return (
       <div>
-        <PageHeader title="Add Match" link="/results" />
+        <PageHeader title='Add Match' link='/results' />
         <form onSubmit={e => this.submitForm(e)}>
           <FormFields
             formData={formData}
@@ -229,9 +229,9 @@ class AddResultForm extends Component {
           {submissionError ? submissionErrorMessage : null}
           <Button
             style={{ margin: '10px auto' }}
-            variant="contained"
-            color="primary"
-            type="submit"
+            variant='contained'
+            color='primary'
+            type='submit'
           >
             Add Match
           </Button>

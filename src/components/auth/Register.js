@@ -35,10 +35,10 @@ class Register extends Component {
     const { notify, settings } = this.props;
     const { email, password } = this.state;
     const { message, messageType } = notify;
-    if (!settings.allowRegistration) return <Redirect to="/" />;
+    if (!settings.allowRegistration) return <Redirect to='/' />;
     return (
       <AuthForm
-        title="Register"
+        title='Register'
         email={email}
         password={password}
         message={message}

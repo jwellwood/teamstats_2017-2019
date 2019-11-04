@@ -31,7 +31,8 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
+    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme
+      .spacing.unit * 3}px`,
   },
   avatar: {
     margin: theme.spacing.unit,
@@ -46,7 +47,16 @@ const styles = theme => ({
 
 // Component
 const AuthForm = props => {
-  const { classes, message, messageType, onSubmit, onChange, email, password, title } = props;
+  const {
+    classes,
+    message,
+    messageType,
+    onSubmit,
+    onChange,
+    email,
+    password,
+    title,
+  } = props;
   return (
     <main className={classes.layout}>
       {message ? <Message message={message} messageType={messageType} /> : null}
@@ -54,14 +64,14 @@ const AuthForm = props => {
         <Avatar className={classes.avatar}>
           <LockIcon />
         </Avatar>
-        <Typography variant="h5">{title}</Typography>
+        <Typography variant='h5'>{title}</Typography>
         <form onSubmit={onSubmit} className={classes.form}>
-          <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="email">Email Address</InputLabel>
+          <FormControl margin='normal' required fullWidth>
+            <InputLabel htmlFor='email'>Email Address</InputLabel>
             <Input
-              id="email"
-              name="email"
-              autoComplete="email"
+              id='email'
+              name='email'
+              autoComplete='email'
               autoFocus
               required
               value={email}
@@ -69,13 +79,13 @@ const AuthForm = props => {
             />
           </FormControl>
 
-          <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="password">Password</InputLabel>
+          <FormControl margin='normal' required fullWidth>
+            <InputLabel htmlFor='password'>Password</InputLabel>
             <Input
-              name="password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
+              name='password'
+              type='password'
+              id='password'
+              autoComplete='current-password'
               required
               value={password}
               onChange={onChange}
@@ -83,11 +93,11 @@ const AuthForm = props => {
           </FormControl>
 
           <Button
-            type="submit"
-            value="login"
+            type='submit'
+            value='login'
             fullWidth
-            variant="contained"
-            color="primary"
+            variant='contained'
+            color='primary'
             className={classes.submit}
           >
             {title}

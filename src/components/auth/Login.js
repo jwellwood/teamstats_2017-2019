@@ -35,7 +35,7 @@ class Login extends Component {
     const { message, messageType } = notify;
     return (
       <AuthForm
-        title="Sign in"
+        title='Sign in'
         email={email}
         password={password}
         message={message}
