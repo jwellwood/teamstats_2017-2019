@@ -1,35 +1,38 @@
 import React from 'react';
+import IconFA from '../../../../../../assets/icons/IconFA';
 
 const columns = [
   {
-    Header: <i className="far fa-check-square" />,
+    Header: <IconFA icon='check-square' size='lg' />,
     accessor: 'name',
     style: {
       fontWeight: 'bold',
-      textAlign: 'left',
+      textAlign: 'center',
       fontSize: '12px',
       textTransform: 'uppercase',
-      background: '#ddd',
-      color: '#333',
+      background: '#444',
+      color: '#fff',
       borderBottom: '1px solid #666',
     },
     sortable: false,
     resizable: false,
   },
   {
-    Header: <i className="fas fa-futbol" />,
+    Header: <IconFA icon='futbol' size='lg' />,
     accessor: 'goals',
     width: 60,
     style: { backgroundColor: '#333', color: '#fff', fontWeight: 'bold' },
-    sortable: false,
+    sortable: true,
+    defaultSortDesc: true,
     resizable: false,
   },
   {
-    Header: <i className="fas fa-key" />,
+    Header: <IconFA icon='adjust' size='lg' />,
     accessor: 'assists',
     width: 60,
     style: { backgroundColor: '#333', color: '#fff', fontWeight: 'bold' },
-    sortable: false,
+    sortable: true,
+    defaultSortDesc: true,
     resizable: false,
   },
   {

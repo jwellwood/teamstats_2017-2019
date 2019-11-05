@@ -6,6 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import TableWrapper from '../../../../layout/Table';
 // Data
 import columns from './Data';
+import IconFA from '../../../../../assets/icons/IconFA';
 
 const MatchStats = props => {
   const { result } = props;
@@ -16,7 +17,9 @@ const MatchStats = props => {
       name: player.name,
       goals: player.matchGoals,
       assists: player.matchAssists,
-      mvp: player.matchMvp ? <i className="fas fa-star" style={{ color: '#F4D03F' }} /> : null,
+      mvp: player.matchMvp ? (
+        <IconFA icon={['fas', 'star']} color='#F4D03F' />
+      ) : null,
     }));
   }
 

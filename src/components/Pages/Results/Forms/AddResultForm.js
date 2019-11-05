@@ -191,7 +191,6 @@ class AddResultForm extends Component {
 
   render() {
     const { formData, submissionError } = this.state;
-    console.log(formData);
     const teamGoals = formData ? +formData.teamScore.value : null;
     const goalsScoredByPlayers = formData
       ? formData.matchPlayers.value

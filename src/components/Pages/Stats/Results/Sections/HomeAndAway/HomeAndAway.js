@@ -12,6 +12,7 @@ import {
   perGame,
   getPointsPer,
 } from '../../../../../../functions/Results/functions';
+import IconFA from '../../../../../../assets/icons/IconFA';
 
 const HomeAndAway = props => {
   const { homeResults, awayResults, checked, handleChange, value } = props;
@@ -47,10 +48,10 @@ const HomeAndAway = props => {
     id += 1;
     if (+home > +away) {
       // eslint-disable-next-line no-param-reassign
-      arrow = <i style={{ color: '#222' }} className="fas fa-arrow-left" />;
+      arrow = <IconFA icon='arrow-left' color='#222' />;
     } else if (+home < +away) {
       // eslint-disable-next-line no-param-reassign
-      arrow = <i className="fas fa-arrow-right" />;
+      arrow = <IconFA icon='arrow-right' />;
     }
     return { id, statName, home, arrow, away };
   }
@@ -95,9 +96,8 @@ const HomeAndAway = props => {
         checked={checked}
         handleChange={handleChange}
         value={value}
-        label="Include forfeits"
+        label='Include forfeits'
       />
-
       <TableWrapper data={data} columns={columns} />
     </div>
   );

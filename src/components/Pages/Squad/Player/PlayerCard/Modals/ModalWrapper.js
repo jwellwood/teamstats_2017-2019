@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+// Material UI
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -9,9 +10,9 @@ import withMobileDialog from '@material-ui/core/withMobileDialog';
 import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 import PlayerOverview from '../../Sections/PlayerOverview';
+import IconFA from '../../../../../../assets/icons/IconFA';
 
 const ResponsiveDialog = withMobileDialog({ breakpoint: 'xs' })(Dialog);
 
@@ -32,22 +33,22 @@ class ModalWrapper extends Component {
     return (
       <React.Fragment>
         <IconButton
-          aria-label="View ModalWrapper"
-          color="secondary"
+          aria-label='View ModalWrapper'
+          color='secondary'
           onClick={this.handleClickOpen}
-          size="small"
+          size='small'
         >
-          <Icon fontSize="inherit">{icon}</Icon>
+          <IconFA icon={icon} />
         </IconButton>
         <ResponsiveDialog
           fullWidth
           open={open}
           onClose={this.handleClose}
-          aria-labelledby="max-width-dialog-title"
+          aria-labelledby='max-width-dialog-title'
         >
-          <AppBar position="static">
+          <AppBar position='static'>
             <Toolbar>
-              <Typography variant="h6" color="inherit">
+              <Typography variant='h6' color='inherit'>
                 {player.name}
               </Typography>
             </Toolbar>
@@ -63,7 +64,7 @@ class ModalWrapper extends Component {
                 Edit
               </Button>
             ) : null}
-            <Button onClick={this.handleClose} color="primary">
+            <Button onClick={this.handleClose} color='primary'>
               Close
             </Button>
           </DialogActions>

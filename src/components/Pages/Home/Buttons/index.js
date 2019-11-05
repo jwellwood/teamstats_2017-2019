@@ -1,5 +1,4 @@
 // Buttons to direct users to squad / results / stats
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -9,15 +8,16 @@ import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar';
 import listItems from './Data';
 import styles from './styles';
+import IconFA from '../../../../assets/icons/IconFA';
 
 const HomeButtons = props => {
   const { classes } = props;
   return (
     <Grid
       container
-      direction="row"
-      justify="space-evenly"
-      alignItems="center"
+      direction='row'
+      justify='space-evenly'
+      alignItems='center'
       className={classes.container}
     >
       {listItems.map(item => (
@@ -29,7 +29,9 @@ const HomeButtons = props => {
           to={item.link}
           style={{ textDecoration: 'none' }}
         >
-          <Avatar className={classes.button}>{item.icon}</Avatar>
+          <Avatar className={classes.button}>
+            <IconFA icon={item.icon} size='sm' />
+          </Avatar>
           <div className={classes.buttonText}>{item.text}</div>
         </Grid>
       ))}

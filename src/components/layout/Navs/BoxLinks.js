@@ -3,21 +3,27 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 // Components
 import Grid from '@material-ui/core/Grid';
-import Icon from '@material-ui/core/Icon';
-import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
+import IconFA from '../../../assets/icons/IconFA';
 
 const BoxLinks = props => {
   const { auth, link, children } = props;
   return (
-    <Grid container direction="row" justify="space-between" alignItems="center">
+    <Grid container direction='row' justify='space-between' alignItems='center'>
       <Grid item xs={6}>
         {children}
       </Grid>
-      <Grid item xs={2}>
+      <Grid item>
         {auth ? (
-          <IconButton size="small" color="secondary" aria-label="Add" component={Link} to={link}>
-            <Icon>add</Icon>
-          </IconButton>
+          <Button
+            variant='contained'
+            color='secondary'
+            aria-label='Add'
+            component={Link}
+            to={link}
+          >
+            <IconFA icon='plus' />
+          </Button>
         ) : null}
       </Grid>
     </Grid>

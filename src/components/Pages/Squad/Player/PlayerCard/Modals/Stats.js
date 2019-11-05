@@ -13,10 +13,18 @@ const Stats = props => {
     playerMatches,
     playerMatchStats,
   } = props;
-  const totalTeamGoals = results.reduce((totalGoals, a) => totalGoals + +a.teamScore, 0);
+  const totalTeamGoals = results.reduce(
+    (totalGoals, a) => totalGoals + +a.teamScore,
+    0,
+  );
   return (
     <div>
-      <ModalWrapper auth={auth} player={player} playerImage={playerImage} icon="bar_chart">
+      <ModalWrapper
+        auth={auth}
+        player={player}
+        playerImage={playerImage}
+        icon='list-ul'
+      >
         <IndividualStats
           player={player}
           results={results}

@@ -24,10 +24,15 @@ const MainCard = props => {
       <ExpansionPanel>
         <ExpansionPanelSummary
           className={classes.root}
-          aria-controls="panel-content"
-          id="panel-header"
+          aria-controls='panel-content'
+          id='panel-header'
         >
-          <Grid container direction="row" alignItems="center" style={{ padding: 0 }}>
+          <Grid
+            container
+            direction='row'
+            alignItems='center'
+            style={{ padding: 0 }}
+          >
             <Grid item xs={7} style={{ background: ' #333' }}>
               <PlayerImage
                 number={player.number}
@@ -42,8 +47,15 @@ const MainCard = props => {
             </Grid>
           </Grid>
         </ExpansionPanelSummary>
-        <ExpansionPanelDetails style={{ padding: '1px', margin: '0px auto', background: '#333' }}>
-          <Grid container direction="row" justify="center" alignContent="center">
+        <ExpansionPanelDetails
+          style={{ padding: '1px', margin: '0px auto', background: '#333' }}
+        >
+          <Grid
+            container
+            direction='row'
+            justify='center'
+            alignContent='center'
+          >
             <Grid item xs={4}>
               <Targets {...props} />
             </Grid>
@@ -55,8 +67,13 @@ const MainCard = props => {
             </Grid>
           </Grid>
           {player.balance !== 0 ? (
-            <Typography variant="caption" style={{ textAlign: 'right', padding: '3px' }}>
-              <span style={{ color: player.balance < 0 ? '#2ECC71' : '#E74C3C' }}>
+            <Typography
+              variant='caption'
+              style={{ textAlign: 'right', padding: '3px' }}
+            >
+              <span
+                style={{ color: player.balance < 0 ? '#2ECC71' : '#E74C3C' }}
+              >
                 €{parseFloat(player.balance).toFixed(2)}
               </span>
             </Typography>

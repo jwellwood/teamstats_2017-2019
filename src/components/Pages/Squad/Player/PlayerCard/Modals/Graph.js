@@ -7,7 +7,12 @@ const Graph = props => {
   const { auth, player, playerImage, playerMatches } = props;
   return (
     <div>
-      <ModalWrapper auth={auth} player={player} playerImage={playerImage} icon="multiline_chart">
+      <ModalWrapper
+        auth={auth}
+        player={player}
+        playerImage={playerImage}
+        icon='chart-line'
+      >
         <StatsGraph player={player} playerMatches={playerMatches} />
       </ModalWrapper>
     </div>

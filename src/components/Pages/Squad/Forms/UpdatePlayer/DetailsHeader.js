@@ -8,6 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import { Typography } from '@material-ui/core';
 import Container from '../../../../layout/hoc/Container';
 import BoxContainer from '../../../../layout/hoc/BoxContainer';
+import IconFA from '../../../../../assets/icons/IconFA';
 
 // Component
 const DetailsHeader = props => {
@@ -15,23 +16,33 @@ const DetailsHeader = props => {
   return (
     <Container>
       <BoxContainer>
-        <Grid container direction="row" justify="space-between" alignItems="center">
-          <IconButton component={Link} to="/players" variant="fab" color="default">
+        <Grid
+          container
+          direction='row'
+          justify='space-between'
+          alignItems='center'
+        >
+          <IconButton
+            component={Link}
+            to='/players'
+            variant='fab'
+            color='default'
+          >
             <Icon>arrow_back</Icon>
           </IconButton>
           <div style={{ fontWeight: 'bold' }}>{player.name}</div>
           <div>
             <IconButton
-              variant="contained"
-              color="default"
+              variant='contained'
+              color='default'
               component={Link}
               to={`/players/${player.id}/edit/details`}
             >
-              <Icon>edit</Icon>
+              <IconFA icon='pen' />
             </IconButton>
             <IconButton
-              variant="contained"
-              color="default"
+              variant='contained'
+              color='default'
               component={Link}
               to={`/players/edit/image/${player.id}`}
             >
@@ -39,7 +50,9 @@ const DetailsHeader = props => {
             </IconButton>
           </div>
         </Grid>
-        <Typography variant="body2">Are you sure you want to edit this player?</Typography>
+        <Typography variant='body2'>
+          Are you sure you want to edit this player?
+        </Typography>
       </BoxContainer>
     </Container>
   );

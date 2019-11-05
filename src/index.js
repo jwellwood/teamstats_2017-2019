@@ -3,11 +3,14 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 // Redux
 import { Provider } from 'react-redux';
+import store from './redux/store';
 // MUI
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
 import orange from '@material-ui/core/colors/orange';
-import store from './redux/store';
+// Icons
+import './assets/icons/fontawesome';
+// Routes
 import Routes from './routes';
 import registerServiceWorker from './registerServiceWorker';
 

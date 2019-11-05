@@ -8,18 +8,20 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import IconButton from '@material-ui/core/IconButton';
-import Icon from '@material-ui/core/Icon';
 import Typography from '@material-ui/core/Typography';
 // Components
-
 import ScoreBox from './ScoreBox';
 import ResultDate from './ResultDate';
 import MatchStats from '../Sections/MatchStats';
 import BoxContainer from '../../../../layout/hoc/BoxContainer';
-// Helpers
-import { resultColor, matchTypeColor } from '../../../../../assets/styles/colors';
+// Styles
+import {
+  resultColor,
+  matchTypeColor,
+} from '../../../../../assets/styles/colors';
 import styles from './styles';
 import MatchReport from '../Sections/MatchReport';
+import IconFA from '../../../../../assets/icons/IconFA';
 
 const ResultCard = props => {
   const { auth, classes, result, teamName } = props;
@@ -39,22 +41,36 @@ const ResultCard = props => {
 
   return (
     <BoxContainer>
-      <ExpansionPanel style={{ border: `2px solid ${resultColor(teamResult)}`, backgroundColor }}>
+      <ExpansionPanel
+        style={{
+          border: `2px solid ${resultColor(teamResult)}`,
+          backgroundColor,
+        }}
+      >
         <ExpansionPanelSummary
           className={classes.root}
-          aria-controls="panel-content"
-          id="panel-header"
+          aria-controls='panel-content'
+          id='panel-header'
         >
-          <Grid container direction="column" alignContent="center" style={{ padding: 0 }}>
+          <Grid
+            container
+            direction='column'
+            alignContent='center'
+            style={{ padding: 0 }}
+          >
             <Grid
               container
-              direction="row"
-              justify="space-between"
-              alignItems="center"
-              alignContent="center"
+              direction='row'
+              justify='space-between'
+              alignItems='center'
+              alignContent='center'
               className={classes.matchTypeBar}
             >
-              <Grid item className={classes.matchType} style={{ color: matchTypeColor(matchType) }}>
+              <Grid
+                item
+                className={classes.matchType}
+                style={{ color: matchTypeColor(matchType) }}
+              >
                 {result.matchType}
               </Grid>
 
@@ -63,15 +79,19 @@ const ResultCard = props => {
               </Grid>
             </Grid>
             <Grid item>
-              <ScoreBox result={result} teamName={teamName} teamResult={teamResult} />
+              <ScoreBox
+                result={result}
+                teamName={teamName}
+                teamResult={teamResult}
+              />
             </Grid>
           </Grid>
         </ExpansionPanelSummary>
 
         <ExpansionPanelDetails style={{ padding: '1px', margin: '0px auto' }}>
-          <Grid container direction="column">
+          <Grid container direction='column'>
             {result.forfeitedMatch ? (
-              <Typography color="primary" variant="caption">
+              <Typography color='primary' variant='caption'>
                 Match forfeited by oppenent
               </Typography>
             ) : (
@@ -84,10 +104,9 @@ const ResultCard = props => {
           <IconButton
             component={Link}
             to={`/results/${result.id}/edit`}
-            color="primary"
-            size="small"
+            color='primary'
           >
-            <Icon fontSize="small">edit</Icon>
+            <IconFA icon='pen' />
           </IconButton>
         ) : null}
       </ExpansionPanel>
