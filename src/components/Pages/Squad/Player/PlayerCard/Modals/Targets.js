@@ -6,7 +6,12 @@ import PlayerTargets from '../../Sections/PlayerTargets';
 const Targets = props => {
   const { auth, playerStats, player, playerImage } = props;
   return (
-    <ModalWrapper auth={auth} player={player} playerImage={playerImage} icon="track_changes">
+    <ModalWrapper
+      auth={auth}
+      player={player}
+      playerImage={playerImage}
+      icon='bullseye'
+    >
       <PlayerTargets playerStats={playerStats} player={player} />
     </ModalWrapper>
   );

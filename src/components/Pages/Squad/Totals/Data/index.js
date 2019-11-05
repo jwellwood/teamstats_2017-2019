@@ -4,7 +4,12 @@ const columns = [
     headerStyle: { display: 'hidden' },
     accessor: 'title',
     width: 200,
-    style: { backgroundColor: '#333', color: '#fff', fontWeight: 'bold', textAlign: 'left' },
+    style: {
+      backgroundColor: '#333',
+      color: '#fff',
+      fontWeight: 'bold',
+      textAlign: 'left',
+    },
     sortable: false,
     resizable: false,
   },
@@ -18,5 +23,4 @@ const columns = [
   },
 ];
 
-// const columns = [column(<i className="fas fa-users" />, 'totalPlayers')];
 export default columns;

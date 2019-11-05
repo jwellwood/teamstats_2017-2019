@@ -16,10 +16,9 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-// helpers
-
 import { Typography, ListItemSecondaryAction } from '@material-ui/core';
 import { modalDown } from '../../../../../helpers/transitions';
+import IconFA from '../../../../../assets/icons/IconFA';
 
 const styles = () => ({
   root: {
@@ -65,37 +64,52 @@ class Trophies extends React.Component {
       <div>
         <Button
           onClick={this.handleClickOpen}
-          variant="text"
+          variant='text'
           fullWidth
-          size="small"
+          size='small'
           style={{ background: '#ddd' }}
         >
           Trophy Cabinet
         </Button>
-        <Dialog open={open} TransitionComponent={modalDown} onClose={this.handleClose} fullScreen>
+        <Dialog
+          open={open}
+          TransitionComponent={modalDown}
+          onClose={this.handleClose}
+          fullScreen
+        >
           <DialogContent>
             {!trophies ? (
-              <Typography variant="body2">No trophies... yet!</Typography>
+              <Typography variant='body2'>No trophies... yet!</Typography>
             ) : (
               <List className={classes.root}>
                 {trophies.map(trophy => (
                   <Grid key={trophy.trophyName + trophy.year}>
                     <ListItem onClick={this.handleClose}>
-                      <Avatar className={trophy.winner ? classes.avatar : classes.runnerUp}>
-                        <i className="fas fa-trophy" />
+                      <Avatar
+                        className={
+                          trophy.winner ? classes.avatar : classes.runnerUp
+                        }
+                      >
+                        <IconFA icon='trophy' size='sm' />
                       </Avatar>
                       <ListItemText
                         primary={trophy.trophyName}
-                        secondary={`${trophy.year}, ${trophy.winner ? 'Winner' : 'Runner-up'}`}
+                        secondary={`${trophy.year}, ${
+                          trophy.winner ? 'Winner' : 'Runner-up'
+                        }`}
                       />
                       {isAuthenticated ? (
                         <ListItemSecondaryAction>
                           <IconButton
-                            onClick={() => firestore.delete({ collection: 'trophies', doc: trophy.id })
+                            onClick={() =>
+                              firestore.delete({
+                                collection: 'trophies',
+                                doc: trophy.id,
+                              })
                             }
-                            type="trophy"
+                            type='trophy'
                           >
-                            <i className="material-icons">clear</i>
+                            <IconFA icon='trash' />
                           </IconButton>
                         </ListItemSecondaryAction>
                       ) : null}
@@ -105,17 +119,22 @@ class Trophies extends React.Component {
               </List>
             )}
           </DialogContent>
-          <Grid container direction="row" justify="space-between">
+          <Grid container direction='row' justify='space-between'>
             {isAuthenticated ? (
               <DialogActions>
-                <Button component={Link} to="/addtrophy" color="secondary" variant="text">
+                <Button
+                  component={Link}
+                  to='/addtrophy'
+                  color='secondary'
+                  variant='text'
+                >
                   Add
                 </Button>
               </DialogActions>
             ) : null}
 
             <DialogActions>
-              <Button onClick={this.handleClose} color="primary" variant="text">
+              <Button onClick={this.handleClose} color='primary' variant='text'>
                 Close
               </Button>
             </DialogActions>

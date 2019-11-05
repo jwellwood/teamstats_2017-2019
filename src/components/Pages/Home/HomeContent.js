@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
-import Icon from '@material-ui/core/Icon';
 
 import Container from '../../layout/hoc/Container';
 import TeamDetails from './Details/TeamDetails';
 import HomeButtons from './Buttons';
+import IconFA from '../../../assets/icons/IconFA';
 
 const HomeContent = props => {
   const { auth } = props;
@@ -16,8 +16,8 @@ const HomeContent = props => {
       <HomeButtons />
       <TeamDetails {...props} />
       {auth.uid ? (
-        <IconButton variant="contained" color="default" component={Link} to="/editteam">
-          <Icon>edit</Icon>
+        <IconButton variant='contained' component={Link} to='/editteam'>
+          <IconFA icon='pen' size='xs' />
         </IconButton>
       ) : null}
     </Container>

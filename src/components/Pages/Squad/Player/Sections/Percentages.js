@@ -11,29 +11,40 @@ import { colors } from '../../../../../assets/styles/colors';
 
 const Percentages = props => {
   const { classes, results, playerMatches, avgScore } = props;
-  let playedPercentage = ((playerMatches.length * 100) / results.length).toFixed(1);
+  let playedPercentage = (
+    (playerMatches.length * 100) /
+    results.length
+  ).toFixed(1);
   if (results.length === 0) {
     playedPercentage = 0;
   }
-  const wonMatches = playerMatches.filter(match => +match.teamScore > +match.opponentScore).length;
+  const wonMatches = playerMatches.filter(
+    match => +match.teamScore > +match.opponentScore,
+  ).length;
   const winPercentage = ((wonMatches / playerMatches.length) * 100).toFixed(1);
   // Data
   const createData = (stat, text, color) => ({ stat, text, color });
   const listItems = [
     createData(playedPercentage, '% played'),
     createData(winPercentage, '% won'),
-    createData(avgScore, 'team avg', avgScore > 0 ? colors.win : colors.lose),
+    createData(avgScore, 'avg +/-', avgScore > 0 ? colors.win : colors.lose),
   ];
 
   return (
-    <Grid container direction="row" alignContent="center" justify="center" className={classes.root}>
+    <Grid
+      container
+      direction='row'
+      alignContent='center'
+      justify='center'
+      className={classes.root}
+    >
       {listItems.map(item => (
         <Grid key={item.text} item xs={4} sm={4}>
           <Card className={classes.card}>
-            <Typography variant="h5" style={{ color: item.color }}>
+            <Typography variant='h5' style={{ color: item.color }}>
               {item.stat}
             </Typography>
-            <Typography variant="caption">{item.text}</Typography>
+            <Typography variant='caption'>{item.text}</Typography>
           </Card>
         </Grid>
       ))}

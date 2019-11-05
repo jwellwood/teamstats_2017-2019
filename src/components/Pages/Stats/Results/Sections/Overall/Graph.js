@@ -2,62 +2,52 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Pie } from 'react-chartjs-2';
 // MUI
+import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-
-let id = 0;
-function createData(title, value, color) {
-  id += 1;
-  return { id, title, value, color };
-}
+import Card from '@material-ui/core/Card';
+import Typography from '@material-ui/core/Typography';
+// styles
+import styles from './styles';
+import { colors } from '../../../../../../assets/styles/colors';
 
 const Graph = props => {
-  const { data, percentages } = props;
-  const { win, draw, lose } = percentages;
-
-  const listItems = [createData('Win', win), createData('Draw', draw), createData('Lose', lose)];
+  const { data, percentages, classes } = props;
+  const { win, lose } = percentages;
 
   return (
-    <div>
-      <Grid container direction="row" justify="center" alignItems="center">
-        <Grid item xs={5} md={3} style={{ textAlign: 'center', padding: '10px' }}>
-          <Pie data={data} options={{ legend: { display: false } }} />
-        </Grid>
-        <Grid item xs={6}>
-          <Paper
-            style={{
-              padding: '5px',
-              width: '100%',
-              maxWidth: '300px',
-              margin: 'auto',
-              backgroundColor: '#333',
-              color: '#fff',
-              fontSize: '13px',
-            }}
-          >
-            <Grid container direction="column" alignContent="center" justify="center">
-              {listItems.map(item => (
-                <Grid
-                  key={item.id}
-                  container
-                  direction="row"
-                  alignContent="center"
-                  justify="space-between"
-                >
-                  <div style={{ fontSize: '12px', fontWeight: 'bold', textTransform: 'uppercase' }}>
-                    {item.title}
-                  </div>
-                  <div>
-                    {item.value}
-                    <span style={{ color: '#ccc', fontSize: '9px' }}>%</span>
-                  </div>
-                </Grid>
-              ))}
-            </Grid>
-          </Paper>
-        </Grid>
+    <Grid
+      container
+      direction='row'
+      alignContent='center'
+      justify='center'
+      className={classes.root}
+    >
+      <Grid item xs={4} sm={4}>
+        <Card className={classes.card}>
+          <Pie
+            data={data}
+            options={{ legend: { display: false }, maintainAspectRatio: false }}
+            height={30}
+          />
+        </Card>
       </Grid>
-    </div>
+      <Grid item xs={4} sm={4}>
+        <Card className={classes.card}>
+          <Typography variant='h5' style={{ color: colors.win }}>
+            {win}
+          </Typography>
+          <Typography variant='caption'>win %</Typography>
+        </Card>
+      </Grid>
+      <Grid item xs={4} sm={4}>
+        <Card className={classes.card}>
+          <Typography variant='h5' style={{ color: colors.lose }}>
+            {lose}
+          </Typography>
+          <Typography variant='caption'>lose %</Typography>
+        </Card>
+      </Grid>
+    </Grid>
   );
 };
 
@@ -66,4 +56,4 @@ Graph.propTypes = {
   percentages: PropTypes.shape({}).isRequired,
 };
 
-export default Graph;
+export default withStyles(styles)(Graph);

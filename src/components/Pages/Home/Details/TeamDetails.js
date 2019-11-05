@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+// Material UI
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
@@ -10,6 +11,7 @@ import Divider from '@material-ui/core/Divider';
 import Paper from '@material-ui/core/Paper';
 import Trophies from './Trophies/Trophies';
 import Logo from '../../../../assets/images/logoBig.jpg';
+import IconFA from '../../../../assets/icons/IconFA';
 
 // styling
 const styles = theme => ({
@@ -25,7 +27,9 @@ const styles = theme => ({
 const TeamDetails = props => {
   const { classes, team, trophies } = props;
   const { city, leagueFinish } = team[0];
-  const trophiesWon = trophies ? trophies.filter(trophy => trophy.winner).length : null;
+  const trophiesWon = trophies
+    ? trophies.filter(trophy => trophy.winner).length
+    : null;
   // Data to map
   let id = 0;
   function createData(icon, name, text, type) {
@@ -34,26 +38,28 @@ const TeamDetails = props => {
   }
 
   const listItems = [
-    createData(<i className="fas fa-globe-americas" />, 'Home city', city),
-    createData(<i className="fas fa-award" />, 'Finish last season', leagueFinish),
-    createData(<i className="fas fa-trophy" />, 'Trophies won', trophiesWon),
+    createData('globe-americas', 'Home city', city),
+    createData('award', 'Finish last season', leagueFinish),
+    createData('trophy', 'Trophies won', trophiesWon),
   ];
 
   return (
     <Paper className={classes.root}>
-      <Grid container direction="column" justify="center" alignContent="center">
+      <Grid container direction='column' justify='center' alignContent='center'>
         <Grid item>
-          <img src={Logo} className={classes.image} alt="team badge" />
+          <img src={Logo} className={classes.image} alt='team badge' />
         </Grid>
         <Grid item>
           <List>
             {listItems.map(item => (
               <div key={item.id}>
                 <ListItem>
-                  <Avatar className={classes.avatar}>{item.icon}</Avatar>
+                  <Avatar className={classes.avatar}>
+                    <IconFA icon={item.icon} size='sm' />
+                  </Avatar>
                   <ListItemText primary={item.name} secondary={item.text} />
                 </ListItem>
-                <Divider variant="inset" component="li" />
+                <Divider variant='inset' component='li' />
               </div>
             ))}
           </List>

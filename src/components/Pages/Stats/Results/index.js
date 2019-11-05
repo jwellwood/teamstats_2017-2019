@@ -30,7 +30,9 @@ class ResultsStats extends Component {
   render() {
     const { results } = this.props;
     const { includeForfeits } = this.state;
-    const teamResults = !includeForfeits ? getResultsWithoutForfeits(results) : results;
+    const teamResults = !includeForfeits
+      ? getResultsWithoutForfeits(results)
+      : results;
     const homeResults = getAllHomeMatches(teamResults);
     const awayResults = getAllAwayMatches(teamResults);
     const totalMatches = teamResults.length;
@@ -50,10 +52,10 @@ class ResultsStats extends Component {
     };
 
     const tabTitles = [
-      { id: 1, icon: <i className="fas fa-list-ul" /> },
-      { id: 2, icon: <i className="fas fa-futbol" /> },
-      { id: 3, icon: <i className="fas fa-store-alt" /> },
-      { id: 4, icon: <i className="fas fa-chart-line" /> },
+      { id: 1, icon: 'list-ul' },
+      { id: 2, icon: 'futbol' },
+      { id: 3, icon: 'store-alt' },
+      { id: 4, icon: 'chart-line' },
     ];
     const tabContent = [
       {
@@ -63,7 +65,7 @@ class ResultsStats extends Component {
             matchTotals={matchTotals}
             handleChange={this.handleChange('includeForfeits')}
             checked={includeForfeits}
-            value="includeforfeits"
+            value='includeforfeits'
           />
         ),
       },
@@ -74,7 +76,7 @@ class ResultsStats extends Component {
             results={teamResults}
             handleChange={this.handleChange('includeForfeits')}
             checked={includeForfeits}
-            value="includeforfeits"
+            value='includeforfeits'
           />
         ),
       },
@@ -86,7 +88,7 @@ class ResultsStats extends Component {
             awayResults={awayResults}
             handleChange={this.handleChange('includeForfeits')}
             checked={includeForfeits}
-            value="includeforfeits"
+            value='includeforfeits'
           />
         ),
       },
@@ -97,7 +99,7 @@ class ResultsStats extends Component {
             results={teamResults}
             handleChange={this.handleChange('includeForfeits')}
             checked={includeForfeits}
-            value="includeforfeits"
+            value='includeforfeits'
           />
         ),
       },

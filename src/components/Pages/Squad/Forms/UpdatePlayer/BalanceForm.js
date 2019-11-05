@@ -10,14 +10,14 @@ const BalanceForm = props => {
   return (
     <form onSubmit={balanceSubmit}>
       <Input
-        type="number"
-        placeholder="Update balance"
-        name="balanceUpdateAmount"
+        type='number'
+        placeholder='Update balance'
+        name='balanceUpdateAmount'
         value={balanceUpdateAmount}
         onChange={onChange}
         required
       />
-      <IconButton color="secondary" type="submit" value="Update">
+      <IconButton color='secondary' type='submit' value='Update'>
         <Icon>done</Icon>
       </IconButton>
     </form>

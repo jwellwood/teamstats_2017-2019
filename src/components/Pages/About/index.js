@@ -18,20 +18,20 @@ const About = props => {
   const { classes } = props;
   return (
     <Container>
-      <PageHeader title="About" link="/" />
+      <PageHeader title='About' link='/' />
       <BoxContainer>
         <div className={classes.root}>
-          <Typography variant="body1" className={classes.title}>
+          <Typography variant='body1' className={classes.title}>
             Main features
           </Typography>
-          <AboutList listItems={listItemsMain} icon="done-outline" />
-          <Typography variant="body1" className={classes.title}>
+          <AboutList listItems={listItemsMain} icon='done-outline' />
+          <Typography variant='body1' className={classes.title}>
             Advanced features
           </Typography>
-          <Typography variant="caption" className={classes.title}>
+          <Typography variant='caption' className={classes.title}>
             (for registered users)
           </Typography>
-          <AboutList listItems={listItemsAdvanced} icon="star" />
+          <AboutList listItems={listItemsAdvanced} icon='' />
           <Version />
         </div>
       </BoxContainer>

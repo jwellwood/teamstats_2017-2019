@@ -6,7 +6,7 @@ import BoxContainer from '../../../../layout/hoc/BoxContainer';
 
 const StatsGraph = props => {
   const { player, playerMatches } = props;
-
+  // To do: Write a function for this
   const sep = playerMatches.filter(match => match.date.slice(5, -3) === '09');
   const oct = playerMatches.filter(match => match.date.slice(5, -3) === '10');
   const nov = playerMatches.filter(match => match.date.slice(5, -3) === '11');
@@ -18,20 +18,34 @@ const StatsGraph = props => {
   const may = playerMatches.filter(match => match.date.slice(5, -3) === '05');
   const jun = playerMatches.filter(match => match.date.slice(5, -3) === '06');
 
-  const monthStats = array => array.map(match => {
-    const stats = match.matchPlayers.filter(pl => pl.id === player.id);
-    return stats[0];
-  });
+  const monthStats = array =>
+    array.map(match => {
+      const stats = match.matchPlayers.filter(pl => pl.id === player.id);
+      return stats[0];
+    });
 
   const apps = array => monthStats(array).length;
-  const goals = array => monthStats(array)
-    .map(match => +match.matchGoals)
-    .reduce((a, b) => a + b, 0);
-  const assists = array => monthStats(array)
-    .map(match => +match.matchAssists)
-    .reduce((a, b) => a + b, 0);
+  const goals = array =>
+    monthStats(array)
+      .map(match => +match.matchGoals)
+      .reduce((a, b) => a + b, 0);
+  const assists = array =>
+    monthStats(array)
+      .map(match => +match.matchAssists)
+      .reduce((a, b) => a + b, 0);
   const data = {
-    labels: ['Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+    labels: [
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+    ],
     datasets: [
       {
         label: 'Apps',
@@ -88,7 +102,7 @@ const StatsGraph = props => {
   };
   return (
     <BoxContainer>
-      <StatsHeader title="By Month" />
+      <StatsHeader title='By Month' />
       <Line
         data={data}
         legend={{ display: true }}

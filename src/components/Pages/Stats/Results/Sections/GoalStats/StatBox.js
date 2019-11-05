@@ -13,17 +13,16 @@ import styles from './styles';
 
 const StatBox = props => {
   const { classes, title, data, value } = props;
-  console.log(typeof value);
   return (
     <BoxContainer>
       <Grid
         container
-        direction="row"
-        justify="space-between"
-        alignItems="center"
+        direction='row'
+        justify='space-between'
+        alignItems='center'
         style={{ background: '#333' }}
       >
-        <Typography variant="caption" className={classes.heading}>
+        <Typography variant='caption' className={classes.heading}>
           {title}
         </Typography>
         <Typography className={classes.value}>
@@ -35,16 +34,16 @@ const StatBox = props => {
         <div key={Math.random()} className={classes.fixture}>
           <Grid
             container
-            direction="row"
-            justify="space-between"
-            alignItems="center"
+            direction='row'
+            justify='space-between'
+            alignItems='center'
             className={classes.firstRow}
           >
             <Grid item xs={6} className={classes.teamName}>
               {item.opponentName}
             </Grid>
             <Grid item xs={6}>
-              <Grid container direction="row" justify="space-between">
+              <Grid container direction='row' justify='space-between'>
                 <Grid className={classes.date} item>
                   {formatDate(item.date)}
                 </Grid>

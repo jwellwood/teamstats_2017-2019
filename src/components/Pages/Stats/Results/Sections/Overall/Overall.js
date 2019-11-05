@@ -37,7 +37,9 @@ const Overall = props => {
   const goalsPerGame = (totalGoalsFor / totalMatches).toFixed(2);
   const againstPerGame = (totalGoalsAgainst / totalMatches).toFixed(2);
   const differencePerGame = (goalDiff / totalMatches).toFixed(2);
-  const pointsPerGame = ((totalWins * 3 + totalDraws) / totalMatches).toFixed(2);
+  const pointsPerGame = ((totalWins * 3 + totalDraws) / totalMatches).toFixed(
+    2,
+  );
 
   const tableItems = [
     createData('Pl', totalMatches),
@@ -55,17 +57,33 @@ const Overall = props => {
         checked={checked}
         handleChange={handleChange}
         value={value}
-        label="Include forfeits"
+        label='Include forfeits'
       />
       <Paper style={{ marginBottom: '10px' }}>
-        <Grid container direction="row" justify="space-evenly" alignItems="center">
+        <Grid
+          container
+          direction='row'
+          justify='space-evenly'
+          alignItems='center'
+        >
           {tableItems.map(item => (
             <Grid item key={item.id}>
-              <Grid container direction="column" justify="flex-start" alignContent="flex-start">
-                <Typography variant="subtitle1" style={{ opacity: '0.5' }}>
+              <Grid
+                container
+                direction='column'
+                justify='flex-start'
+                alignContent='flex-start'
+              >
+                <Typography variant='subtitle1' style={{ opacity: '0.5' }}>
                   {item.header}
                 </Typography>
-                <Typography style={{ fontWeight: 'bold', color: item.color, fontSize: '12px' }}>
+                <Typography
+                  style={{
+                    fontWeight: 'bold',
+                    color: item.color,
+                    fontSize: '12px',
+                  }}
+                >
                   {item.data}
                 </Typography>
               </Grid>
@@ -73,14 +91,13 @@ const Overall = props => {
           ))}
         </Grid>
       </Paper>
-
+      <Percentages matchTotals={matchTotals} />
       <PerGame
         goalsPerGame={goalsPerGame}
         againstPerGame={againstPerGame}
         differencePerGame={differencePerGame}
         pointsPerGame={pointsPerGame}
       />
-      <Percentages matchTotals={matchTotals} />
     </div>
   );
 };
