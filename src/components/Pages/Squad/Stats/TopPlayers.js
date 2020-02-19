@@ -137,7 +137,11 @@ const TopPlayers = props => {
       topGoalsPerGamePlayer,
       mostGoalsPerGame.toFixed(2),
     ),
-    createData('Assists / game', topAssistsPerGamePlayer, mostAssistsPerGame),
+    createData(
+      'Assists / game',
+      topAssistsPerGamePlayer,
+      mostAssistsPerGame.toFixed(2),
+    ),
     createData('Win %', topWinPercentagePlayer, bestWinPercentage),
     createData('Goal difference', topGoalDiffPlayer, bestGoalDiff),
     createData('Contribution %', topContributor, topContributionPercentage),
